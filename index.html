@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.40</title>
+<title>Project Dungeon v1.1.41</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -466,6 +466,35 @@ body.online #emgUndo{opacity:.45}
 #netLobby .join{flex-wrap:wrap}#netLobby .join input{min-width:0}
 #netLobby .mp-row{grid-template-columns:minmax(70px,90px) 1fr}
 #mainMenu:not(.hide) ~ #emgUndo{display:none!important}
+/* ===== v1.1.41 room clear + room banner ===== */
+#roomClear,#roomBanner{position:fixed;inset:0;z-index:1500;display:flex;align-items:center;justify-content:center;pointer-events:none}
+#roomClear.hide,#roomBanner.hide{display:none}
+#roomClear{pointer-events:auto;cursor:pointer;background:radial-gradient(ellipse at 50% 45%,rgba(30,20,60,.55),rgba(5,4,12,.25) 70%,transparent);opacity:0;transition:opacity .35s}
+#roomClear.show{opacity:1}
+.rcBox{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center}
+.rcLogo{width:min(320px,58vw);filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 34px rgba(140,200,255,.85));transform:scale(.6);opacity:0}
+#roomClear.show .rcLogo{animation:rcLogo 1.1s cubic-bezier(.2,1.4,.4,1) forwards,rcGlow 2.2s ease-in-out 1.1s infinite}
+@keyframes rcLogo{0%{transform:scale(.55) rotate(-8deg);opacity:0;filter:blur(6px) drop-shadow(0 0 0 #fff)}60%{opacity:1;filter:blur(0) drop-shadow(0 0 40px #fff)}100%{transform:scale(1) rotate(0);opacity:1;filter:drop-shadow(0 0 12px #fff) drop-shadow(0 0 34px rgba(140,200,255,.85))}}
+@keyframes rcGlow{50%{filter:drop-shadow(0 0 18px #fff) drop-shadow(0 0 56px rgba(170,220,255,1))}}
+.rcRays{position:absolute;left:50%;top:40%;width:min(720px,140vw);aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,225,150,.16) 0 6deg,transparent 6deg 18deg);-webkit-mask-image:radial-gradient(circle,#000 20%,transparent 68%);mask-image:radial-gradient(circle,#000 20%,transparent 68%);opacity:0}
+#roomClear.show .rcRays{animation:rcRays 6s linear forwards}@keyframes rcRays{0%{opacity:0;rotate:0deg}15%{opacity:1}100%{opacity:.7;rotate:60deg}}
+.rcTxt{font-size:clamp(24px,5vw,44px);font-weight:800;color:#ffe08a;letter-spacing:2px;text-shadow:0 3px 0 #6a3b00,0 0 22px rgba(255,180,60,.7);opacity:0}
+#roomClear.show .rcTxt{animation:rcTxt .5s ease-out .55s forwards}@keyframes rcTxt{from{opacity:0;transform:translateY(16px) scale(.9)}to{opacity:1;transform:none}}
+.rcBox small{color:#cdbfe6;font-size:13px;opacity:.8}
+#roomClear.final .rcTxt{color:#fff3c0}#roomClear.final .rcLogo{width:min(400px,70vw)}
+#roomBanner{opacity:0}
+#roomBanner.show{animation:rbIn 2s ease forwards}#roomBanner.boss.show{animation-duration:2.6s}
+@keyframes rbIn{0%{opacity:0}12%{opacity:1}80%{opacity:1}100%{opacity:0}}
+.rbBox{display:flex;flex-direction:column;align-items:center;gap:4px;padding:18px 60px;background:linear-gradient(90deg,transparent,rgba(10,6,20,.82) 18%,rgba(10,6,20,.82) 82%,transparent);border-top:2px solid rgba(255,207,106,.6);border-bottom:2px solid rgba(255,207,106,.6);min-width:min(720px,96vw)}
+#roomBanner.show .rbBox{animation:rbBox 2s cubic-bezier(.2,1,.3,1) forwards}#roomBanner.boss.show .rbBox{animation-duration:2.6s}
+@keyframes rbBox{0%{transform:scaleX(.2) scaleY(.6);letter-spacing:20px}15%{transform:none;letter-spacing:normal}85%{transform:none}100%{transform:scale(1.06)}}
+.rbBox b{font-size:clamp(34px,8vw,72px);font-weight:900;color:#ffe2a0;text-shadow:0 4px 0 #4a2a00,0 0 26px rgba(255,170,60,.6);line-height:1.05}
+.rbBox small{color:#cdbfe6;font-size:clamp(13px,2vw,17px);letter-spacing:2px}.rbBox span{color:#f3e9d2;font-size:15px}
+.rbBox em{font-style:normal;font-weight:800;letter-spacing:4px;padding:2px 14px;border-radius:999px;font-size:15px}.rbBox em.elite{background:#7b3fd1;color:#fff}.rbBox em.boss{background:#b71c1c;color:#fff;box-shadow:0 0 18px #ff3b3b}
+#roomBanner.boss .rbBox{border-color:#ff5252}#roomBanner.boss .rbBox b{color:#ffb4a8;text-shadow:0 4px 0 #4a0000,0 0 30px rgba(255,60,60,.8)}
+#roomClear.still *,#roomBanner.still,#roomBanner.still *{animation:none!important;opacity:1!important;transform:none!important}#roomClear.still{transition:none}
+@media (prefers-reduced-motion:reduce){#roomClear *,#roomBanner,#roomBanner *{animation:none!important;opacity:1!important;transform:none!important}}
+
 /* ===== v1.1.38 shared hero idle animation (breathing/bob + light sway) ===== */
 @keyframes pdIdle{0%,100%{translate:0 0;rotate:-.5deg;scale:1 1}25%{rotate:0deg}50%{translate:0 -9px;rotate:.55deg;scale:1.006 1.016}75%{rotate:0deg}}
 @keyframes pdAura{0%,100%{opacity:.55;scale:1}50%{opacity:.95;scale:1.08}}
@@ -523,7 +552,7 @@ body.online #emgUndo{opacity:.45}
 .mvatk{position:absolute;right:3px;top:2px;font-size:15px;filter:drop-shadow(0 0 3px #000);pointer-events:none}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.40 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.41 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -2223,7 +2252,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.40', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.41', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -3525,7 +3554,7 @@ const MZ={ cur:null, tracks:{}, iv:null, bus:null,
     const len=c.sampleRate*3.2, ir=c.createBuffer(2,len,c.sampleRate); for(let ch=0;ch<2;ch++){ const d=ir.getChannelData(ch); for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.6); }
     const rv=c.createConvolver(); rv.buffer=ir; const wet=c.createGain(); wet.gain.value=.42; rv.connect(wet); wet.connect(comp); this.rv=rv; this.comp=comp; this.bus=true; },
   trackOut(c,id){ let t=this.tracks[id]; if(!t){ const g=c.createGain(); g.gain.value=0; const dry=c.createGain(); dry.gain.value=.8; g.connect(dry); dry.connect(this.comp); g.connect(this.rv); t=this.tracks[id]={g,step:0,next:0,on:false}; } return t; },
-  want(){ if(!(UI.MUS&&UI.MUS.on&&SND.on&&SND.unlocked)||document.hidden) return null; const m=document.getElementById('mainMenu');
+  want(){ if(!(UI.MUS&&UI.MUS.on&&SND.on&&SND.unlocked)||document.hidden) return null; if(this.duckT&&performance.now()<this.duckT) return null; /* v1.1.41 fanfare duck */ const m=document.getElementById('mainMenu');
     if(m&&!m.classList.contains('hide')) return 'menu'; if(typeof G==='undefined'||!G||G.over||$('#game').classList.contains('hide')) return null;
     if(G.phase==='rest') return 'rest'; const ms=(typeof allMons==='function'?allMons():G.mons||[]);
     if(G.room===10||ms.some(x=>Object.values(DUNGEONS).some(d=>d.B===x.name))) return 'boss';
@@ -3847,6 +3876,57 @@ if(!HEADLESS){
     try{ return _fh.apply(this,arguments); } finally{ IMP.ctx=null; } };
   const _fd=UI.fxDeath; UI.fxDeath=function(el){ IMP.dctx=el&&el.classList&&el.classList.contains('mon')?'killMon':'deathHero'; try{ return _fd.apply(this,arguments); } finally{ IMP.dctx=null; } };
   const _fl=UI.fxLabel; UI.fxLabel=function(u,txt,cls,dur){ const r=_fl.apply(this,arguments); if(cls==='block'){ IMP.bctx=true; setTimeout(()=>{ IMP.bctx=false; },0); } return r; };
+}
+
+/* v1.1.41: room-clear celebration (Synchro Horizon logo reveal + synthesized fanfare, music ducked) and a big room-start banner
+   (replaces the old #roomIntro so there is never a double banner). UI-only, non-blocking (nothing awaits it), click to skip,
+   prefers-reduced-motion / effects-off -> no animation (static, shorter). Driven by the log, so an online guest sees it too. */
+if(!HEADLESS){
+const RC={ log:[], t0:performance.now(),
+  rm(){ return (window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||!(UI.FX&&UI.FX.on); },
+  el(id){ let d=document.getElementById(id); if(!d){ d=document.createElement('div'); d.id=id; d.className='hide'; document.body.appendChild(d); d.addEventListener('click',()=>this.hide(id)); } return d; },
+  hide(id){ const d=document.getElementById(id); if(!d) return; d.classList.remove('show'); d.classList.add('hide'); clearTimeout(this['_t'+id]); },
+  show(id,html,cls,ms){ const d=this.el(id); d.innerHTML=html; d.className=cls+(this.rm()?' still':''); void d.offsetWidth; d.classList.add('show'); clearTimeout(this['_t'+id]); this['_t'+id]=setTimeout(()=>this.hide(id),ms); return d; },
+  /* ---- music duck: the MZ tracks fade quickly and MZ.want() returns nothing until the fanfare ends ---- */
+  duck(sec){ const M=window.MZ; if(!M) return; const c=SND.ac&&SND.ac(); M.duckT=performance.now()+sec*1000; if(!c) return; const n=c.currentTime;
+    for(const id in M.tracks){ const t=M.tracks[id]; t.g.gain.cancelScheduledValues(n); t.g.gain.setValueAtTime(t.g.gain.value,n); t.g.gain.linearRampToValueAtTime(0,n+.3); t.on=false; } M.cur=null; },
+  fanfare(big){ if(!SND.on||!SND.unlocked) return false; const c=SND.ac(); if(!c) return false; const dur=big?5:2.8; this.duck(dur+.4);
+    const out=c.createGain(); out.gain.value=big?.9:.8; out.connect(SND.master); const t0=c.currentTime+.05, bpm=big?96:120, b=60/bpm;
+    const brass=(f,t,d,v)=>{ const g=c.createGain(), lp=c.createBiquadFilter(); lp.type='lowpass'; lp.Q.value=1.2; lp.frequency.setValueAtTime(500,t); lp.frequency.linearRampToValueAtTime(2600,t+.08); lp.frequency.linearRampToValueAtTime(1400,t+d);
+      lp.connect(g); g.connect(out); g.gain.setValueAtTime(.0001,t); g.gain.linearRampToValueAtTime(v,t+.04); g.gain.setValueAtTime(v*.8,t+Math.max(.05,d-.08)); g.gain.exponentialRampToValueAtTime(.0001,t+d+.25);
+      for(const dt of [-7,0,7]){ const o=c.createOscillator(); o.type='sawtooth'; o.frequency.value=f; o.detune.value=dt; o.connect(lp); o.start(t); o.stop(t+d+.3); } };
+    const str=(f,t,d,v)=>{ const g=c.createGain(), lp=c.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=1800; lp.connect(g); g.connect(out); g.gain.setValueAtTime(.0001,t); g.gain.linearRampToValueAtTime(v,t+.35); g.gain.setValueAtTime(v,t+d-.3); g.gain.exponentialRampToValueAtTime(.0001,t+d+.6);
+      for(const dt of [-10,-3,4,11]){ const o=c.createOscillator(); o.type='sawtooth'; o.frequency.value=f; o.detune.value=dt; o.connect(lp); o.start(t); o.stop(t+d+.7); } };
+    const timp=(f,t,v)=>{ const o=c.createOscillator(), g=c.createGain(); o.type='sine'; o.frequency.setValueAtTime(f*1.5,t); o.frequency.exponentialRampToValueAtTime(f,t+.12); g.gain.setValueAtTime(v,t); g.gain.exponentialRampToValueAtTime(.0001,t+.7); o.connect(g); g.connect(out); o.start(t); o.stop(t+.8); };
+    const cym=(t,v,d)=>SND.noise(d||1.2,{f:7000,f2:3000,vol:v,ft:'highpass',at:t-c.currentTime});
+    const N=s=>261.63*Math.pow(2,s/12); /* C4 = 0 */
+    let tt=t0; const mel=big?[[7,.33],[7,.33],[7,.33],[12,1],[8,1],[10,1],[12,.66],[10,.33],[12,3]]:[[7,.33],[7,.33],[7,.33],[12,.75],[11,.25],[12,.5],[16,.5],[19,2]];
+    for(const [s,l] of mel){ brass(N(s),tt,l*b*.95,.07); brass(N(s-12),tt,l*b*.95,.035); tt+=l*b; }
+    const total=tt-t0; const chords=big?[[[0,4,7],0,3],[[-4,0,5],3,1],[[-2,2,5],4,1],[[0,4,7],5,total/b-5]]:[[[0,4,7],0,1],[[0,4,7],1.75,total/b-1.75]];
+    for(const [ch,st,len] of chords) ch.forEach(s=>str(N(s-12),t0+st*b,len*b,.022));
+    timp(65.4,t0,.18); timp(65.4,t0+b,.14); timp(65.4,t0+total-(big?3:2)*b,.2); if(big){ for(let i=0;i<8;i++) timp(65.4,t0+total-3*b-.6+i*.07,.06); timp(98,t0+3*b,.15); }
+    cym(t0+total-(big?3:2)*b,.05,big?2:1.3);
+    this.log.push(big?'fanfareBig':'fanfare'); return true; },
+  whoosh(boss){ if(!SND.on||!SND.unlocked) return false; const c=SND.ac(); if(!c) return false;
+    SND.noise(.45,{f:300,f2:3500,vol:.07,ft:'bandpass'}); const t=c.currentTime+.32, o=c.createOscillator(), g=c.createGain(); o.type='sine'; o.frequency.setValueAtTime(boss?90:130,t); o.frequency.exponentialRampToValueAtTime(boss?38:50,t+.35);
+    g.gain.setValueAtTime(.0001,c.currentTime); g.gain.setValueAtTime(boss?.22:.16,t); g.gain.exponentialRampToValueAtTime(.0001,t+.5); o.connect(g); g.connect(SND.master); o.start(t); o.stop(t+.6); SND.noise(.12,{f:900,vol:.06,ft:'lowpass',at:.32});
+    if(boss){ [110,104,98].forEach((f,i)=>SND.tone(f,.7,{type:'sawtooth',vol:.04,at:.5+i*.3,lp:600})); } this.log.push(boss?'whooshBoss':'whoosh'); return true; },
+  clear(n,final){ const logo=(typeof ART!=='undefined'&&ART.__logo)||''; this.hide('roomBanner');
+    this.show('roomClear',`<div class="rcBox"><div class="rcRays"></div><img class="rcLogo" alt="Synchro Horizon" src="${logo}"><div class="rcTxt">${final?'🏆 ชนะ! ปราบห้องบอสสำเร็จ':'✅ เคลียร์ห้องที่ '+n+'!'}</div><small>${final?'Synchro Horizon — Project Dungeon':'แตะเพื่อข้าม'}</small></div>`,(final?'final ':''),final?5200:2900);
+    this.fanfare(!!final); this.log.push((final?'final':'clear')+':'+n); },
+  banner(n,spec){ const dg=(UI.MUS&&UI.MUS.dg&&UI.MUS.dg())||G.dungeon, D2=DUNGEONS[dg]||{}; const boss=n===10||/Boss|บอส/i.test(spec||''), elite=/Elite|\bE\d/i.test(spec||'');
+    const tag=boss?'<em class="boss">BOSS</em>':elite?'<em class="elite">ELITE</em>':''; const th=(UI.DUN_TH&&UI.DUN_TH[dg]&&UI.DUN_TH[dg][0])||D2.th||dg;
+    this.hide('roomClear');
+    this.show('roomBanner',`<div class="rbBox"><small>${esc(th||'')}</small><b>ห้องที่ ${n}</b>${tag}${boss&&D2.B?`<span>⚠ ${esc(D2.B)} ปรากฏตัว!</span>`:spec?`<span>${esc(spec)}</span>`:''}</div>`,(boss?'boss ':elite?'elite ':''),boss?2600:2000);
+    this.whoosh(boss); this.log.push('banner:'+n+(boss?':boss':elite?':elite':'')); }
+};
+UI.RC=RC;
+/* the old room intro is replaced (no double banner) */
+UI.roomIntro=function(n,spec){ try{ RC.banner(n,spec); }catch(e){ console.warn('banner',e); } };
+let burst=0; const live=msg=>{ burst++; if(burst===1) setTimeout(()=>{ burst=0; },0); const L=(G&&G.log)||[]; return burst<=12&&L.slice(-4).some(l=>l.msg===msg); }; /* bulk log replays (load / guest join) never trigger */
+const _la=UI.logAdd; UI.logAdd=function(msg,cls){ const r=_la.apply(this,arguments); try{ if(G&&!SIM.on&&live(String(msg))){ const m=String(msg).match(/^✅ เคลียร์ห้องที่ (\d+)!/); if(m&&+m[1]===G.room) RC.clear(+m[1],false); if(/^🏆 ชนะ! ปราบห้องบอสสำเร็จ/.test(msg)) RC.clear(10,true); } }catch(e){} return r; };
+/* final victory: the long fanfare replaces the short 'victory' sfx */
+const _sf=SND.sfx.bind(SND); SND.sfx=function(k){ if(k==='victory'&&RC.log.slice(-3).includes('fanfareBig')) return; return _sf(k); };
 }
 </script>
 </body></html>
