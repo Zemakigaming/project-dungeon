@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.41</title>
+<title>Project Dungeon v1.1.42</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -466,6 +466,27 @@ body.online #emgUndo{opacity:.45}
 #netLobby .join{flex-wrap:wrap}#netLobby .join input{min-width:0}
 #netLobby .mp-row{grid-template-columns:minmax(70px,90px) 1fr}
 #mainMenu:not(.hide) ~ #emgUndo{display:none!important}
+/* ===== v1.1.42 step-by-step movement + drag-to-play ===== */
+.tok.walking{transition:none!important}
+#hand .card{touch-action:pan-x}
+.dragGhost{position:fixed;z-index:1400;pointer-events:none;margin:0;box-shadow:0 18px 40px #000c,0 0 0 3px #ffd36b;border-radius:10px;opacity:.95}
+.dragGhost.dropIn{transition:transform .25s,opacity .25s;opacity:0;transform:scale(.5)!important}
+#hand .card.dragSrc{opacity:.35}
+body.dragging{user-select:none;cursor:grabbing}
+#center.dropZone{outline:3px dashed #ffd36b88;outline-offset:-6px;transition:outline-color .15s,background .15s}
+#center.dropHot{outline:3px solid #ffd36b;background:radial-gradient(circle,#ffd36b22,transparent 70%)}
+#buffTip{position:fixed;z-index:1450;display:none;pointer-events:none;max-width:340px;padding:10px 12px;border-radius:10px;background:linear-gradient(160deg,#1d2338f5,#0f1322f5);border:1px solid #ffd36b88;box-shadow:0 10px 30px #000b;color:#e8ecf8;font:14px/1.45 Kanit,sans-serif}#buffTip.show{display:block}#buffTip .btN{display:block;color:#ffd36b;font-size:16px;margin-bottom:4px}#buffTip .btM{margin-top:6px;display:flex;flex-direction:column;gap:2px;font-size:12px;color:#aab4d0}
+@media (prefers-reduced-motion:reduce){.dragGhost{transition:none!important}}
+#victory,#hof{position:fixed;inset:0;z-index:1300;display:none;align-items:flex-start;justify-content:center;overflow:auto;background:radial-gradient(ellipse at 50% 20%,#3a1a46ee,#07060df5);padding:16px;font-family:Kanit,sans-serif;color:#e8ecf8}
+#victory.show,#hof.show{display:flex}
+.vBox,.hofBox{width:min(1000px,100%);text-align:center;padding:18px;border:2px solid #ffd36b88;border-radius:18px;background:#120d1ccc;box-shadow:0 0 60px #ffd36b33;animation:fadeIn .5s}
+.vLogo{width:min(320px,70%);max-height:150px;object-fit:contain;filter:drop-shadow(0 0 18px #ffd36b88)}.vBox h1,.hofBox h1{margin:4px 0;color:#ffd36b;font-size:40px}.vDg{color:#cfd8f0;margin-bottom:8px}
+.vHeroes{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}.vH{flex:1 1 300px;max-width:470px;background:#ffffff0d;border-radius:14px;padding:10px}
+.vH img{width:110px;height:110px;border-radius:50%;object-fit:cover;border:3px solid #ffd36b}.vName,#vTeam{font:600 18px Kanit;text-align:center;background:#0008;color:#fff;border:1px solid #ffd36b88;border-radius:8px;padding:4px 8px;margin:4px;max-width:90%}
+.vHn{font-weight:600}.vC{color:#ffd36b;font-size:13px}.vHs,.vTot{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:8px 0}.vS{background:#0006;border-radius:8px;padding:4px 8px;min-width:80px}.vS small{display:block;color:#aab4d0;font-size:11px}.vS b{font-size:18px}
+.vIt,.vDk{font-size:12px;color:#cfd8f0;text-align:left}.vNote{margin:8px;color:#ffd36b;font-size:14px}.vBtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.vBtns button,#hofX{font:600 16px Kanit;padding:8px 16px;border-radius:10px;border:1px solid #ffd36b;background:linear-gradient(#5a3a10,#2e1d0e);color:#ffe9b0;cursor:pointer}
+.hofList{text-align:left;max-height:70vh;overflow:auto}.hofE{display:flex;gap:10px;padding:8px;border-bottom:1px solid #ffffff22}.hofE>b{color:#ffd36b;font-size:22px;min-width:40px}.hofN{font-size:18px;font-weight:600}.hofD{font-size:13px;color:#cfd8f0}.hofT{font-size:11px;color:#8a93b0}
+@media (prefers-reduced-motion:reduce){.vBox,.hofBox{animation:none}}
 /* ===== v1.1.41 room clear + room banner ===== */
 #roomClear,#roomBanner{position:fixed;inset:0;z-index:1500;display:flex;align-items:center;justify-content:center;pointer-events:none}
 #roomClear.hide,#roomBanner.hide{display:none}
@@ -552,7 +573,7 @@ body.online #emgUndo{opacity:.45}
 .mvatk{position:absolute;right:3px;top:2px;font-size:15px;filter:drop-shadow(0 0 3px #000);pointer-events:none}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.41 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.42 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -2252,7 +2273,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.41', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.42', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2642,7 +2663,7 @@ function cardArtHTML(d){
   const cls=d.cls||'All'; const col=CLASS_COL[cls]||CLASS_COL.All;
   const heroName=d.key==='EXH'?null:(CLASS_ART[cls]||BOX_ART[d.box]); const img=heroName?artOf(heroName,'p'):null;
   const h=hash(d.key); const ang=h%360; const mot=motifOf(d);
-  const sparks=[0,1,2,3,4].map(i=>{const x=(h>>(i*3))%90+5,y=(h>>(i*4+2))%60+5;return `<circle cx="${x}" cy="${y}" r="${1+(h>>i)%3}" fill="#fff" opacity=".7"/>`;}).join('');
+  const sparks=[0,1,2,3,4].map(i=>{const x=(h>>(i*3))%90+5,y=(h>>(i*4+2))%60+5;return `<circle cx="${x}" cy="${y}" r="${1+Math.abs((h>>i)%3)}" fill="#fff" opacity=".7"/>`;}).join('');
   return `<div class="cart" style="background:linear-gradient(${ang}deg,${col[0]},${col[1]})">${img?`<img src="${img}" style="object-position:${30+h%40}% 15%">`:''}
     <svg viewBox="0 0 100 100" class="mot">${sparks}<g transform="translate(18 10) scale(.64)">${MOTIF[mot]}</g></svg></div>`;
 }
@@ -3921,12 +3942,215 @@ const RC={ log:[], t0:performance.now(),
     this.whoosh(boss); this.log.push('banner:'+n+(boss?':boss':elite?':elite':'')); }
 };
 UI.RC=RC;
+/* v1.1.42: triggers come from the live game state (polled each 200 ms), not from log parsing, so resumed / old-version / reloaded /
+   online-guest games all behave the same. A room is "seen" once: banner when (room, battle) first appears after the watcher started,
+   clear when that room's battle has no monsters left, final when G.result.win. The watcher re-arms on every new G (new game / load). */
+RC.w={armed:false,banner:0,clear:0,final:false};
+/* arm from the current state without replaying it (fresh game: everything from room 1 on is shown) */
+RC.arm=function(fresh){ const w=this.w; w.armed=true; if(!G){ w.armed=false; return; } const noMon=G.phase==='battle'&&G.mons&&!allMons().length;
+  w.banner=fresh?0:G.room; w.clear=fresh?0:((G.phase==='rest'||noMon)?G.room:G.room-1); w.final=!!G.over; this.log.push('arm:'+(fresh?'fresh':'resume')+':'+G.room); };
+RC.specOf=function(n){ const L=(G.log||[]); for(let i=L.length-1;i>=0;i--){ const m=String(L[i].msg).match(/══ ห้องที่ (\d+)(?: \(ห้องบอส\))? — Monster Wave: (.*?) ══/); if(m&&+m[1]===n) return m[2]; } return ''; };
+RC.poll=function(){ try{ if(typeof G==='undefined'||!G||SIM.on) return; const gm=$('#game'); if(!gm||gm.classList.contains('hide')) return; const w=this.w;
+    if(!w.armed) this.arm(G.room<=1&&(G.round||0)<=1);
+    if(G.over){ if(!w.final&&G.result&&G.result.win){ w.final=true; this.clear(10,true); } w.final=true; return; }
+    if(G.phase==='battle'&&G.room>w.banner&&allMons().length){ w.banner=G.room; this.banner(G.room,this.specOf(G.room)); }
+    if(G.phase==='battle'&&G.room===w.banner&&w.clear<G.room&&!allMons().length&&G.mons&&w.banner){ w.clear=G.room; this.clear(G.room,false); }
+    else if(G.phase==='rest'&&w.clear<G.room&&w.banner===G.room){ w.clear=G.room; this.clear(G.room,false); }
+  }catch(e){ console.warn('RC.poll',e); } };
+setInterval(()=>RC.poll(),200);
+{ const _st=UI.start; UI.start=function(){ RC.w.armed=false; const r=_st.apply(this,arguments); try{ RC.arm(G.room<=1); }catch(e){} return r; };
+  const _cf=UI.continueFrom; UI.continueFrom=function(){ RC.w.armed=false; const r=_cf.apply(this,arguments); try{ if(G) RC.arm(false); }catch(e){} return r; }; }
+{ const _r=UI.render; UI.render=function(){ const x=_r.apply(this,arguments); RC.poll(); return x; };
+  const _g=UI.gameOver; if(_g) UI.gameOver=function(){ RC.poll(); return _g.apply(this,arguments); }; }
 /* the old room intro is replaced (no double banner) */
-UI.roomIntro=function(n,spec){ try{ RC.banner(n,spec); }catch(e){ console.warn('banner',e); } };
-let burst=0; const live=msg=>{ burst++; if(burst===1) setTimeout(()=>{ burst=0; },0); const L=(G&&G.log)||[]; return burst<=12&&L.slice(-4).some(l=>l.msg===msg); }; /* bulk log replays (load / guest join) never trigger */
-const _la=UI.logAdd; UI.logAdd=function(msg,cls){ const r=_la.apply(this,arguments); try{ if(G&&!SIM.on&&live(String(msg))){ const m=String(msg).match(/^✅ เคลียร์ห้องที่ (\d+)!/); if(m&&+m[1]===G.room) RC.clear(+m[1],false); if(/^🏆 ชนะ! ปราบห้องบอสสำเร็จ/.test(msg)) RC.clear(10,true); } }catch(e){} return r; };
+UI.roomIntro=function(){ /* v1.1.42: replaced by RC.poll (state-driven) — no double banner */ };
 /* final victory: the long fanfare replaces the short 'victory' sfx */
 const _sf=SND.sfx.bind(SND); SND.sfx=function(k){ if(k==='victory'&&RC.log.slice(-3).includes('fanfareBig')) return; return _sf(k); };
 }
+
+/* ===================== v1.1.42 e16: (1) step-by-step unit movement  (2) drag-to-play =====================
+   UI-only. Engine logic / RNG untouched: the engine still sets x/y exactly as before; we only record the
+   cells it walked (u._mp, a plain array that also rides along in online packs) and animate the persistent
+   board token through them one cell at a time with a small hop. Headless / SIM never reach this code. */
+const MP={log:[],a:{},pos:{},
+  reduced(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } },
+  live(){ return typeof HEADLESS!=='undefined'&&!HEADLESS&&!SIM.on&&!this.reduced(); },
+  ms(kind){ const fast=(CFG.botDelay||0)<=100; return kind==='slide'?(fast?60:95):(fast?80:150); },
+  rec(u,cells){ if(!u) return; const p=u._mp; const last=p&&p[p.length-1]; const c0=cells[0];
+    if(p&&last&&last.x===c0.x&&last.y===c0.y) cells=p.concat(cells.slice(1)); u._mp=cells.slice(-24).map(c=>({x:c.x,y:c.y})); },
+  /* path the token should walk from cell a to cell b */
+  pathFor(u,a,b){ const p=u._mp; if(p&&p.length>1){ const e=p[p.length-1]; if(e.x===b.x&&e.y===b.y){ for(let i=p.length-2;i>=0;i--) if(p[i].x===a.x&&p[i].y===a.y) return {cells:p.slice(i),kind:'walk'}; } }
+    if(a.x===b.x||a.y===b.y){ const n=Math.abs(b.x-a.x)+Math.abs(b.y-a.y), dx=Math.sign(b.x-a.x), dy=Math.sign(b.y-a.y); const cs=[]; for(let i=0;i<=n;i++) cs.push({x:a.x+dx*i,y:a.y+dy*i}); return {cells:cs,kind:n===1?'walk':'slide'}; }
+    return null; /* diagonal jump without a recorded path = real teleport / swap / blink → keep the old blink-ish transition */ },
+  busyUntil:0,
+  idle(){ const w=Math.min(3000,this.busyUntil-performance.now()); return w>0?new Promise(r=>setTimeout(r,w+20)):Promise.resolve(); },
+  start(id,el,cells,kind){ const cs=UI.cellPx||60; const now=performance.now(); const old=this.a[id];
+    if(old&&old.end>now){ const k=Math.min(old.cells.length-1,Math.floor((now-old.t0)/old.ms)); const rest=old.cells.slice(k); const j=rest.findIndex(c=>c.x===cells[0].x&&c.y===cells[0].y); cells=(j>=0?rest.slice(0,j):rest).concat(cells); }
+    const ms=this.ms(kind), n=cells.length-1; if(n<1) return; const kf=[];
+    const T=c=>`translate(${c.x*cs}px,${c.y*cs}px)`;
+    cells.forEach((c,i)=>{ if(i>0&&kind==='walk'){ const p=cells[i-1]; kf.push({offset:(i-.5)/n,transform:`translate(${(p.x+c.x)/2*cs}px,${(p.y+c.y)/2*cs-cs*.13}px) scale(1.04)`}); } kf.push({offset:i/n,transform:T(c)}); });
+    if(old&&old.anim) try{ old.anim.cancel(); }catch(e){}
+    el.classList.add('walking'); const anim=el.animate(kf,{duration:ms*n,easing:'linear'});
+    const st={id,cells,kind,ms,t0:now,end:now+ms*n,anim}; this.a[id]=st; this.busyUntil=Math.max(this.busyUntil,st.end);
+    anim.onfinish=anim.oncancel=()=>{ if(this.a[id]===st){ el.classList.remove('walking'); delete this.a[id]; } };
+    this.log.push({id,kind,cells:cells.map(c=>c.x+','+c.y).join(' '),t:Math.round(now)});
+    if(kind==='walk'&&typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.tone){ for(let i=0;i<n&&i<8;i++) try{ SND.tone(id[0]==='m'?150:210,.05,{type:'triangle',vol:.025,at:(i*ms+ms*.5)/1000,lp:900}); }catch(e){} } }
+};
+UI.MP=MP;
+/* record the engine's real paths */
+{ const _mma=moveMonAlong; moveMonAlong=async function(m,path){ if(m&&path&&path.length) MP.rec(m,[{x:m.x,y:m.y}].concat(path)); MP.cqWait=MP.live(); try{ return await _mma.apply(this,arguments); } finally{ MP.cqWait=false; if(MP.live()&&G&&!G.over){ UI.render(); await MP.idle(); } } };
+  const _cq=closeQuarters; closeQuarters=async function(){ if(MP.cqWait){ MP.cqWait=false; UI.render(); await MP.idle(); } return _cq.apply(this,arguments); };
+  const _ec=enterCell; enterCell=async function(P,x,y){ if(P&&!SIM.on) MP.rec(P,[{x:P.x,y:P.y},{x,y}]); return _ec.apply(this,arguments); };
+  const _mt=monTurn; monTurn=async function(m){ const r=await _mt.apply(this,arguments); if(MP.live()&&G&&!G.over){ UI.render(); await MP.idle(); } return r; };
+  const _rb=UI.renderBoard; UI.renderBoard=function(){ const r=_rb.apply(this,arguments); try{ if(!G) return r; const anim=!(typeof HEADLESS!=='undefined'&&HEADLESS)&&!MP.reduced();
+      const units=allMons().map(m=>[m.uid,m]).concat(heroes().map(p=>['h'+p.id,p]));
+      for(const [id,u] of units){ const pv=MP.pos[id]; MP.pos[id]={x:u.x,y:u.y}; if(!pv||(pv.x===u.x&&pv.y===u.y)||!anim) continue;
+        const el=document.querySelector(`#toks [data-id="${id}"]`); if(!el) continue; const pf=MP.pathFor(u,pv,u); if(pf) MP.start(String(id),el,pf.cells,pf.kind); else MP.log.push({id,kind:'jump'}); }
+    }catch(e){ console.warn('MP',e); } return r; }; }
+
+/* ---------------- drag-to-play ---------------- */
+const DRAG={log:[],st:null,
+  P(){ return G&&G.active&&!G.active.bot?G.active:null; },
+  zone(){ return document.getElementById('center'); },
+  inZone(x,y){ const z=this.zone(); if(!z) return false; const r=z.getBoundingClientRect(); return x>=r.left&&x<=r.right&&y>=r.top&&y<=r.bottom; },
+  why(P,c){ if(!UI.pending||UI.askReq) return 'ยังเล่นการ์ดตอนนี้ไม่ได้ — รอให้ถึงตาเลือกการ์ด'; if(!c) return 'ไม่พบการ์ดใบนี้'; if(UI.confirming) return 'กำลังรอยืนยันการ์ดอื่นอยู่';
+    if(!playable(P,c)) return (typeof blockReason==='function'&&blockReason(P,c))||'การ์ดใบนี้เล่นไม่ได้ตอนนี้'; return ''; },
+  /* the same action the click path sends (online guest wrappers see an identical {type:'play'}) — but never asks to confirm */
+  play(uid){ const P=this.P(); const c=P&&P.hand.find(h=>h.uid==uid); const w=P?this.why(P,c):'ไม่ใช่ตาของคุณ';
+    if(w){ this.log.push({uid,ok:false,why:w}); UI.toast?UI.toast('⛔ '+w):log('⛔ '+w,'sys'); return false; }
+    this.log.push({uid,ok:true,key:c.key}); UI.resolveAction({type:'play',uid:c.uid,marcel:UI.marcel,staff:UI.staff&&staffOK(P,c),drag:true}); return true; },
+  down(e){ if(e.button>0||this.st) return; const el=e.target.closest('#hand .card'); if(!el||!this.P()) return;
+    this.st={el,uid:el.dataset.uid,x0:e.clientX,y0:e.clientY,id:e.pointerId,on:false,type:e.pointerType}; },
+  move(e){ const s=this.st; if(!s||e.pointerId!==s.id) return; const dx=e.clientX-s.x0, dy=e.clientY-s.y0;
+    if(!s.on){ if(Math.hypot(dx,dy)<10) return; if(s.type==='touch'&&Math.abs(dx)>Math.abs(dy)*1.2){ this.st=null; return; } /* horizontal swipe = scroll the hand */
+      s.on=true; const r=s.el.getBoundingClientRect(); s.r=r; const g=s.el.cloneNode(true); g.classList.add('dragGhost'); g.style.cssText=`left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px`; document.body.appendChild(g); s.g=g;
+      s.el.classList.add('dragSrc'); document.body.classList.add('dragging'); this.zone()&&this.zone().classList.add('dropZone'); }
+    e.preventDefault(); s.g.style.transform=`translate(${dx}px,${dy}px) rotate(${Math.max(-8,Math.min(8,dx/30))}deg) scale(1.06)`;
+    const over=this.inZone(e.clientX,e.clientY); this.zone().classList.toggle('dropHot',over); },
+  up(e,cancel){ const s=this.st; if(!s||e.pointerId!==s.id) return; this.st=null; if(!s.on) return;
+    this.supClick=performance.now(); const z=this.zone(); z&&z.classList.remove('dropZone','dropHot'); document.body.classList.remove('dragging');
+    const ok=!cancel&&this.inZone(e.clientX,e.clientY)&&this.play(s.uid);
+    if(!ok&&!cancel&&!this.inZone(e.clientX,e.clientY)) this.log.push({uid:s.uid,ok:false,why:'outside'});
+    if(ok){ s.g.classList.add('dropIn'); setTimeout(()=>s.g.remove(),260); }
+    else { s.g.style.transition='transform .28s cubic-bezier(.3,1.4,.5,1)'; s.g.style.transform='none'; setTimeout(()=>{ s.g.remove(); s.el.classList.remove('dragSrc'); },300); } }
+};
+UI.DRAG=DRAG;
+if(typeof document!=='undefined'){ document.addEventListener('pointerdown',e=>DRAG.down(e)); document.addEventListener('pointermove',e=>DRAG.move(e),{passive:false});
+  document.addEventListener('pointerup',e=>DRAG.up(e)); document.addEventListener('pointercancel',e=>DRAG.up(e,true));
+  document.addEventListener('click',e=>{ if(DRAG.supClick&&performance.now()-DRAG.supClick<400&&e.target.closest('#hand')){ e.stopPropagation(); e.preventDefault(); } },true); }
+
+/* ---------------- v1.1.42 buff / status tooltips (right-side #buffBar) ----------------
+   Hover (mouse) or long-press / tap (touch). Text comes only from the game data: card th/uth (DEF), the
+   rulebook token text already used by the token tray (data-tokinfo), plus the live stack / duration. */
+const BTIP={log:[],el:null,cur:null,
+  node(){ if(!this.el){ this.el=document.createElement('div'); this.el.id='buffTip'; document.body.appendChild(this.el); } return this.el; },
+  owner(){ return G&&G.players&&(G.active&&!G.active.bot?G.active:(G.players.find(p=>!p.bot)||G.players[0])); },
+  html(tile){ const P=this.owner(); if(!P) return '';
+    if(tile.classList.contains('buffCard')){ const c=(P.buffs||[]).find(b=>String(b.uid)===tile.dataset.uid); const d=c&&DEF[c.key]; if(!d) return '';
+      const txt=(c.up?(d.uth||d.th):d.th)||d.uen||d.en||''; const lv=c.up?2:1;
+      return `<b class="btN">✨ ${esc(d.name)}${c.up?'+':''}</b><div class="btT">${esc(txt)}</div><div class="btM"><span>ระดับ: ${lv===2?'อัปเกรด (Lv 2)':'ปกติ (Lv 1)'}</span><span>ระยะเวลา: ทำงานต่อเนื่องจนถึง Rest Phase</span><span>ที่มา: การ์ด Buff “${esc(d.name)}${c.up?'+':''}” (${esc(d.cls||'')}) ของ ${esc(P.name)}</span></div>`; }
+    const t=tile.dataset.tokinfo; if(!t) return ''; const m=t.match(/^(.*?) ×(\d+) — ([\s\S]*)$/); if(!m) return `<div class="btT">${esc(t)}</div>`;
+    return `<b class="btN">${esc(m[1])}</b><div class="btT">${esc(m[3])}</div><div class="btM"><span>จำนวนสะสม: ×${m[2]}</span><span>ที่มา: โทเคนสถานะของ ${esc(P.name)}</span></div>`; },
+  show(tile,x,y){ const h=this.html(tile); if(!h) return this.hide(); const t=this.node(); t.innerHTML=h; t.className='show'; this.cur=tile; this.place(tile);
+    this.log.push({k:tile.dataset.uid||tile.dataset.k,html:t.textContent.slice(0,120)}); const g=document.getElementById('tip'); if(g) g.className=''; },
+  place(tile){ const t=this.el; const r=tile.getBoundingClientRect(); const W=innerWidth,H=innerHeight; t.style.maxWidth=Math.min(340,W-16)+'px';
+    const w=t.offsetWidth,h=t.offsetHeight; let x=r.left-w-10; if(x<8) x=r.right+10; x=Math.max(8,Math.min(W-w-8,x)); let y=r.top+r.height/2-h/2; y=Math.max(8,Math.min(H-h-8,y)); t.style.left=x+'px'; t.style.top=y+'px'; },
+  hide(){ if(this.el) this.el.className=''; this.cur=null; }
+};
+UI.BTIP=BTIP;
+if(typeof document!=='undefined'){ const SEL='#buffBar .buffTile';
+  window.addEventListener('mouseover',e=>{ const b=e.target.closest&&e.target.closest(SEL); if(b){ e.stopImmediatePropagation(); if(b!==BTIP.cur) BTIP.show(b); } else if(BTIP.cur&&!(e.target.closest&&e.target.closest('#buffTip'))) BTIP.hide(); },true);
+  let lp=null; document.addEventListener('touchstart',e=>{ const b=e.target.closest&&e.target.closest(SEL); if(!b){ if(BTIP.cur) BTIP.hide(); return; } clearTimeout(lp); lp=setTimeout(()=>BTIP.show(b),350); },{passive:true});
+  document.addEventListener('touchend',e=>{ const b=e.target.closest&&e.target.closest(SEL); clearTimeout(lp); if(b){ e.preventDefault(); BTIP.show(b); } },{passive:false});
+  addEventListener('resize',()=>{ if(BTIP.cur&&document.contains(BTIP.cur)) BTIP.place(BTIP.cur); else BTIP.hide(); }); }
+
+/* ===================== v1.1.42 e17: run stats, victory window, PNG card, Hall of Fame =====================
+   UI-only. Stats come from engine values (G.stats.rounds, p.stats.dmg / p.stats.kills) plus wrappers that only
+   observe engine calls (hitMon / hurtHero / rollCri / playCard0 / heroTurn). They are kept in G.vst so they survive
+   save/Continue and ride along to the online guest. SIM (intent preview) and headless never count. */
+const VST={
+  get(){ if(!G) return null; if(!G.vst) G.vst={v:1,ms:0,diff:null,turns:0,h:{}}; return G.vst; },
+  h(P){ const v=this.get(); if(!v||!P) return null; const k='p'+P.id; return v.h[k]||(v.h[k]={taken:0,crits:0,cards:0,maxHit:0,coins:0,pc:P.coins|0}); },
+  on(){ return typeof G!=='undefined'&&G&&!SIM.on&&!(typeof HEADLESS!=='undefined'&&HEADLESS); },
+  diff(){ const v=this.get(); if(v&&v.diff) return v.diff; return (CFG.exhaustPerPlayer===10&&CFG.coinsPerRest===3)?'easy':'normal'; }
+};
+UI.VST=VST;
+{ const _hm=hitMon; hitMon=async function(P,m){ const b=m&&m.hp; const r=await _hm.apply(this,arguments); try{ if(VST.on()&&P&&!P.isMon&&m){ const d=Math.max(0,b-Math.max(0,m.hp)); const s=VST.h(P); if(s&&d>s.maxHit) s.maxHit=d; } }catch(e){} return r; };
+  const _hh=hurtHero; hurtHero=async function(P){ const b=P&&P.hp; const r=await _hh.apply(this,arguments); try{ if(VST.on()&&P){ const s=VST.h(P); if(s) s.taken+=Math.max(0,b-P.hp); } }catch(e){} return r; };
+  const _rc=rollCri; rollCri=async function(P,n){ try{ if(VST.on()&&P&&!P.isMon){ const s=VST.h(P); if(s) s.crits+=(+n||0); } }catch(e){} return _rc.apply(this,arguments); };
+  const _pc=playCard0; playCard0=async function(P){ try{ if(VST.on()&&P&&!P.isMon){ const s=VST.h(P); if(s) s.cards++; } }catch(e){} return _pc.apply(this,arguments); };
+  const _ht=heroTurn; heroTurn=async function(){ try{ if(VST.on()){ VST.get().turns++; } }catch(e){} return _ht.apply(this,arguments); };
+  /* coins earned = every positive change of P.coins (spending is not subtracted) */
+  const _r=UI.render; UI.render=function(){ const x=_r.apply(this,arguments); try{ if(VST.on()) for(const P of G.players){ const s=VST.h(P); const c=P.coins|0; if(c>s.pc) s.coins+=c-s.pc; s.pc=c; } }catch(e){} return x; };
+  const _st=UI.start; UI.start=function(){ const d=(document.getElementById('diff')||{}).value; const r=_st.apply(this,arguments); try{ if(G&&G.room<=1){ G.vst=null; const v=VST.get(); v.diff=d==='easy'?'easy':'normal'; } }catch(e){} return r; };
+  setInterval(()=>{ try{ if(VST.on()&&!G.over&&document.visibilityState!=='hidden'&&!$('#game').classList.contains('hide')) VST.get().ms+=1000; }catch(e){} },1000); }
+
+/* ---------- victory window ---------- */
+const VIC={
+  dname(){ const dg=G.dungeon; return (UI.DUN_TH&&UI.DUN_TH[dg]&&UI.DUN_TH[dg][0])||dg; },
+  cls(p){ return [p.hero.cls].concat(p.cls2?[p.cls2]:[]).filter(Boolean).join(' / '); },
+  time(ms){ const s=Math.round(ms/1000), h=Math.floor(s/3600), m=Math.floor(s%3600/60); return h?`${h} ชม. ${m} นาที`:`${m} นาที ${s%60} วิ`; },
+  data(){ const v=VST.get(); const ps=G.players.map(p=>{ const s=VST.h(p); const deck=[...p.deck,...p.hand,...p.discard].map(c=>DEF[c.key]?DEF[c.key].name+(c.up?'+':''):c.key).filter(n=>n!=='Exhaust'&&!/^EXH/.test(n));
+      return {id:p.id,name:p.name,hero:p.hero.name,cls:this.cls(p),dmg:p.stats.dmg|0,kills:p.stats.kills|0,taken:s.taken,crits:s.crits,cards:s.cards,maxHit:s.maxHit,coins:s.coins,items:(p.items||[]).slice(),deck}; });
+    return {dungeon:this.dname(),rounds:(G.stats&&G.stats.rounds)|0,turns:v.turns,rooms:G.room,ms:v.ms,diff:VST.diff(),ver:APP_VER,date:new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}),ps}; },
+  show(){ const D=this.d=this.data(); let el=document.getElementById('victory'); if(!el){ el=document.createElement('div'); el.id='victory'; document.body.appendChild(el); }
+    const easy=D.diff==='easy'; const st=(k,v)=>`<div class="vS"><small>${k}</small><b>${v}</b></div>`;
+    el.innerHTML=`<div class="vBox"><img class="vLogo" src="${(typeof ART!=='undefined'&&ART.__logo)||''}" alt="Synchro Horizon"><h1>🏆 ชัยชนะ!</h1><div class="vDg">${esc(D.dungeon)} · ปราบบอสห้องที่ 10 สำเร็จ ${easy?'· โหมดง่าย':''}</div>
+      <div class="vTeam"><label>ชื่อทีม <input id="vTeam" maxlength="30" placeholder="ตั้งชื่อทีม" value="${esc(localStorage.getItem('pd_team')||'')}"></label></div>
+      <div class="vHeroes">${D.ps.map(p=>`<div class="vH"><img src="${artOf(p.hero,'t')}" alt=""><input class="vName" data-id="${p.id}" maxlength="24" value="${esc(p.name)}"><div class="vHn">${esc(p.hero)}</div><div class="vC">${esc(p.cls)}</div>
+        <div class="vHs">${st('ดาเมจที่ทำ',p.dmg)}${st('ดาเมจที่รับ',p.taken)}${st('สังหาร',p.kills)}${st('ทอยคริ (ลูก)',p.crits)}${st('การ์ดที่เล่น',p.cards)}${st('ตีแรงสุด',p.maxHit)}${st('Coin ที่ได้',p.coins)}</div>
+        <div class="vIt">ไอเทม: ${p.items.length?p.items.map(esc).join(', '):'—'}</div><details class="vDk"><summary>เด็คสุดท้าย (${p.deck.length} ใบ)</summary>${p.deck.map(esc).join(', ')}</details></div>`).join('')}</div>
+      <div class="vTot">${st('ห้อง',D.rooms+'/10')}${st('รอบ',D.rounds)}${st('เทิร์นรวม',D.turns)}${st('เวลาเล่น',this.time(D.ms))}</div>
+      <div class="vNote">${easy?'⚠ โหมดง่าย: ไม่ถูกบันทึกลงหอเกียรติยศ (บันทึกเฉพาะโหมดปกติ)':'บันทึกลงหอเกียรติยศบนอุปกรณ์นี้ได้ — พิมพ์ชื่อของคุณแล้วกดบันทึก'}</div>
+      <div class="vBtns">${easy?'':'<button id="vHof">🏛 บันทึกหอเกียรติยศ</button>'}<button id="vImg">🖼 บันทึกรูป</button><button id="vAgain">⚔ เล่นอีกครั้ง</button><button id="vMenu">🏠 เมนูหลัก</button><button id="vClose">ดูกระดาน</button></div></div>`;
+    el.className='show'; const ov=document.getElementById('over'); if(ov) ov.classList.add('hide');
+    const names=()=>{ el.querySelectorAll('.vName').forEach(i=>{ const p=D.ps.find(x=>x.id==i.dataset.id); if(p) p.name=i.value.trim()||p.name; }); D.team=(el.querySelector('#vTeam').value||'').trim(); try{ localStorage.setItem('pd_team',D.team); }catch(e){} };
+    el.querySelector('#vImg').onclick=()=>{ names(); this.png(true); };
+    const hb=el.querySelector('#vHof'); if(hb) hb.onclick=()=>{ names(); const r=HOF.add(D); hb.disabled=true; hb.textContent=r?'✅ บันทึกแล้ว':'บันทึกไม่ได้'; };
+    el.querySelector('#vAgain').onclick=()=>{ try{ sessionStorage.setItem('pd_playAgain','1'); }catch(e){} location.reload(); };
+    el.querySelector('#vMenu').onclick=()=>location.reload();
+    el.querySelector('#vClose').onclick=()=>{ el.className=''; };
+    this.log.push('show:'+D.diff); },
+  log:[],
+  /* render the victory card to a PNG (canvas), download it, and offer Web Share where files can be shared */
+  async png(download){ const D=this.d||this.data(); const W=1080, n=D.ps.length, H=560+n*300; const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+    const img=src=>new Promise(r=>{ if(!src) return r(null); const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(null); i.src=src; });
+    const g=x.createLinearGradient(0,0,0,H); g.addColorStop(0,'#2a1536'); g.addColorStop(.5,'#141026'); g.addColorStop(1,'#07060d'); x.fillStyle=g; x.fillRect(0,0,W,H);
+    x.strokeStyle='#ffd36b'; x.lineWidth=6; x.strokeRect(18,18,W-36,H-36);
+    const logo=await img(typeof ART!=='undefined'&&ART.__logo); if(logo){ let lh=210, lw=lh*logo.width/logo.height; if(lw>460){ lw=460; lh=lw*logo.height/logo.width; } x.drawImage(logo,(W-lw)/2,40,lw,lh); }
+    x.textAlign='center'; x.fillStyle='#ffd36b'; x.font='bold 72px Kanit, sans-serif'; x.fillText('🏆 ชัยชนะ!',W/2,325);
+    x.fillStyle='#e8ecf8'; x.font='34px Kanit, sans-serif'; x.fillText((D.team?D.team+' · ':'')+D.dungeon,W/2,385);
+    x.font='26px Kanit, sans-serif'; x.fillStyle='#aab4d0'; x.fillText(`ห้อง ${D.rooms}/10 · ${D.rounds} รอบ · ${D.turns} เทิร์น · ${this.time(D.ms)}${D.diff==='easy'?' · โหมดง่าย':''}`,W/2,430);
+    let y=470; for(const p of D.ps){ x.fillStyle='#ffffff10'; x.fillRect(50,y,W-100,270); const a=await img(artOf(p.hero,'t'));
+      if(a){ x.save(); x.beginPath(); x.arc(170,y+135,105,0,7); x.clip(); x.drawImage(a,65,y+30,210,210); x.restore(); x.strokeStyle='#ffd36b'; x.lineWidth=4; x.beginPath(); x.arc(170,y+135,105,0,7); x.stroke(); }
+      x.textAlign='left'; x.fillStyle='#fff'; x.font='bold 40px Kanit, sans-serif'; x.fillText(p.name,310,y+62); x.fillStyle='#ffd36b'; x.font='28px Kanit, sans-serif'; x.fillText(`${p.hero} — ${p.cls}`,310,y+102);
+      x.fillStyle='#e8ecf8'; x.font='26px Kanit, sans-serif'; const L=[[`ดาเมจที่ทำ ${p.dmg}`,`ดาเมจที่รับ ${p.taken}`,`สังหาร ${p.kills}`],[`ทอยคริ ${p.crits}`,`การ์ดที่เล่น ${p.cards}`,`ตีแรงสุด ${p.maxHit}`],[`Coin ${p.coins}`,`ไอเทม ${p.items.length}`,`เด็ค ${p.deck.length} ใบ`]];
+      L.forEach((row,i)=>row.forEach((t,j)=>x.fillText(t,310+j*235,y+150+i*42))); x.textAlign='center'; y+=300; }
+    x.fillStyle='#aab4d0'; x.font='24px Kanit, sans-serif'; x.fillText(`${D.date} · Project Dungeon v${D.ver} · Synchro Horizon`,W/2,H-50);
+    const url=c.toDataURL('image/png'); this.lastPng=url; this.log.push('png:'+url.length);
+    if(download){ const fn=`ProjectDungeon_Victory_${(d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"))(new Date())}.png`;
+      try{ if(navigator.canShare&&/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)){ const blob=await (await fetch(url)).blob(); const f=new File([blob],fn,{type:'image/png'}); if(navigator.canShare({files:[f]})){ await navigator.share({files:[f],title:'Project Dungeon — ชัยชนะ!'}); this.log.push('share'); return url; } } }catch(e){}
+      const aa=document.createElement('a'); aa.href=url; aa.download=fn; document.body.appendChild(aa); aa.click(); aa.remove(); this.log.push('download'); }
+    return url; }
+};
+UI.VIC=VIC;
+{ const _go=UI.gameOver; UI.gameOver=function(){ const r=_go.apply(this,arguments); try{ if(G&&G.result&&G.result.win){ const t0=performance.now();
+      const wait=()=>{ const rc=document.getElementById('roomClear'); if(rc&&rc.classList.contains('show')&&performance.now()-t0<6000) return setTimeout(wait,250); VIC.show(); }; setTimeout(wait,400); } }catch(e){ console.warn('VIC',e); } return r; }; }
+
+/* ---------- Hall of Fame (หอเกียรติยศ) — localStorage, per device, NORMAL difficulty only ---------- */
+const HOF={KEY:'pd_hof',
+  all(){ try{ return JSON.parse(localStorage.getItem(this.KEY)||'[]'); }catch(e){ return []; } },
+  add(D){ if(!D||D.diff!=='normal') return false; const L=this.all(); const e={t:Date.now(),date:D.date,ver:D.ver,team:D.team||'',dungeon:D.dungeon,rounds:D.rounds,turns:D.turns,ms:D.ms,
+      ps:D.ps.map(p=>({name:p.name,hero:p.hero,cls:p.cls,dmg:p.dmg,kills:p.kills,taken:p.taken,crits:p.crits,cards:p.cards,maxHit:p.maxHit}))};
+    if(L.some(x=>x.t===e.t)) return false; L.unshift(e); try{ localStorage.setItem(this.KEY,JSON.stringify(L.slice(0,100))); }catch(err){ return false; } VIC.log.push('hof:add'); return true; },
+  show(){ let el=document.getElementById('hof'); if(!el){ el=document.createElement('div'); el.id='hof'; document.body.appendChild(el); } const L=this.all();
+    el.innerHTML=`<div class="hofBox"><h1>🏛 หอเกียรติยศ</h1><div class="hofSub">ชัยชนะโหมดปกติบนอุปกรณ์นี้ (${L.length})</div><div class="hofList">${L.length?L.map((e,i)=>`<div class="hofE"><b>#${i+1}</b><div><div class="hofN">${esc(e.ps.map(p=>p.name).join(' & '))}${e.team?` <small>(${esc(e.team)})</small>`:''}</div>
+      <div class="hofD">${esc(e.ps.map(p=>p.hero+' — '+p.cls).join(' · '))}</div><div class="hofD">${esc(e.dungeon)} · ${e.rounds} รอบ · ${e.turns} เทิร์น · ${VIC.time(e.ms||0)} · ดาเมจ ${e.ps.map(p=>p.dmg).join('/')} · สังหาร ${e.ps.map(p=>p.kills).join('/')}</div><div class="hofT">${esc(e.date)} · v${esc(e.ver)}</div></div></div>`).join(''):'<i>ยังไม่มีบันทึก — ชนะบอสห้องที่ 10 ในโหมดปกติเพื่อจารึกชื่อ</i>'}</div><button id="hofX">ปิด</button></div>`;
+    el.className='show'; el.querySelector('#hofX').onclick=()=>{ el.className=''; }; }
+};
+UI.HOF=HOF;
+if(typeof document!=='undefined'){ const addBtn=()=>{ const box=document.querySelector('#mainMenu .mmBtns'); if(box&&!box.querySelector('[data-hof]')){ const b=document.createElement('button'); b.className='mmBtn'; b.dataset.hof='1'; b.textContent='🏛 หอเกียรติยศ'; b.onclick=e=>{ e.stopPropagation(); HOF.show(); }; box.appendChild(b); } };
+  const boot=()=>{ addBtn(); setInterval(addBtn,1000); try{ if(sessionStorage.getItem('pd_playAgain')){ sessionStorage.removeItem('pd_playAgain'); setTimeout(()=>{ const p=document.querySelector('#mainMenu [data-m=play]'); p&&p.click(); },300); } }catch(e){} };
+  if(document.readyState==='loading') window.addEventListener('DOMContentLoaded',()=>setTimeout(boot,50)); else setTimeout(boot,50); }
 </script>
 </body></html>
