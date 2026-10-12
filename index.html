@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.39</title>
+<title>Project Dungeon v1.1.40</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -523,7 +523,7 @@ body.online #emgUndo{opacity:.45}
 .mvatk{position:absolute;right:3px;top:2px;font-size:15px;filter:drop-shadow(0 0 3px #000);pointer-events:none}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.39 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.40 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -2223,7 +2223,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.39', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.40', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -3734,11 +3734,11 @@ const CARDFX={
   color(d,k){ return this.ELEM[k]||this.CLR[d&&d.cls]||'#ffd27a'; },
   monStyle(m){ const ak=m&&m.def&&m.def.ak; if(m&&m.lv==='Boss') return 'shadow'; return ak==='line'?'arrow':ak==='any'?'shadow':'claw'; },
   live(){ return !!(typeof UI!=='undefined'&&UI.FX&&UI.FX.on)&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches); },
-  wm:new WeakMap(), A:[], cv:null, raf:0, n:0,
+  hist:[], wm:new WeakMap(), A:[], cv:null, raf:0, n:0,
   canvas(){ const fx=$('#fx'); if(!fx) return null; let c=fx.querySelector('canvas.cfx'); if(!c){ c=document.createElement('canvas'); c.className='cfx'; fx.appendChild(c); }
     const W=fx.clientWidth, H=fx.clientHeight; if(c.width!==W||c.height!==H){ c.width=W; c.height=H; } return c; },
   pt(u){ const cp=UI.cellPx||64; return {x:u.x*cp+cp/2,y:u.y*cp+cp/2}; },
-  play(k,from,to,col,dur){ this.n++; this.last=k; if(!this.live()||!from) return false; const c=this.canvas(); if(!c) return false;
+  play(k,from,to,col,dur){ if(typeof SIM!=='undefined'&&SIM.on) return false; /* v1.1.40: never during the intent-preview simulation */ this.n++; this.last=k; this.hist.push({k,src:from&&from.isMon?'mon':'hero',t:Date.now()}); if(this.hist.length>80) this.hist.shift(); if(!this.live()||!from) return false; const c=this.canvas(); if(!c) return false;
     const A=this.pt(from), B=this.pt(to||from); this.A.push({k,A,B,col:col||'#ffd27a',t0:performance.now(),dur:dur||(this.ATTACKY.has(k)?520:600),seed:Math.random()*1000});
     this.sfx(k); if(!this.raf) this.raf=requestAnimationFrame(t=>this.frame(t)); return true; },
   frame(now){ const c=this.canvas(); if(!c){ this.A=[]; this.raf=0; return; } const g=c.getContext('2d'); g.clearRect(0,0,c.width,c.height);
@@ -3820,16 +3820,18 @@ const CARDFX={
 })();
 if(!HEADLESS){
   /* hooks (engine functions are plain globals in the single build script) */
-  const _pc0=playCard0; playCard0=async function(P,c,o){ let d=null; CARDFX.cur=null; try{ d=DEF[c.key]; const k=CARDFX.styleOf(d,!!c.up), col=CARDFX.color(d,k); if(P&&!P.isMon){ CARDFX.cur={P,k,col}; if(!CARDFX.ATTACKY.has(k)) CARDFX.play(k,P,P,col); else CARDFX.play('buff',P,P,col,300); } }catch(e){}
+  const _pc0=playCard0; playCard0=async function(P,c,o){ if(SIM.on) return _pc0.apply(this,arguments); let d=null; CARDFX.cur=null; try{ d=DEF[c.key]; const k=CARDFX.styleOf(d,!!c.up), col=CARDFX.color(d,k); if(P&&!P.isMon){ CARDFX.cur={P,k,col}; if(!CARDFX.ATTACKY.has(k)) CARDFX.play(k,P,P,col); else CARDFX.play('buff',P,P,col,300); } }catch(e){}
     const prev=CARDFX.curStack||[]; prev.push(CARDFX.cur); CARDFX.curStack=prev; try{ return await _pc0.apply(this,arguments); } finally{ prev.pop(); CARDFX.cur=prev[prev.length-1]||null; } };
-  const _ma=monAttack; monAttack=async function(m,target,dmg,kind){ try{ if(m&&target) CARDFX.play(CARDFX.monStyle(m),m,target,null); }catch(e){} return _ma.apply(this,arguments); };
-  const _hm=hitMon; hitMon=async function(P,m,dmg,op,ctx){ try{ const C=CARDFX.cur; if(P&&m&&!P.isMon){ const k=C&&CARDFX.ATTACKY.has(C.k)?C.k:'slash'; const now=performance.now(); const lt=CARDFX.wm.get(m); if(!(lt&&now-lt<120)){ CARDFX.wm.set(m,now); CARDFX.play(k,P,m,C?C.col:CARDFX.CLR.All); } } }catch(e){} return _hm.apply(this,arguments); };
+  const _ma=monAttack; monAttack=async function(m,target,dmg,kind){ try{ if(m&&target&&!SIM.on) CARDFX.play(CARDFX.monStyle(m),m,target,null); }catch(e){} return _ma.apply(this,arguments); };
+  /* v1.1.40: a move step inside any card shows the move (dash) effect from where the hero ends up, never an attack effect */
+  const _sm=stepMoves; stepMoves=async function(P){ const x0=P&&P.x, y0=P&&P.y; const r=await _sm.apply(this,arguments); try{ if(P&&!P.isMon&&!SIM.on&&(P.x!==x0||P.y!==y0)) CARDFX.play('dash',P,P,(CARDFX.cur&&CARDFX.cur.col)||CARDFX.CLR.All,420); }catch(e){} return r; };
+  const _hm=hitMon; hitMon=async function(P,m,dmg,op,ctx){ try{ const C=CARDFX.cur; if(P&&m&&!P.isMon&&!SIM.on){ const k=C&&CARDFX.ATTACKY.has(C.k)?C.k:'slash'; const now=performance.now(); const lt=CARDFX.wm.get(m); if(!(lt&&now-lt<120)){ CARDFX.wm.set(m,now); CARDFX.play(k,P,m,C?C.col:CARDFX.CLR.All); } } }catch(e){} return _hm.apply(this,arguments); };
 }
 /* v1.1.39 impact sounds: hero vs monster timbre, heavy for crits / big hits (>=8), shield-absorb variant, kill/death variants.
    Played from the same hooks as the hit flash (UI.fxHp / fxDeath / block label). Silent when sound is off (SND.on / pd_mute) or not unlocked. */
 if(!HEADLESS){
   const IMP={ log:[], critT:0, ctx:null,
-    play(k){ if(!SND.on||!SND.unlocked) return false; const T=(f,d,o)=>SND.tone(f,d,o), N=(d,o)=>SND.noise(d,o);
+    play(k){ if(!SND.on||!SND.unlocked||SIM.on) return false; const T=(f,d,o)=>SND.tone(f,d,o), N=(d,o)=>SND.noise(d,o);
       ({ hitMon:()=>{ N(.09,{f:1800,f2:500,vol:.07}); T(240,.1,{type:'square',to:110,vol:.035,lp:1800}); },
          hitMonHeavy:()=>{ N(.22,{f:1200,f2:120,vol:.1}); T(130,.28,{type:'sawtooth',to:40,vol:.07,lp:900}); T(1100,.12,{type:'square',vol:.03,at:.01}); },
          hitHero:()=>{ T(170,.16,{type:'sawtooth',to:70,vol:.06,lp:700}); N(.1,{f:350,vol:.07,ft:'lowpass'}); },
