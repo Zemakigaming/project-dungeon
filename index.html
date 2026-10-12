@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.34</title>
+<title>Project Dungeon v1.1.35</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -368,7 +368,7 @@ body.nofx .fatigue .fatSvg{animation:none!important}
 .hpbar.h.low i{animation:none!important}
 .autoFx{animation:none!important;opacity:.9;transition:opacity .3s}
 .fatigue.lv6:not(.worse):not(.better) .fatSvg{animation:none}
-/* ===== v1.1.34 main menu ===== */
+/* ===== v1.1.35 main menu ===== */
 #mainMenu{position:fixed;inset:0;z-index:900;overflow:hidden;background:radial-gradient(ellipse at 30% 80%,#3a1630 0%,#160d24 45%,#07060d 100%);color:#f3e9d2;font-family:inherit}
 #mainMenu.hide{display:none}
 .mmBg{position:absolute;inset:0;pointer-events:none}
@@ -442,7 +442,7 @@ body.nofx .fatigue .fatSvg{animation:none!important}
 #netPill.bad{background:#4a1a1a;border-color:#d55}#netPill button{padding:0 4px;font-size:12px}
 body.online #rest [data-a=undo]{display:none!important}
 body.online #emgUndo{opacity:.45}
-/* v1.1.34 responsive menu: panel always above heroes */
+/* v1.1.35 responsive menu: panel always above heroes */
 .mmStage{z-index:1;overflow:hidden}
 .mmSide{z-index:10;overflow-y:auto;overflow-x:hidden;justify-content:safe center}
 .mmSide::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 50% 50%,rgba(8,6,16,.55),rgba(8,6,16,.15) 70%,transparent);pointer-events:none}
@@ -468,15 +468,16 @@ body.online #emgUndo{opacity:.45}
 #mainMenu:not(.hide) ~ #emgUndo{display:none!important}
 @media (max-height:900px),(max-width:760px){.mmSide.setOpen .mmLogoWrap{display:none}}
 .htBox>[data-hx]{position:sticky;top:0;z-index:3}
-/* v1.1.34 upgrade preview */
+/* v1.1.35 upgrade preview */
 .upPick .card{position:relative}
 .card.upPrev{box-shadow:0 0 0 3px #ffd34d,0 0 18px 4px rgba(255,200,60,.75)!important;transform:translateY(-4px)}
 .card .upLbl{position:absolute;left:50%;top:-11px;transform:translateX(-50%);background:linear-gradient(#ffdf6b,#e0a020);color:#3a2300;font-size:11px;font-weight:800;padding:1px 8px;border-radius:9px;white-space:nowrap;box-shadow:0 1px 3px rgba(0,0,0,.5);z-index:3;pointer-events:none}
 #tip .card.upPrev .upLbl{top:4px;font-size:14px}
 .upPick::before{flex-basis:100%;text-align:center;content:"🖱 ชี้/กดค้างที่การ์ดเพื่อดูด้านอัปเกรด";display:block;width:100%;font-size:12px;color:#ffd98a;opacity:.85;margin-bottom:4px}
+.mvatk{position:absolute;right:3px;top:2px;font-size:15px;filter:drop-shadow(0 0 3px #000);pointer-events:none}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.34 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.35 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -855,7 +856,8 @@ ov('Flurry Blow',[{t:'atk',dmg:4,mode:'single'},{t:'nextTwice',atkOnly:1}],[{t:'
 ov('Intent of Fire',[{t:'losehp',n:2},{t:'shard',n:1}],[{t:'losehp',n:3},{t:'shard',n:2}]);
 /* v1.1.4 audit fixes */
 ov('Walk',[{t:'move',min:1,n:2}],[{t:'move',min:1,n:3},{t:'shield',n:3}]);
-ov('Stap',[{t:'atk',dmg:2,times:1,proj:false,mode:'single',cri:1}],[{t:'move',min:1,n:1},{t:'atk',dmg:4,times:1,proj:false,mode:'single',cri:1}]);
+/* v1.1.35: Stap+ follows the Thai card text (uth): move 1 → deal 4 (Cri 1) → move 1 more */
+ov('Stap',[{t:'atk',dmg:2,times:1,proj:false,mode:'single',cri:1}],[{t:'move',min:1,n:1},{t:'atk',dmg:4,times:1,proj:false,mode:'single',cri:1},{t:'move',min:0,n:1}]);
 ov('Magic Missile',[{t:'atk',dmg:3,times:1,proj:true,mode:'single'}],[{t:'atk',dmg:3,times:3,proj:true,mode:'single'}]);
 const pushPick=async(P,ctx)=>{ const lo=mz(P,'min',1), hi=Math.max(lo,mz(P,'max',3)); let k=hi; if(!P.bot&&!HEADLESS){ const vs=[]; for(let v=lo;v<=hi;v++) vs.push(v); const ch=await ask(P,{kind:'opt',prompt:'Push+: ผลักกี่ช่อง?',options:vs.map(v=>({label:`${v} ช่อง`,v}))}); k=ch?ch.v:hi; } return k; };
 ov('Push',[{t:'push',n:1}],[fnOp(async(P,ctx)=>{ const k=await pushPick(P,ctx); await doOp(P,{t:'push',n:k,follow:1},ctx); })]);
@@ -1175,6 +1177,7 @@ async function pushUnit(P,m,dir,n){
 function cls2Choices(h,have){ const own=new Set([normCls(h.cls)].concat(have||[])); return Object.keys(CLASSBOX).filter(c=>!own.has(c)); }
 async function ask(P,req){
   if(!req.options||!req.options.length) return null;
+  if(globalThis.__askHook&&!P.bot) return globalThis.__askHook(P,req); /* v1.1.35 test hook: scripted human answers */
   if(P.bot||HEADLESS||SIM.on) return BOT.choose(P,req);
   /* v1.1.9: no ambiguity -> no prompt. Exactly one valid choice and the effect is not optional (no cancel/skip button) -> auto-pick, with a flash + log */
   if(req.options.length===1&&!req.cancel&&req.kind!=='opt'&&!req.forcePrompt){ const o=req.options[0];
@@ -1234,6 +1237,17 @@ async function enterCell(P,x,y,dir){
   const ti=G.treasures.findIndex(t=>t.x===x&&t.y===y);
   if(ti>=0){ const t=G.treasures.splice(ti,1)[0]; await takeTreasure(P,t); }
 }
+/* v1.1.35 move→attack→move: the attack part after a move is always re-evaluated from the NEW position (doAttack recomputes targets);
+   these helpers let the move step show/prefer destinations that leave a valid target. */
+function nextAtkOp(ctx){ if(!ctx||!ctx.ops) return null; for(let i=(ctx.opi||0)+1;i<ctx.ops.length;i++){ const o=ctx.ops[i]; if(o&&o.t==='atk') return o; if(o&&MOVE_T.has(o.t)) return null; } return null; }
+function atkTargetsFrom(P,op,cell,ctx){ const sx=P.x,sy=P.y,sf=P.face; try{ P.x=cell.x; P.y=cell.y; if(cell.d) P.face=cell.d;
+    const ms=monsters(P).filter(m=>m.hp>0);
+    if(op.mode==='all'||op.mode==='any'||op.mode==='space') return ms;
+    if(op.mode==='adjAll'||(op.mode==='front'&&ctx&&ctx.moveAtk)) return ms.filter(m=>dist(m,P)===1);
+    if(op.mode==='front') return ms.filter(m=>m.x===P.x+P.face[0]&&m.y===P.y+P.face[1]);
+    if(op.mode==='cross') return lineTargets(P,P.x,P.y);
+    let t=singleTargets(P,op).filter(m=>m.hp>0); if(!t.length&&P.ptok>0&&!isProj(P,op)) t=lineTargets(P,P.x,P.y); return t;
+  } finally { P.x=sx; P.y=sy; P.face=sf; } }
 async function stepMoves(P,n,min,opt={}){
   let moved=0;
   if(typeof n==='function') n=n(P);
@@ -1246,7 +1260,9 @@ async function stepMoves(P,n,min,opt={}){
   let opts=moveCells(P,n,min,opt);
   if(!opts.length&&min>0) opts=moveCells(P,n,1,opt); // fully blocked from min: move as far as possible
   if(!opts.length){ log(`${P.name} เดินไม่ได้ — ทุกทางถูกขวาง`,'warn'); return 0; }
-  const ch=await ask(P,{kind:'cell',prompt:`เดิน (สูงสุด ${n} ช่อง${min>0?`, อย่างน้อย ${min}`:''}) — คลิกช่องสีเขียวที่จะไป`,options:opts,cancel:opt.skip?'⏭ ข้าม (ไม่เดิน)':(min<=0?'ไม่เดิน':null),purpose:'move',move:true});
+  /* v1.1.35: move inside a move/attack card — mark every destination from which the NEXT attack part of the card has a target (UI shows ⚔, bots prefer them) */
+  let nTg=0; if(opt.nextAtk){ for(const o of opts){ o.tg=atkTargetsFrom(P,opt.nextAtk,o,opt.ctx).length; if(o.tg) nTg++; } }
+  const ch=await ask(P,{kind:'cell',prompt:`เดิน (สูงสุด ${n} ช่อง${min>0?`, อย่างน้อย ${min}`:''}) — คลิกช่องสีเขียวที่จะไป${opt.nextAtk?(nTg?' · ⚔ = โจมตีได้จากช่องนั้น':' · (ไม่มีช่องที่โจมตีได้หลังเดิน)'):''}`,options:opts,nextAtk:opt.nextAtk||null,cancel:opt.skip?'⏭ ข้าม (ไม่เดิน)':(min<=0?'ไม่เดิน':null),purpose:'move',move:true});
   if(!ch){ if(opt.skip) log(`⏭ ${P.name} ข้ามการเดิน`,'sys'); return 0; }
   const path=ch.path||[{x:ch.x,y:ch.y,d:ch.d}];
   for(const st of path){ if(G.over) break; await enterCell(P,st.x,st.y,st.d); moved++; if(!HEADLESS&&!SIM.on){ UI.render(); await new Promise(r=>setTimeout(r,90)); } }
@@ -1366,7 +1382,7 @@ async function playTopFree(P,removeAfter){
   await playCard(P,c,{free:true,removeAfter});
 }
 async function runOps(P,ops,ctx){
-  for(const op of ops){ if(G.over) return; if(op.cond==='kill'&&!ctx.killed) continue; if(op.cond==='weak'&&!ctx.weak) continue; if(op.cond==='perfect'&&!ctx.perfect) continue;
+  ctx.ops=ops; for(let oi=0;oi<ops.length;oi++){ const op=ops[oi]; ctx.opi=oi; if(G.over) return; if(op.cond==='kill'&&!ctx.killed) continue; if(op.cond==='weak'&&!ctx.weak) continue; if(op.cond==='perfect'&&!ctx.perfect) continue;
     await doOp(P,op,ctx); if(!HEADLESS) UI.render(); }
 }
 const val=(v,P,ctx)=>typeof v==='function'?v(P,ctx):(v||0);
@@ -1423,7 +1439,7 @@ async function doOp(P,op,ctx){
   case 'power': { const n=op.n+bonus(ctx); const atk=P.hand.filter(h=>DEF[h.key].type==='attack');
     if(atk.length){ const ch=await ask(P,{kind:'card',prompt:`Power Up ${n}: เลือกการ์ดโจมตีในมือเพื่อใส่ Power Token`,options:atk,purpose:'power'}); if(ch){ ch.pow+=n; log(`${DEF[ch.key].name} ได้ Power +${n}`,'sys'); } }
     else { P.pendingPow=(P.pendingPow||0)+n; } return; }
-  case 'move': { const n=val(op.n,P,ctx)+bonus(ctx); if(op.ghost&&ctx.up&&DEF[ctx.card.key].name==='Toxic Advance') P.toxicGhost=mz(P,'tox',1); const m=await stepMoves(P,n,Math.min(op.min||0,n),{ghost:op.ghost,skip:ctx.moveAtk}); P.toxicGhost=false; ctx.movedThis+=m; return; }
+  case 'move': { const n=val(op.n,P,ctx)+bonus(ctx); if(op.ghost&&ctx.up&&DEF[ctx.card.key].name==='Toxic Advance') P.toxicGhost=mz(P,'tox',1); const nx=nextAtkOp(ctx); const m=await stepMoves(P,n,Math.min(op.min||0,n),{ghost:op.ghost,skip:ctx.moveAtk,nextAtk:nx,ctx}); P.toxicGhost=false; ctx.movedThis+=m; return; }
   case 'discard': { for(let i=0;i<op.n;i++){ if(!P.hand.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ดที่จะทิ้ง',options:P.hand.slice(),purpose:'discard'}); if(!ch) return; P.hand.splice(P.hand.indexOf(ch),1); P.discard.push(ch); log(`${P.name} ทิ้ง ${DEF[ch.key].name}`,'sys'); if(op.duck&&ch.key==='EXH'){ P.shard+=op.duck; } } return; }
   case 'removeHand': for(let ri=0;ri<(op.n||1);ri++){ if(!P.hand.length) return; let disc=false;
     if(op.orDiscard){ if(P.bot||HEADLESS) disc=!P.hand.some(h=>h.key==='EXH'); else { const o=await ask(P,{kind:'opt',prompt:'Sprint+: รีมูฟ หรือ ทิ้ง การ์ด 1 ใบ?',options:[{label:'รีมูฟ (Remove)',v:0},{label:'ทิ้ง (Discard)',v:1}]}); disc=!!(o&&o.v); } }
@@ -1433,7 +1449,8 @@ async function doOp(P,op,ctx){
   case 'exhHand': if(P.exhaust>0){P.exhaust--;exhGain(P,'card:'+DEF[ctx.card.key].name);P.hand.push(mk('EXH')); if(hasItem(P,'Burnout Sigil')) for(const m of monsters(P)) await hitMon(P,m,3,{noWeak:1},{});} return;
   case 'teleport': case 'diag': {
     const opts=allCells(c=>{ if(!canStop(P,c.x,c.y)) return false; if(op.t==='diag'){ const dx=c.x-P.x,dy=c.y-P.y; return Math.abs(dx)===Math.abs(dy)&&Math.abs(dx)>=1&&Math.abs(dx)<=op.n; } return true; });
-    const ch=await ask(P,{kind:'cell',prompt:op.t==='diag'?'เลือกช่องแนวทแยง':'เลือกช่องที่จะเทเลพอร์ต',options:opts,purpose:'teleport',cancel:'ไม่ย้าย'}); if(ch) await enterCell(P,ch.x,ch.y,null); return; }
+    const nx=nextAtkOp(ctx); if(nx) for(const o of opts) o.tg=atkTargetsFrom(P,nx,o,ctx).length;
+    const ch=await ask(P,{kind:'cell',prompt:(op.t==='diag'?'เลือกช่องแนวทแยง':'เลือกช่องที่จะเทเลพอร์ต')+(nx&&opts.some(o=>o.tg)?' · ⚔ = โจมตีได้จากช่องนั้น':''),options:opts,purpose:'teleport',nextAtk:nx||null,cancel:ctx&&ctx.moveAtk?'⏭ ข้าม (ไม่ย้าย)':'ไม่ย้าย'}); if(ch) await enterCell(P,ch.x,ch.y,null); return; }
   case 'fire': { for(let i=0;i<op.n;i++){ const opts=allCells(c=>!G.obs.has(key(c.x,c.y))&&!G.fire[key(c.x,c.y)]);
       const ch=await ask(P,{kind:'cell',prompt:'เลือกช่องสร้าง Fire Space',options:opts,purpose:'fire'}); if(ch) G.fire[key(ch.x,ch.y)]=P.id+1; } return; }
   case 'fireAdj': for(const [dx,dy] of DIRS){ const x=P.x+dx,y=P.y+dy; if(inB(x,y)&&!G.obs.has(key(x,y))) G.fire[key(x,y)]=P.id+1; } return;
@@ -2007,6 +2024,8 @@ const BOT = {
     }
     if(req.kind==='cell'){
       if(req.purpose==='move'&&P._kite){ P._kite=false; return o.filter(c=>canStop(P,c.x,c.y)).sort((a,b)=>this.threatAt(P,a)-this.threatAt(P,b))[0]||null; }
+      /* v1.1.35: move inside a move/attack card -> go where the card's next attack has a target */
+      if((req.purpose==='move'||req.purpose==='teleport')&&req.nextAtk){ const tg=o.filter(c=>c.tg>0&&canStop(P,c.x,c.y)); if(tg.length){ return tg.sort((a,b)=>(b.tg-a.tg)||(this.threatAt(P,a)-this.threatAt(P,b)))[0]; } }
       if(req.purpose==='move'){
         const atkOps=[]; for(const h of P.hand){ const d=DEF[h.key]; if(h.key==='EXH'||d.disabled) continue; for(const op of (h.up?d.opsU:d.opsN)) if(op.t==='atk'&&op.mode!=='all'&&op.mode!=='any'&&op.mode!=='space') atkOps.push(op); }
         if(!atkOps.length) atkOps.push({mode:'single'});
@@ -2143,7 +2162,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.34', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.35', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2586,7 +2605,7 @@ UI.renderBoard=function(){
   for(let y=0;y<H;y++) for(let x=0;x<W;x++){ const k=key(x,y); const cls=['cell','v'+((x*7+y*3+G.room)%4)]; cls.push('th-'+((G.dungeons&&G.dungeons[boardOf(x)])||G.dungeon)); /* v1.1.28 theme */ if(boardOf(x)%2) cls.push('alt'); if(x%5===0&&x>0) cls.push('sep');
     if(G.obs.has(k)) cls.push('obs'); if(G.ice.has(k)) cls.push('ice'); if(G.fire[k]) cls.push('fire'); if(hl.has(k)) cls.push(req.kind==='mon'?'tgtc':'opt'); if(req&&req.aoe&&req.aoe.some(c=>c.x===x&&c.y===y)) cls.push('aoe'); const mvO=req&&req.move&&hl.has(k)?req.options[hl.get(k)]:null;
     const tr=G.treasures.find(t=>t.x===x&&t.y===y);
-    h+=`<div class="${cls.join(' ')}" data-k="${k}" style="left:${x*cs}px;top:${y*cs}px">${mvO?`<span class="mvstep">${mvO.steps}</span>`:''}${G.obs.has(k)?UI.obsHTML((G.dungeons&&G.dungeons[boardOf(x)])||G.dungeon,x,y):''}${G.ice.has(k)?'<span class="rock">🧊</span>':''}${tr?`<span class="tre" data-tip="${{card:'สมบัติการ์ด: เลือก 1 จาก 3',potion:'ยา: ฮีล 3',chest:'หีบ: +1 Coin'}[tr.type]}">${{card:'🃏',potion:'🧪',chest:'💰'}[tr.type]}</span>`:''}</div>`; }
+    h+=`<div class="${cls.join(' ')}" data-k="${k}" style="left:${x*cs}px;top:${y*cs}px">${mvO?`<span class="mvstep">${mvO.steps}</span>`:''}${(()=>{ const o=req&&req.kind==='cell'&&req.nextAtk&&hl.has(k)?req.options[hl.get(k)]:null; return o&&o.tg?`<span class="mvatk" title="โจมตีได้จากช่องนี้ (${o.tg} เป้าหมาย)">⚔</span>`:''; })()}${G.obs.has(k)?UI.obsHTML((G.dungeons&&G.dungeons[boardOf(x)])||G.dungeon,x,y):''}${G.ice.has(k)?'<span class="rock">🧊</span>':''}${tr?`<span class="tre" data-tip="${{card:'สมบัติการ์ด: เลือก 1 จาก 3',potion:'ยา: ฮีล 3',chest:'หีบ: +1 Coin'}[tr.type]}">${{card:'🃏',potion:'🧪',chest:'💰'}[tr.type]}</span>`:''}</div>`; }
   $('#cells').innerHTML=h;
   const toks=$('#toks'); const seen=new Set(); const fx=$('#fx');
   const arrow=f=>({'0,-1':'▲','1,0':'▶','0,1':'▼','-1,0':'◀'})[f.join(',')]||'';
