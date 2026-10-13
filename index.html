@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.49</title>
+<title>Project Dungeon v1.1.50</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -199,6 +199,7 @@ body{background:radial-gradient(ellipse at 50% -10%,#3a2a55,#141020 55%,#0b0910)
 .card.t-exhaust .cart{background:repeating-linear-gradient(45deg,#2a2a2a,#2a2a2a 8px,#333 8px,#333 16px)!important}
 #hand{min-height:250px;padding-top:12px}
 #tip{position:fixed;z-index:200;pointer-events:none;opacity:0;transition:opacity .12s;background:#0d111aee;border:1px solid #f3c45b;border-radius:8px;padding:6px 10px;max-width:300px;white-space:pre-line;font-size:13px}
+#tip .card.noDisc{filter:none;cursor:default} /* v1.1.50 preview of an unplayable card stays readable */
 #tip.show{opacity:1}#tip.card{background:none;border:none;padding:0}#tip .card.big{transform:scale(1.35);transform-origin:top left;opacity:1;margin:0 60px 90px 0}
 .heroFlip{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.55);z-index:9000;pointer-events:none;transition:opacity .5s}.heroFlip.out{opacity:0}
 .hfCard{width:240px;height:330px;position:relative;transform-style:preserve-3d;transition:transform 1.1s cubic-bezier(.3,1.4,.5,1);perspective:900px}.heroFlip.go .hfCard{transform:rotateY(180deg)}
@@ -676,7 +677,7 @@ body.dragging{user-select:none;cursor:grabbing}
 #pileView.hofDeck{z-index:1600}body #tip.card{z-index:5000}.hcDeck{margin-top:8px;padding:4px 12px;border-radius:8px;border:1px solid #ffd36b;background:#2a1d10;color:#ffd36b;font:14px Kanit,sans-serif;cursor:pointer}.hcNoDeck{display:inline-block;margin-top:8px;color:#8a92aa;font-size:13px}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.49 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.50 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -1502,18 +1503,31 @@ async function stepMoves(P,n,min,opt={}){
   if(hasItem(P,'Crimson Shard')&&!P.crimsonUsed&&n>0){ P.crimsonUsed=true; const o=n; n=Math.max(0,n-2); log(`🔻 Crimson Shard: การเดินครั้งแรกของเทิร์น -2 ช่อง (${o}→${n})`,'warn'); }
   min=Math.min(min,n);
   if(n<=0||G.over) return 0;
-  const start={x:P.x,y:P.y};
-  let opts=moveCells(P,n,min,opt);
-  if(!opts.length&&min>0) opts=moveCells(P,n,1,opt); // fully blocked from min: move as far as possible
-  if(!opts.length){ log(`${P.name} เดินไม่ได้ — ทุกทางถูกขวาง`,'warn'); return 0; }
-  /* v1.1.35: move inside a move/attack card — mark every destination from which the NEXT attack part of the card has a target (UI shows ⚔, bots prefer them) */
-  let nTg=0; if(opt.nextAtk){ for(const o of opts){ o.tg=atkTargetsFrom(P,opt.nextAtk,o,opt.ctx).length; if(o.tg) nTg++; } }
-  const ch=await ask(P,{kind:'cell',prompt:`เดิน (สูงสุด ${n} ช่อง${min>0?`, อย่างน้อย ${min}`:''}) — คลิกช่องสีเขียวที่จะไป${opt.nextAtk?(nTg?' · ⚔ = โจมตีได้จากช่องนั้น':' · (ไม่มีช่องที่โจมตีได้หลังเดิน)'):''}`,options:opts,nextAtk:opt.nextAtk||null,cancel:opt.skip?'⏭ ข้าม (ไม่เดิน)':(min<=0?'ไม่เดิน':null),purpose:'move',move:true});
-  if(!ch){ if(opt.skip) log(`⏭ ${P.name} ข้ามการเดิน`,'sys'); return 0; }
-  const path=ch.path||[{x:ch.x,y:ch.y,d:ch.d}];
-  for(const st of path){ if(G.over) break; await enterCell(P,st.x,st.y,st.d); moved++; if(!HEADLESS&&!SIM.on){ UI.render(); await new Promise(r=>setTimeout(r,90)); } }
-  const blk=(x,y)=>isObs(x,y)||monAt(x,y)||G.players.some(o=>o!==P&&o.hp>0&&o.x===x&&o.y===y);
-  if(blk(P.x,P.y)){ const seq=[start].concat(path); let li=seq.length-1; while(li>0&&blk(seq[li].x,seq[li].y)) li--; const lf=seq[li]; if(lf){P.x=lf.x;P.y=lf.y; if(li>0) P.face=[lf.x-seq[li-1].x,lf.y-seq[li-1].y]; /* v1.1.25 */} log('หยุดบนช่องนั้นไม่ได้ — ถอยกลับช่องก่อนหน้า','warn'); }
+  /* v1.1.50 USER REQUEST: partial moves. A human who stops short of the card's max is asked "เดินต่อ / พอแล้ว"; continuing moves up to the
+     REMAINING amount (never more than the card value), repeated until used up or Done. Bots / SIM keep the single full-path choice. The whole
+     card stays ONE action (one undo step; emergency undo during the prompt aborts and restores the whole card). Attack parts after the move run
+     only after movement is finished (doOp continues after stepMoves returns). */
+  const human=!P.bot&&!SIM.on&&(!HEADLESS||!!globalThis.__askHook);
+  let leg=0;
+  while(moved<n&&!G.over){
+    const rem=n-moved, lmin=Math.max(0,min-moved);
+    const start={x:P.x,y:P.y};
+    let opts=moveCells(P,rem,lmin,opt);
+    if(!opts.length&&lmin>0) opts=moveCells(P,rem,1,opt); // fully blocked from min: move as far as possible
+    if(!opts.length){ if(!leg) log(`${P.name} เดินไม่ได้ — ทุกทางถูกขวาง`,'warn'); else log(`${P.name} เดินต่อไม่ได้ — ทุกทางถูกขวาง`,'warn'); break; }
+    let nTg=0; if(opt.nextAtk){ for(const o of opts){ o.tg=atkTargetsFrom(P,opt.nextAtk,o,opt.ctx).length; if(o.tg) nTg++; } }
+    const ch=await ask(P,{kind:'cell',prompt:`${leg?`เดินต่อ (เหลือ ${rem}/${n} ช่อง)`:`เดิน (สูงสุด ${n} ช่อง${min>0?`, อย่างน้อย ${min}`:''})`} — คลิกช่องสีเขียวที่จะไป${opt.nextAtk?(nTg?' · ⚔ = โจมตีได้จากช่องนั้น':' · (ไม่มีช่องที่โจมตีได้หลังเดิน)'):''}`,options:opts,nextAtk:opt.nextAtk||null,cancel:leg?'✋ พอแล้ว (หยุดเดิน)':(opt.skip?'⏭ ข้าม (ไม่เดิน)':(min<=0?'ไม่เดิน':null)),purpose:'move',move:true,leg,remain:rem,maxMove:n});
+    if(!ch){ if(!leg&&opt.skip) log(`⏭ ${P.name} ข้ามการเดิน`,'sys'); break; }
+    const path=ch.path||[{x:ch.x,y:ch.y,d:ch.d}];
+    for(const st of path){ if(G.over) break; await enterCell(P,st.x,st.y,st.d); moved++; if(!HEADLESS&&!SIM.on){ UI.render(); await new Promise(r=>setTimeout(r,90)); } }
+    const blk=(x,y)=>isObs(x,y)||monAt(x,y)||G.players.some(o=>o!==P&&o.hp>0&&o.x===x&&o.y===y);
+    if(blk(P.x,P.y)){ const seq=[start].concat(path); let li=seq.length-1; while(li>0&&blk(seq[li].x,seq[li].y)) li--; const lf=seq[li]; if(lf){P.x=lf.x;P.y=lf.y; if(li>0) P.face=[lf.x-seq[li-1].x,lf.y-seq[li-1].y]; /* v1.1.25 */} log('หยุดบนช่องนั้นไม่ได้ — ถอยกลับช่องก่อนหน้า','warn'); }
+    leg++;
+    if(!human||moved>=n||G.over) break;
+    if(!moveCells(P,n-moved,0,opt).length) break; // nowhere further to go: don't ask
+    const c=await ask(P,{kind:'opt',prompt:`เดินไปแล้ว ${moved}/${n} ช่อง — เดินต่อไหม?`,options:[{label:`👣 เดินต่อ (เหลือ ${n-moved} ช่อง)`,v:1},{label:'✋ พอแล้ว',v:0}],purpose:'moveMore',remain:n-moved});
+    if(!c||!c.v){ log(`✋ ${P.name} หยุดเดิน (${moved}/${n} ช่อง)`,'sys'); break; }
+  }
   if(P.fitFirm){ P.fitAcc=(P.fitAcc||0)+moved; while(P.fitAcc>=P.fitFirm[0]){P.fitAcc-=P.fitFirm[0];P.shard+=P.fitFirm[1];} }
   return moved;
 }
@@ -2462,7 +2476,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.49', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.50', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -3095,7 +3109,7 @@ UI.confirmPlay=function(P,c){ return new Promise(res=>{ const d=DEF[c.key], up=c
   setTimeout(()=>{ const b=ov.querySelector('#cfOK'); b&&b.focus(); },0); }); };
 
 /* v1.1.6: tooltip + badge for cards blocked by their discard cost */
-(function(){ const base=UI.renderHand; if(!base) return; UI.renderHand=function(...a){ const r=base.apply(this,a); try{ const P=G.active; if(P&&!P.bot) document.querySelectorAll('#hand .card.noDisc').forEach(el=>{ const c=P.hand.find(h=>h.uid==el.dataset.uid); if(c){ el.title='เล่นไม่ได้: '+blockReason(P,c); el.removeAttribute('data-tipcard'); if(!el.querySelector('.ndB')) el.insertAdjacentHTML('beforeend',`<div class="ndB">${discardCost(c)>P.hand.length-1?`ต้อง${costVerb(c)} ${discardCost(c)} ใบ`:noTarget(P,c)?'ไม่มีเป้าหมาย':'Shard ไม่พอ'}</div>`); } }); }catch(_){} return r; }; })();
+(function(){ const base=UI.renderHand; if(!base) return; UI.renderHand=function(...a){ const r=base.apply(this,a); try{ const P=G.active; if(P&&!P.bot) document.querySelectorAll('#hand .card.noDisc').forEach(el=>{ const c=P.hand.find(h=>h.uid==el.dataset.uid); if(c){ /* v1.1.50 USER REQUEST: unplayable (greyed) cards keep the full-card hover / long-press preview (data-tipcard kept; reason lives in the badge + data-reason, no native title so it doesn't cover the preview) */ el.dataset.reason='เล่นไม่ได้: '+blockReason(P,c); el.removeAttribute('title'); if(!el.querySelector('.ndB')) el.insertAdjacentHTML('beforeend',`<div class="ndB">${discardCost(c)>P.hand.length-1?`ต้อง${costVerb(c)} ${discardCost(c)} ใบ`:noTarget(P,c)?'ไม่มีเป้าหมาย':'Shard ไม่พอ'}</div>`); } }); }catch(_){} return r; }; })();
 
 /* ===================== v1.1.8 token tray: every token the player holds, one physical piece per token, RIGHT of the hand ===================== */
 const TOK_TYPES=[
