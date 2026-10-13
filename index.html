@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.51</title>
+<title>Project Dungeon v1.1.52</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -675,9 +675,45 @@ body.dragging{user-select:none;cursor:grabbing}
 .hcFoot{color:#aab4d0;font-size:clamp(12px,2vw,17px);margin-top:14px}.hcBtns{margin-top:12px;display:flex;gap:8px;justify-content:center}.hcBtns button{padding:8px 16px;border-radius:10px;border:1px solid #ffd36b;background:#2a1d10;color:#ffd36b;cursor:pointer}
 #updBtn{position:fixed;right:10px;bottom:10px;z-index:3000;padding:6px 12px;border-radius:999px;border:1px solid #ffd36b;background:#2a1d10e8;color:#ffd36b;font:14px Kanit,sans-serif;cursor:pointer;box-shadow:0 0 12px #ffd36b55}
 #pileView.hofDeck{z-index:1600}body #tip.card{z-index:5000}.hcDeck{margin-top:8px;padding:4px 12px;border-radius:8px;border:1px solid #ffd36b;background:#2a1d10;color:#ffd36b;font:14px Kanit,sans-serif;cursor:pointer}.hcNoDeck{display:inline-block;margin-top:8px;color:#8a92aa;font-size:13px}
+/* v1.1.52 card-image grid (deck / piles / HoF deck) */
+.cgGrid{display:grid;grid-template-columns:repeat(var(--cgc,5),minmax(0,1fr));gap:10px;width:100%;box-sizing:border-box;padding:12px 4px;justify-items:center;align-items:start}
+.cgCell{display:flex;justify-content:center;min-width:0}
+.cgGrid .card.cgCard{zoom:var(--cz,1);opacity:1;margin:0;flex:0 0 156px;cursor:default}
+#pileView .pvBox{width:min(1100px,96vw);box-sizing:border-box}#viewer .modal.wide{width:min(1100px,96vw);max-height:90vh;overflow:auto;box-sizing:border-box}
+.dvBox .cgWrap{display:block;overflow:auto}
+/* v1.1.52 burning round stick (right edge of the board) */
+#rstick{--rsW:clamp(30px,calc(var(--cs,90px)*.42),48px);position:absolute;left:calc(100% + 14px);top:-6px;bottom:-6px;width:var(--rsW);z-index:5;pointer-events:auto;font-family:Kanit}
+#rstick .rsWood{position:absolute;left:28%;right:28%;top:0;bottom:0;border-radius:6px;background:repeating-linear-gradient(90deg,#7a4d24 0 3px,#8f5d2e 3px 6px,#6a4019 6px 8px);box-shadow:inset -3px 0 4px #0008,0 2px 6px #000a}
+#rstick .rsChar{position:absolute;left:24%;right:24%;top:0;height:var(--rsY);border-radius:6px 6px 2px 2px;background:linear-gradient(#0d0907,#1d130c 70%,#3a1d0c 92%,#a2380c);box-shadow:0 0 6px #000;transition:height .9s cubic-bezier(.5,0,.3,1)}
+#rstick .rsN{position:absolute;left:0;right:0;transform:translateY(-50%);text-align:center;font-size:calc(var(--rsW)*.34);font-weight:700;color:#ffe9c0;text-shadow:0 0 3px #000,0 0 2px #000;pointer-events:none}
+#rstick .rsN::before{content:'';position:absolute;left:18%;right:18%;top:-3px;height:2px;background:#0007}
+#rstick .rsN.past{color:#6d6158;text-decoration:line-through}#rstick .rsN.cur{opacity:0}#rstick .rsN.w7{color:#ff9a6a}#rstick .rsN.r8{color:#ff4d3a}
+#rstick .rsFlame{position:absolute;left:50%;top:var(--rsY);width:calc(var(--rsW)*1.05);height:calc(var(--rsW)*1.5);transform:translate(-50%,-78%);transition:top .9s cubic-bezier(.5,0,.3,1);pointer-events:none;filter:drop-shadow(0 0 6px #ff9a2a)}
+#rstick .rsFlame i{position:absolute;left:50%;bottom:0;border-radius:50% 50% 45% 45%/65% 65% 35% 35%;transform:translateX(-50%);animation:rsFl .5s ease-in-out infinite alternate}
+#rstick .f1{width:70%;height:100%;background:radial-gradient(ellipse at 50% 80%,#ffdc60,#ff8a1c 55%,#ff4a0a00 75%)}
+#rstick .f2{width:48%;height:72%;background:radial-gradient(ellipse at 50% 80%,#fff6c8,#ffc23c 60%,#ff8a1c00 80%);animation-delay:-.2s!important}
+#rstick .f3{width:26%;height:40%;background:#fffbe8;filter:blur(1px);animation-delay:-.35s!important}
+@keyframes rsFl{from{transform:translateX(-50%) scale(1,1) skewX(-3deg)}to{transform:translateX(-50%) scale(.92,1.08) skewX(4deg)}}
+#rstick .em,#rstick .sm{display:none;position:absolute;left:50%;bottom:40%;border-radius:50%}
+#rstick .em{width:4px;height:4px;background:#ffb040;box-shadow:0 0 4px #ff6a00;animation:rsEm 1.4s linear infinite}#rstick .e2{animation-delay:-.5s;margin-left:-7px}#rstick .e3{animation-delay:-.9s;margin-left:6px}
+#rstick .sm{width:14px;height:14px;background:#3a2a2a88;filter:blur(3px);animation:rsSm 2.4s linear infinite}#rstick .s2{animation-delay:-1.2s;margin-left:-6px}
+@keyframes rsEm{0%{transform:translate(0,0);opacity:1}100%{transform:translate(8px,-46px);opacity:0}}@keyframes rsSm{0%{transform:translate(-50%,0) scale(.6);opacity:.8}100%{transform:translate(-30%,-60px) scale(2);opacity:0}}
+#rstick .rsNow{position:absolute;left:50%;top:var(--rsY);transform:translate(-50%,10%);transition:top .9s cubic-bezier(.5,0,.3,1);min-width:calc(var(--rsW)*1.0);padding:1px 3px;border-radius:8px;background:#1a0f08e8;border:2px solid #ffb547;color:#ffe9b0;font-weight:800;font-size:calc(var(--rsW)*.62);line-height:1;text-align:center;box-shadow:0 0 8px #000;pointer-events:none;z-index:2}
+#rstick .rsNow small{display:block;font-size:.36em;font-weight:600;opacity:.85}
+#rstick.st-hot .rsFlame{filter:drop-shadow(0 0 9px #ff5a1a)}#rstick.st-hot .f1{background:radial-gradient(ellipse at 50% 80%,#ffb040,#ff5a14 55%,#e0200000 75%)}#rstick.st-hot .em{display:block}
+#rstick.st-warn .rsFlame,#rstick.st-rage .rsFlame{width:calc(var(--rsW)*1.5);height:calc(var(--rsW)*2.3);filter:drop-shadow(0 0 14px #ff1a00)}
+#rstick.st-warn .f1,#rstick.st-rage .f1{background:radial-gradient(ellipse at 50% 80%,#ff7a30,#d81a08 55%,#7a000000 78%)}
+#rstick.st-warn .f2,#rstick.st-rage .f2{background:radial-gradient(ellipse at 50% 80%,#ffd27a,#ff3a10 60%,#ff000000 80%)}
+#rstick.st-warn .em,#rstick.st-rage .em,#rstick.st-warn .sm,#rstick.st-rage .sm{display:block}
+#rstick.st-warn .rsWood,#rstick.st-rage .rsWood{animation:rsPulse 1.1s ease-in-out infinite}
+#rstick.st-warn .rsNow,#rstick.st-rage .rsNow{border-color:#ff3a2a;color:#fff;background:#4a0a06ee;animation:rsPulse 1.1s ease-in-out infinite}
+#rstick.st-rage .rsFlame i{animation-duration:.28s}#rstick.st-rage .rsWood{animation-duration:.7s}
+@keyframes rsPulse{0%,100%{box-shadow:0 0 6px #ff200066,inset -3px 0 4px #0008}50%{box-shadow:0 0 22px 6px #ff2000cc,inset -3px 0 4px #0008}}
+@media (prefers-reduced-motion:reduce){#rstick *{animation:none!important;transition:none!important}}
+.nofxb #rstick *{animation:none!important}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.51 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.52 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -1356,6 +1392,8 @@ function validFace(f){ return Array.isArray(f)&&FACES.includes(f.join(',')); }
 function faceToward(u,t){ if(!u||!t) return; const dx=t.x-u.x, dy=t.y-u.y; if(!dx&&!dy) return; u.face=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; }
 function fixFace(u){ if(!validFace(u.face)){ const f=u.face||[0,0]; u.face=f[0]?[Math.sign(f[0]),0]:f[1]?[0,Math.sign(f[1])]:(u.isMon?[0,1]:[0,-1]); } return u.face; }
 const isWeak=(P,m)=>P.x===m.x-m.face[0]&&P.y===m.y-m.face[1];
+/* v1.1.52: does this hit carry the Weak Point ability (card text / Weak Point buff)? */
+function wpAbility(P,op,ctx){ if(!op) return false; if(op.weakDmg||op.weakCri||op.weakDraw||op.weakShard||op.onWeak) return true; if(ctx&&ctx.ops&&ctx.ops.some(o=>o&&o.cond==='weak')) return true; if(op.isAtk&&P&&!P.isMon&&(buffLv(P,'Maniac')||buffLv(P,'Precision'))) return true; return false; }
 async function rollCri(P,n){ let t=0; for(let i=0;i<n;i++){ let f=krnd('cri'+P.id,6), r=CRI[f]; await rollDieShow(P,f,r,i,n);
     for(let ty=0,tn=buffN(P,'Test Your Luck');r===0&&ty<tn;ty++){ f=krnd('cri'+P.id,6); r=CRI[f]; await rollDieShow(P,f,r,i,n,'Test Your Luck: ทอยใหม่'); } /* v1.1.44: one re-roll per copy */
     if(r>0) r+=bn(P,'Test Your Luck','cri',0,2); t+=r; } return t; }
@@ -1365,7 +1403,11 @@ async function rollDieShow(P,face,val,i,n,note){ if(HEADLESS||SIM.on||typeof UI=
 async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set()).add(m.uid);
   if(!m||m.hp<=0) return 0;
   if(op.isAtk&&ctx&&P&&!P.isMon&&ctx._faceOp!==op){ ctx._faceOp=op; faceToward(P,m); }
-  const weak = isWeak(P,m) && !op.noWeak;
+  /* v1.1.52 OWNER RULE: shields block attacks from every direction. Weak Point (shield bypass + bonus + FX) applies ONLY when
+     the attacking card's text has the Weak Point ability (weakDmg/weakCri/weakDraw/weakShard/onWeak/cond 'weak') or a Weak Point
+     buff (Maniac, Precision) is active on an attack. Plain attacks from behind are normal attacks. */
+  const behind = !!P && !P.isMon && isWeak(P,m) && !op.noWeak;
+  const weak = behind && wpAbility(P,op,ctx);
   let d=dmg;
   if(op.isAtk && dmg>0){
     d+= P.str*(op.strMult||1) + (ctx.pow||0) + (P.hero.name==='Jayne Aegisfera'?(P.heroUp?2:1):0)
@@ -1901,7 +1943,8 @@ async function monMove(m){
 async function monAttack(m,target,dmg,kind){
   const def=m.def;
   faceToward(m,target);
-  const weak = m.x===target.x-target.face[0] && m.y===target.y-target.face[1];
+  /* v1.1.52 OWNER RULE: no monster has the Weak Point ability -> attacks from behind are normal attacks, shields block them */
+  const weak = false;
   log(`${m.name} โจมตี ${target.name} ${dmg} ดาเมจ`,'mon');
   if(!HEADLESS&&!SIM.on) UI.flash(target);
   const res=await hurtHero(target,dmg,{src:m,weak});
@@ -2334,7 +2377,7 @@ const BOT = {
     const o=req.options;
     if(req.kind==='mon'){
       const dmg=req.dmg||0;
-      if(req.purpose==='atk'){ return o.slice().sort((a,b)=>{ const ka=a.hp+(isWeak(P,a)?0:a.shield)<=dmg?1:0, kb=b.hp+(isWeak(P,b)?0:b.shield)<=dmg?1:0; if(ka!==kb) return kb-ka; const wa=isWeak(P,a)?1:0, wb=isWeak(P,b)?1:0; if(wa!==wb) return wb-wa; return (b.atk/(b.hp+b.shield+1))-(a.atk/(a.hp+a.shield+1)); })[0]; }
+      if(req.purpose==='atk'){ return o.slice().sort((a,b)=>{ const ka=a.hp+a.shield<=dmg?1:0, kb=b.hp+b.shield<=dmg?1:0; /* v1.1.52: shields block from behind too */ if(ka!==kb) return kb-ka; const wa=isWeak(P,a)?1:0, wb=isWeak(P,b)?1:0; if(wa!==wb) return wb-wa; return (b.atk/(b.hp+b.shield+1))-(a.atk/(a.hp+a.shield+1)); })[0]; }
       return o.slice().sort((a,b)=>a.hp-b.hp)[0];
     }
     if(req.kind==='cell'){
@@ -2477,7 +2520,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.51', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.52', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2902,7 +2945,7 @@ UI.diffHud=function(){
 /* ---------- board ---------- */
 UI.renderBoard=function(){
   const bd=$('#board'); const W=G.W,H=G.H;
-  const wrap=$('#center'); const ib=$('#itemBar'), bb=$('#buffBar'); const side=(ib&&ib.children.length)||(bb&&bb.children.length)?2*128:0; /* v1.1.12: item column sits left of the room */ const avail=Math.min((wrap.clientWidth||900)-16-side,1100); const availH=(wrap.clientHeight||500)-60-(UI.pileRes||0);
+  const wrap=$('#center'); const ib=$('#itemBar'), bb=$('#buffBar'); const side=(ib&&ib.children.length)||(bb&&bb.children.length)?2*128:0; /* v1.1.12: item column sits left of the room */ const avail=Math.min((wrap.clientWidth||900)-16-side-(G&&G.phase==="battle"?Math.round(Math.min(48,Math.max(30,(wrap.clientWidth||900)*.04)))+8:0),1100); /* v1.1.52 room for the round stick */ const availH=(wrap.clientHeight||500)-60-(UI.pileRes||0);
   const cs=Math.max(54,Math.min(118,Math.floor(avail/W),Math.floor(availH/H))); this.cellPx=cs;
   bd.style.width=(cs*W)+'px'; bd.style.height=(cs*H)+'px'; bd.style.setProperty('--cs',cs+'px');
   if(!bd.querySelector('#cells')){ bd.innerHTML='<div id="cells"></div><div id="toks"></div><div id="fx"></div>';
@@ -2952,7 +2995,7 @@ UI.render=function(){ if(!G) return; _render(); $('#tracker').innerHTML=this.tra
 /* ---------- piles viewer, tooltips, sound ---------- */
 document.addEventListener('click',e=>{ const b=e.target.closest('.pile'); if(!b||!G) return; const P=G.players[+b.dataset.pid]; const arr=P[b.dataset.pile].slice();
   const name={deck:'กองจั่ว (เรียงตามชื่อ ไม่เปิดลำดับ)',discard:'กองทิ้ง',removed:'กองรีมูฟ'}[b.dataset.pile]; if(b.dataset.pile==='deck') arr.sort((a,b)=>DEF[a.key].name.localeCompare(DEF[b.key].name));
-  const m=$('#viewer'); m.classList.remove('hide'); m.innerHTML=`<div class="modal wide"><button style="float:right" onclick="document.getElementById('viewer').classList.add('hide')">✕ ปิด</button><h2>${esc(P.name)} — ${name} (${arr.length})</h2><div class="pcards">${arr.map(c=>UI.cardHTML(c,null,'playable')).join('')||'<i>ว่าง</i>'}</div></div>`; });
+  const m=$('#viewer'); m.classList.remove('hide'); m.innerHTML=`<div class="modal wide"><button style="float:right" onclick="document.getElementById('viewer').classList.add('hide')">✕ ปิด</button><h2>${esc(P.name)} — ${name} (${arr.length})</h2>${UI.cardGrid(arr,null)}</div>`; UI.fitGrids(m); });
 const TIP=()=>$('#tip');
 document.addEventListener('mouseover',e=>{ const t=TIP(); if(!t) return; const c=e.target.closest('[data-tipcard]'); const s=e.target.closest('[data-tip]');
   if(c&&!c.closest('#tip')){ t.innerHTML=''; const cl=c.cloneNode(true); cl.classList.add('big'); cl.removeAttribute('data-tipcard'); t.appendChild(cl); t.className='show card'; }
@@ -3130,8 +3173,21 @@ UI.tokenTray=function(p){ const prev=(UI.prevTok=UI.prevTok||{})[p.id]||{}; cons
   UI.prevTok[p.id]=now;
   return `<div class="tokTray">${h||'<div class="tkempty" title="ยังไม่มี Token">Token</div>'}</div>`; };
 
+/* ===================== v1.1.52 OWNER REQUEST: every card-list view = card images only, 5 per row, wrapping, scrollable,
+   one tile per COPY (never grouped ×N), upgraded cards show the upgraded side. Narrow screens: fewer columns (3 below 560px). ===================== */
+UI.cardGrid=function(cards,P){ return `<div class="cgGrid" data-cg="1">${(cards||[]).map(c=>`<div class="cgCell">${UI.cardHTML(c,P,'cgCard').replace('class="card','data-tipcard="1" class="card')}</div>`).join('')||'<i class="mut">ไม่มีการ์ด</i>'}</div>`; };
+UI.fitGrids=function(root){ (root||document).querySelectorAll('.cgGrid').forEach(g=>{ const cols=innerWidth<560?3:5; g.style.setProperty('--cgc',cols); const w=g.clientWidth||Math.min(1100,innerWidth*.94); const cell=(w-(cols-1)*10)/cols; g.style.setProperty('--cz',Math.max(.4,Math.min(1.6,cell/162)).toFixed(3)); }); };
+addEventListener('resize',()=>UI.fitGrids());
+UI.deckGridView=function(P,title){ const nm=c=>DEF[c.key].name; const own=P.deck.concat(P.hand,P.discard,P.removed||[]).slice().sort((a,b)=>(a.key==='EXH')-(b.key==='EXH')||nm(a).localeCompare(nm(b))||(a.up?1:0)-(b.up?1:0));
+  const ov=document.createElement('div'); ov.className='dvOv';
+  ov.innerHTML=`<div class="dvBox"><div class="dvHead"><h2>${esc(title||'📜 Deck ของ '+P.name)} (${own.length} ใบ)</h2><button class="dvClose">✖ ปิด (Esc)</button></div><div class="dvList cgWrap">${UI.cardGrid(own,null)}</div></div>`;
+  document.body.appendChild(ov); UI.fitGrids(ov);
+  const close=()=>{ document.removeEventListener('keydown',kh,true); ov.remove(); }; const kh=e=>{ if(e.key==='Escape'){ e.stopPropagation(); close(); } };
+  document.addEventListener('keydown',kh,true); ov.onclick=e=>{ if(e.target===ov||e.target.closest('.dvClose')) close(); }; };
+
 /* ===================== v1.1.8 Market '📜 ดู Deck' — every owned card, grouped, with its Upgrade side ===================== */
 UI.deckView=function(P,only,title){
+  if(!only) return UI.deckGridView(P,title); /* v1.1.52: own deck = card-image grid (5 per row, every copy, upgraded side) */
   const own=only||P.deck.concat(P.hand,P.discard,P.removed||[]); const exh=own.filter(c=>c.key==='EXH').length; const groups=new Map();
   for(const c of own){ if(c.key==='EXH') continue; const k=c.key+(c.up?'+':''); if(!groups.has(k)) groups.set(k,{c,n:0}); groups.get(k).n++; }
   const order=[...groups.values()].sort((a,b)=>{ const da=DEF[a.c.key], db=DEF[b.c.key]; return (da.type>db.type?1:da.type<db.type?-1:0)||da.name.localeCompare(db.name)||(a.c.up-b.c.up); });
@@ -3160,7 +3216,7 @@ UI.ownedItemsHTML=function(P){ return (P.items||[]).map(n=>{ const d=itemDef(n)|
 (function(){ const r0=UI.render; UI.render=function(){ const x=r0.apply(this,arguments); try{ const el=document.getElementById('itemBar'); const P=G&&G.players&&(G.active&&!G.active.bot?G.active:(G.players.find(p=>!p.bot)||G.players[0])); if(el&&P){ const h=UI.ownedItemsHTML(P); if(el.innerHTML!==h) el.innerHTML=h; } }catch(_){} return x; }; })();
 
 /* ===== v1.1.10 keyword highlighting + tooltips + glossary ===== */
-const KW=[{"id": "Dodge", "en": "Dodge(?: Token)?", "th": "โทเคนหลบหลีก|โทเคนเหลบ|โทเคนหลบ|หลบหลีก|หลบ", "def": "ทิ้งเพื่อให้ไม่โดนโจมตี 1 ที", "enDef": "Discard to avoid 1 attack.", "rb": true}, {"id": "Weak Point", "en": "Weak Point", "th": "จุดอ่อน", "def": "โจมตีด้านหลัง", "enDef": "Attack from behind (the target's back). Shield does not block it.", "rb": true}, {"id": "Cri", "en": "Cri(?:tical)?", "th": "คริติคอล|คริ", "def": "ทอยเต๋า Cri เพิ่มเติมล้วเพิ่มดาเมจตามนั้น 0/1/1/2/3/4 (Cri N = ทอยเต๋า Cri N ลูก เต๋า 6 หน้า 0/1/1/2/3/4 แล้วนำผลรวมไปเพิ่มดาเมจ)", "enDef": "Roll N Cri dice (faces 0/1/1/2/3/4) and add the total to damage.", "rb": true}, {"id": "Range", "en": "Range", "th": "ระยะ", "def": "การโจมตีเป้าหมายเดี่ยวจะเพิ่มระยะโจมตี (ไม่จำเป็นต้องเป็นเส้นตรงเหมือน Projectile และอ้อม Obstacle ได้)", "enDef": "Increases single-target attack range (no straight line needed; can go around obstacles).", "rb": true}, {"id": "Perfect Kill", "en": "Perfect Kill", "th": "ฆ่าพอดี", "def": "กำจัดศัตรูโดยที่ทำให้พลังชีวิตเหลือ 0 พอดี", "enDef": "Kill an enemy by bringing its HP to exactly 0.", "rb": true}, {"id": "Projectile Token", "en": "Projectile Token", "th": "โทเคนโพรเจกไทล์", "def": "ทิ้งเพื่อให้การโจมตีครั้งนั้นเป็น Projectile", "enDef": "Discard to make that attack a Projectile.", "rb": true}, {"id": "Projectile", "en": "Projectile", "th": "โพรเจกไทล์", "def": "โจมตีเป็นเส้นตรง แต่ไม่สามารถทะลุศัตรูได้ จะโดนศัตรูตัวแรกที่อยู่ในแนวเส้นตรงนั้น", "enDef": "Straight-line attack; cannot pass through enemies — hits the first enemy in line.", "rb": true}, {"id": "Move Token", "en": "Move Token", "th": "โทเคนเดิน|โทเคนเคลื่อนที่", "def": "ทิ้ง 1 ชิ้นเพื่อเดิน 1 ช่อง", "enDef": "Discard 1 to move 1 space.", "rb": true}, {"id": "Poison", "en": "Poison", "th": "พิษ", "def": "จบเทิร์น HP ลดตามจำนวน Poison แล้วเอาออก 1", "enDef": "End of turn: lose HP equal to Poison, then remove 1.", "rb": true}, {"id": "Stun", "en": "Stun", "th": "สตัน", "def": "ข้ามเทิร์นถัดไปของตัวที่โดน Stun", "enDef": "The stunned unit skips its next turn.", "rb": true}, {"id": "Strength", "en": "Strength", "th": "พละกำลัง", "def": "เพิ่ม damage ให้การ์ด Attack ตามจำนวน Strength ที่มี, เอาออก 1 เมื่อจบเทิร์น", "enDef": "+damage to Attack cards equal to Strength; remove 1 at end of turn.", "rb": true}, {"id": "Shield", "en": "Shields?", "th": "โล่", "def": "เมื่อเราโดน damage จะหักจาก Shield ก่อนเข้า HP Shield ของ Hero เอาออกทั้งหมดก่อนเริ่มเทิร์นของผู้เล่นคนนั้น, Shield ของ Monster เอาออกทั้งหมดหลังผู้เล่นเล่นจบ ก่อนเริ่ม Monster Phase (Shield ไม่กัน Weak Point)", "enDef": "Damage hits Shield before HP. Hero Shield clears at the start of that hero's turn; Monster Shield clears before the Monster Phase. Doesn't block Weak Point.", "rb": true}, {"id": "Power Up", "en": "Power [Uu]p", "th": "เสริมพลัง", "def": "ใส่ Token ไว้ใน Attack การ์ดเพื่อเพิ่มดาเมจตามจำนวน Power Token ที่มีในการ์ด", "enDef": "Put tokens on an Attack card; +damage per Power token on it.", "rb": true}, {"id": "Remove", "en": "Remove", "th": "รีมูฟ|ร๊มูฟ", "def": "นำการ์ดเข้ากอง Remove หลังจากเล่นเสร็จ หากมีผลของความสามารถอย่างอื่นที่ทำให้หลังเล่นเสร็จไปที่อื่นก็จะไปที่นั่นแทน", "enDef": "After playing, the card goes to the Remove pile (unless another effect sends it elsewhere).", "rb": true}, {"id": "Mana", "en": "Mana", "th": "มานา", "def": "ทรัพยากรณ์เพื่อใช้จ่ายสำหรับเพิ่มหรือลดค่าอีก 1 ให้กับจำนวนที่ระบุบนการ์ดได้ 1 จุด โดยใช้ได้แค่ 1 Mana ต่อการ์ด 1 ใบ เท่านั้น (Max 10) — เพิ่ม/ลดได้เฉพาะตัวเลขที่พิมพ์อยู่ในข้อความบนการ์ดเท่านั้น ไม่สามารถปรับค่าที่ไม่ได้พิมพ์ไว้ และไม่สามารถลดตัวเลขให้ต่ำกว่า 1 ได้ (ห้ามเป็น 0)", "enDef": "Spend 1 to raise/lower a number printed on the card by 1; 1 Mana per card (Max 10); can't go below 1.", "rb": true}, {"id": "Magic", "en": "Magic", "th": "เวทมนตร์|เวทมนต", "def": "ใช้ Mana เท่าไหร่ก็ได้กับการ์ดใบนี้", "enDef": "Any amount of Mana can be used on this card.", "rb": true}, {"id": "Lose HP", "en": "Lose \\d* ?HP", "th": "เสียพลังชีวิต", "def": "ลดพลังชีวิตตามที่ระบุโดยไม่สามารถโดนลดทอนจากความสามารถใดๆได้", "enDef": "Lose HP directly; cannot be reduced by any ability.", "rb": true}, {"id": "Trash", "en": "Trash", "th": "นำออกจากเกม|ทิ้งถาวร", "def": "เอาการ์ดออกถาวร", "enDef": "Remove the card permanently.", "rb": true}, {"id": "Push", "en": "Push", "th": "ผลัก", "def": "เป้าหมายเลื่อนออกไป 1 ช่องในทิศทางที่โดน Push, หากไม่สามารถเลื่อนได้เนื่องจากติดสิ่งกีดขวางหรือ Edge จะโดนความเสียหาย 1 หน่วยตามจำนวนช่องที่ไม่สามารถเลื่อนได้ หากติดยูนิตฝ่ายเดียวกันทั้งคู่จะโดนความเสียหายจากจุดนี้", "enDef": "Target slides 1 space away; each blocked space (obstacle/edge) = 1 damage; same-side collision damages both.", "rb": true}, {"id": "Fire Space", "en": "Fire Space", "th": "พื้นไฟ|ช่องไฟ", "def": "จบรอบหากศัตรูยืนที่ช่องนั้นจะโดนความเสียหายตามจำนวน Mana ที่เรามีอยู่, Fire Space หายเมื่อจบ Room", "enDef": "End of round: an enemy standing here takes damage = your Mana. Disappears at end of Room.", "rb": true}, {"id": "Ice Pillar", "en": "Ice (?:Pillar|Wall)", "th": "เสาน้ำแข็ง|กำแพงน้ำแข็ง", "def": "ทำหน้าที่แบบเดียวกับสิ่งกีดขวาง, หาก Ice Wall ทำให้ศัตรูไม่สามารถเดินมาหาฝ่ายผู้เล่นได้ ศัตรูที่อยู่ติด Ice Wall นั้นจะเดินผ่านและทำลาย Ice Wall, Ice Wall หายเมื่อจบ Wave", "enDef": "Acts as an obstacle; an enemy blocked by it walks through and breaks it. Disappears at end of Wave.", "rb": true}, {"id": "Exhaust", "en": "Exhaust", "th": "การ์ดเหนื่อย|เหนื่อย", "def": "จ่าย 3, Remove this card from your hand. (Removed Exhaust Card always return to the Exhaust Pile)", "enDef": "Exhaust Card: pay 3 to remove it from your hand (returns to the Exhaust pile).", "rb": true}, {"id": "Shard", "en": "Shards?", "th": "ชาร์ด", "def": "Shard มีได้สูงสุด 5 ไม่ว่าจะได้มาจากแหล่งใด ส่วนที่เกินจะหายไป · จบเทิร์นเติม 3 Shard · เดิน 1 ช่องใช้ 2 Shard", "enDef": "Energy for moving (2 per space); +3 each turn, max 5.", "rb": true}, {"id": "Edge", "en": "Edge", "th": "ขอบสนาม|ช่องขอบ", "def": "ช่องขอบ คือ ช่องที่อยู่ชิดริมของทั้ง 4 ด้านของห้อง (16 ช่อง)", "enDef": "The 16 border spaces of the room.", "rb": true}, {"id": "Discard", "en": "Discard", "th": "ทิ้งการ์ด", "def": "หากการ์ดระบุให้ทิ้ง (Discard) หรือ Remove การ์ดจากมือ ถือเป็นค่าใช้จ่าย หากมีการ์ดในมือไม่พอ จะไม่สามารถเล่นการ์ดใบนั้นได้", "enDef": "Discarding/removing cards from hand is a cost: not enough cards = can't play.", "rb": true}, {"id": "Retain", "en": "Retain", "th": "เก็บการ์ดไว้", "def": "", "enDef": "Keep card(s) in hand at end of turn instead of discarding.", "rb": false}, {"id": "Teleport", "en": "Teleport", "th": "เทเลพอร์ต|เคลื่อนย้ายไปช่อง", "def": "", "enDef": "Move instantly to the stated space (ignores the path).", "rb": false}, {"id": "Search", "en": "Search", "th": "ค้น(?=\\s*\\d)", "def": "", "enDef": "Look through your draw pile and take the stated card(s).", "rb": false}, {"id": "Heal", "en": "Heal", "th": "ฮีล", "def": "", "enDef": "Restore HP (not above Max HP).", "rb": false}, {"id": "Obstacle", "en": "Obstacles?", "th": "สิ่งกีดขวาง", "def": "", "enDef": "Blocked space: units can't enter; blocks Projectiles.", "rb": false}];
+const KW=[{"id": "Dodge", "en": "Dodge(?: Token)?", "th": "โทเคนหลบหลีก|โทเคนเหลบ|โทเคนหลบ|หลบหลีก|หลบ", "def": "ทิ้งเพื่อให้ไม่โดนโจมตี 1 ที", "enDef": "Discard to avoid 1 attack.", "rb": true}, {"id": "Weak Point", "en": "Weak Point", "th": "จุดอ่อน", "def": "โจมตีด้านหลัง", "enDef": "Attack from behind (the target's back). Only cards with the Weak Point ability get its effect.", "rb": true}, {"id": "Cri", "en": "Cri(?:tical)?", "th": "คริติคอล|คริ", "def": "ทอยเต๋า Cri เพิ่มเติมล้วเพิ่มดาเมจตามนั้น 0/1/1/2/3/4 (Cri N = ทอยเต๋า Cri N ลูก เต๋า 6 หน้า 0/1/1/2/3/4 แล้วนำผลรวมไปเพิ่มดาเมจ)", "enDef": "Roll N Cri dice (faces 0/1/1/2/3/4) and add the total to damage.", "rb": true}, {"id": "Range", "en": "Range", "th": "ระยะ", "def": "การโจมตีเป้าหมายเดี่ยวจะเพิ่มระยะโจมตี (ไม่จำเป็นต้องเป็นเส้นตรงเหมือน Projectile และอ้อม Obstacle ได้)", "enDef": "Increases single-target attack range (no straight line needed; can go around obstacles).", "rb": true}, {"id": "Perfect Kill", "en": "Perfect Kill", "th": "ฆ่าพอดี", "def": "กำจัดศัตรูโดยที่ทำให้พลังชีวิตเหลือ 0 พอดี", "enDef": "Kill an enemy by bringing its HP to exactly 0.", "rb": true}, {"id": "Projectile Token", "en": "Projectile Token", "th": "โทเคนโพรเจกไทล์", "def": "ทิ้งเพื่อให้การโจมตีครั้งนั้นเป็น Projectile", "enDef": "Discard to make that attack a Projectile.", "rb": true}, {"id": "Projectile", "en": "Projectile", "th": "โพรเจกไทล์", "def": "โจมตีเป็นเส้นตรง แต่ไม่สามารถทะลุศัตรูได้ จะโดนศัตรูตัวแรกที่อยู่ในแนวเส้นตรงนั้น", "enDef": "Straight-line attack; cannot pass through enemies — hits the first enemy in line.", "rb": true}, {"id": "Move Token", "en": "Move Token", "th": "โทเคนเดิน|โทเคนเคลื่อนที่", "def": "ทิ้ง 1 ชิ้นเพื่อเดิน 1 ช่อง", "enDef": "Discard 1 to move 1 space.", "rb": true}, {"id": "Poison", "en": "Poison", "th": "พิษ", "def": "จบเทิร์น HP ลดตามจำนวน Poison แล้วเอาออก 1", "enDef": "End of turn: lose HP equal to Poison, then remove 1.", "rb": true}, {"id": "Stun", "en": "Stun", "th": "สตัน", "def": "ข้ามเทิร์นถัดไปของตัวที่โดน Stun", "enDef": "The stunned unit skips its next turn.", "rb": true}, {"id": "Strength", "en": "Strength", "th": "พละกำลัง", "def": "เพิ่ม damage ให้การ์ด Attack ตามจำนวน Strength ที่มี, เอาออก 1 เมื่อจบเทิร์น", "enDef": "+damage to Attack cards equal to Strength; remove 1 at end of turn.", "rb": true}, {"id": "Shield", "en": "Shields?", "th": "โล่", "def": "เมื่อเราโดน damage จะหักจาก Shield ก่อนเข้า HP Shield ของ Hero เอาออกทั้งหมดก่อนเริ่มเทิร์นของผู้เล่นคนนั้น, Shield ของ Monster เอาออกทั้งหมดหลังผู้เล่นเล่นจบ ก่อนเริ่ม Monster Phase (Shield ไม่กัน Weak Point)", "enDef": "Damage hits Shield before HP. Hero Shield clears at the start of that hero's turn; Monster Shield clears before the Monster Phase. Doesn't block Weak Point.", "rb": true}, {"id": "Power Up", "en": "Power [Uu]p", "th": "เสริมพลัง", "def": "ใส่ Token ไว้ใน Attack การ์ดเพื่อเพิ่มดาเมจตามจำนวน Power Token ที่มีในการ์ด", "enDef": "Put tokens on an Attack card; +damage per Power token on it.", "rb": true}, {"id": "Remove", "en": "Remove", "th": "รีมูฟ|ร๊มูฟ", "def": "นำการ์ดเข้ากอง Remove หลังจากเล่นเสร็จ หากมีผลของความสามารถอย่างอื่นที่ทำให้หลังเล่นเสร็จไปที่อื่นก็จะไปที่นั่นแทน", "enDef": "After playing, the card goes to the Remove pile (unless another effect sends it elsewhere).", "rb": true}, {"id": "Mana", "en": "Mana", "th": "มานา", "def": "ทรัพยากรณ์เพื่อใช้จ่ายสำหรับเพิ่มหรือลดค่าอีก 1 ให้กับจำนวนที่ระบุบนการ์ดได้ 1 จุด โดยใช้ได้แค่ 1 Mana ต่อการ์ด 1 ใบ เท่านั้น (Max 10) — เพิ่ม/ลดได้เฉพาะตัวเลขที่พิมพ์อยู่ในข้อความบนการ์ดเท่านั้น ไม่สามารถปรับค่าที่ไม่ได้พิมพ์ไว้ และไม่สามารถลดตัวเลขให้ต่ำกว่า 1 ได้ (ห้ามเป็น 0)", "enDef": "Spend 1 to raise/lower a number printed on the card by 1; 1 Mana per card (Max 10); can't go below 1.", "rb": true}, {"id": "Magic", "en": "Magic", "th": "เวทมนตร์|เวทมนต", "def": "ใช้ Mana เท่าไหร่ก็ได้กับการ์ดใบนี้", "enDef": "Any amount of Mana can be used on this card.", "rb": true}, {"id": "Lose HP", "en": "Lose \\d* ?HP", "th": "เสียพลังชีวิต", "def": "ลดพลังชีวิตตามที่ระบุโดยไม่สามารถโดนลดทอนจากความสามารถใดๆได้", "enDef": "Lose HP directly; cannot be reduced by any ability.", "rb": true}, {"id": "Trash", "en": "Trash", "th": "นำออกจากเกม|ทิ้งถาวร", "def": "เอาการ์ดออกถาวร", "enDef": "Remove the card permanently.", "rb": true}, {"id": "Push", "en": "Push", "th": "ผลัก", "def": "เป้าหมายเลื่อนออกไป 1 ช่องในทิศทางที่โดน Push, หากไม่สามารถเลื่อนได้เนื่องจากติดสิ่งกีดขวางหรือ Edge จะโดนความเสียหาย 1 หน่วยตามจำนวนช่องที่ไม่สามารถเลื่อนได้ หากติดยูนิตฝ่ายเดียวกันทั้งคู่จะโดนความเสียหายจากจุดนี้", "enDef": "Target slides 1 space away; each blocked space (obstacle/edge) = 1 damage; same-side collision damages both.", "rb": true}, {"id": "Fire Space", "en": "Fire Space", "th": "พื้นไฟ|ช่องไฟ", "def": "จบรอบหากศัตรูยืนที่ช่องนั้นจะโดนความเสียหายตามจำนวน Mana ที่เรามีอยู่, Fire Space หายเมื่อจบ Room", "enDef": "End of round: an enemy standing here takes damage = your Mana. Disappears at end of Room.", "rb": true}, {"id": "Ice Pillar", "en": "Ice (?:Pillar|Wall)", "th": "เสาน้ำแข็ง|กำแพงน้ำแข็ง", "def": "ทำหน้าที่แบบเดียวกับสิ่งกีดขวาง, หาก Ice Wall ทำให้ศัตรูไม่สามารถเดินมาหาฝ่ายผู้เล่นได้ ศัตรูที่อยู่ติด Ice Wall นั้นจะเดินผ่านและทำลาย Ice Wall, Ice Wall หายเมื่อจบ Wave", "enDef": "Acts as an obstacle; an enemy blocked by it walks through and breaks it. Disappears at end of Wave.", "rb": true}, {"id": "Exhaust", "en": "Exhaust", "th": "การ์ดเหนื่อย|เหนื่อย", "def": "จ่าย 3, Remove this card from your hand. (Removed Exhaust Card always return to the Exhaust Pile)", "enDef": "Exhaust Card: pay 3 to remove it from your hand (returns to the Exhaust pile).", "rb": true}, {"id": "Shard", "en": "Shards?", "th": "ชาร์ด", "def": "Shard มีได้สูงสุด 5 ไม่ว่าจะได้มาจากแหล่งใด ส่วนที่เกินจะหายไป · จบเทิร์นเติม 3 Shard · เดิน 1 ช่องใช้ 2 Shard", "enDef": "Energy for moving (2 per space); +3 each turn, max 5.", "rb": true}, {"id": "Edge", "en": "Edge", "th": "ขอบสนาม|ช่องขอบ", "def": "ช่องขอบ คือ ช่องที่อยู่ชิดริมของทั้ง 4 ด้านของห้อง (16 ช่อง)", "enDef": "The 16 border spaces of the room.", "rb": true}, {"id": "Discard", "en": "Discard", "th": "ทิ้งการ์ด", "def": "หากการ์ดระบุให้ทิ้ง (Discard) หรือ Remove การ์ดจากมือ ถือเป็นค่าใช้จ่าย หากมีการ์ดในมือไม่พอ จะไม่สามารถเล่นการ์ดใบนั้นได้", "enDef": "Discarding/removing cards from hand is a cost: not enough cards = can't play.", "rb": true}, {"id": "Retain", "en": "Retain", "th": "เก็บการ์ดไว้", "def": "", "enDef": "Keep card(s) in hand at end of turn instead of discarding.", "rb": false}, {"id": "Teleport", "en": "Teleport", "th": "เทเลพอร์ต|เคลื่อนย้ายไปช่อง", "def": "", "enDef": "Move instantly to the stated space (ignores the path).", "rb": false}, {"id": "Search", "en": "Search", "th": "ค้น(?=\\s*\\d)", "def": "", "enDef": "Look through your draw pile and take the stated card(s).", "rb": false}, {"id": "Heal", "en": "Heal", "th": "ฮีล", "def": "", "enDef": "Restore HP (not above Max HP).", "rb": false}, {"id": "Obstacle", "en": "Obstacles?", "th": "สิ่งกีดขวาง", "def": "", "enDef": "Blocked space: units can't enter; blocks Projectiles.", "rb": false}];
 let KW_RE;const kwBuildRe=()=>{KW_RE=new RegExp(KW.map(k=>`(\\b(?:${k.en})\\b|${k.th})`).join('|'),'g');};kwBuildRe();
 function kwFind(text){ const r=[]; KW_RE.lastIndex=0; let m; while((m=KW_RE.exec(text))){ const gi=m.slice(1).findIndex(x=>x!==undefined); r.push({i:m.index,s:m[0],k:KW[gi]}); if(!m[0].length) KW_RE.lastIndex++; } return r; }
 const KW_SKIP='.kw,button,b,strong,h1,h2,h3,h4,.cname,input,textarea,select,option,script,style,#log,#logBox,#board,#topbar,#kwPop,#kwGloss,.purseLbl,.iemo,[data-nokw]';
@@ -3725,7 +3781,7 @@ const HOWTO={
       ${sec('💎','Shard — พลังงานในเทิร์น',`<p>จ่าย Shard เพื่อ <b>เล่นการ์ด</b> (ตามค่าร่ายบนการ์ด) และ <b>เดิน 1 ช่อง = 2 Shard</b></p><p>จบเทิร์นเติม 3 Shard · เก็บได้สูงสุด ${CFG.shardMax} (ส่วนเกินหายไป) · ไอเทมบางชิ้นเพิ่ม Shard ตอนเริ่มห้อง</p>`,'','shard')}
       ${sec('🔮','Mana — เสริมพลังการ์ด',`<p>ใช้ Mana เพิ่ม/ลดตัวเลขบนการ์ดที่เล่น (1 Mana ต่อการ์ด 1 ใบ, การ์ด [Magic] ใช้ได้ไม่จำกัด, เก็บสูงสุด 10)</p><p class="bad">ใช้ Mana กับ <b>การ์ดบัฟ</b> ไม่ได้ · Mana <b>ไม่ข้ามห้อง</b> — เข้าห้องใหม่รีเซ็ตเป็น 0</p>`)}
       ${sec('😫','Exhaust — การ์ดเหนื่อย',`<p>เมื่อกองจั่วหมด สับกองทิ้งใหม่ <b>+ การ์ดเหนื่อย ${CFG.exhPerDeckout} ใบ</b> (มีคนละ ${CFG.exhaustPerPlayer} ใบ · ต้องสับแต่เหลือไม่ถึง ${CFG.exhPerDeckout} ใบ = แพ้ทันที) · การ์ดเหนื่อยในมือจ่าย 3 Shard เพื่อนำออก (กลับกองเหนื่อย) · Remove/Trash (จ่ายเหรียญที่ Market) ก็คืนกองได้ · ตอน Rest ไม่มีการคืนการ์ดเหนื่อยฟรี</p><div class="htFaces">${[0,2,4,6,7].map(l=>`<span>${face(l)}</span>`).join('')}</div><p class="dim">หน้าฮีโร่บอกระดับความเหนื่อย — ถ้าการ์ดเหนื่อยหมดแล้วต้องสับอีก = แพ้</p>`)}
-      ${sec('👹','Monster',`<p><b>Fighter</b> เดินเข้าประชิด · <b>Shooter</b> หาจุดยิงที่ไกลฮีโร่ที่สุด</p><p>Melee = ช่องติดกัน · Range = เส้นตรง 4 ทิศ · Missile = ไม่สนแนว · ค่าพลังแรงขึ้นทุก 2 ห้อง · มี Elite และบอสห้อง 10</p><p>โจมตีจาก <b>ด้านหลัง</b> = Weak Point ทะลุโล่!</p>`,A('Goblin Warrior'),'mon')}
+      ${sec('👹','Monster',`<p><b>Fighter</b> เดินเข้าประชิด · <b>Shooter</b> หาจุดยิงที่ไกลฮีโร่ที่สุด</p><p>Melee = ช่องติดกัน · Range = เส้นตรง 4 ทิศ · Missile = ไม่สนแนว · ค่าพลังแรงขึ้นทุก 2 ห้อง · มี Elite และบอสห้อง 10</p><p>โล่กันได้ทุกทิศ · เฉพาะการ์ดที่มีความสามารถ <b>Weak Point</b> ตีจากด้านหลังจึงได้ผลพิเศษ</p>`,A('Goblin Warrior'),'mon')}
       ${sec('🏪','Market (Rest Phase)',`<p>ได้ ${CFG.coinsPerRest} Coin ทุกครั้งที่พัก ใช้กับ: <b>Heal 5</b> · <b>Trash</b> การ์ด · <b>Upgrade</b> การ์ด · <b>ซื้อการ์ด Level Up</b> · <b>ซื้อไอเทม</b> (เฉพาะคลาสตัวเอง) · รับ Basic Action Card ฟรี 1 ใบ</p><p class="dim">ราคาบน Market Board แพงขึ้นทุกครั้งที่ใช้บริการนั้น</p>`,I("Archangel's Edge"),'shop')}
       ${sec('🖱','วิธีควบคุม',`<p>คลิกการ์ดที่สว่างเพื่อเล่น · ช่องที่เลือกได้ไฮไลต์ (เขียว = ช่อง, แดง = ศัตรู) · ปุ่ม “เดิน 1 ช่อง” · “จบเทิร์น”</p><p>↶ ย้อนกลับ (Ctrl+Z) มุมจอ — <b>ปิดเมื่อเล่นออนไลน์</b></p>`)}
      </div><div style="text-align:center;margin-top:10px"><button class="end" data-hx>เข้าใจแล้ว ⚔</button></div></div>`;
@@ -4382,10 +4438,10 @@ const TUT={on:false,i:-1,log:[],SEED:20261013,HERO:'Darius Sunward',
    {t:'มุมซ้ายล่างคือกองจั่ว (คว่ำ) กับกองทิ้ง (หงายใบบนสุด) แตะเพื่อดูได้ — กองจั่วหมดเมื่อไหร่ จะสับกองทิ้งกลับมาพร้อมการ์ดเหนื่อย 2 ใบ',sel:'#piles'},
    {t:'ชี้ (หรือแตะ) ที่มอนสเตอร์ 👀 เพื่อดูว่ามันจะทำอะไร "ถ้าเราจบเทิร์นตอนนี้"',sel:'#toks .tok.mon',wait:()=>TUT.sawIntent},
    {t:'เล่นการ์ดแบบคลิก: คลิก Guard แล้วกด "ตกลง" (การคลิกจะถามยืนยันก่อน ปิดได้ในตั้งค่า)',sel:()=>TUT.card(/^Guard/),wait:()=>TUT.P().shield>0},
-   {t:'Guard ให้โล่ 🛡 3 — โล่กันดาเมจได้ แต่ไม่กันการโดนตีจากด้านหลัง (Weak Point) และโล่ของเราหายตอนเริ่มเทิร์นถัดไป',sel:'#toks .tok.hero'},
+   {t:'Guard ให้โล่ 🛡 3 — โล่กันดาเมจได้ทุกทิศ (รวมด้านหลัง) และโล่ของเราหายตอนเริ่มเทิร์นถัดไป',sel:'#toks .tok.hero'},
    {t:'ทีนี้ลอง "ลาก" Walk ไปวางบนกระดาน 👆 ลากแล้วเล่นทันที ไม่ต้องยืนยัน (Walk ค่าร่าย 1 แต่ถ้าเป็นใบแรกของเทิร์นจะเป็น 0)',sel:()=>TUT.card(/^Walk/),wait:()=>(UI.askReq&&UI.askReq.kind==='cell')||TUT.adj()},
    {t:'เดิน: คลิกช่องที่ไฮไลต์ — เดินทีละช่องแนวตั้ง/แนวนอน ห้ามทแยง ให้ไปยืนติดกับมอนตัวที่ไฮไลต์ (ถ้ายังไม่ติด กดปุ่ม "เดิน 1 ช่อง" จ่าย 2 Shard ได้)',sel:()=>UI.askReq?'#board':'#aMove',wait:()=>TUT.adj()&&!UI.askReq},
-   {t:'ลูกศรบนตัวบอกทิศที่หัน ➜ หลังเดินจะหันไปทางก้าวสุดท้าย ถ้าโดนตีจากด้านหลังเรียกว่า Weak Point (โล่ไม่ช่วย) — การหันตัวไม่นับเป็นการเดิน',sel:'#toks .tok.hero'},
+   {t:'ลูกศรบนตัวบอกทิศที่หัน ➜ หลังเดินจะหันไปทางก้าวสุดท้าย การ์ดที่มีความสามารถ Weak Point จะได้ผลพิเศษเมื่อตีจากด้านหลัง — การหันตัวไม่นับเป็นการเดิน',sel:'#toks .tok.hero'},
    {t:'Mana 🔮 ใช้ 1 Mana ปรับตัวเลขในข้อความการ์ด ±1 (ปรับค่าร่ายมุมซ้ายบนไม่ได้) · ใช้กับการ์ดบัฟไม่ได้ · ใช้แล้วหมด และรีเซ็ตเป็น 0 ทุกครั้งที่เข้าห้องใหม่ — บทเรียนนี้แถมให้ 2',sel:'#buffBar [data-k="tok-mana"]',enter:()=>{ const P=TUT.P(); if(P&&!TUT.gaveMana){ TUT.gaveMana=true; P.mana=2; UI.render(); } }},
    {t:'โจมตี! เล่น Strike ตีมอนที่ยืนติดกัน (บน/ล่าง/ซ้าย/ขวา ไม่นับทแยง) จะมีหน้าต่าง Mana: กด +1 เพิ่มดาเมจ แล้วกด "✔ ยืนยัน" (หรือ "ไม่ใช้ Mana")',sel:()=>TUT.card(/^Strike/),wait:()=>!TUT.melee()||TUT.melee().hp<TUT.melee().maxhp},
    {t:'ตัวนี้เป็นมอนยิงไกล 🏹 ยิงเป็นแนวตรงใส่ฮีโร่ที่ใกล้สุด และยิงทะลุมอนตัวอื่นได้ — มอนทำได้อย่างเดียวต่อตา: เดิน หรือ ตี',sel:()=>{ const m=TUT.shooter(); return m?`#toks [data-id="${m.uid}"]`:'#board'; }},
@@ -4530,8 +4586,8 @@ const PILES={log:[],prev:null,
     const cards=which==='discard'?P.discard.slice().reverse():which==='removed'?(P.removed||[]).slice().reverse():P.deck.slice().sort((a,b)=>nm(a).localeCompare(nm(b))||(a.up?1:0)-(b.up?1:0));
     const T={discard:'🗑 กองทิ้ง — ใบล่าสุดอยู่ซ้ายสุด',removed:'⛔ กองรีมูฟ — ใบล่าสุดอยู่ซ้ายสุด',draw:'🂠 กองจั่ว — เรียงตามชื่อ (ไม่บอกลำดับจริง)'}[which];
     let m=document.getElementById('pileView'); if(!m){ m=document.createElement('div'); m.id='pileView'; document.body.appendChild(m); }
-    m.innerHTML=`<div class="pvBox"><h2>${T} (${cards.length} ใบ)</h2><div class="pvGrid">${cards.map(c=>UI.cardHTML(c,P,'')).join('')||'<i>ไม่มีการ์ด</i>'}</div><button id="pvX">ปิด</button></div>`;
-    m.className='show'; m.onclick=e=>{ if(e.target===m||e.target.id==='pvX') m.className=''; }; this.log.push('view:'+which); }
+    m.innerHTML=`<div class="pvBox"><h2>${T} (${cards.length} ใบ)</h2>${UI.cardGrid(cards,P)}<button id="pvX">ปิด</button></div>`;
+    m.className='show'; UI.fitGrids(m); m.onclick=e=>{ if(e.target===m||e.target.id==='pvX') m.className=''; }; this.log.push('view:'+which); }
 };
 UI.PILES=PILES;
 { const _pc=playCard0; playCard0=async function(P,c){ try{ if(!SIM.on&&c) PILES.played.add(String(c.uid)); }catch(e){} return _pc.apply(this,arguments); };
@@ -4719,8 +4775,8 @@ HOF.detail=function(e){ if(!e) return; let el=document.getElementById('hofCard')
 HOF.deck=function(p){ if(!p||!p.deckK) return; const nm=c=>DEF[c.key].name; const cards=p.deckK.map((k,j)=>{ const up=String(k)[0]==='+'; return {key:up?String(k).slice(1):String(k),up,uid:'hofd'+j}; }).filter(c=>DEF[c.key])
     .sort((a,b)=>nm(a).localeCompare(nm(b))||(a.up?1:0)-(b.up?1:0));
   let m=document.getElementById('pileView'); if(!m){ m=document.createElement('div'); m.id='pileView'; document.body.appendChild(m); }
-  m.innerHTML=`<div class="pvBox" data-nokw><h2>🂠 Deck สุดท้าย — ${esc(p.name)} (${cards.length} ใบ)</h2><div class="pvGrid">${cards.map(c=>UI.cardHTML(c,null,'')).join('')||'<i>ไม่มีการ์ด</i>'}</div><button id="pvX">ปิด</button></div>`;
-  m.className='show hofDeck'; m.onclick=ev=>{ if(ev.target===m||ev.target.id==='pvX') m.className=''; }; HOFNET.log.push('deck:'+cards.length); };
+  m.innerHTML=`<div class="pvBox" data-nokw><h2>🂠 Deck สุดท้าย — ${esc(p.name)} (${cards.length} ใบ)</h2>${UI.cardGrid(cards,null)}<button id="pvX">ปิด</button></div>`;
+  m.className='show hofDeck'; UI.fitGrids(m); m.onclick=ev=>{ if(ev.target===m||ev.target.id==='pvX') m.className=''; }; HOFNET.log.push('deck:'+cards.length); };
 /* victory window: note + button text */
 { const _show=VIC.show.bind(VIC); VIC.show=function(){ const r=_show(); try{ const n=document.querySelector('#victory .vNote'); const D=VIC.d; if(n&&D&&D.diff==='normal'&&!D.tut) n.textContent='บันทึกลงหอเกียรติยศออนไลน์ (ทุกคนเห็น) + บนอุปกรณ์นี้ — พิมพ์ชื่อของคุณแล้วกดบันทึก';
     const hb=document.getElementById('vHof'); if(hb){ const o=hb.onclick; hb.onclick=ev=>{ o&&o(ev); if(hb.textContent.includes('✅')){ hb.textContent='✅ บันทึกแล้ว · กำลังส่งออนไลน์…'; const t=setInterval(()=>{ const e=HOF.all()[0]; if(e&&e.online){ hb.textContent='✅ บันทึกแล้ว · 🌐 ออนไลน์แล้ว'; clearInterval(t); } else if(HOFNET.q().length&&!HOFNET.busy){ hb.textContent='✅ บันทึกในเครื่องแล้ว · ⏳ จะส่งออนไลน์เมื่อเชื่อมต่อได้'; } },700); setTimeout(()=>clearInterval(t),30000); } }; } }catch(e){} return r; }; }
@@ -4819,5 +4875,28 @@ if(!HEADLESS){
     const _pl=DRAG.play.bind(DRAG); DRAG.play=function(uid){ const P=this.P(); const c=P&&P.hand.find(h=>h.uid==uid); if(ADAPT.on(P,c)&&UI.pending&&!UI.askReq){ this.log.push({uid,ok:true,key:'EXH',adapt:1}); ADAPT.open(P,c); return true; } return _pl(uid); }; }
   const st=document.createElement('style'); st.textContent='#hand .card.adaptX{box-shadow:0 0 0 2px #e05050,0 0 14px rgba(255,90,60,.7)}'; document.head.appendChild(st);
 }
+
+/* ---------- v1.1.52 OWNER REQUEST: RSTICK — burning-stick round tracker flush on the RIGHT edge of #board (full board height; in 2P the
+   combined board is one #board so there is one stick at the far right). Flame sits on the notch of the current room round
+   (G.roundsInRoom); wood above it is charred. Rounds 1..max(8,r) marked (enrage rooms) / 1..max(10,r) (no-enrage room 10).
+   Scary stages: r>=ENRAGE_ROUND-2 'hot', r===ENRAGE_ROUND-1 'warn' (bigger deep-red flame, embers, smoke, red pulse), r>=ENRAGE_ROUND 'rage' (kept intense).
+   State-driven from G (works for the online guest). The existing roomInfo text + round-7/8 banners (e21 ENR) are unchanged. ---------- */
+const RSTICK={ last:null,
+  stage(r,on){ if(!on) return 'calm'; return r>=ENRAGE_ROUND?'rage':r===ENRAGE_ROUND-1?'warn':r>=ENRAGE_ROUND-2?'hot':'calm'; },
+  sync(){ if(typeof G==='undefined'||!G||typeof document==='undefined') return; const bd=document.getElementById('board'); if(!bd) return;
+    let s=document.getElementById('rstick'); const show=G.phase==='battle'&&G.room>0;
+    if(!show){ if(s) s.remove(); this.last=null; return; }
+    const on=typeof enrageOn==='function'?enrageOn():G.room!==10; const r=Math.max(1,G.roundsInRoom||1); const max=Math.max(on?ENRAGE_ROUND:10,r);
+    const st=this.stage(r,on); const key=[G.room,r,max,st].join(':');
+    if(!s||s.parentNode!==bd){ if(s) s.remove(); s=document.createElement('div'); s.id='rstick'; s.innerHTML='<div class="rsWood"></div><div class="rsChar"></div><div class="rsNotches"></div><div class="rsFlame"><i class="f1"></i><i class="f2"></i><i class="f3"></i><b class="em e1"></b><b class="em e2"></b><b class="em e3"></b><b class="sm s1"></b><b class="sm s2"></b></div><div class="rsNow"></div>'; bd.appendChild(s); this.last=null; }
+    if(key===this.last) return; const prevR=this.lastR; this.last=key; this.lastR=r;
+    const pct=i=>((i-.5)/max*100); /* notch i centre (top→bottom) */
+    s.querySelector('.rsNotches').innerHTML=Array.from({length:max},(_,k)=>{ const i=k+1; const cls=(i<r?'past':i===r?'cur':'')+(on&&i===ENRAGE_ROUND-1?' w7':'')+(on&&i>=ENRAGE_ROUND?' r8':''); return `<span class="rsN ${cls}" style="top:${pct(i)}%">${i}${on&&i===ENRAGE_ROUND&&i===max?'+':''}</span>`; }).join('');
+    s.className='st-'+st+(on?'':' noEnr')+(prevR&&prevR!==r?' moved':''); s.dataset.round=r; s.dataset.max=max; s.dataset.stage=st;
+    s.style.setProperty('--rsY',pct(r)+'%'); s.title=on?`รอบในห้อง ${r} — รอบ ${ENRAGE_ROUND} มอนโกรธ`:`รอบในห้อง ${r} (ห้องนี้ไม่มีมอนโกรธ)`;
+    s.querySelector('.rsNow').innerHTML=`<small>รอบ</small>${r}`; }
+};
+window.RSTICK=RSTICK;
+if(typeof UI!=='undefined'&&!HEADLESS){ const _r=UI.render; UI.render=function(){ const x=_r.apply(this,arguments); try{ RSTICK.sync(); }catch(e){} return x; }; }
 </script>
 </body></html>
