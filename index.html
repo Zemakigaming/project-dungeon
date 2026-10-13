@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.46</title>
+<title>Project Dungeon v1.1.47</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -662,9 +662,19 @@ body.dragging{user-select:none;cursor:grabbing}
 @keyframes eveGlow{50%{box-shadow:0 0 0 2px #ffd54f,0 0 24px #ffca28}}@media (prefers-reduced-motion: reduce){.pdPile .eveTop.ok{animation:none}}
 #tip.lpTip{left:50%!important;top:50%!important;transform:translate(-50%,-50%);opacity:1}
 #piles .eveTop .card{pointer-events:auto;cursor:pointer}
+
+/* v1.1.47 online Hall of Fame */
+.hofTabs{display:flex;gap:6px;justify-content:center;margin:6px 0}.hofTabs button{padding:4px 12px;border-radius:999px;border:1px solid #ffd36b66;background:#1d1530;color:#f3e9d2;cursor:pointer}.hofTabs .on{background:#ffd36b;color:#1a1020}
+.hofE{cursor:pointer}.hofE:hover{background:#ffffff0d}.hofTag{font-size:12px;padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:middle}.hofTag.on{background:#1e4d7a;color:#bfe0ff}.hofTag.loc{background:#4a3a1a;color:#ffd99a}.hofTag.q{background:#5a2a2a;color:#ffc0c0}
+#hofCard{position:fixed;inset:0;z-index:1500;display:none;align-items:center;justify-content:center;background:#05030cdd;padding:12px;overflow:auto}#hofCard.show{display:flex}
+.hcBox{width:min(760px,100%);background:linear-gradient(#24132f,#141026 55%,#07060d);border:4px solid #ffd36b;border-radius:6px;padding:22px 26px 16px;text-align:center;font-family:Kanit,sans-serif;color:#e8ecf8}
+.hcLogo{width:min(250px,60%);max-height:170px;object-fit:contain}.hcBox h1{color:#ffd36b;font-size:clamp(30px,6vw,52px);margin:4px 0 6px}.hcTeam{font-size:clamp(17px,3vw,25px)}.hcSub{color:#aab4d0;font-size:clamp(14px,2.4vw,19px);margin:4px 0 16px}
+.hcP{display:flex;gap:20px;align-items:center;text-align:left;background:#ffffff10;padding:14px 16px;margin:12px 0}.hcP>img{width:clamp(80px,19vw,150px);height:clamp(80px,19vw,150px);border-radius:50%;border:3px solid #ffd36b;object-fit:cover;flex:none}
+.hcN{font-size:clamp(20px,3.6vw,30px);font-weight:700;color:#fff}.hcH{color:#ffd36b;font-size:clamp(14px,2.6vw,21px);margin:2px 0 8px}.hcS{display:grid;grid-template-columns:repeat(3,1fr);gap:6px 14px;font-size:clamp(12px,2.2vw,18px)}.hcS b{font-weight:500}
+.hcFoot{color:#aab4d0;font-size:clamp(12px,2vw,17px);margin-top:14px}.hcBtns{margin-top:12px;display:flex;gap:8px;justify-content:center}.hcBtns button{padding:8px 16px;border-radius:10px;border:1px solid #ffd36b;background:#2a1d10;color:#ffd36b;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.46 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.47 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -2440,7 +2450,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.46', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.47', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -4596,5 +4606,90 @@ if(!HEADLESS){ const MV={ fallback(st,why){ st.classList.remove('hasVid'); st.cl
     if((window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)||(UI.FX&&UI.FX.on===false)){ /* still frame (poster), no motion */ v.removeAttribute('autoplay'); try{ v.pause(); v.currentTime=0; }catch(_){} st.classList.add('vidStill'); MV.why='reduced'; if(!v.poster) MV.fallback(st,'reduced'); return; }
     v.muted=true; v.addEventListener('error',()=>MV.fallback(st,'error')); const p=v.play&&v.play(); if(p&&p.catch) p.catch(()=>MV.fallback(st,'autoplay')); } };
   window.MV=MV; setInterval(()=>MV.check(),400); }
+
+/* ===================== v1.1.47 e22: ONLINE Hall of Fame (Supabase REST, plain fetch, public anon key) =====================
+   - Normal-difficulty Room-10 victories are saved locally (as before) AND posted to public.hall_of_fame. Easy / tutorial never posted.
+   - Offline -> queued in localStorage (pd_hofq) and retried (load, 'online' event, every 60 s). Each victory carries a client id (stats.client_id);
+     before (re)posting we check whether that id is already online, so a lost response never creates a duplicate.
+   - Client-side rate limit: >= 20 s between posts and <= 6 posts per hour. Names sanitized (length cap, control chars stripped) and HTML-escaped on render.
+   - Menu Hall of Fame: loads the online list (newest first / by fewest rounds), merges local entries, marks local-only and queued ones; loading + offline fallback.
+   - Clicking any entry opens the full victory-stats card (same layout as the victory image), with the image-save button.
+   RLS (server): anon may select, may insert only rooms=10 with 1-2 players; update/delete denied. */
+if(!HEADLESS){
+const HOFNET={ URL:'https://wvmcfwuvewdindvtcvyn.supabase.co', KEY:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2bWNmd3V2ZXdkaW5kdnRjdnluIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4ODI5MjAsImV4cCI6MjEwNzQ1ODkyMH0.MZbRHfXsMwp0gdu2xGsFfGaEfFfPetMYVC0_z2elJwo', TABLE:'hall_of_fame', QK:'pd_hofq', RK:'pd_hofrate', log:[],
+  hdr(extra){ return Object.assign({apikey:this.KEY,Authorization:'Bearer '+this.KEY,'Content-Type':'application/json'},extra||{}); },
+  clean(s,n){ return String(s==null?'':s).replace(/[\u0000-\u001f\u007f<>]/g,'').replace(/\s+/g,' ').trim().slice(0,n); },
+  cid(){ return (crypto&&crypto.randomUUID)?crypto.randomUUID():('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,10)); },
+  row(e){ return { team_name:this.clean(e.team||e.ps.map(p=>p.name).join(' & '),40)||'ไม่มีชื่อทีม', dungeon:this.clean(e.dungeon,60), rooms:10, rounds:e.rounds|0, turns:e.turns|0, play_seconds:Math.round((e.ms||0)/1000),
+      version:'v'+this.clean(e.ver,12), players:e.ps.slice(0,2).map(p=>({name:this.clean(p.name,24)||'ผู้เล่น',hero:this.clean(p.hero,40),cls:this.clean(p.cls,40),dealt:p.dmg|0,taken:p.taken|0,kills:p.kills|0,crits:p.crits|0,cards:p.cards|0,maxHit:p.maxHit|0,coins:p.coins|0,items:(p.itemsN!=null?p.itemsN:(p.items||[]).length)|0,deck:(p.deckN!=null?p.deckN:(p.deck||[]).length)|0})),
+      stats:{difficulty:'normal',client_id:e.cid,date:this.clean(e.date,40),items:e.ps.map(p=>(p.items||[]).map(x=>this.clean(x,40))),deckList:e.ps.map(p=>(p.deck||[]).slice(0,60).map(x=>this.clean(x,40)))} }; },
+  q(){ try{ return JSON.parse(localStorage.getItem(this.QK)||'[]'); }catch(e){ return []; } }, setQ(L){ try{ localStorage.setItem(this.QK,JSON.stringify(L)); }catch(e){} },
+  enqueue(e){ const L=this.q(); if(L.some(x=>x.cid===e.cid)) return; L.push({cid:e.cid,row:this.row(e)}); this.setQ(L); this.flush(); },
+  rateOK(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} const now=Date.now(); r=r.filter(t=>now-t<3600e3); if(r.length&&now-r[r.length-1]<20e3) return false; if(r.length>=6) return false; return true; },
+  rateMark(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} r.push(Date.now()); try{ localStorage.setItem(this.RK,JSON.stringify(r.slice(-12))); }catch(e){} },
+  async exists(cid){ const r=await fetch(`${this.URL}/rest/v1/${this.TABLE}?select=id&stats->>client_id=eq.${encodeURIComponent(cid)}&limit=1`,{headers:this.hdr()}); if(!r.ok) throw new Error('read '+r.status); const j=await r.json(); return j.length?j[0].id:null; },
+  /* automated browsers (puppeteer/webdriver) never write to the live DB unless a test explicitly mocks the network and opts in */
+  testGuard(){ try{ return !!navigator.webdriver&&!window.__HOF_MOCKED; }catch(e){ return false; } },
+  busy:false,
+  async flush(){ if(this.busy) return; const L=this.q(); if(!L.length) return; this.busy=true;
+    try{ for(const it of L.slice()){ let id=null; try{ id=await this.exists(it.cid); }catch(e){ this.log.push('offline'); break; }
+        if(id==null){ if(this.testGuard()){ this.log.push('test-guard'); break; } if(!this.rateOK()){ this.log.push('rate'); break; } this.rateMark();
+          let r; try{ r=await fetch(`${this.URL}/rest/v1/${this.TABLE}`,{method:'POST',headers:this.hdr({Prefer:'return=representation'}),body:JSON.stringify(it.row)}); }catch(e){ this.log.push('offline'); break; }
+          if(!r.ok){ this.log.push('reject:'+r.status); if(r.status>=400&&r.status<500&&r.status!==429){ this.setQ(this.q().filter(x=>x.cid!==it.cid)); } break; }
+          try{ const j=await r.json(); id=j&&j[0]&&j[0].id; }catch(e){} this.log.push('posted'); }
+        else this.log.push('dup-skip');
+        this.setQ(this.q().filter(x=>x.cid!==it.cid)); this.markPosted(it.cid,id); } }
+    finally{ this.busy=false; } },
+  markPosted(cid,id){ const L=HOF.all(); const e=L.find(x=>x.cid===cid); if(e){ e.online=id||true; try{ localStorage.setItem(HOF.KEY,JSON.stringify(L)); }catch(err){} } },
+  async list(order){ const o=order==='rounds'?'rounds.asc,created_at.desc':'created_at.desc'; const r=await fetch(`${this.URL}/rest/v1/${this.TABLE}?select=*&order=${o}&limit=200`,{headers:this.hdr()}); if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); },
+  /* rows 2-4 are test rows accidentally posted by the old test_victory142 run during v1.1.47 development (before the webdriver guard); anon cannot delete them, so hide them client-side until the owner removes them */
+  HIDE:[2,3,4],
+  fromRow(r){ const d=new Date(r.created_at); return {key:'o'+r.id,src:'online',id:r.id,cid:r.stats&&r.stats.client_id,team:r.team_name,dungeon:r.dungeon||'',rooms:r.rooms||10,rounds:r.rounds|0,turns:r.turns|0,ms:(r.play_seconds|0)*1000,ver:String(r.version||'').replace(/^v/,''),
+      date:isNaN(d)?'':d.toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}),t:+d||0,ps:(r.players||[]).map(p=>({name:p.name,hero:p.hero,cls:p.cls,dmg:p.dealt|0,taken:p.taken|0,kills:p.kills|0,crits:p.crits|0,cards:p.cards|0,maxHit:p.maxHit|0,coins:p.coins|0,itemsN:p.items|0,deckN:p.deck|0}))}; },
+  fromLocal(e,i){ const q=this.q(); return {key:'l'+(e.cid||e.t||i),src:'local',cid:e.cid,queued:!!(e.cid&&q.some(x=>x.cid===e.cid)),team:e.team,dungeon:e.dungeon,rooms:10,rounds:e.rounds|0,turns:e.turns|0,ms:e.ms||0,ver:e.ver,date:e.date,t:e.t||0,
+      ps:(e.ps||[]).map(p=>Object.assign({coins:0},p,{itemsN:p.itemsN!=null?p.itemsN:(p.items||[]).length,deckN:p.deckN!=null?p.deckN:(p.deck||[]).length}))}; }
+};
+window.HOFNET=HOFNET;
+/* local save now keeps everything needed for the full card + a client id, and posts it */
+const _add=HOF.add.bind(HOF);
+HOF.add=function(D){ if(!D||D.diff!=='normal'||D.tut) return false; const ok=_add(D); if(!ok) return false; const L=HOF.all(); const e=L[0]; e.cid=HOFNET.cid(); e.team=HOFNET.clean(e.team,40);
+  e.ps=e.ps.map((p,i)=>{ const s=D.ps[i]||{}; return Object.assign(p,{name:HOFNET.clean(p.name,24),coins:s.coins|0,items:(s.items||[]).slice(),deck:(s.deck||[]).slice(),itemsN:(s.items||[]).length,deckN:(s.deck||[]).length}); });
+  try{ localStorage.setItem(HOF.KEY,JSON.stringify(L)); }catch(err){} HOFNET.enqueue(e); return true; };
+/* ---------- list ---------- */
+HOF.order='new';
+HOF.show=async function(){ let el=document.getElementById('hof'); if(!el){ el=document.createElement('div'); el.id='hof'; document.body.appendChild(el); }
+  const box=(inner)=>{ el.innerHTML=`<div class="hofBox" data-nokw><h1>🏛 หอเกียรติยศ</h1><div class="hofTabs"><button data-o="new" class="${HOF.order==='new'?'on':''}">ล่าสุด</button><button data-o="rounds" class="${HOF.order==='rounds'?'on':''}">รอบน้อยสุด</button></div>${inner}<button id="hofX">ปิด</button></div>`; el.className='show';
+    el.querySelector('#hofX').onclick=()=>{ el.className=''; }; el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{ HOF.order=b.dataset.o; HOF.show(); }); };
+  box('<div class="hofSub hofLoading">⏳ กำลังโหลดหอเกียรติยศออนไลน์…</div>');
+  let rows=null, err=''; try{ rows=await HOFNET.list(HOF.order); }catch(e){ err=e.message||'offline'; }
+  const online=(rows||[]).filter(r=>!HOFNET.HIDE.includes(r.id)).map(r=>HOFNET.fromRow(r)); const oc=new Set(online.map(e=>e.cid).filter(Boolean));
+  const local=HOF.all().map((e,i)=>HOFNET.fromLocal(e,i)).filter(e=>!(e.cid&&oc.has(e.cid))&&!(rows&&e.cid&&HOF.all().find(x=>x.cid===e.cid&&x.online)));
+  let L=online.concat(local); L.sort(HOF.order==='rounds'?((a,b)=>a.rounds-b.rounds||b.t-a.t):((a,b)=>b.t-a.t)); HOF.cur=L;
+  const tag=e=>e.src==='online'?'<span class="hofTag on">🌐 ออนไลน์</span>':e.queued?'<span class="hofTag q">⏳ รอส่ง</span>':'<span class="hofTag loc">📱 เฉพาะเครื่องนี้</span>';
+  box(`<div class="hofSub">${rows?`ออนไลน์ ${online.length} · เฉพาะเครื่องนี้ ${local.length}`:'⚠ ออฟไลน์ — แสดงเฉพาะบันทึกบนเครื่องนี้'}</div>
+    <div class="hofList">${L.length?L.map((e,i)=>`<div class="hofE" data-k="${esc(e.key)}" tabindex="0"><b>#${i+1}</b><div><div class="hofN">${esc(e.team||e.ps.map(p=>p.name).join(' & '))} ${tag(e)}</div>
+      <div class="hofD">${esc(e.ps.map(p=>p.name+' · '+p.hero+' — '+p.cls).join(' | '))}</div><div class="hofD">${esc(e.dungeon)} · ${e.rounds} รอบ · ${e.turns} เทิร์น · ${VIC.time(e.ms||0)}</div><div class="hofT">${esc(e.date||'')} · v${esc(e.ver||'')}</div></div></div>`).join(''):'<i>ยังไม่มีบันทึก — ชนะบอสห้องที่ 10 ในโหมดปกติเพื่อจารึกชื่อ</i>'}</div>`);
+  el.querySelectorAll('.hofE').forEach(r=>{ const go=()=>HOF.detail(HOF.cur.find(e=>e.key===r.dataset.k)); r.onclick=go; r.onkeydown=ev=>{ if(ev.key==='Enter') go(); }; });
+  HOFNET.log.push(rows?'list:'+online.length+'+'+local.length:'list:offline'); };
+/* ---------- detail: the victory-stats card ---------- */
+HOF.detail=function(e){ if(!e) return; let el=document.getElementById('hofCard'); if(!el){ el=document.createElement('div'); el.id='hofCard'; document.body.appendChild(el); }
+  const st=(k,v)=>`<span>${k} <b>${v}</b></span>`;
+  el.innerHTML=`<div class="hcBox" data-nokw><img class="hcLogo" src="${(typeof ART!=='undefined'&&ART.__logo)||''}" alt="Synchro Horizon"><h1>🏆 ชัยชนะ!</h1>
+    <div class="hcTeam">${esc(e.team||'')}${e.team?' · ':''}${esc(e.dungeon)}</div><div class="hcSub">ห้อง ${e.rooms||10}/10 · ${e.rounds} รอบ · ${e.turns} เทิร์น · ${VIC.time(e.ms||0)}</div>
+    ${e.ps.map(p=>`<div class="hcP"><img src="${artOf(p.hero,'t')}" alt=""><div><div class="hcN">${esc(p.name)}</div><div class="hcH">${esc(p.hero)} — ${esc(p.cls)}</div>
+      <div class="hcS">${st('ดาเมจที่ทำ',p.dmg)}${st('ดาเมจที่รับ',p.taken)}${st('สังหาร',p.kills)}${st('ทอยคริ',p.crits)}${st('การ์ดที่เล่น',p.cards)}${st('ตีแรงสุด',p.maxHit)}${st('Coin',p.coins|0)}${st('ไอเทม',p.itemsN|0)}${st('เด็ค',(p.deckN|0)+' ใบ')}</div></div></div>`).join('')}
+    <div class="hcFoot">${esc(e.date||'')} · Project Dungeon v${esc(e.ver||'')} · Synchro Horizon</div>
+    <div class="hcBtns"><button id="hcImg">🖼 บันทึกรูป</button><button id="hcX">ปิด</button></div></div>`;
+  el.className='show'; el.querySelector('#hcX').onclick=()=>{ el.className=''; };
+  el.querySelector('#hcImg').onclick=()=>{ const D={team:e.team,dungeon:e.dungeon,rooms:e.rooms||10,rounds:e.rounds,turns:e.turns,ms:e.ms,diff:'normal',ver:e.ver,date:e.date,
+      ps:e.ps.map(p=>({name:p.name,hero:p.hero,cls:p.cls,dmg:p.dmg,taken:p.taken,kills:p.kills,crits:p.crits,cards:p.cards,maxHit:p.maxHit,coins:p.coins|0,items:new Array(p.itemsN|0).fill(''),deck:new Array(p.deckN|0).fill('')}))};
+    const sv=VIC.d; VIC.d=D; VIC.png(true).finally(()=>{ VIC.d=sv; }); };
+  HOFNET.log.push('detail:'+e.key); };
+/* victory window: note + button text */
+{ const _show=VIC.show.bind(VIC); VIC.show=function(){ const r=_show(); try{ const n=document.querySelector('#victory .vNote'); const D=VIC.d; if(n&&D&&D.diff==='normal'&&!D.tut) n.textContent='บันทึกลงหอเกียรติยศออนไลน์ (ทุกคนเห็น) + บนอุปกรณ์นี้ — พิมพ์ชื่อของคุณแล้วกดบันทึก';
+    const hb=document.getElementById('vHof'); if(hb){ const o=hb.onclick; hb.onclick=ev=>{ o&&o(ev); if(hb.textContent.includes('✅')){ hb.textContent='✅ บันทึกแล้ว · กำลังส่งออนไลน์…'; const t=setInterval(()=>{ const e=HOF.all()[0]; if(e&&e.online){ hb.textContent='✅ บันทึกแล้ว · 🌐 ออนไลน์แล้ว'; clearInterval(t); } else if(HOFNET.q().length&&!HOFNET.busy){ hb.textContent='✅ บันทึกในเครื่องแล้ว · ⏳ จะส่งออนไลน์เมื่อเชื่อมต่อได้'; } },700); setTimeout(()=>clearInterval(t),30000); } }; } }catch(e){} return r; }; }
+/* retry the queue */
+window.addEventListener('online',()=>HOFNET.flush()); setTimeout(()=>HOFNET.flush(),3000); setInterval(()=>HOFNET.flush(),60000);
+}
 </script>
 </body></html>
