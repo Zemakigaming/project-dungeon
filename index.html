@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.48</title>
+<title>Project Dungeon v1.1.49</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -676,7 +676,7 @@ body.dragging{user-select:none;cursor:grabbing}
 #pileView.hofDeck{z-index:1600}body #tip.card{z-index:5000}.hcDeck{margin-top:8px;padding:4px 12px;border-radius:8px;border:1px solid #ffd36b;background:#2a1d10;color:#ffd36b;font:14px Kanit,sans-serif;cursor:pointer}.hcNoDeck{display:inline-block;margin-top:8px;color:#8a92aa;font-size:13px}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.48 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.49 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -768,7 +768,16 @@ const DIRS = [[0,-1],[1,0],[0,1],[-1,0]];
 const RS={s:(Math.floor(Math.random()*4294967296))|0,n:0};
 let RNG = ()=>{ let t=RS.s=(RS.s+0x6D2B79F5)|0; t=Math.imul(t^t>>>15,1|t); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; };
 const rnd = n => { RS.n++; return Math.floor(RNG()*n); };
-const shuffle = a => { for (let i=a.length-1;i>0;i--){const j=rnd(i+1);[a[i],a[j]]=[a[j],a[i]];} return a; };
+/* v1.1.49 USER RULE: undo must never re-roll luck. Player-visible rolls use KEYED streams: result #i of stream `key` is a pure
+   function of (G.kseed, key, i) and the counter G.kc[key] lives in G — undo / emergency undo / Continue restore the counter, so redoing
+   gives the SAME result no matter what else (draws, other rolls, order of actions) consumed the main RS stream in between. */
+function _kh(s){ let h=2166136261>>>0; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
+function kfloat(key){ const g=(typeof G!=='undefined')?G:null; if(!g) return RNG();
+  if(g.kseed==null) g.kseed=_kh('pd:'+(g.players||[]).map(p=>p.hero&&p.hero.name).join(',')+':'+(g.dungeons||[]).join(',')); /* fallback, stable (never reads the moving RS) */
+  if(!g.kc) g.kc={}; const i=g.kc[key]=(g.kc[key]||0)+1; RS.n++; /* RS.n++ keeps the v1.1.4 'random reveal' marker for normal undo */
+  let t=(g.kseed^_kh(key+'#'+i))|0; t=(t+0x6D2B79F5)|0; t=Math.imul(t^t>>>15,1|t); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }
+const krnd=(key,n)=>Math.floor(kfloat(key)*n);
+const shuffle = (a,key) => { for (let i=a.length-1;i>0;i--){const j=key?krnd(key,i+1):rnd(i+1);[a[i],a[j]]=[a[j],a[i]];} return a; };
 /* v1.1.26: SIM.on = monster-intent simulation in progress (no UI, no timers, no prompts) */
 const SIM={on:false};
 const sleep = ms => (HEADLESS||SIM.on||!ms) ? Promise.resolve() : new Promise(r=>setTimeout(r,ms));
@@ -987,7 +996,7 @@ ov('Aero Push',[{t:'push',n:4,proj:1}],[{t:'push',n:5,proj:1}]);
 ov('Impact Hit',[{t:'atk',dmg:3,mode:'single',push:1}],[{t:'atk',dmg:5,mode:'single',proj:true,push:2}]);
 ov('Wound Pact',[{t:'heal',n:P=>Math.min(mz(P,'show',1),P.hand.concat(P.discard).filter(c=>c.key==='EXH').length)*mz(P,'per',1)}],[{t:'heal',n:P=>Math.min(mz(P,'show',1),P.hand.concat(P.discard).filter(c=>c.key==='EXH').length)*mz(P,'per',2)}]);
 ov('Waste to Power',[fnOp(async P=>{const ex=P.deck.filter(c=>c.key==='EXH');ex.forEach(c=>{P.deck.splice(P.deck.indexOf(c),1);P.hand.push(c);});await gainMana(P,ex.length);})],[fnOp(async P=>{const ex=P.deck.filter(c=>c.key==='EXH');ex.forEach(c=>{P.deck.splice(P.deck.indexOf(c),1);P.hand.push(c);});for(const c of ex){const o=await ask(P,{kind:'opt',prompt:'Waste to Power+: รับ 1 Mana หรือ 1 Shard',options:[{label:'🔮 1 Mana',v:'m'},{label:'💎 1 Shard',v:'s'}],purpose:'wtp'});const q=mz(P,'per',1);if(o&&o.v==='s')P.shard+=q;else await gainMana(P,q);}})]);
-ov('Memory of Magic',[fnOp(async P=>{const t=await pickCards(P,P.discard,2,'เลือกการ์ดในกองทิ้ง (สูงสุด 2) สับกลับเข้ากองจั่ว','memory');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.push(c);});shuffle(P.deck);})],[fnOp(async P=>{const t=await pickCards(P,P.discard,2,'เลือกการ์ดในกองทิ้ง (สูงสุด 2) วางบนกองจั่ว','memory');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.unshift(c);});})]);
+ov('Memory of Magic',[fnOp(async P=>{const t=await pickCards(P,P.discard,2,'เลือกการ์ดในกองทิ้ง (สูงสุด 2) สับกลับเข้ากองจั่ว','memory');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.push(c);});shuffle(P.deck,'shuf'+P.id);})],[fnOp(async P=>{const t=await pickCards(P,P.discard,2,'เลือกการ์ดในกองทิ้ง (สูงสุด 2) วางบนกองจั่ว','memory');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.unshift(c);});})]);
 const diveF_=n=>fnOp(async P=>{const t=await pickCards(P,P.discard,n,`เลือกการ์ดในกองทิ้ง${n>1?' (สูงสุด '+n+')':''} วางบนสุดของกองจั่ว`,'dive');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.unshift(c);});});
 const diveF=FAC(diveF_); /* v1.1.16: remembers its printed-number args so Mana can rebuild it */
 ov('Dive',[{t:'atk',dmg:4,mode:'single'},diveF(1)],[{t:'atk',dmg:6,mode:'single'},diveF(2)]);
@@ -1166,6 +1175,7 @@ function newGame(opts){
   const n=opts.players.length;
   G={opts,W:5*n,H:5,room:0,round:0,players:[],mons:[],obs:new Set(),ice:new Set(),fire:{},treasures:[],log:[],over:false,phase:'setup',active:null,dungeon:opts.dungeon,dungeons:opts.dungeons||[opts.dungeon],
      elitePools:(opts.dungeons||[opts.dungeon]).map(d=>shuffle(DUNGEONS[d].E.slice())),itemPool:shuffle(ITEMS.map(i=>i.name)),stats:{rounds:0}};
+  G.kseed=_kh('pd'+RS.s); G.kc={}; /* v1.1.49 keyed roll streams */
   opts.players.forEach((po,i)=>{
     const h=D.heroes.find(x=>x.name===po.hero);
     const cls=[normCls(h.cls)].concat(po.cls2&&cls2Choices(h).includes(po.cls2)?[po.cls2]:[]); /* v1.1.12: never a duplicate class */
@@ -1196,7 +1206,7 @@ function ensureDeck(P){
   if (!P.discard.length) return false;
   if (P.exhaust<(CFG.exhPerDeckout||2)){ loseGame(P,`การ์ดเหนื่อยไม่พอ (Exhaust: ต้องรับ ${CFG.exhPerDeckout||2} ใบ เหลือ ${P.exhaust})`); return false; } /* v1.1.45 ruling */
   const exk=Math.min(CFG.exhPerDeckout||2,P.exhaust); const exc=[]; for(let i=0;i<exk;i++){ P.exhaust--; exhGain(P,'deckout'); exc.push(mk('EXH')); }
-  P.deck=shuffle(P.discard.splice(0).concat(exc));
+  P.deck=shuffle(P.discard.splice(0).concat(exc),'shuf'+P.id);
   if(hasItem(P,'Phantom Edge')) P.shardNext+=1;
   if(hasItem(P,'Burnout Sigil')) for(const m of monsters(P)) hitMon(P,m,3,{noWeak:1},{});
   log(`🔄 กองจั่วของ ${P.name} หมด! สับกองทิ้ง ${P.deck.length-exk} ใบ + การ์ดเหนื่อย ${exk} ใบ เป็นกองจั่วใหม่ (กองเหนื่อยเหลือ ${P.exhaust})`,'warn');
@@ -1211,7 +1221,7 @@ async function draw(P,n){
     let c=null;
     if(G.active===P&&hasItem(P,'This is a Book')&&P.mana>=1&&P.deck.length>1&&!P.inBook){
       P.inBook=true; const o=await ask(P,{kind:'opt',prompt:'This is a Book: ใช้ 1 Mana เพื่อค้นหาการ์ดจากกองจั่วแทนการจั่ว?',options:[{label:'จั่วตามปกติ',v:false},{label:'🔮 ค้นหา (1 Mana)',v:true}],purpose:'book'});
-      if(o&&o.v){ spendMana(P,1); c=await ask(P,{kind:'card',prompt:'This is a Book: เลือกการ์ดจากกองจั่ว',options:P.deck.slice(),purpose:'search'}); if(c){ P.deck.splice(P.deck.indexOf(c),1); shuffle(P.deck); log(`📖 ${P.name} ค้นหา ${DEF[c.key].name}`,'sys'); } }
+      if(o&&o.v){ spendMana(P,1); c=await ask(P,{kind:'card',prompt:'This is a Book: เลือกการ์ดจากกองจั่ว',options:P.deck.slice(),purpose:'search'}); if(c){ P.deck.splice(P.deck.indexOf(c),1); shuffle(P.deck,'shuf'+P.id); log(`📖 ${P.name} ค้นหา ${DEF[c.key].name}`,'sys'); } }
       P.inBook=false; }
     if(!c) c=P.deck.shift(); P.hand.push(c);
     if(c.key==='EXH' && buffLv(P,'Know the Weak')){ const l=buffLv(P,'Know the Weak'); for(const m of adjEnemies(P)) await hitMon(P,m,bn(P,'Know the Weak','dmg',4,6),{noWeak:1},{}); await gainShield(P,bn(P,'Know the Weak','sh',4,7)); }
@@ -1345,8 +1355,8 @@ function validFace(f){ return Array.isArray(f)&&FACES.includes(f.join(',')); }
 function faceToward(u,t){ if(!u||!t) return; const dx=t.x-u.x, dy=t.y-u.y; if(!dx&&!dy) return; u.face=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; }
 function fixFace(u){ if(!validFace(u.face)){ const f=u.face||[0,0]; u.face=f[0]?[Math.sign(f[0]),0]:f[1]?[0,Math.sign(f[1])]:(u.isMon?[0,1]:[0,-1]); } return u.face; }
 const isWeak=(P,m)=>P.x===m.x-m.face[0]&&P.y===m.y-m.face[1];
-async function rollCri(P,n){ let t=0; for(let i=0;i<n;i++){ let f=rnd(6), r=CRI[f]; await rollDieShow(P,f,r,i,n);
-    for(let ty=0,tn=buffN(P,'Test Your Luck');r===0&&ty<tn;ty++){ f=rnd(6); r=CRI[f]; await rollDieShow(P,f,r,i,n,'Test Your Luck: ทอยใหม่'); } /* v1.1.44: one re-roll per copy */
+async function rollCri(P,n){ let t=0; for(let i=0;i<n;i++){ let f=krnd('cri'+P.id,6), r=CRI[f]; await rollDieShow(P,f,r,i,n);
+    for(let ty=0,tn=buffN(P,'Test Your Luck');r===0&&ty<tn;ty++){ f=krnd('cri'+P.id,6); r=CRI[f]; await rollDieShow(P,f,r,i,n,'Test Your Luck: ทอยใหม่'); } /* v1.1.44: one re-roll per copy */
     if(r>0) r+=bn(P,'Test Your Luck','cri',0,2); t+=r; } return t; }
 /* v1.1.4: the result is fixed by the seeded RNG *before* showing; humans must click the die to reveal it, bots auto-roll */
 async function rollDieShow(P,face,val,i,n,note){ if(HEADLESS||SIM.on||typeof UI==='undefined'||!UI.rollDie) return; await emgWrap(UI.rollDie(P,face,val,i,n,note)); }
@@ -1577,7 +1587,7 @@ async function playCard0(P,c,o={}){
     if(tr.length>=2){ const y=await ask(P,{kind:'opt',prompt:`Briarstrike Axe: รีมูฟการ์ดทริค 2 ใบ + จ่าย 1 ชาร์ด เพื่อโจมตี ${d.name} อีกครั้ง?`,options:[{label:'ไม่',v:false},{label:'🪓 โจมตีอีกครั้ง',v:true}],purpose:'briar',card:c});
       if(y&&y.v){ const rm=await pickCards(P,tr,2,'เลือกการ์ดทริค 2 ใบที่จะรีมูฟ','remove',true); if(rm.length===2){ for(const x of rm){P.hand.splice(P.hand.indexOf(x),1);await toRemove(P,x);} P.shard-=1; log('🪓 Briarstrike Axe: โจมตีซ้ำ','sys'); await runOps(P,ops,ctx);} } } }
   if(magicN===3&&hasItem(P,'Spellbound')&&!G.over){ log('✨ Spellbound: เล่นการ์ดเวทใบที่ 3 ซ้ำฟรี','sys'); await runOps(P,ops,ctx); }
-  if(magicN===2&&hasItem(P,"Spellweaver's Grimoire")&&ensureDeck(P)){ const ch=await ask(P,{kind:'card',prompt:"Spellweaver's Grimoire: ค้นหาการ์ด 1 ใบจากกองจั่วขึ้นมือ",options:P.deck.slice(),purpose:'search'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck); P.hand.push(ch); log(`📕 ${P.name} ค้นหา ${DEF[ch.key].name}`,'sys'); } }
+  if(magicN===2&&hasItem(P,"Spellweaver's Grimoire")&&ensureDeck(P)){ const ch=await ask(P,{kind:'card',prompt:"Spellweaver's Grimoire: ค้นหาการ์ด 1 ใบจากกองจั่วขึ้นมือ",options:P.deck.slice(),purpose:'search'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck,'shuf'+P.id); P.hand.push(ch); log(`📕 ${P.name} ค้นหา ${DEF[ch.key].name}`,'sys'); } }
   if(hasItem(P,'Axiom of Nothingness')&&(raw===0||/(^|[^\d])0([^\d]|$)/.test(up?d.uen:d.en))){ log('Axiom of Nothingness: การ์ดค่า 0 → จั่ว 1, +1 Mana','sys'); await draw(P,1); await gainMana(P,1); }
   /* v1.1.17 Tackle+: the next Attack card costs N less if it attacks the same target (refunded once the target is known) */
   if(P.tackle&&P.tackle.card!==c&&d.type==='attack'){ if(ctx.hitU&&ctx.hitU.has(P.tackle.uid)){ const dd=ctx.debt&&ctx.debt.kind==='tackle'?ctx.debt.amt:0; if(dd) ctx.debt=null; const r=Math.min(P.tackle.less-dd,ctx.paid||0); if(r>0){ P.shard+=r; P.shardSpent-=r; log(`Tackle+: โจมตีเป้าเดิม ค่าร่ายลด ${r} (คืน ${r} Shard)`,'sys'); } } P.tackle=null; }
@@ -1587,7 +1597,7 @@ async function playCard0(P,c,o={}){
   if(ctx.toHand){ c.spree=true; c.spreeV=mz(P,'spree',0); P.hand.push(c); }
   else if(P.mimic>0&&(d.type==='attack'||d.type==='trick')){ P.mimic--; P.deck.unshift(c); }
   else if(f.remove||o.removeAfter) await toRemove(P,c);
-  else if(magicN===1&&hasItem(P,'Mystic Index')){ P.deck.push(c); shuffle(P.deck); log('Mystic Index: สับการ์ดเวทใบแรกกลับเข้ากองจั่ว','sys'); }
+  else if(magicN===1&&hasItem(P,'Mystic Index')){ P.deck.push(c); shuffle(P.deck,'shuf'+P.id); log('Mystic Index: สับการ์ดเวทใบแรกกลับเข้ากองจั่ว','sys'); }
   else if(hasItem(P,'Champion Cape')&&d.type==='attack'&&P.atkCount===3) P.deck.unshift(c);
   else P.discard.push(c);
   if(c.pow&&d.type==='attack') c.pow=0;
@@ -1681,7 +1691,7 @@ async function doOp(P,op,ctx){
     if(op.orDiscard){ if(P.bot||(HEADLESS&&!globalThis.__askHook)) disc=!P.hand.some(h=>h.key==='EXH'); else { const o=await ask(P,{kind:'opt',prompt:'Sprint+: รีมูฟ หรือ ทิ้ง การ์ด 1 ใบ?',options:[{label:'รีมูฟ (Remove)',v:0},{label:'ทิ้ง (Discard)',v:1}]}); disc=!!(o&&o.v); } }
     const ch=await ask(P,{kind:'card',prompt:disc?'เลือกการ์ดในมือที่จะทิ้ง':'เลือกการ์ดในมือที่จะรีมูฟ',options:P.hand.slice(),purpose:disc?'discard':'remove'});
     if(ch){ P.hand.splice(P.hand.indexOf(ch),1); if(disc){ P.discard.push(ch); log(`${P.name} ทิ้ง ${DEF[ch.key].name}`,'sys'); } else await toRemove(P,ch); } } return;
-  case 'exhDeck': for(let xi=0;xi<(op.n||1);xi++) if(P.exhaust>0){P.exhaust--;exhGain(P,'card:'+DEF[ctx.card.key].name);P.deck.push(mk('EXH'));shuffle(P.deck); if(hasItem(P,'Burnout Sigil')) for(const m of monsters(P)) await hitMon(P,m,3,{noWeak:1},{});} return;
+  case 'exhDeck': for(let xi=0;xi<(op.n||1);xi++) if(P.exhaust>0){P.exhaust--;exhGain(P,'card:'+DEF[ctx.card.key].name);P.deck.push(mk('EXH'));shuffle(P.deck,'shuf'+P.id); if(hasItem(P,'Burnout Sigil')) for(const m of monsters(P)) await hitMon(P,m,3,{noWeak:1},{});} return;
   case 'exhHand': if(P.exhaust>0){P.exhaust--;exhGain(P,'card:'+DEF[ctx.card.key].name);P.hand.push(mk('EXH')); if(hasItem(P,'Burnout Sigil')) for(const m of monsters(P)) await hitMon(P,m,3,{noWeak:1},{});} return;
   case 'teleport': case 'diag': {
     const opts=allCells(c=>{ if(!canStop(P,c.x,c.y)) return false; if(op.t==='diag'){ const dx=c.x-P.x,dy=c.y-P.y; return Math.abs(dx)===Math.abs(dy)&&Math.abs(dx)>=1&&Math.abs(dx)<=op.n; } return true; });
@@ -1725,7 +1735,7 @@ async function doOp(P,op,ctx){
     if(lx!==P.x||ly!==P.y){ const steps=Math.abs(lx-P.x)+Math.abs(ly-P.y); P.x=lx;P.y=ly;P.face=ch.v; P.movedTurn=(P.movedTurn||0)+steps; const ti=G.treasures.findIndex(t=>t.x===lx&&t.y===ly); if(ti>=0) await takeTreasure(P,G.treasures.splice(ti,1)[0]); } return; }
   case 'playTop': return playTopFree(P);
   case 'freePlay': for(let fi=0;fi<(op.n||1);fi++){ const opts=P.hand.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ด 1 ใบเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; await playCard(P,ch,{free:true}); } return;
-  case 'searchPlay': for(let si=0;si<(op.n||1);si++){ ensureDeck(P); const opts=P.deck.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled&&(!op.attack||DEF[h.key].type==='attack')); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'ค้นกองจั่ว: เลือกการ์ดเพื่อเล่นฟรี',options:opts,purpose:'free'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck); await playCard(P,ch,{free:true}); } } return;
+  case 'searchPlay': for(let si=0;si<(op.n||1);si++){ ensureDeck(P); const opts=P.deck.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled&&(!op.attack||DEF[h.key].type==='attack')); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'ค้นกองจั่ว: เลือกการ์ดเพื่อเล่นฟรี',options:opts,purpose:'free'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck,'shuf'+P.id); await playCard(P,ch,{free:true}); } } return;
   case 'playRemoved': { for(let i=0;i<op.n;i++){ const opts=P.removed.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled&&DEF[h.key].name!=='Meditate'); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ดจากกองรีมูฟเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; P.removed.splice(P.removed.indexOf(ch),1); const v=rawCost(ch); await heal(P,v==='X'?0:v); await playCard(P,ch,{free:true}); } return; }
   case 'toNearest': { const ms=allMons(); if(!ms.length) return; const t=ms.reduce((a,b)=>dist(a,P)<=dist(b,P)?a:b); const path=bfsPath({x:P.x,y:P.y},c=>dist(c,t)===1&&canStop(P,c.x,c.y)||(c.x===P.x&&c.y===P.y&&dist(c,t)===1),false); if(path) for(const c of path.slice(1)) await enterCell(P,c.x,c.y,[c.x-P.x,c.y-P.y]); /* v1.1.25: after walking, face the last step; only turn to the target when no step was taken */ if(!(path&&path.length>1)) faceToward(P,t); if(op.hurtle) P.hurtle={uid:t.uid,n:op.hurtle}; return; }
   case 'fn': return op.f(P,ctx);
@@ -1884,7 +1894,7 @@ async function monAttack(m,target,dmg,kind){
   if(def.atkHealAll) healOthers(m,def.atkHealAll,true);
   if(def.shardLoss) target.shardNext-=def.shardLoss;
   if(def.poison&&res.hit){ target.poison+=def.poison; log(`☠ ${target.name} ติดพิษ ${def.poison}`,'bad'); }
-  if(def.discard&&res.hp>0){ for(let i=0;i<def.discard&&target.hand.length;i++) target.discard.push(target.hand.splice(rnd(target.hand.length),1)[0]); log(`${target.name} ต้องทิ้งการ์ด ${def.discard} ใบ`,'warn'); }
+  if(def.discard&&res.hp>0){ for(let i=0;i<def.discard&&target.hand.length;i++) target.discard.push(target.hand.splice(krnd('mdisc'+target.id,target.hand.length),1)[0]); log(`${target.name} ต้องทิ้งการ์ด ${def.discard} ใบ`,'warn'); }
   if(def.push&&kind==='melee'&&target.hp>0){ const dir=[Math.sign(target.x-m.x),Math.sign(target.y-m.y)]; for(let i=0;i<def.push;i++){ const nx=target.x+dir[0],ny=target.y+dir[1]; if(!inB(nx,ny)||isObs(nx,ny)||unitAt(nx,ny)){ await hurtHero(target,def.push-i,{self:true}); break; } target.x=nx;target.y=ny; }
     if(def.follow){ const fx=target.x-dir[0],fy=target.y-dir[1]; if(inB(fx,fy)&&!unitAt(fx,fy)&&!isObs(fx,fy)){ faceToward(m,{x:fx,y:fy}); m.x=fx;m.y=fy; } } }
   if(def.nisho){ const back=[-m.face[0],-m.face[1]]; for(let i=0;i<2;i++){ const nx=m.x+back[0],ny=m.y+back[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)){m.x=nx;m.y=ny; m.face=back.slice(); /* v1.1.25: walked -> faces its last step */} } }
@@ -1910,7 +1920,7 @@ async function hurtHero(P,dmg,o={}){
     if(P.flameWall) await hitMon(P,o.src,P.flameWall,{noWeak:1},{});
   }
   if(!o.self&&!G.over){
-    if(hasItem(P,'Serenity Plume')){ P.deck=shuffle(P.deck.concat(P.discard.splice(0))); await draw(P,1); }
+    if(hasItem(P,'Serenity Plume')){ P.deck=shuffle(P.deck.concat(P.discard.splice(0)),'shuf'+P.id); await draw(P,1); }
     if(P.hero.name==='Skara Grimbash'){ await draw(P,1); if(P.hand.length){ const c=await ask(P,{kind:'card',prompt:'Skara: เลือกการ์ดในมือ 1 ใบ วางใต้กองจั่ว',options:P.hand.slice(),purpose:'discard'}); if(c){ P.hand.splice(P.hand.indexOf(c),1); P.deck.push(c);} } }
   }
   if(!o.self&&o.src&&hasItem(P,'Twilight Piercer')&&P.shard>=1&&P.hp>0&&!G.over){
@@ -2452,7 +2462,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.48', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.49', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2488,7 +2498,7 @@ function loadSave(sv){
   if(!g||!Array.isArray(g.players)||!g.players.length||g.players.some(p=>!p.hero)) return {ok:false,err:'ข้อมูลในเซฟไม่ครบ (อาจมาจากเวอร์ชันที่การ์ด/ฮีโร่ต่างกัน)'};
   const miss=g.players.flatMap(p=>[].concat(p.deck,p.hand,p.discard,p.removed,p.buffs).filter(c=>c&&!DEF[c.key]).map(c=>c.key)); if(miss.length) return {ok:false,err:'เซฟมีการ์ดที่ไม่มีในเวอร์ชันนี้: '+[...new Set(miss)].slice(0,5).join(', ')};
   if(sv.CFG) Object.assign(CFG,sv.CFG);
-  G=g; G.players.forEach(defShard); UID=sv.UID; RS.s=sv.RS.s; RS.n=sv.RS.n; clearUndo('โหลดเซฟ');
+  G=g; G.players.forEach(defShard); UID=sv.UID; RS.s=sv.RS.s; RS.n=sv.RS.n; if(G.kseed==null) G.kseed=_kh('pd'+sv.RS.s); if(!G.kc) G.kc={}; /* v1.1.49: pre-1.1.49 save → fix the keyed seed once at load */ clearUndo('โหลดเซฟ');
   if(sv.settings) try{ for(const [k,v] of Object.entries(sv.settings)) localStorage.setItem(k,v); }catch(_){}
   return {ok:true,warn:sv.ver!==APP_VER?`เซฟนี้มาจาก v${sv.ver} (เกมนี้ v${APP_VER}) — โหลดได้ แต่กติกาบางอย่างอาจต่างกัน`:''}; }
 function autosave(why){ if(HEADLESS&&!globalThis.__saveHook) return; try{ const s=JSON.stringify(makeSave(why)); if(globalThis.__saveHook) globalThis.__saveHook(s,why); else localStorage.setItem(SAVE_KEY,s); }catch(e){ console.warn('autosave failed',e); } }
