@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.42</title>
+<title>Project Dungeon v1.1.43</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -466,6 +466,50 @@ body.online #emgUndo{opacity:.45}
 #netLobby .join{flex-wrap:wrap}#netLobby .join input{min-width:0}
 #netLobby .mp-row{grid-template-columns:minmax(70px,90px) 1fr}
 #mainMenu:not(.hide) ~ #emgUndo{display:none!important}
+/* ===== v1.1.43 tutorial ===== */
+html,body{overscroll-behavior:none} /* a card drag on touch must never trigger swipe-back / pull-to-refresh */
+#tutOv{position:fixed;inset:0;z-index:1600;pointer-events:none}
+#tutOv .tutSpot{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px #0007,0 0 0 3px #ffd36b,0 0 24px 6px #ffd36baa;animation:tutPulse 1.4s infinite;pointer-events:none}
+#tutOv.dim::before{content:'';position:fixed;inset:0;background:#0007}
+@keyframes tutPulse{50%{box-shadow:0 0 0 9999px #0007,0 0 0 3px #fff3c4,0 0 34px 10px #ffd36bdd}}
+#tutOv .tutArrow{position:fixed;font-size:26px;color:#ffd36b;text-shadow:0 0 8px #000;animation:tutBob .8s infinite alternate;pointer-events:none}
+@keyframes tutBob{to{transform:translateY(6px)}}
+#tutOv .tutBub{position:fixed;pointer-events:auto;background:linear-gradient(160deg,#20283ef7,#121624f7);border:2px solid #ffd36b;border-radius:14px;padding:12px 14px;color:#f1f4ff;font:15px/1.55 Kanit,sans-serif;box-shadow:0 12px 36px #000c}
+#tutOv .tutBtns{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}#tutOv .tutBtns button{font:600 14px Kanit;padding:6px 12px;border-radius:9px;border:1px solid #ffd36b;background:#2e1d0e;color:#ffe9b0;cursor:pointer}
+#tutOv .tutBtns .tutSkip{margin-left:auto;background:#3a1010;border-color:#ff8a80;color:#ffcdd2}#tutOv .tutBtns button:disabled{opacity:.4}
+#tutOv .tutProg{margin-top:6px;font-size:11px;color:#9aa6c8}
+#tutOffer{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1450;max-width:94vw}#tutOffer .toBox{max-width:min(420px,92vw);background:#141a26;border:2px solid #ffd36b;border-radius:16px;padding:18px;text-align:center;color:#f1f4ff;font-family:Kanit}
+#tutOffer button{font:600 16px Kanit;padding:8px 16px;border-radius:10px;border:1px solid #ffd36b;background:#2e1d0e;color:#ffe9b0;margin:4px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){#tutOv .tutSpot,#tutOv .tutArrow{animation:none}}
+/* ===== v1.1.43 tutorial ===== */
+#tut{display:none}#tut.show{display:block}
+#tutSpot{position:fixed;z-index:1390;pointer-events:none;border-radius:12px;border:3px solid #ffd36b;box-shadow:0 0 0 9999px #0007,0 0 24px #ffd36b;transition:all .25s;animation:tutPulse 1.4s infinite}
+@keyframes tutPulse{50%{box-shadow:0 0 0 9999px #0007,0 0 6px #ffd36b}}
+#tutArrow{position:fixed;z-index:1395;pointer-events:none;color:#ffd36b;font-size:26px;text-shadow:0 2px 6px #000;animation:tutBob .8s infinite alternate}@keyframes tutBob{to{transform:translateY(-6px)}}
+#tutBox{position:fixed;z-index:1400;max-width:420px;background:linear-gradient(160deg,#20283ef8,#121726f8);border:2px solid #ffd36b;border-radius:14px;padding:12px 14px;color:#f3f5fb;font:16px/1.5 Kanit,sans-serif;box-shadow:0 10px 40px #000c}
+#tutBox .tNav{display:flex;gap:6px;align-items:center;margin-top:10px;flex-wrap:wrap}#tutBox .tN{flex:1;text-align:center;color:#aab4d0;font-size:13px}
+#tutBox button{font:600 14px Kanit;padding:5px 12px;border-radius:9px;border:1px solid #ffd36b;background:#2e1d0e;color:#ffe9b0;cursor:pointer}#tutBox button:disabled{opacity:.4;cursor:default}#tutSkip{background:#222!important;border-color:#888!important;color:#ccc!important}
+#tut.waiting #tutNext{display:none}#tut.waiting .tTxt::after{content:' ⏳';}
+#tutOffer{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:1450;max-width:94vw} /* non-modal: the menu stays usable */#tutOffer .toBox{box-shadow:0 10px 40px #000c;background:#141a26;border:2px solid #ffd36b;border-radius:16px;padding:18px;text-align:center;color:#eee;font-family:Kanit;max-width:90vw}#tutOffer button{font:600 16px Kanit;margin:6px;padding:8px 16px;border-radius:10px;border:1px solid #ffd36b;background:#2e1d0e;color:#ffe9b0}
+@media (prefers-reduced-motion:reduce){#tutSpot,#tutArrow{animation:none;transition:none}}
+/* ===== v1.1.43 draw / discard piles ===== */
+#piles{position:absolute;bottom:22px;left:6px;z-index:5;display:flex;align-items:flex-end;gap:10px;pointer-events:auto}
+#piles .pdPile{position:relative;width:58px;height:82px;cursor:pointer;border-radius:8px;transition:transform .15s}#piles .pdPile:hover{transform:translateY(-3px)}
+#piles .pBack,.pfBack{position:absolute;inset:0;border-radius:8px;border:2px solid #c9a54a;background:repeating-linear-gradient(45deg,#2b1a3d 0 6px,#3a2452 6px 12px);display:flex;align-items:center;justify-content:center;backface-visibility:hidden}
+#piles .pBack{box-shadow:3px 3px 0 #1a1026,6px 6px 0 #120b1b,0 6px 14px #000a}#piles .pBack img,.pfBack img{width:80%;opacity:.85}
+#piles .pFace{position:absolute;inset:0;border-radius:8px;overflow:hidden;border:2px solid #8a7a5a;background:#1a1410;box-shadow:0 6px 14px #000a;display:flex;align-items:center;justify-content:center;color:#887}
+#piles .pFace .card{transform:scale(.36);transform-origin:center;flex:none;pointer-events:none}
+#piles .pdPile b{position:absolute;right:-6px;top:-8px;background:#ffd36b;color:#2a1a08;font:700 13px Kanit;border-radius:10px;padding:0 6px;z-index:2}
+#piles .pdPile small{position:absolute;bottom:-16px;left:-6px;right:-6px;text-align:center;font:11px Kanit;color:#cfd8f0;text-shadow:0 1px 2px #000;white-space:nowrap}
+#piles .pChips{display:flex;flex-direction:column;gap:4px}#piles .pExh,#piles .pRem{font:600 12px Kanit;color:#ffcf9e;background:#000a;border-radius:8px;padding:2px 6px;cursor:default;white-space:nowrap}#piles .pRem{cursor:pointer;color:#ffb3b3}
+#piles .pDraw.shuf .pBack{animation:pShuf .6s}@keyframes pShuf{0%,100%{transform:none}25%{transform:translateX(-8px) rotate(-6deg)}50%{transform:translateX(8px) rotate(6deg)}75%{transform:translateX(-4px) rotate(-3deg)}}
+.pileFly{position:fixed;z-index:1350;pointer-events:none;perspective:900px}.pileFly .pfIn{position:absolute;inset:0;transform-style:preserve-3d}.pileFly .pfFace{position:absolute;inset:0;backface-visibility:hidden;overflow:visible}.pileFly .pfFace .card{margin:0;box-shadow:0 10px 30px #000c}
+.pileFly .pfBack{transform:rotateY(180deg)}.pileFly.backOnly .pfBack{transform:none}
+#pileView{position:fixed;inset:0;z-index:1320;display:none;align-items:center;justify-content:center;background:#000b}#pileView.show{display:flex}
+#pileView .pvBox{max-width:min(1000px,96vw);max-height:90vh;overflow:auto;background:#141a26;border:2px solid #ffd36b88;border-radius:14px;padding:12px;text-align:center;font-family:Kanit;color:#e8ecf8}
+#pileView .pvGrid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0}#pvX{font:600 16px Kanit;padding:6px 18px;border-radius:10px;border:1px solid #ffd36b;background:#2e1d0e;color:#ffe9b0}
+@media (max-height:700px),(max-width:600px){#piles .pdPile{width:44px;height:62px}#piles .pFace .card{transform:scale(.27)}#piles{gap:8px}}
+@media (prefers-reduced-motion:reduce){#piles .pDraw.shuf .pBack{animation:none}}
 /* ===== v1.1.42 step-by-step movement + drag-to-play ===== */
 .tok.walking{transition:none!important}
 #hand .card{touch-action:pan-x}
@@ -573,7 +617,7 @@ body.dragging{user-select:none;cursor:grabbing}
 .mvatk{position:absolute;right:3px;top:2px;font-size:15px;filter:drop-shadow(0 0 3px #000);pointer-events:none}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.42 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.43 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -2273,7 +2317,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.42', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.43', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2699,7 +2743,7 @@ UI.diffHud=function(){
 /* ---------- board ---------- */
 UI.renderBoard=function(){
   const bd=$('#board'); const W=G.W,H=G.H;
-  const wrap=$('#center'); const ib=$('#itemBar'), bb=$('#buffBar'); const side=(ib&&ib.children.length)||(bb&&bb.children.length)?2*128:0; /* v1.1.12: item column sits left of the room */ const avail=Math.min((wrap.clientWidth||900)-16-side,1100); const availH=(wrap.clientHeight||500)-60;
+  const wrap=$('#center'); const ib=$('#itemBar'), bb=$('#buffBar'); const side=(ib&&ib.children.length)||(bb&&bb.children.length)?2*128:0; /* v1.1.12: item column sits left of the room */ const avail=Math.min((wrap.clientWidth||900)-16-side,1100); const availH=(wrap.clientHeight||500)-60-(UI.pileRes||0);
   const cs=Math.max(54,Math.min(118,Math.floor(avail/W),Math.floor(availH/H))); this.cellPx=cs;
   bd.style.width=(cs*W)+'px'; bd.style.height=(cs*H)+'px'; bd.style.setProperty('--cs',cs+'px');
   if(!bd.querySelector('#cells')){ bd.innerHTML='<div id="cells"></div><div id="toks"></div><div id="fx"></div>';
@@ -4036,7 +4080,9 @@ const DRAG={log:[],st:null,
 };
 UI.DRAG=DRAG;
 if(typeof document!=='undefined'){ document.addEventListener('pointerdown',e=>DRAG.down(e)); document.addEventListener('pointermove',e=>DRAG.move(e),{passive:false});
-  document.addEventListener('pointerup',e=>DRAG.up(e)); document.addEventListener('pointercancel',e=>DRAG.up(e,true));
+  document.addEventListener('pointerup',e=>DRAG.up(e)); /* touch: a vertical drag from the hand must not become a page pan (that would fire pointercancel) */
+  document.addEventListener('touchmove',e=>{ const s=DRAG.st; if(!s||s.type!=='touch'||!e.touches[0]) return; const dx=e.touches[0].clientX-s.x0, dy=e.touches[0].clientY-s.y0; if(s.on||Math.abs(dy)>=Math.abs(dx)) e.preventDefault(); },{passive:false});
+  document.addEventListener('pointercancel',e=>{ DRAG.tr=(DRAG.tr||[]).slice(-20).concat('cancel'); DRAG.up(e,true); });
   document.addEventListener('click',e=>{ if(DRAG.supClick&&performance.now()-DRAG.supClick<400&&e.target.closest('#hand')){ e.stopPropagation(); e.preventDefault(); } },true); }
 
 /* ---------------- v1.1.42 buff / status tooltips (right-side #buffBar) ----------------
@@ -4092,16 +4138,16 @@ const VIC={
   time(ms){ const s=Math.round(ms/1000), h=Math.floor(s/3600), m=Math.floor(s%3600/60); return h?`${h} ชม. ${m} นาที`:`${m} นาที ${s%60} วิ`; },
   data(){ const v=VST.get(); const ps=G.players.map(p=>{ const s=VST.h(p); const deck=[...p.deck,...p.hand,...p.discard].map(c=>DEF[c.key]?DEF[c.key].name+(c.up?'+':''):c.key).filter(n=>n!=='Exhaust'&&!/^EXH/.test(n));
       return {id:p.id,name:p.name,hero:p.hero.name,cls:this.cls(p),dmg:p.stats.dmg|0,kills:p.stats.kills|0,taken:s.taken,crits:s.crits,cards:s.cards,maxHit:s.maxHit,coins:s.coins,items:(p.items||[]).slice(),deck}; });
-    return {dungeon:this.dname(),rounds:(G.stats&&G.stats.rounds)|0,turns:v.turns,rooms:G.room,ms:v.ms,diff:VST.diff(),ver:APP_VER,date:new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}),ps}; },
+    return {tut:!!(G.tut||(v&&v.tut)),dungeon:this.dname(),rounds:(G.stats&&G.stats.rounds)|0,turns:v.turns,rooms:G.room,ms:v.ms,diff:VST.diff(),ver:APP_VER,date:new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'}),ps}; },
   show(){ const D=this.d=this.data(); let el=document.getElementById('victory'); if(!el){ el=document.createElement('div'); el.id='victory'; document.body.appendChild(el); }
-    const easy=D.diff==='easy'; const st=(k,v)=>`<div class="vS"><small>${k}</small><b>${v}</b></div>`;
+    const easy=D.diff==='easy'||D.tut; const st=(k,v)=>`<div class="vS"><small>${k}</small><b>${v}</b></div>`;
     el.innerHTML=`<div class="vBox"><img class="vLogo" src="${(typeof ART!=='undefined'&&ART.__logo)||''}" alt="Synchro Horizon"><h1>🏆 ชัยชนะ!</h1><div class="vDg">${esc(D.dungeon)} · ปราบบอสห้องที่ 10 สำเร็จ ${easy?'· โหมดง่าย':''}</div>
       <div class="vTeam"><label>ชื่อทีม <input id="vTeam" maxlength="30" placeholder="ตั้งชื่อทีม" value="${esc(localStorage.getItem('pd_team')||'')}"></label></div>
       <div class="vHeroes">${D.ps.map(p=>`<div class="vH"><img src="${artOf(p.hero,'t')}" alt=""><input class="vName" data-id="${p.id}" maxlength="24" value="${esc(p.name)}"><div class="vHn">${esc(p.hero)}</div><div class="vC">${esc(p.cls)}</div>
         <div class="vHs">${st('ดาเมจที่ทำ',p.dmg)}${st('ดาเมจที่รับ',p.taken)}${st('สังหาร',p.kills)}${st('ทอยคริ (ลูก)',p.crits)}${st('การ์ดที่เล่น',p.cards)}${st('ตีแรงสุด',p.maxHit)}${st('Coin ที่ได้',p.coins)}</div>
         <div class="vIt">ไอเทม: ${p.items.length?p.items.map(esc).join(', '):'—'}</div><details class="vDk"><summary>เด็คสุดท้าย (${p.deck.length} ใบ)</summary>${p.deck.map(esc).join(', ')}</details></div>`).join('')}</div>
       <div class="vTot">${st('ห้อง',D.rooms+'/10')}${st('รอบ',D.rounds)}${st('เทิร์นรวม',D.turns)}${st('เวลาเล่น',this.time(D.ms))}</div>
-      <div class="vNote">${easy?'⚠ โหมดง่าย: ไม่ถูกบันทึกลงหอเกียรติยศ (บันทึกเฉพาะโหมดปกติ)':'บันทึกลงหอเกียรติยศบนอุปกรณ์นี้ได้ — พิมพ์ชื่อของคุณแล้วกดบันทึก'}</div>
+      <div class="vNote">${D.tut?'🎓 เกมสอนเล่น: ไม่ถูกบันทึกลงหอเกียรติยศ':easy?'⚠ โหมดง่าย: ไม่ถูกบันทึกลงหอเกียรติยศ (บันทึกเฉพาะโหมดปกติ)':'บันทึกลงหอเกียรติยศบนอุปกรณ์นี้ได้ — พิมพ์ชื่อของคุณแล้วกดบันทึก'}</div>
       <div class="vBtns">${easy?'':'<button id="vHof">🏛 บันทึกหอเกียรติยศ</button>'}<button id="vImg">🖼 บันทึกรูป</button><button id="vAgain">⚔ เล่นอีกครั้ง</button><button id="vMenu">🏠 เมนูหลัก</button><button id="vClose">ดูกระดาน</button></div></div>`;
     el.className='show'; const ov=document.getElementById('over'); if(ov) ov.classList.add('hide');
     const names=()=>{ el.querySelectorAll('.vName').forEach(i=>{ const p=D.ps.find(x=>x.id==i.dataset.id); if(p) p.name=i.value.trim()||p.name; }); D.team=(el.querySelector('#vTeam').value||'').trim(); try{ localStorage.setItem('pd_team',D.team); }catch(e){} };
@@ -4140,7 +4186,7 @@ UI.VIC=VIC;
 /* ---------- Hall of Fame (หอเกียรติยศ) — localStorage, per device, NORMAL difficulty only ---------- */
 const HOF={KEY:'pd_hof',
   all(){ try{ return JSON.parse(localStorage.getItem(this.KEY)||'[]'); }catch(e){ return []; } },
-  add(D){ if(!D||D.diff!=='normal') return false; const L=this.all(); const e={t:Date.now(),date:D.date,ver:D.ver,team:D.team||'',dungeon:D.dungeon,rounds:D.rounds,turns:D.turns,ms:D.ms,
+  add(D){ if(!D||D.diff!=='normal'||D.tut) return false; const L=this.all(); const e={t:Date.now(),date:D.date,ver:D.ver,team:D.team||'',dungeon:D.dungeon,rounds:D.rounds,turns:D.turns,ms:D.ms,
       ps:D.ps.map(p=>({name:p.name,hero:p.hero,cls:p.cls,dmg:p.dmg,kills:p.kills,taken:p.taken,crits:p.crits,cards:p.cards,maxHit:p.maxHit}))};
     if(L.some(x=>x.t===e.t)) return false; L.unshift(e); try{ localStorage.setItem(this.KEY,JSON.stringify(L.slice(0,100))); }catch(err){ return false; } VIC.log.push('hof:add'); return true; },
   show(){ let el=document.getElementById('hof'); if(!el){ el=document.createElement('div'); el.id='hof'; document.body.appendChild(el); } const L=this.all();
@@ -4152,5 +4198,180 @@ UI.HOF=HOF;
 if(typeof document!=='undefined'){ const addBtn=()=>{ const box=document.querySelector('#mainMenu .mmBtns'); if(box&&!box.querySelector('[data-hof]')){ const b=document.createElement('button'); b.className='mmBtn'; b.dataset.hof='1'; b.textContent='🏛 หอเกียรติยศ'; b.onclick=e=>{ e.stopPropagation(); HOF.show(); }; box.appendChild(b); } };
   const boot=()=>{ addBtn(); setInterval(addBtn,1000); try{ if(sessionStorage.getItem('pd_playAgain')){ sessionStorage.removeItem('pd_playAgain'); setTimeout(()=>{ const p=document.querySelector('#mainMenu [data-m=play]'); p&&p.click(); },300); } }catch(e){} };
   if(document.readyState==='loading') window.addEventListener('DOMContentLoaded',()=>setTimeout(boot,50)); else setTimeout(boot,50); }
+
+/* ===================== v1.1.43 e18: interactive tutorial (สอนเล่น) =====================
+   A normal game with a fixed seed + preset hero (Darius Sunward, Warrior: starter Strike/Guard/Walk — Guard is needed
+   for the shield lesson), normal rules (so Coins/Exhaust numbers match the lesson), and a softened first room. Step-by-step Thai prompts with a spotlight + arrow;
+   action steps wait until the player really did it. Skip any time, Back / Next. Tutorial games are never saved
+   (autosave is skipped) and never enter the Hall of Fame. Bots / headless / online are not touched. */
+const TUT={on:false,i:-1,log:[],SEED:20261013,HERO:'Darius Sunward',
+  P(){ return G&&G.players&&G.players[0]; },
+  card(re){ const P=this.P(); const c=P&&P.hand.find(c=>re.test(c.key)); return c?`#hand .card[data-uid="${c.uid}"]`:'#hand'; },
+  mon(f){ return G&&G.mons?G.mons.find(m=>m.hp>0&&f(m)):null; },
+  melee(){ return this.mon(m=>m.def.ak!=='line'&&m.def.ak!=='any'); },
+  shooter(){ return this.mon(m=>m.def.ak==='line'||m.def.ak==='any'); },
+  adj(){ const P=this.P(), m=this.melee(); return !!(P&&m&&Math.abs(P.x-m.x)+Math.abs(P.y-m.y)===1); },
+  battle(){ return G&&G.phase==='battle'&&!!UI.pending&&!UI.askReq; },
+  steps:[
+   {t:'ยินดีต้อนรับสู่ "สอนเล่น" 👋 เราจะพาเล่นห้องแรกแบบทีละขั้น ทำตามที่ไฮไลต์ไว้ได้เลย (กด "ข้าม" ได้ตลอด)'},
+   {t:'เกมเริ่มที่ Rest (พักก่อนเข้าห้อง) — ตอนนี้กด "เสร็จสิ้น — เข้าห้องถัดไป" ไปก่อน เดี๋ยวท้ายบทค่อยสอนตลาด',sel:'#rest [data-a="done"]',wait:()=>TUT.battle(),done:()=>TUT.arrange()},
+   {t:'นี่คือการ์ดในมือ 🃏 ต้นเทิร์นมี 5 ใบ จบเทิร์นจะทิ้งทั้งมือแล้วจั่วใหม่ 5 ใบ',sel:'#hand'},
+   {t:'ตัวเลขกลมมุมซ้ายบนการ์ด = ค่าร่าย จ่ายด้วย Shard 💎 (ตรงนี้) — ได้ +3 ทุกเทิร์น เก็บได้สูงสุด 5 · บทเรียนนี้เติมให้เต็ม 5 แล้ว',sel:'#handShards'},
+   {t:'มุมซ้ายล่างคือกองจั่ว (คว่ำ) กับกองทิ้ง (หงายใบบนสุด) แตะเพื่อดูได้ — กองจั่วหมดเมื่อไหร่ จะสับกองทิ้งกลับมาพร้อมการ์ดเหนื่อย 1 ใบ',sel:'#piles'},
+   {t:'ชี้ (หรือแตะ) ที่มอนสเตอร์ 👀 เพื่อดูว่ามันจะทำอะไร "ถ้าเราจบเทิร์นตอนนี้"',sel:'#toks .tok.mon',wait:()=>TUT.sawIntent},
+   {t:'เล่นการ์ดแบบคลิก: คลิก Guard แล้วกด "ตกลง" (การคลิกจะถามยืนยันก่อน ปิดได้ในตั้งค่า)',sel:()=>TUT.card(/^Guard/),wait:()=>TUT.P().shield>0},
+   {t:'Guard ให้โล่ 🛡 3 — โล่กันดาเมจได้ แต่ไม่กันการโดนตีจากด้านหลัง (Weak Point) และโล่ของเราหายตอนเริ่มเทิร์นถัดไป',sel:'#toks .tok.hero'},
+   {t:'ทีนี้ลอง "ลาก" Walk ไปวางบนกระดาน 👆 ลากแล้วเล่นทันที ไม่ต้องยืนยัน (Walk ค่าร่าย 1 แต่ถ้าเป็นใบแรกของเทิร์นจะเป็น 0)',sel:()=>TUT.card(/^Walk/),wait:()=>(UI.askReq&&UI.askReq.kind==='cell')||TUT.adj()},
+   {t:'เดิน: คลิกช่องที่ไฮไลต์ — เดินทีละช่องแนวตั้ง/แนวนอน ห้ามทแยง ให้ไปยืนติดกับมอนตัวที่ไฮไลต์ (ถ้ายังไม่ติด กดปุ่ม "เดิน 1 ช่อง" จ่าย 2 Shard ได้)',sel:()=>UI.askReq?'#board':'#aMove',wait:()=>TUT.adj()&&!UI.askReq},
+   {t:'ลูกศรบนตัวบอกทิศที่หัน ➜ หลังเดินจะหันไปทางก้าวสุดท้าย ถ้าโดนตีจากด้านหลังเรียกว่า Weak Point (โล่ไม่ช่วย) — การหันตัวไม่นับเป็นการเดิน',sel:'#toks .tok.hero'},
+   {t:'Mana 🔮 ใช้ 1 Mana ปรับตัวเลขในข้อความการ์ด ±1 (ปรับค่าร่ายมุมซ้ายบนไม่ได้) · ใช้กับการ์ดบัฟไม่ได้ · ใช้แล้วหมด และรีเซ็ตเป็น 0 ทุกครั้งที่เข้าห้องใหม่ — บทเรียนนี้แถมให้ 2',sel:'#buffBar [data-k="tok-mana"]',enter:()=>{ const P=TUT.P(); if(P&&!TUT.gaveMana){ TUT.gaveMana=true; P.mana=2; UI.render(); } }},
+   {t:'โจมตี! เล่น Strike ตีมอนที่ยืนติดกัน (บน/ล่าง/ซ้าย/ขวา ไม่นับทแยง) จะมีหน้าต่าง Mana: กด +1 เพิ่มดาเมจ แล้วกด "✔ ยืนยัน" (หรือ "ไม่ใช้ Mana")',sel:()=>TUT.card(/^Strike/),wait:()=>!TUT.melee()||TUT.melee().hp<TUT.melee().maxhp},
+   {t:'ตัวนี้เป็นมอนยิงไกล 🏹 ยิงเป็นแนวตรงใส่ฮีโร่ที่ใกล้สุด และยิงทะลุมอนตัวอื่นได้ — มอนทำได้อย่างเดียวต่อตา: เดิน หรือ ตี',sel:()=>{ const m=TUT.shooter(); return m?`#toks [data-id="${m.uid}"]`:'#board'; }},
+   {t:'พร้อมแล้วกด "จบเทิร์น" ⏭',sel:'#aEnd',wait:()=>TUT.monSeen},
+   {t:'เฟสมอนสเตอร์: มอนทุกตัวขยับหรือโจมตีทีละตัว แล้วเริ่มรอบใหม่ (โล่ของมอนหายก่อนเฟสนี้) — รอแป๊บ…',sel:'#board',wait:()=>TUT.battle()},
+   {t:'เทิร์นใหม่: ทิ้งมือ จั่วใหม่ 5 ใบ (ดูการ์ดบินจากกองจั่ว) และได้ +3 Shard',sel:'#piles'},
+   {t:'หน้านี้บอกความเหนื่อย 😮‍💨 ทุกครั้งที่กองจั่วหมดแล้วต้องสับ จะได้การ์ดเหนื่อย (Exhaust) 1 ใบ หน้าจะเหนื่อยขึ้น — การ์ดเหนื่อยจ่าย 3 Shard เพื่อรีมูฟออกจากมือได้ ถ้าต้องสับแต่การ์ดเหนื่อยหมด (มี 6 ใบ) = แพ้',sel:'#side .fatigue'},
+   {t:'ปราบมอนให้หมดห้อง! ⚔ (ห้องสอนเล่นมอนเลือดน้อยกว่าปกติ) เคลียร์ห้องแล้วเทิร์นจบทันที ไม่ต้องทิ้ง/จั่ว',sel:'#board',wait:()=>G&&G.phase==='rest'&&!document.getElementById('rest').classList.contains('hide')},
+   {t:'Rest / ตลาด 🏪 ได้ 2 Coin ต่อการพัก ใช้ฮีล 5, ทิ้งการ์ด, อัปเกรด, ซื้อการ์ดหรือไอเทม และรับการ์ดพื้นฐานฟรี 1 ใบ — ราคาขึ้นทุกครั้งที่ใช้บริการเดิม',sel:'#rest .modal,#rest'},
+   {t:'ชี้ที่การ์ด หรือกด "📜 ดู Deck" เพื่อดูด้านอัปเกรด 🌟 — อัปเกรดแล้วการ์ดเก่งขึ้น',sel:'#rest .dvBtn'},
+   {t:'จบบทเรียนแล้ว 🎉 เกมนี้เป็นเกมสอนเล่น ไม่บันทึกเซฟและไม่นับหอเกียรติยศ — เล่นต่อได้เลย หรือกลับเมนูหลัก',last:true}
+  ],
+  /* soften room 1 and lay it out so every lesson can happen (tutorial game only) */
+  arrange(){ if(this.arranged) return; this.arranged=true; const P=this.P(); if(!P) return; G.obs=new Set(); G.ice=G.ice||new Set(); G.ice.clear&&G.ice.clear(); G.treasures=[];
+    P.x=2; P.y=3; P.face=[0,-1]; const m=this.melee(), s=this.shooter(); if(m){ m.x=2; m.y=1; m.hp=m.maxhp=3; m.face=[0,1]; } if(s){ s.x=4; s.y=0; s.hp=s.maxhp=3; s.face=[0,1]; }
+    const all=P.hand.concat(P.deck); const take=re=>{ const i=all.findIndex(c=>re.test(c.key)); return i>=0?all.splice(i,1)[0]:null; };
+    const hand=[take(/^Guard/),take(/^Walk/),take(/^Strike/),take(/^Strike/),take(/^Walk/)].filter(Boolean); P.hand=hand; P.deck=all; P.shard=5; P.mana=0; P.movedTurn=0;
+    this.log.push('arranged'); UI.render(); },
+  start(){ const conf=window.confirm; window.confirm=()=>true; try{ this.on=true; this.i=-1; this.arranged=false; this.monSeen=false; this.sawIntent=false; this.gaveMana=false; this.steps.forEach(s=>s._auto=false); this.log.length=0;
+      const mm=document.getElementById('mainMenu'); if(mm) mm.classList.add('hide'); document.getElementById('setup').classList.remove('hide');
+      document.getElementById('np').value='1'; UI.buildSetup(); document.querySelector('.ptype').value='h'; const pn=document.querySelector('.pname'); if(pn) pn.value='ผู้เล่น';
+      const r=document.querySelector(`input[name=hero0][value="${this.HERO}"]`); if(r){ r.checked=true; r.dispatchEvent(new Event('change',{bubbles:true})); } const c2=document.querySelector('.pcls2'); if(c2) c2.value='';
+      document.getElementById('diff').value='normal'; const dg=document.getElementById('dungeon'); if(dg) dg.value='bone';
+      RS.s=this.SEED; RS.n=0; UI.start(); G.tut=true; if(UI.VST){ const v=UI.VST.get(); v.tut=true; } }
+    finally{ window.confirm=conf; } this.go(0); },
+  ui(){ let r=document.getElementById('tut'); if(!r){ r=document.createElement('div'); r.id='tut'; r.innerHTML='<div id="tutSpot"></div><div id="tutArrow">▼</div><div id="tutBox"><div class="tTxt"></div><div class="tNav"><button id="tutSkip">ข้าม</button><span class="tN"></span><button id="tutBack">◀ ย้อน</button><button id="tutNext">ถัดไป ▶</button></div></div>'; document.body.appendChild(r);
+      r.querySelector('#tutSkip').onclick=()=>this.end(true); r.querySelector('#tutBack').onclick=()=>this.go(this.i-1); r.querySelector('#tutNext').onclick=()=>{ const s=this.steps[this.i]; if(s.last) return this.end(false); if(!s.wait||s.wait()) this.go(this.i+1); }; } return r; },
+  go(i){ if(!this.on) return; i=Math.max(0,Math.min(this.steps.length-1,i)); this.i=i; const s=this.steps[i]; const r=this.ui(); r.className='show'; r.querySelector('.tTxt').textContent=s.t; r.querySelector('.tN').textContent=`${i+1}/${this.steps.length}`;
+    r.querySelector('#tutBack').disabled=i===0; const nx=r.querySelector('#tutNext'); nx.textContent=s.last?'เล่นต่อ ✔':'ถัดไป ▶';
+    let menu=r.querySelector('#tutMenu'); if(s.last&&!menu){ menu=document.createElement('button'); menu.id='tutMenu'; menu.textContent='🏠 กลับเมนู'; menu.onclick=()=>{ this.end(false); location.reload(); }; r.querySelector('.tNav').appendChild(menu); } else if(!s.last&&menu) menu.remove();
+    try{ s.enter&&s.enter(); }catch(e){} this.log.push('step:'+i); this.tick(); },
+  tick(){ if(!this.on) return; const s=this.steps[this.i]; const r=this.ui(); const ok=!s.wait||s.wait(); const nx=r.querySelector('#tutNext'); nx.disabled=!ok; r.classList.toggle('waiting',!ok);
+    if(s.wait&&ok&&!s._auto){ s._auto=true; try{ s.done&&s.done(); }catch(e){ console.warn(e); } setTimeout(()=>{ s._auto=false; if(this.on&&this.steps[this.i]===s) this.go(this.i+1); },350); }
+    this.place(); },
+  target(){ const s=this.steps[this.i]; if(!s||!s.sel) return null; const sel=typeof s.sel==='function'?s.sel():s.sel; for(const q of sel.split(',')){ const e=document.querySelector(q.trim()); if(e&&e.getClientRects().length) return e; } return null; },
+  place(){ const r=this.ui(), spot=r.querySelector('#tutSpot'), ar=r.querySelector('#tutArrow'), box=r.querySelector('#tutBox'); const W=innerWidth,H=innerHeight; const t=this.target();
+    box.style.maxWidth=Math.min(420,W-20)+'px'; const bw=box.offsetWidth, bh=box.offsetHeight;
+    const dlg=document.querySelector('.manaBox,.mod-bg:not(.hide),.diceOv:not(.out),#cfOK,#pileView.show'); const inRest=dlg&&dlg.id==='rest';
+    if(!t||(dlg&&!inRest&&!(t&&dlg.contains(t)))){ spot.style.display='none'; ar.style.display='none'; box.style.left=Math.max(10,(W-bw)/2)+'px'; box.style.top=Math.max(10,(H-bh)/2)+'px'; return; }
+    let tr=t.getBoundingClientRect(); if((tr.bottom>H||tr.top<0)&&this._scrolled!==this.i){ this._scrolled=this.i; try{ t.scrollIntoView({block:'center',inline:'nearest'}); }catch(e){} tr=t.getBoundingClientRect(); } const pad=6; spot.style.display='block'; spot.style.left=(tr.left-pad)+'px'; spot.style.top=(tr.top-pad)+'px'; spot.style.width=(tr.width+pad*2)+'px'; spot.style.height=(tr.height+pad*2)+'px';
+    /* bubble: pick the first spot that avoids the target, the game prompt and Emergency Undo */
+    const avoid=[tr]; for(const q of ['#prompt:not(.hide)','#emgUndo','.manaBox','.mod-bg:not(.hide) .modal','.diceOv:not(.out)','#cfOK','#pileView.show .pvBox']){ const e=document.querySelector(q); if(e&&e.getClientRects().length){ const x=e.getBoundingClientRect(); if(x.width) avoid.push(x); } }
+    const hit=(x,y)=>avoid.some(a=>x<a.right+8&&x+bw>a.left-8&&y<a.bottom+8&&y+bh>a.top-8);
+    const C=[[tr.left+tr.width/2-bw/2,tr.top-bh-26],[tr.left+tr.width/2-bw/2,tr.bottom+26],[tr.right+26,tr.top+tr.height/2-bh/2],[tr.left-bw-26,tr.top+tr.height/2-bh/2],[10,10],[W-bw-10,10],[10,H-bh-10],[(W-bw)/2,(H-bh)/2]]
+      .map(([x,y])=>[Math.max(10,Math.min(W-bw-10,x)),Math.max(10,Math.min(H-bh-10,y))]); const p=C.find(([x,y])=>!hit(x,y))||C[4]; box.style.left=p[0]+'px'; box.style.top=p[1]+'px';
+    /* arrow points from the bubble side to the target */
+    ar.style.display='block'; const above=p[1]+bh<=tr.top; const below=p[1]>=tr.bottom; ar.textContent=above?'▼':below?'▲':(p[0]>tr.right?'◀':'▶');
+    const ax=above||below?tr.left+tr.width/2-12:(p[0]>tr.right?tr.right+4:tr.left-30), ay=above?tr.top-30:below?tr.bottom+4:tr.top+tr.height/2-14; ar.style.left=ax+'px'; ar.style.top=ay+'px'; },
+  end(skipped){ this.on=false; const r=document.getElementById('tut'); if(r) r.className=''; this.log.push(skipped?'skip':'finish'); try{ localStorage.setItem('pd_tutSeen','1'); }catch(e){}
+    if(skipped&&UI.toast) UI.toast('ข้ามสอนเล่นแล้ว — เล่นต่อได้เลย (เกมนี้ไม่บันทึกและไม่นับหอเกียรติยศ)'); },
+  offer(){ let d=document.getElementById('tutOffer'); if(d) return; d=document.createElement('div'); d.id='tutOffer';
+    d.innerHTML='<div class="toBox"><h2>เล่นครั้งแรกใช่ไหม? 🙂</h2><p>ลอง "สอนเล่น" สั้น ๆ พาเล่นห้องแรกทีละขั้นไหม</p><button id="toYes">🎓 สอนเล่นเลย</button><button id="toNo">ไม่ล่ะ ขอบคุณ</button></div>'; document.body.appendChild(d);
+    try{ localStorage.setItem('pd_tutSeen','1'); }catch(e){} d.querySelector('#toYes').onclick=()=>{ d.remove(); this.start(); }; d.querySelector('#toNo').onclick=()=>d.remove(); this.log.push('offer');
+    const iv=setInterval(()=>{ const mm=document.getElementById('mainMenu'); if(!d.isConnected){ clearInterval(iv); return; } if(!mm||mm.classList.contains('hide')){ d.remove(); clearInterval(iv); } },200); }
+};
+UI.TUT=TUT;
+/* tutorial games: never autosaved (the player's real save stays untouched) */
+{ const _as=autosave; autosave=function(){ if(TUT.on||(G&&G.tut)) return; return _as.apply(this,arguments); };
+  const _si=UI.showIntent; UI.showIntent=function(){ if(TUT.on) TUT.sawIntent=true; return _si.apply(this,arguments); };
+  const _mt=monTurn; monTurn=async function(){ if(TUT.on) TUT.monSeen=true; return _mt.apply(this,arguments); };
+  setInterval(()=>{ try{ if(TUT.on) TUT.tick(); }catch(e){} },250); addEventListener('resize',()=>{ if(TUT.on) TUT.place(); }); }
+if(typeof document!=='undefined'){ const add=()=>{ const box=document.querySelector('#mainMenu .mmBtns'); if(box&&!box.querySelector('[data-tut]')){ const b=document.createElement('button'); b.className='mmBtn'; b.dataset.tut='1'; b.textContent='🎓 สอนเล่น'; b.onclick=e=>{ e.stopPropagation(); TUT.start(); }; box.insertBefore(b,box.children[1]||null); } };
+  const boot=()=>{ add(); setInterval(add,1000); setTimeout(()=>{ try{ const mm=document.getElementById('mainMenu'); const fresh=!localStorage.getItem('pd_tutSeen')&&!(UI.saveRaw&&UI.saveRaw())&&!localStorage.getItem('pd_hof');
+      if(fresh&&mm&&!mm.classList.contains('hide')&&!location.hash) TUT.offer(); }catch(e){} },900);
+    document.addEventListener('click',e=>{ if(e.target.closest&&e.target.closest('#mainMenu [data-m]')){ const o=document.getElementById('tutOffer'); if(o) o.remove(); } },true); };
+  if(document.readyState==='loading') window.addEventListener('DOMContentLoaded',()=>setTimeout(boot,60)); else setTimeout(boot,60); }
+
+/* ===================== v1.1.43 e19: draw / discard piles on the board (bottom-left) =====================
+   UI-only. Hand owner's Draw pile (face-down), Discard pile (face-up top card), Remove + Exhaust chips.
+   Click a pile → viewer (discard newest first; draw pile sorted by name so the real order stays secret).
+   Animations (skipped with reduced motion):
+   - draw: each new hand card flies from the draw pile into its hand slot, one by one, flipping back → face, soft flick sound
+   - discard from hand (end of turn, discard costs…): flies face-up from the hand to the discard pile
+   - played card: when it lands in the discard pile after resolving it flies from the board centre to the pile
+   - removed / trashed → the Remove chip; Exhaust card removed → the Exhaust chip (not the discard pile)
+   - reshuffle: discard cards fly back into the draw pile + shuffle wiggle */
+const PILES={log:[],prev:null,
+  owner(){ return G&&G.players&&(G.active&&!G.active.bot?G.active:(G.players.find(p=>!p.bot)||G.players[0])); },
+  reduced(){ try{ return matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){ return false; } },
+  logo(){ return (typeof ART!=='undefined'&&ART.__logo)||''; },
+  el(){ let e=document.getElementById('piles'); const c=document.getElementById('center'); if(!c) return null; if(!e){ e=document.createElement('div'); e.id='piles'; c.appendChild(e);
+      e.addEventListener('click',ev=>{ const p=ev.target.closest('[data-pile]'); if(p) PILES.view(p.dataset.pile); }); } return e; },
+  render(){ const P=this.owner(); const e=this.el(); if(!P||!e||!G||!G.players) return; const top=P.discard[P.discard.length-1];
+    const ib=document.getElementById('itemBar'); e.style.left=((ib&&ib.children.length)?ib.offsetWidth+10:6)+'px';
+    const key=[P.id,P.deck.length,P.discard.length,top?top.uid+':'+top.up:'',P.exhaust,(P.removed||[]).length].join('|');
+    if(e.dataset.k!==key){ e.dataset.k=key;
+      e.innerHTML=`<div class="pdPile pDraw" data-pile="draw" title="กองจั่ว ${P.deck.length} ใบ — คลิกเพื่อดู (เรียงตามชื่อ)"><div class="pBack"><img src="${this.logo()}" alt=""></div><b>${P.deck.length}</b><small>กองจั่ว</small></div>`+
+      `<div class="pdPile pDisc" data-pile="discard" title="กองทิ้ง ${P.discard.length} ใบ — คลิกเพื่อดู (ใบล่าสุดก่อน)"><div class="pFace">${top?UI.cardHTML(top,P,'pileTop'):'<i>ว่าง</i>'}</div><b>${P.discard.length}</b><small>กองทิ้ง</small></div>`+
+      `<div class="pChips"><div class="pRem" data-pile="removed" title="กองรีมูฟ ${(P.removed||[]).length} ใบ — คลิกเพื่อดู">⛔ ${(P.removed||[]).length}</div><div class="pExh" title="การ์ดเหนื่อยที่เหลือ (Exhaust) — ถ้าต้องสับกองแล้วไม่มีเหลือ = แพ้">😮‍💨 ${P.exhaust|0}</div></div>`; }
+    this.fit(); },
+  /* never cover board cells: if the piles overlap the board, reserve height so the board shrinks (UI.pileRes is read by renderBoard) */
+  fit(){ const e=document.getElementById('piles'), b=document.getElementById('board'); if(!e||!b||this._fitting) return;
+    const r=e.getBoundingClientRect(), br=b.getBoundingClientRect(); if(r.right>br.left&&r.left<br.right&&r.bottom>br.top&&r.top<br.bottom){ this._fitting=true;
+      UI.pileRes=(UI.pileRes||0)+Math.ceil(br.bottom-r.top)+8; try{ UI.renderBoard(); }finally{ this._fitting=false; } this.log.push('fit:'+UI.pileRes); } },
+  snap(){ const P=this.owner(); if(!P) return null; const hand={}; document.querySelectorAll('#hand .card').forEach(el=>{ hand[el.dataset.uid]=el.getBoundingClientRect(); });
+    const S=a=>new Set((a||[]).map(c=>String(c.uid))); return {pid:P.id,room:G.room,hand,handU:P.hand.map(c=>String(c.uid)),deck:P.deck.length,disc:S(P.discard),rem:S(P.removed),discN:P.discard.length}; },
+  inPlay:new Set(),played:new Set(),
+  sfx(){ try{ if(typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.noise) SND.noise(.07,{f:2600,f2:900,vol:.035,ft:'bandpass'}); }catch(e){} },
+  rect(sel){ const e=document.querySelector(sel); return e&&e.getBoundingClientRect(); },
+  /* one flying card: from rect a to rect b; back=true starts face-down and flips to the face during flight */
+  fly(c,P,a,b,o={}){ const g=document.createElement('div'); g.className='pileFly'+(o.flip?' flip':''); const w=o.w||a.width, h=o.h||a.height;
+    g.innerHTML=`<div class="pfIn"><div class="pfFace">${UI.cardHTML(c,P,'')}</div>${o.flip?`<div class="pfBack"><img src="${this.logo()}" alt=""></div>`:''}</div>`;
+    g.style.cssText=`left:${a.left+a.width/2-w/2}px;top:${a.top+a.height/2-h/2}px;width:${w}px;height:${h}px`; document.body.appendChild(g);
+    const fc=g.querySelector('.pfFace .card'); if(fc){ const s=Math.min(w/(fc.offsetWidth||w),h/(fc.offsetHeight||h)); fc.style.transform=`scale(${s})`; fc.style.transformOrigin='top left'; }
+    const dx=b.left+b.width/2-(a.left+a.width/2), dy=b.top+b.height/2-(a.top+a.height/2); const s0=o.s0||1, s1=o.s1||1;
+    const an=g.animate([{transform:`translate(0,0) scale(${s0})`},{transform:`translate(${dx*.5}px,${dy*.5-30}px) scale(${(s0+s1)/2*1.08})`,offset:.55},{transform:`translate(${dx}px,${dy}px) scale(${s1})`}],{duration:o.ms||480,delay:o.delay||0,easing:'cubic-bezier(.35,.1,.3,1)',fill:'both'});
+    if(o.flip) g.querySelector('.pfIn').animate([{transform:'rotateY(180deg)'},{transform:'rotateY(180deg)',offset:.2},{transform:'rotateY(0deg)',offset:.75},{transform:'rotateY(0deg)'}],{duration:o.ms||480,delay:o.delay||0,fill:'both'});
+    if(o.fade) g.animate([{opacity:1},{opacity:1,offset:.7},{opacity:0}],{duration:o.ms||480,delay:o.delay||0,fill:'both'});
+    setTimeout(()=>this.sfx(),o.delay||0); const done=()=>{ g.remove(); o.end&&o.end(); }; an.onfinish=done; setTimeout(()=>{ if(g.isConnected) done(); },(o.ms||480)+(o.delay||0)+600); return g; },
+  animate(pre){ const P=this.owner(); if(!pre||!P||pre.pid!==P.id) return; const drawR=this.rect('#piles .pDraw'), discR=this.rect('#piles .pDisc'); if(!drawR||!discR) return;
+    const remR=this.rect('#piles .pRem')||discR, exhR=this.rect('#piles .pExh')||discR, bd=this.rect('#board')||discR; const red=this.reduced();
+    const nowHand=new Set(P.hand.map(c=>String(c.uid))), find=(arr,u)=>(arr||[]).find(c=>String(c.uid)===u);
+    const newRoom=pre.room!==G.room; let k=0, reshuf=false;
+    /* reshuffle: discard emptied while the draw pile grew (rest / new room gathers everything too) */
+    if(pre.discN>0&&P.discard.length===0&&P.deck.length>pre.deck){ this.log.push('shuffle'); if(!red){ const d=document.querySelector('#piles .pDraw'); d.classList.remove('shuf'); void d.offsetWidth; d.classList.add('shuf');
+      for(let i=0;i<Math.min(5,pre.discN);i++){ const g=document.createElement('div'); g.className='pileFly backOnly'; g.innerHTML=`<div class="pfBack"><img src="${this.logo()}" alt=""></div>`;
+        g.style.cssText=`left:${discR.left}px;top:${discR.top}px;width:${discR.width}px;height:${discR.height}px`; document.body.appendChild(g);
+        const an=g.animate([{transform:'none'},{transform:`translate(${(drawR.left-discR.left)/2}px,-40px) rotate(${i*9-18}deg)`},{transform:`translate(${drawR.left-discR.left}px,${drawR.top-discR.top}px)`}],{duration:420,delay:i*70,fill:'both'}); an.onfinish=()=>g.remove(); setTimeout(()=>g.remove(),1500); } } }
+    /* cards that left the hand */
+    for(const u of pre.handU){ if(nowHand.has(u)) continue; const r=pre.hand[u]; const inDisc=find(P.discard,u), inRem=find(P.removed,u);
+      if(inDisc&&!pre.disc.has(u)&&this.played.has(u)){ continue; /* played + resolved in one go: handled below as board → pile */ }
+      if(inDisc&&!pre.disc.has(u)){ this.log.push('discard:'+u); if(!red&&r) this.fly(inDisc,P,r,discR,{s1:discR.width/r.width,delay:k++*90}); }
+      else if(!inDisc&&!inRem&&find(P.deck,u)&&!newRoom&&G.phase==='battle'){ this.log.push('discard:'+u); reshuf=true; if(!red&&r) this.fly(find(P.deck,u),P,r,discR,{s1:discR.width/r.width,delay:k++*90}); }
+      else if(inRem&&!pre.rem.has(u)){ this.log.push('remove:'+u); if(!red&&r) this.fly(inRem,P,r,remR,{s1:.3,fade:true,delay:k++*90}); }
+      else if(!inDisc&&!inRem&&!find(P.deck,u)&&!find(P.buffs,u)&&!newRoom){ const ex=(this.handCache||[]).find(c=>String(c.uid)===u);
+        if(ex&&ex.key==='EXH'){ this.log.push('exhaust:'+u); if(!red&&r) this.fly(ex,P,r,exhR,{s1:.3,fade:true}); } else { this.inPlay.add(u); this.log.push('play:'+u); } }
+      else if(find(P.buffs,u)) this.log.push('buff:'+u); }
+    if(reshuf){ this.log.push('shuffle'); if(!red){ const d=document.querySelector('#piles .pDraw'); setTimeout(()=>{ d.classList.remove('shuf'); void d.offsetWidth; d.classList.add('shuf'); },k*90+380); } k+=4; }
+    /* played cards that finished resolving: board centre → discard pile */
+    for(const c of P.discard){ const u=String(c.uid); if(pre.disc.has(u)) continue; if(pre.handU.includes(u)&&!this.played.has(u)) continue; { this.inPlay.delete(u); this.played.delete(u); this.log.push('resolved:'+u);
+      if(!red){ const w=Math.min(150,bd.width*.45), h=w*1.4; const a={left:bd.left+bd.width/2-w/2,top:bd.top+bd.height/2-h/2,width:w,height:h}; this.fly(c,P,a,discR,{w,h,s1:discR.width/w,delay:k++*90}); } } }
+    /* draws: each new hand card flies out of the draw pile into its slot, flipping, one by one */
+    let j=0; document.querySelectorAll('#hand .card').forEach(el=>{ const u=el.dataset.uid; if(pre.handU.includes(u)) return; const c=find(P.hand,u); if(!c) return; this.log.push('draw:'+u); if(red) return;
+      const r=el.getBoundingClientRect(); el.style.opacity='0'; const delay=j++*140+(k?250:0);
+      this.fly(c,P,drawR,r,{flip:true,w:r.width,h:r.height,s0:drawR.width/r.width,s1:1,delay,ms:540,end:()=>{ el.style.opacity=''; }}); });
+    },
+  view(which){ const P=this.owner(); if(!P) return; const nm=c=>DEF[c.key]?DEF[c.key].name:c.key;
+    const cards=which==='discard'?P.discard.slice().reverse():which==='removed'?(P.removed||[]).slice().reverse():P.deck.slice().sort((a,b)=>nm(a).localeCompare(nm(b))||(a.up?1:0)-(b.up?1:0));
+    const T={discard:'🗑 กองทิ้ง — ใบล่าสุดอยู่ซ้ายสุด',removed:'⛔ กองรีมูฟ — ใบล่าสุดอยู่ซ้ายสุด',draw:'🂠 กองจั่ว — เรียงตามชื่อ (ไม่บอกลำดับจริง)'}[which];
+    let m=document.getElementById('pileView'); if(!m){ m=document.createElement('div'); m.id='pileView'; document.body.appendChild(m); }
+    m.innerHTML=`<div class="pvBox"><h2>${T} (${cards.length} ใบ)</h2><div class="pvGrid">${cards.map(c=>UI.cardHTML(c,P,'')).join('')||'<i>ไม่มีการ์ด</i>'}</div><button id="pvX">ปิด</button></div>`;
+    m.className='show'; m.onclick=e=>{ if(e.target===m||e.target.id==='pvX') m.className=''; }; this.log.push('view:'+which); }
+};
+UI.PILES=PILES;
+{ const _pc=playCard0; playCard0=async function(P,c){ try{ if(!SIM.on&&c) PILES.played.add(String(c.uid)); }catch(e){} return _pc.apply(this,arguments); };
+  const _rh=UI.renderHand; UI.renderHand=function(){ const pre=PILES.prev; const r=_rh.apply(this,arguments);
+    try{ PILES.render(); PILES.animate(pre); PILES.prev=PILES.snap(); const P=PILES.owner(); PILES.handCache=P?P.hand.slice():[]; }catch(e){ console.warn('PILES',e); } return r; };
+  const _rb=UI.renderBoard; UI.renderBoard=function(){ const r=_rb.apply(this,arguments); try{ PILES.fit(); }catch(e){} return r; };
+  addEventListener('resize',()=>{ UI.pileRes=0; setTimeout(()=>{ try{ if(G) UI.render(); }catch(e){} },50); }); }
 </script>
 </body></html>
