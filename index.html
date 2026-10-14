@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.56</title>
+<title>Project Dungeon v1.1.57</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -849,7 +849,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #piles.pcmp{transform:scale(.7);transform-origin:left bottom} /* v1.1.56 */
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.55 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.57 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -2660,7 +2660,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.56', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.57', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -3972,7 +3972,7 @@ const D3=146.83, A2=110, E3=164.81, C3=130.81;
 const TR={
   menu:{bpm:84,root:D3,ch:[[0,'m'],[-4,'M'],[3,'M'],[-2,'M'],[0,'m'],[-4,'M'],[3,'M'],[7,'M']],
     mel:[[[7,1.5],[12,.5],[14,1],[15,1]],[[17,1.5],[15,.5],[12,2]],[[10,1],[12,1],[15,1.5],[12,.5]],[[14,3],[10,1]],[[7,1],[12,1],[15,1],[19,1]],[[17,1.5],[15,.5],[17,1],[20,1]],[[19,2],[15,1],[12,1]],[[14,1.5],[11,.5],[7,2]]],
-    L:{strings:1,choir:1,horn:1,bass:1,timpA:1,brassB:1,timpB:1},gain:.75 /* v1.1.56: menu has no drums and slow string attacks, so at .55 it sounded quieter than the dungeon tracks */},
+    L:{strings:1,choir:1,horn:1,bass:1,timpA:2,brassA:1,brassB:1,timpB:2,ost:1,fast:1},gain:.8 /* v1.1.56: menu has no drums and slow string attacks, so at .55 it sounded quieter than the dungeon tracks */},
   bone:{bpm:58,root:A2,ch:[[0,'m'],[-4,'M'],[5,'m'],[7,'M'],[0,'m'],[1,'M'],[5,'m'],[7,'M']],
     mel:[[[12,2],[11,1],[12,1]],[[15,3],[13,1]],[[12,2],[8,2]],[[11,4]],[[12,1],[13,1],[15,2]],[[13,2],[12,2]],[[8,1],[7,1],[5,2]],[[4,4]]],
     L:{organ:1,choir:1,bell:1,bass:1,mel:'organ'}},
@@ -4004,13 +4004,15 @@ const MZ={ cur:null, tracks:{}, iv:null, bus:null,
     const rv=c.createConvolver(); rv.buffer=ir; const wet=c.createGain(); wet.gain.value=.42; rv.connect(wet); wet.connect(comp); this.rv=rv; this.comp=comp; this.bus=true; },
   trackOut(c,id){ let t=this.tracks[id]; if(!t){ const g=c.createGain(); g.gain.value=0; const dry=c.createGain(); dry.gain.value=.8; g.connect(dry); dry.connect(this.comp); g.connect(this.rv); t=this.tracks[id]={g,step:0,next:0,on:false}; } return t; },
   want(){ if(!(UI.MUS&&UI.MUS.on&&SND.on&&SND.unlocked)||document.hidden) return null; if(this.duckT&&performance.now()<this.duckT) return null; /* v1.1.41 fanfare duck */ const m=document.getElementById('mainMenu');
-    if(m&&!m.classList.contains('hide')) return 'menu'; if(typeof G==='undefined'||!G||G.over||$('#game').classList.contains('hide')) return null;
+    if(m&&!m.classList.contains('hide')) return 'menu';
+    /* v1.1.57 BUGFIX: the first click is usually the Play button, which hides the menu before audio is unlocked -> nothing played on setup / hero select / lobby. All out-of-game screens now keep the title music. */
+    if(typeof G==='undefined'||!G||$('#game').classList.contains('hide')) return 'menu'; if(G.over) return null;
     if(G.phase==='rest') return 'rest'; const ms=(typeof allMons==='function'?allMons():G.mons||[]);
     if(G.room===10||ms.some(x=>Object.values(DUNGEONS).some(d=>d.B===x.name))) return 'boss';
     const dg=UI.MUS.dg?UI.MUS.dg():'bone'; return ms.some(x=>Object.values(DUNGEONS).some(d=>(d.E||[]).includes(x.name)))?dg+'_elite':dg; },
   tick(){ const c=SND.ac(); if(!c) return; this.init(c); const id=this.want();
     if(id!==this.cur){ const n=c.currentTime; if(this.cur&&this.tracks[this.cur]){ const o=this.tracks[this.cur]; o.on=false; o.g.gain.cancelScheduledValues(n); o.g.gain.setValueAtTime(o.g.gain.value,n); o.g.gain.linearRampToValueAtTime(0,n+1.8); }
-      if(id){ const t=this.trackOut(c,id); t.on=true; t.step=0; t.next=n+.15; t.g.gain.cancelScheduledValues(n); t.g.gain.setValueAtTime(t.g.gain.value,n); t.g.gain.linearRampToValueAtTime(TR[id].gain||(TR[id].L.soft?.4:.55),n+(id==='menu'?1:2.5)); }
+      if(id){ const t=this.trackOut(c,id); t.on=true; t.step=0; t.next=n+.15; t.g.gain.cancelScheduledValues(n); t.g.gain.setValueAtTime(t.g.gain.value,n); t.g.gain.linearRampToValueAtTime(TR[id].gain||(TR[id].L.soft?.4:.55),n+(TR[id].L.fast?.12:2.5)); if(TR[id].L.fast) t.next=n+.03; /* v1.1.57: title music audible within ~0.2 s */ }
       this.cur=id; }
     if(!id) return; const t=this.tracks[id], T=TR[id], bl=60/T.bpm*4; while(t.next<c.currentTime+.6){ VO.bar(c,t.g,T,t.next,t.step%16); t.step++; t.next+=bl; } },
   start(){ if(this.iv) return; this.iv=setInterval(()=>this.tick(),150); }
@@ -5121,6 +5123,11 @@ if(!HEADLESS){
   document.addEventListener('visibilitychange',()=>{ if(!document.hidden&&SND.unlocked) AU.kick('visible'); });
   if(typeof MZ!=='undefined'&&MZ.tick){ const _t=MZ.tick.bind(MZ); MZ.tick=function(){ try{ const c=SND.ctx; if(c&&c.state!=='running'&&SND.unlocked&&this.want&&this.want()&&c.resume) c.resume().catch(()=>{}); }catch(e){} return _t(); }; }
 }
+/* v1.1.57: try to start the title music on load. Chrome allows it when the site already has media engagement or a prior gesture; otherwise the context
+   stays 'suspended' (no sound, no error) and the first click/key resumes it (PD_AUDIO.kick). */
+if(!HEADLESS&&!(navigator.webdriver&&!window.__PD_AUTOPLAY_TEST)){ setTimeout(()=>{ try{ if(SND.unlocked) return; const C=window.AudioContext||window.webkitAudioContext; if(!C) return;
+  SND.ctx=SND.ctx||new C(); const go=()=>{ if(SND.ctx.state==='running'&&!SND.unlocked){ SND.unlocked=true; window.PD_AUDIO&&PD_AUDIO.kick('autoplay'); } };
+  go(); SND.ctx.addEventListener&&SND.ctx.addEventListener('statechange',go); }catch(e){} },300); }
 
 /* ===================== v1.1.53 e24: perspective board + directional sprites + painted environment =====================
    UI only — the engine, RNG, rules, saves and the online pack are untouched.
