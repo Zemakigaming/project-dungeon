@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.55</title>
+<title>Project Dungeon v1.1.56</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -820,6 +820,33 @@ body.nofx .tok .hpH{animation:none!important}
 /* v1.1.54 USER REQUEST: menu character art lifted off the bottom edge, roughly centred vertically (logo + buttons stay above, z-order unchanged) */
 .mmVideo{top:6%!important;bottom:auto!important;height:84%!important;object-position:50% 50%!important}
 .mmHero{bottom:14%}
+/* v1.1.56 BUGFIX tablet board shrink: at 761-1356px wide the desktop topbar (11 buttons) was wider than the screen; the 1fr grid column grew to fit it,
+   the page became ~1356px wide and mobile browsers zoomed the whole page out to fit (and re-zoom on touch/drag) -> board looked like it shrank.
+   Columns/rows are now minmax(0,..) so content can never widen the page, the topbar scrolls sideways instead, and the height uses 100svh
+   (small viewport: does not change when the address bar shows/hides during a touch drag). */
+html,body{overflow-x:hidden;max-width:100%}
+@media (min-width:761px) and (min-height:501px){#game{grid-template-columns:minmax(0,1fr) 330px;grid-template-rows:auto minmax(0,1fr) auto}body.nolog #game{grid-template-columns:minmax(0,1fr) 0}}
+@supports (height:100svh){#game{height:100svh!important}body{min-height:100svh}}
+#topbar{min-width:0;overflow-x:auto;overflow-y:hidden;flex-wrap:nowrap;scrollbar-width:none}#topbar::-webkit-scrollbar{display:none}#topbar>*{flex:0 0 auto}#topbar .sp{flex:1 0 2px}
+#center{min-width:0;min-height:0;overscroll-behavior:contain}
+body.dragging,body.dragging *{touch-action:none!important}
+/* v1.1.56 portrait tablets (761-1100px wide, taller than wide): one column so the board can use the full width; the side panel opens as a drawer
+   (📜 button), items/buffs are strips above the board with a FIXED reserved height (so gaining the first buff/item never resizes the board). */
+@media (min-width:761px) and (max-width:1100px) and (min-height:501px) and (max-aspect-ratio:1/1){
+ #game,body.nolog #game{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:auto minmax(0,1fr) auto}
+ #topbar{grid-column:1/-1}
+ #center,body.nolog #center{grid-column:1;grid-row:2}
+ #handArea,body.nolog #handArea{grid-column:1;grid-row:3}
+ #side{display:none}
+ body.mside #side{display:flex;position:fixed;top:60px;right:6px;bottom:6px;width:min(360px,80vw);z-index:90;background:#121826f5;border:1px solid #3a4560;border-radius:12px;padding:6px;overflow-y:auto;box-shadow:0 0 30px #000}
+ #itemBar,#buffBar{position:static;order:-2;width:100%;max-width:100%;height:56px;min-height:56px;flex-direction:row;flex-wrap:nowrap;justify-content:center;overflow-x:auto;overflow-y:hidden;gap:6px;padding:0;margin:0}
+ #buffBar{order:-1}
+ #itemBar:not(:empty)::before,#buffBar:not(:empty)::before{display:none}
+ #itemBar .ownItem,.buffTile{width:54px;flex:0 0 auto;padding:2px}
+ #itemBar .ownItem img,.buffTile img,.buffCard .bart{width:46px;height:46px}
+ #itemBar .ownItem b,#itemBar .ownItem .ist,.buffTile b{display:none}
+}
+#piles.pcmp{transform:scale(.7);transform-origin:left bottom} /* v1.1.56 */
 </style></head><body>
 <div id="setup">
  <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.55 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
@@ -2633,7 +2660,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.55', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.56', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2737,9 +2764,11 @@ function sprSize(u){ if(!u||!u.isMon) return 'n'; if(SPR_SMALL.has(ARTMAP[u.name
 const $=s=>document.querySelector(s);
 /* v1.1.53 phone layout (portrait ≤760 px wide, or landscape ≤500 px high) — must match the @media rules in template.html */
 const MOBQ='(max-width:760px),(max-height:500px)';
+const TABPQ='(min-width:761px) and (max-width:1100px) and (min-height:501px) and (max-aspect-ratio:1/1)'; /* v1.1.56 portrait tablet: single column, side panel as a drawer, items/buffs as strips above the board */
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 const UI={
   mobileLay(){ try{ return matchMedia(MOBQ).matches; }catch(e){ return false; } },
+  tabPort(){ try{ return matchMedia(TABPQ).matches; }catch(e){ return false; } },
   mobileLand(){ try{ return matchMedia('(max-height:500px) and (min-width:561px)').matches; }catch(e){ return false; } },
   pending:null, askReq:null, marcel:false, cellPx:96,
   init(){
@@ -2747,7 +2776,7 @@ const UI={
     this.buildSetup();
     $('#btnRules').onclick=$('#btnRules2').onclick=()=>this.showRules();
     $('#rulesClose').onclick=()=>$('#rules').classList.add('hide');
-    $('#btnLog').onclick=()=>{ if(UI.mobileLay()){ document.body.classList.toggle('mside'); return; } document.body.classList.toggle('nolog'); }; /* v1.1.53: on phones the side panel is a drawer */
+    $('#btnLog').onclick=()=>{ if(UI.mobileLay()||UI.tabPort()){ document.body.classList.toggle('mside'); return; } document.body.classList.toggle('nolog'); }; /* v1.1.53: on phones the side panel is a drawer */
     $('#btnMenu').onclick=()=>{ if(confirm('กลับไปหน้าเริ่มเกม? (เกมปัจจุบันจะหายไป)')) location.reload(); };
     $('#speed').oninput=e=>{CFG.botDelay=+e.target.value;};
     window.addEventListener('resize',()=>G&&this.render());
@@ -2850,7 +2879,9 @@ const UI={
   },
   renderBoard(){
     const bd=$('#board'); const W=G.W,H=G.H;
-    const wrap=$('#center'); const avail=Math.min((wrap.clientWidth||900)-16, 1100); const availH=(wrap.clientHeight||500)-12; const cs=Math.max(54,Math.min(118,Math.floor(avail/W),Math.floor(availH/H))); this.cellPx=cs;
+    const wrap=$('#center'); const avail=Math.min((wrap.clientWidth||900)-16, 1100); const availH=(wrap.clientHeight||500)-12; let cs=Math.max(54,Math.min(118,Math.floor(avail/W),Math.floor(availH/H)));
+    /* v1.1.56: board size is frozen while a hand card is being dragged (and briefly after the drop), so no resize/visualViewport/hand-bar change can shrink it mid-drag */
+    const D=this.DRAG; if(this.cellPx&&D&&((D.st&&D.st.on)||(D.supClick&&performance.now()-D.supClick<500))) cs=this.cellPx; this.cellPx=cs;
     bd.style.width=(cs*W)+'px'; bd.style.height=(cs*H)+'px'; bd.style.setProperty('--cs',cs+'px');
     const req=this.askReq; const hl=new Map();
     if(req&&(req.kind==='cell')) req.options.forEach((o,i)=>hl.set(key(o.x,o.y),i));
@@ -3070,8 +3101,10 @@ UI.diffHud=function(){
 /* ---------- board ---------- */
 UI.renderBoard=function(){
   const bd=$('#board'); const W=G.W,H=G.H;
-  const wrap=$('#center'); const ib=$('#itemBar'), bb=$('#buffBar'); const mob=UI.mobileLay(), land=mob&&UI.mobileLand(); const side=((ib&&ib.children.length)||(bb&&bb.children.length))?(!mob?2*128:land?2*54:0):0; /* v1.1.53: phones show items/buffs as strips above the board */ /* v1.1.12: item column sits left of the room */ const avail=Math.min((wrap.clientWidth||900)-16-side-(G&&G.phase==="battle"?Math.round(Math.min(48,Math.max(30,(wrap.clientWidth||900)*.04)))+8:0),1100); /* v1.1.52 room for the round stick */ const availH=(wrap.clientHeight||500)-(mob?24:60)-(UI.pileRes||0)-(mob&&!land?(ib?ib.offsetHeight:0)+(bb?bb.offsetHeight:0):0)-(mob&&innerWidth<=760&&$('#piles')?$('#piles').offsetHeight+28:0); /* v1.1.53 portrait: piles sit below the board */
-  const cs=Math.max(mob?30:54,Math.min(mob?118:150,Math.floor(avail/W),Math.floor(availH/H))); this.cellPx=cs;
+  const wrap=$('#center'); const ib=$('#itemBar'), bb=$('#buffBar'); const mob=UI.mobileLay(), land=mob&&UI.mobileLand(); const tabP=!mob&&UI.tabPort(); const side=(tabP?0:!mob?2*128:land?2*54:0); /* v1.1.56 BUGFIX tablet shrink: the item/buff columns are ALWAYS reserved (was: only when they had a child, so playing the first buff card / gaining an item cut 256px of board width mid-play) */ /* v1.1.53: phones show items/buffs as strips above the board */ /* v1.1.12: item column sits left of the room */ const avail=Math.min((wrap.clientWidth||900)-16-side-(G&&G.phase==="battle"?Math.round(Math.min(48,Math.max(30,(wrap.clientWidth||900)*.04)))+8:0),1100); /* v1.1.52 room for the round stick */ const availH=(wrap.clientHeight||500)-(mob?24:60)-(UI.pileRes||0)-((mob&&!land)||tabP?(ib?ib.offsetHeight:0)+(bb?bb.offsetHeight:0):0)-(mob&&innerWidth<=760&&$('#piles')?$('#piles').offsetHeight+28:0); /* v1.1.53 portrait: piles sit below the board */
+  let cs=Math.max(mob?30:(UI.pileRes?40:54),Math.min(mob?118:150,Math.floor(avail/W),Math.floor(availH/H)));
+  /* v1.1.56: min 40 instead of 54 when the piles need room (always-reserved item/buff columns on small windows) */
+  /* v1.1.56: frozen while a hand card is dragged (and 500ms after the drop) */ { const D=this.DRAG; if(this.cellPx&&D&&((D.st&&D.st.on)||(D.supClick&&performance.now()-D.supClick<500))) cs=this.cellPx; } this.cellPx=cs;
   bd.style.width=(cs*W)+'px'; bd.style.height=(cs*H)+'px'; bd.style.setProperty('--cs',cs+'px');
   if(!bd.querySelector('#cells')){ bd.innerHTML='<div id="cells"></div><div id="toks"></div><div id="fx"></div><i class="bcn" data-c="0"></i><i class="bcn" data-c="1"></i><i class="bcn" data-c="2"></i><i class="bcn" data-c="3"></i>'; /* v1.1.53 .bcn = board corners (perspective hit-test) */
     bd.onclick=e=>{ if(!this.askReq) return; const r=this.askReq; let k=null;
@@ -3939,7 +3972,7 @@ const D3=146.83, A2=110, E3=164.81, C3=130.81;
 const TR={
   menu:{bpm:84,root:D3,ch:[[0,'m'],[-4,'M'],[3,'M'],[-2,'M'],[0,'m'],[-4,'M'],[3,'M'],[7,'M']],
     mel:[[[7,1.5],[12,.5],[14,1],[15,1]],[[17,1.5],[15,.5],[12,2]],[[10,1],[12,1],[15,1.5],[12,.5]],[[14,3],[10,1]],[[7,1],[12,1],[15,1],[19,1]],[[17,1.5],[15,.5],[17,1],[20,1]],[[19,2],[15,1],[12,1]],[[14,1.5],[11,.5],[7,2]]],
-    L:{strings:1,choir:1,horn:1,bass:1,timpA:1,brassB:1,timpB:1}},
+    L:{strings:1,choir:1,horn:1,bass:1,timpA:1,brassB:1,timpB:1},gain:.75 /* v1.1.56: menu has no drums and slow string attacks, so at .55 it sounded quieter than the dungeon tracks */},
   bone:{bpm:58,root:A2,ch:[[0,'m'],[-4,'M'],[5,'m'],[7,'M'],[0,'m'],[1,'M'],[5,'m'],[7,'M']],
     mel:[[[12,2],[11,1],[12,1]],[[15,3],[13,1]],[[12,2],[8,2]],[[11,4]],[[12,1],[13,1],[15,2]],[[13,2],[12,2]],[[8,1],[7,1],[5,2]],[[4,4]]],
     L:{organ:1,choir:1,bell:1,bass:1,mel:'organ'}},
@@ -3977,7 +4010,7 @@ const MZ={ cur:null, tracks:{}, iv:null, bus:null,
     const dg=UI.MUS.dg?UI.MUS.dg():'bone'; return ms.some(x=>Object.values(DUNGEONS).some(d=>(d.E||[]).includes(x.name)))?dg+'_elite':dg; },
   tick(){ const c=SND.ac(); if(!c) return; this.init(c); const id=this.want();
     if(id!==this.cur){ const n=c.currentTime; if(this.cur&&this.tracks[this.cur]){ const o=this.tracks[this.cur]; o.on=false; o.g.gain.cancelScheduledValues(n); o.g.gain.setValueAtTime(o.g.gain.value,n); o.g.gain.linearRampToValueAtTime(0,n+1.8); }
-      if(id){ const t=this.trackOut(c,id); t.on=true; t.step=0; t.next=n+.15; t.g.gain.cancelScheduledValues(n); t.g.gain.setValueAtTime(t.g.gain.value,n); t.g.gain.linearRampToValueAtTime(TR[id].L.soft?.4:.55,n+2.5); }
+      if(id){ const t=this.trackOut(c,id); t.on=true; t.step=0; t.next=n+.15; t.g.gain.cancelScheduledValues(n); t.g.gain.setValueAtTime(t.g.gain.value,n); t.g.gain.linearRampToValueAtTime(TR[id].gain||(TR[id].L.soft?.4:.55),n+(id==='menu'?1:2.5)); }
       this.cur=id; }
     if(!id) return; const t=this.tracks[id], T=TR[id], bl=60/T.bpm*4; while(t.next<c.currentTime+.6){ VO.bar(c,t.g,T,t.next,t.step%16); t.step++; t.next+=bl; } },
   start(){ if(this.iv) return; this.iv=setInterval(()=>this.tick(),150); }
@@ -4469,6 +4502,27 @@ if(typeof document!=='undefined'){ const SEL='#buffBar .buffTile';
   document.addEventListener('touchend',e=>{ const b=e.target.closest&&e.target.closest(SEL); clearTimeout(lp); if(b){ e.preventDefault(); BTIP.show(b); } },{passive:false});
   addEventListener('resize',()=>{ if(BTIP.cur&&document.contains(BTIP.cur)) BTIP.place(BTIP.cur); else BTIP.hide(); }); }
 
+/* v1.1.56 BUGFIX (tablet board shrink): the board cell size is computed from #center's height at render time, and #center's height
+   depended on the auto-height hand row (#handArea: owner line + hand + #actions buttons that appear/wrap after a card is picked/dropped).
+   Fix: (1) renderBoard keeps the size while a card drag is active (e8); (2) on tablet/desktop layouts #handArea never shrinks below the
+   tallest height seen for this screen size, so dropping a card can't resize the board; (3) a ResizeObserver re-fits the board whenever
+   #center really changes size (outside a drag), so the board is never left at a stale transient size. */
+const BLOCK={key:'',h:0,
+  stableH(){ return Math.round(Math.min(innerHeight,(window.visualViewport&&visualViewport.height*visualViewport.scale)||innerHeight)/80); },
+  pin(){ const a=document.getElementById('handArea'); if(!a) return; const big=matchMedia('(min-width:761px) and (min-height:501px)').matches;
+    const k=innerWidth+'x'+this.stableH()+(document.body.classList.contains('nolog')?'n':''); if(!big){ a.style.minHeight=''; this.key=''; return; }
+    if(k!==this.key){ this.key=k; this.h=0; a.style.minHeight=''; }
+    const hh=a.offsetHeight; if(hh>this.h){ this.h=hh; a.style.minHeight=hh+'px'; } },
+  dragging(){ const D=UI.DRAG; return !!(D&&((D.st&&D.st.on)||(D.supClick&&performance.now()-D.supClick<500))); }
+};
+UI.BLOCK=BLOCK;
+if(typeof document!=='undefined'&&typeof UI!=='undefined'){
+  const r0=UI.render; UI.render=function(){ const out=r0.apply(this,arguments); try{ BLOCK.pin(); }catch(e){} return out; };
+  if(typeof ResizeObserver!=='undefined') (fn=>document.readyState==='loading'?addEventListener('DOMContentLoaded',fn):fn())(()=>{ const c=document.getElementById('center'); if(!c) return; let lw=0,lh=0,t=0;
+    new ResizeObserver(()=>{ const w=c.clientWidth,h=c.clientHeight; if(w===lw&&h===lh) return; lw=w; lh=h; clearTimeout(t);
+      t=setTimeout(function f(){ if(BLOCK.dragging()){ t=setTimeout(f,300); return; } try{ if(typeof G!=='undefined'&&G&&G.W&&!G.over) UI.renderBoard(); }catch(e){} },120); }).observe(c); });
+}
+
 /* ===================== v1.1.42 e17: run stats, victory window, PNG card, Hall of Fame =====================
    UI-only. Stats come from engine values (G.stats.rounds, p.stats.dmg / p.stats.kills) plus wrappers that only
    observe engine calls (hitMon / hurtHero / rollCri / playCard0 / heroTurn). They are kept in G.vst so they survive
@@ -4678,11 +4732,14 @@ const PILES={log:[],prev:null,
       `<div class="pChips"><div class="pRem" data-pile="removed" title="กองรีมูฟ ${(P.removed||[]).length} ใบ — คลิกเพื่อดู">⛔ ${(P.removed||[]).length}</div><div class="pExh" title="การ์ดเหนื่อยที่เหลือ (Exhaust) — ถ้าต้องสับกองแล้วไม่มีเหลือ = แพ้">😮‍💨 ${P.exhaust|0}</div></div>`; }
     this.fit(); },
   /* never cover board cells: if the piles overlap the board, reserve height so the board shrinks (UI.pileRes is read by renderBoard) */
-  fit(){ const e=document.getElementById('piles'), b=document.getElementById('board'); if(!e||!b||this._fitting) return;
-    /* v1.1.54 board-max: the reserve was sticky (only reset on resize) — retry without it each fit and keep that when the piles no longer overlap */
-    if(UI.pileRes){ const keep=UI.pileRes; this._fitting=true; try{ UI.pileRes=0; UI.renderBoard(); const r0=e.getBoundingClientRect(), b0=b.getBoundingClientRect(); if(r0.right>b0.left&&r0.left<b0.right&&r0.bottom>b0.top&&r0.top<b0.bottom){ UI.pileRes=keep; UI.renderBoard(); } }finally{ this._fitting=false; } if(!UI.pileRes) return; }
-    const r=e.getBoundingClientRect(), br=b.getBoundingClientRect(); if(r.right>br.left&&r.left<br.right&&r.bottom>br.top&&r.top<br.bottom){ this._fitting=true;
-      UI.pileRes=(UI.pileRes||0)+Math.ceil(br.bottom-r.top)+8; try{ UI.renderBoard(); }finally{ this._fitting=false; } this.log.push('fit:'+UI.pileRes); } },
+  /* v1.1.56: path-independent — always start from 0 reserve and add only what is needed (the old incremental reserve depended on history, so the
+     same screen could end at different board sizes, e.g. 325 vs 340px, after a drag/resize). Skipped while a card is being dragged (board frozen). */
+  fit(){ const e=document.getElementById('piles'), b=document.getElementById('board'); if(!e||!b||this._fitting) return; if(UI.BLOCK&&UI.BLOCK.dragging()) return;
+    const ov=()=>{ const r=e.getBoundingClientRect(), br=b.getBoundingClientRect(); return (r.right>br.left&&r.left<br.right&&r.bottom>br.top&&r.top<br.bottom)?Math.ceil(br.bottom-r.top)+8:0; };
+    this._fitting=true;
+    const run=()=>{ UI.pileRes=0; UI.renderBoard(); for(let i=0;i<4;i++){ const o=ov(); if(!o) break; UI.pileRes+=o; UI.renderBoard(); } };
+    try{ e.classList.remove('pcmp'); run(); if(ov()){ e.classList.add('pcmp'); run(); } }finally{ this._fitting=false; } /* v1.1.56: very small windows: compact piles (scale .7) instead of an unsolvable overlap */
+    if(UI.pileRes) this.log.push('fit:'+UI.pileRes); },
   snap(){ const P=this.owner(); if(!P) return null; const hand={}; document.querySelectorAll('#hand .card').forEach(el=>{ hand[el.dataset.uid]=el.getBoundingClientRect(); });
     const S=a=>new Set((a||[]).map(c=>String(c.uid))); return {pid:P.id,room:G.room,hand,handU:P.hand.map(c=>String(c.uid)),deck:P.deck.length,disc:S(P.discard),rem:S(P.removed),discN:P.discard.length}; },
   /* v1.1.45: Evelyn Mercantalis — her top-of-deck card is shown face-up ON the draw pile; click it to play it directly (no menu step). Hover / long-press = enlarged card. */
@@ -5046,6 +5103,24 @@ const RSTICK={ last:null,
 };
 window.RSTICK=RSTICK;
 if(typeof UI!=='undefined'&&!HEADLESS){ const _r=UI.render; UI.render=function(){ const x=_r.apply(this,arguments); try{ RSTICK.sync(); }catch(e){} return x; }; }
+
+/* ===== v1.1.56 MENU MUSIC reliability =====
+   Causes found: (1) the only unlock was pointerdown/keydown/touchstart; iOS Safari only lets an AudioContext start/resume inside touchend/click,
+   so on iPad/iPhone the context stayed 'suspended' (silent) until some later gesture; it also goes 'interrupted' after a call/app switch and was never resumed.
+   (2) iOS plays Web Audio through the ringer channel, so the silent switch muted it: navigator.audioSession.type='playback' (Safari 17+) fixes that.
+   (3) the menu track ramped in over 2.5 s at gain .55 with no drums, so it was perceived much quieter than the dungeon tracks -> gain .75, 1 s fade-in.
+   Now: unlock + resume on every gesture type, resume on visibility return / statechange, and MZ.tick retries resume while it should be playing. */
+if(!HEADLESS){
+  const AU={ log:[],
+    session(){ try{ if(navigator.audioSession&&navigator.audioSession.type!=='playback') navigator.audioSession.type='playback'; }catch(e){} },
+    kick(src){ try{ AU.session(); SND.unlocked=true; const c=SND.ac&&SND.ac(); if(!c) return; if(c.state!=='running'&&c.resume) c.resume().catch(()=>{});
+      if(!c._pdWatch){ c._pdWatch=1; c.addEventListener&&c.addEventListener('statechange',()=>{ AU.log.push('state:'+c.state); }); }
+      if(typeof MZ!=='undefined'&&MZ.start){ MZ.start(); try{ MZ.tick(); }catch(e){} } AU.log.push('kick:'+src); }catch(e){} } };
+  window.PD_AUDIO=AU;
+  ['pointerdown','pointerup','touchend','click','keydown'].forEach(ev=>document.addEventListener(ev,()=>AU.kick(ev),{capture:true,passive:true}));
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden&&SND.unlocked) AU.kick('visible'); });
+  if(typeof MZ!=='undefined'&&MZ.tick){ const _t=MZ.tick.bind(MZ); MZ.tick=function(){ try{ const c=SND.ctx; if(c&&c.state!=='running'&&SND.unlocked&&this.want&&this.want()&&c.resume) c.resume().catch(()=>{}); }catch(e){} return _t(); }; }
+}
 
 /* ===================== v1.1.53 e24: perspective board + directional sprites + painted environment =====================
    UI only — the engine, RNG, rules, saves and the online pack are untouched.
