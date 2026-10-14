@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.60</title>
+<title>Project Dungeon v1.1.61</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -849,9 +849,30 @@ body.dragging,body.dragging *{touch-action:none!important}
 #piles.pcmp{transform:scale(.7);transform-origin:left bottom} /* v1.1.56 */
 .tok.sprite.atkPose img.spr{visibility:hidden} /* v1.1.58 attack pose overlay (e25) */
 #toks .tok img.sprAtk{border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;padding:0!important;margin:0;object-fit:contain;max-width:none;max-height:none;animation:none}
+/* v1.1.61: beast-forest obstacles stand out from the (busy, root-covered) floor — sunken dark cell + warm rim, lifted prop with light outline and ground shadow */
+#cells .cell.obs.th-beast{box-shadow:inset 0 0 0 2px #f2d68aa8,inset 0 0 calc(var(--cs)*.42) calc(var(--cs)*.06) #000d!important;background-blend-mode:multiply;background-color:#5b5040!important}
+#cells .cell.obs.th-beast:before{content:'';position:absolute;left:12%;right:12%;bottom:8%;height:22%;border-radius:50%;background:radial-gradient(ellipse,#000c 0,#0008 45%,transparent 72%);pointer-events:none}
+#cells .cell.obs.th-beast .rock.img{transform:translateY(-5%);filter:none}
+#cells .cell.obs.th-beast .rock.img img.prop{filter:brightness(1.22) saturate(1.3) contrast(1.12) drop-shadow(0 0 1.2px #fff1bf) drop-shadow(0 0 1.2px #fff1bf) drop-shadow(0 5px 4px #000e)}
+#cells .cell.obs.th-beast .rock:not(.img){filter:brightness(1.2) drop-shadow(0 0 1.5px #fff1bf) drop-shadow(0 4px 4px #000e)}
+/* v1.1.61 Darius path choice */
+#cells .cell.dpCell{box-shadow:inset 0 0 0 3px #ffb347,inset 0 0 calc(var(--cs)*.5) #ff8c0088!important}
+#cells .cell.dpHit{box-shadow:inset 0 0 0 4px #ff3b3b,inset 0 0 calc(var(--cs)*.55) #ff000099!important}
+#cells .cell.dpTgt{box-shadow:inset 0 0 0 4px #ffe14d,inset 0 0 calc(var(--cs)*.5) #ffd00088!important}
+#cells .dpTag{position:absolute;top:2px;left:2px;z-index:5;min-width:18px;height:18px;border-radius:9px;background:#222;color:#fff;font:700 12px/18px sans-serif;text-align:center;border:2px solid #ffb347;pointer-events:none}
+#cells .dpTag.dp1,#prompt .dpOpt.dp1{border-color:#4fc3f7}#cells .dpTag.dp2,#prompt .dpOpt.dp2{border-color:#b388ff}
+#prompt .dpOpt{border:2px solid #ffb347}#prompt .dpOpt.on{background:#5a3a10;box-shadow:0 0 8px #ffb347}
+/* v1.1.61 card pickup spots: pulsing gold ring + floor glow + brighter bobbing prop (cell layer, under figures) */
+@keyframes trePulse{0%,100%{box-shadow:inset 0 0 0 2px #ffd54acc,inset 0 0 calc(var(--cs)*.35) #ffb30066,0 0 6px #ffd54a88}50%{box-shadow:inset 0 0 0 3px #fff3b0,inset 0 0 calc(var(--cs)*.55) #ffc400aa,0 0 14px #ffd54acc}}
+@keyframes treBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6%)}}
+#cells .cell:has(.tre){animation:trePulse 1.6s ease-in-out infinite;z-index:1}
+#cells .cell:has(.tre):before{content:'';position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,#fff6c8aa 0,#ffd54a66 35%,transparent 70%);pointer-events:none}
+#cells .cell .tre.img{animation:treBob 1.6s ease-in-out infinite}
+#cells .cell .tre.img img.prop{filter:brightness(1.25) saturate(1.3) drop-shadow(0 0 1.5px #fff8d0) drop-shadow(0 0 7px #ffd54a) drop-shadow(0 0 12px #ffb300) drop-shadow(0 3px 3px #000c)!important}
+@media (prefers-reduced-motion:reduce){#cells .cell:has(.tre),#cells .cell .tre.img{animation:none}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.60 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.61 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -1948,6 +1969,23 @@ async function aoePreview(P,targets,cells,dmg){ if(!targets.length){ log(`⏭ �
   log(`💥 โจมตีวงกว้าง ${dmg} ดาเมจ → ${targets.map(m=>m.name).join(', ')}`,'hit');
   if(typeof UI!=='undefined'&&UI.autoFlash) await UI.autoFlash(cells.concat(targets.map(m=>({x:m.x,y:m.y}))),null,true); }
 function lineCells(P){ const r=[]; for(const [dx,dy] of DIRS){ let x=P.x+dx,y=P.y+dy; while(inB(x,y)&&!isObs(x,y)){ r.push({x,y}); if(monAt(x,y)) break; /* v1.1.46: allied heroes don't block projectiles */ x+=dx;y+=dy; } } return r; }
+/* v1.1.61 Darius Sunward: "Your non-projectile single target Attack Card Range +1 and hit all enemies in path."
+   Interpretation: path = the cells strictly between Darius and the chosen target along a shortest orthogonal route (Manhattan, same metric as range).
+   Only ENEMIES on those cells are hit (same damage, once per hit); allies are never hit; obstacles do not block (non-projectile range ignores line of sight).
+   Several shortest routes hitting DIFFERENT enemy sets -> the human picks the route (options highlight cells+units); bots take the route hitting the most. */
+function dariusOn(P,op,hop){ return !!(P&&P.hero&&P.hero.name==='Darius Sunward'&&!hop.proj&&(!op.mode||op.mode==='single')); }
+function dariusPaths(P,t){ const sx=Math.sign(t.x-P.x),sy=Math.sign(t.y-P.y),nx=Math.abs(t.x-P.x),ny=Math.abs(t.y-P.y); const out=[];
+  const rec=(x,y,a,b,cells)=>{ if(a===nx&&b===ny){ out.push(cells.slice(0,-1)); return; } if(a<nx){ cells.push({x:x+sx,y}); rec(x+sx,y,a+1,b,cells); cells.pop(); } if(b<ny){ cells.push({x,y:y+sy}); rec(x,y+sy,a,b+1,cells); cells.pop(); } };
+  if(nx+ny>1&&nx+ny<=8) rec(P.x,P.y,0,0,[]);
+  const groups=new Map(); for(const cells of out){ const ms=cells.map(c=>monAt(c.x,c.y)).filter(m=>m&&m.hp>0&&m!==t); const k=ms.map(m=>m.uid).sort().join('|'); if(!groups.has(k)) groups.set(k,{cells,mons:ms}); }
+  return [...groups.values()]; }
+async function dariusPick(P,t,dmg){ const g=dariusPaths(P,t); if(!g.length) return []; let pick=g[0];
+  if(g.length>1){ const L='ABCDEFGH';
+    const opts=g.map((o,i)=>({label:`เส้นทาง ${L[i]}: ${o.mons.length?'โดน '+o.mons.map(m=>m.name).join(', '):'ไม่โดนศัตรูเพิ่ม'}`,v:i,cells:o.cells,mons:o.mons,tgt:{x:t.x,y:t.y}}));
+    if(P.bot||(HEADLESS&&!globalThis.__askHook)||SIM.on){ pick=g.slice().sort((a,b)=>b.mons.length-a.mons.length)[0]; }
+    else { const ch=await ask(P,{kind:'opt',prompt:`Darius: เลือกเส้นทางการโจมตีไปยัง ${t.name} (ศัตรูบนเส้นทางโดน ${dmg} ดาเมจ)`,options:opts,purpose:'dariusPath',forcePrompt:true}); if(ch) pick=g[ch.v]; } }
+  if(pick.mons.length) log(`➡ Darius โจมตีทะลุเส้นทาง: ${pick.mons.map(m=>m.name).join(', ')}`,'hit');
+  return pick.mons; }
 async function doAttack(P,op,ctx){
   /* v1.1.17: printed target count ("1 enemy") adjustable by Mana: resolve once per target, never the same enemy twice */
   if(op.tn>1&&!(ctx&&ctx.__tn)){ ctx=ctx||{}; ctx.__tn=1; ctx.excl=new Set(); const o1=Object.assign({},op,{tn:1}); try{ for(let k=0;k<op.tn;k++){ if(G.over) break; await doAttack(P,o1,ctx); } } finally{ delete ctx.__tn; delete ctx.excl; } return; }
@@ -2000,7 +2038,10 @@ async function doAttack(P,op,ctx){
       let ch;
       if(i>0&&op.same&&targets[0]&&targets[0].hp>0) ch=targets[0]; /* v1.1.51 OWNER RULE: every hit of a multi-hit card picks its own target (dead targets drop out); only op.same (text says 'same target') keeps it */
       else ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ${times>1?` ครั้งที่ ${i+1}/${times}`:''})`,options:t,purpose:'atk',dmg,cancel:ctx&&ctx.moveAtk&&i===0?'⏭ ข้าม (ไม่โจมตี)':undefined});
-      if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid); await hitOne(ch);
+      if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
+      const dpm=dariusOn(P,op,hop)?await dariusPick(P,ch,dmg):[]; /* v1.1.61 Darius: 'hit all enemies in path' */
+      await hitOne(ch);
+      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; await hitMon(P,m,dmg,hop,ctx); if(m.hp<=0){ ctx.killed=true; if(op.onKill) await op.onKill(P); } }
       if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; } }
       if(op.tele){ const cs=DIRS.map(([dx,dy])=>({x:ch.x+dx,y:ch.y+dy})).filter(c=>canStop(P,c.x,c.y)); if(cs.length){ const c=await ask(P,{kind:'cell',prompt:'เทเลพอร์ตไปช่องข้างเป้าหมาย',options:cs,purpose:'teleport',cancel:'ไม่ย้าย'}); if(c) await enterCell(P,c.x,c.y,null);} }
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
@@ -2663,7 +2704,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.60', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.61', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2987,9 +3028,10 @@ const UI={
       pr.onclick=e=>{ const b=e.target.closest('[data-i]'); if(b){ this.answer(req.options[+b.dataset.i]); return; } if(e.target.closest('.cancel')) this.answer(null); };
       pr.classList.toggle('big',req.kind==='card'); pr.classList.toggle('inl',req.kind==='cell'||req.kind==='mon');
       this.render();
+      if(req.purpose==='dariusPath'){ UI.dpHL=0; pr.querySelectorAll('.opts button').forEach((b,i)=>{ b.classList.add('dpOpt','dp'+i); const f=()=>{UI.dpHL=i;UI.applyDP&&UI.applyDP();}; b.addEventListener('mouseenter',f); b.addEventListener('focus',f); b.addEventListener('touchstart',f,{passive:true}); }); UI.applyDP&&UI.applyDP(); } /* v1.1.61 */
     });
   },
-  answer(v){ const r=this.askRes; this.askReq=null; this.askRes=null; $('#prompt').classList.add('hide'); r&&r(v); this.render(); },
+  answer(v){ const r=this.askRes; this.askReq=null; UI.dpHL=null; UI.applyDP&&UI.applyDP(); this.askRes=null; $('#prompt').classList.add('hide'); r&&r(v); this.render(); },
   rest(P,shop){
     return new Promise(res=>{
       const m=$('#rest'); m.classList.remove('hide');
@@ -5223,5 +5265,13 @@ if(typeof HEADLESS==='undefined'||!HEADLESS){
   { const _ma=monAttack; monAttack=async function(m,target){ if(m&&target) ATKP.show(m,target); return _ma.apply(this,arguments); }; }
   { const _rb=UI.renderBoard; UI.renderBoard=function(){ const r=_rb.apply(this,arguments); try{ ATKP.reapply(); }catch(e){} return r; }; }
 }
+
+/* v1.1.61 Darius path choice: highlight the hovered/active route (cells) + the enemies it would hit; every route's units get its letter badge */
+UI.applyDP=function(){ const cl=document.querySelectorAll('#cells .dpCell,#cells .dpHit,#cells .dpTgt'); cl.forEach(e=>e.classList.remove('dpCell','dpHit','dpTgt')); document.querySelectorAll('#cells .dpTag').forEach(e=>e.remove());
+  const req=UI.askReq; if(!req||req.purpose!=='dariusPath'||UI.dpHL==null) return; const C=k=>document.querySelector(`#cells .cell[data-k="${k}"]`);
+  req.options.forEach((o,i)=>{ for(const m of o.mons){ const c=C(m.x+','+m.y); if(c){ const t=document.createElement('span'); t.className='dpTag dp'+i; t.textContent='ABCDEFGH'[i]; c.appendChild(t);} } });
+  const o=req.options[UI.dpHL]; if(!o) return; for(const c of o.cells){ const e=C(c.x+','+c.y); if(e) e.classList.add('dpCell'); } for(const m of o.mons){ const e=C(m.x+','+m.y); if(e) e.classList.add('dpHit'); } const tg=C(o.tgt.x+','+o.tgt.y); if(tg) tg.classList.add('dpTgt');
+  document.querySelectorAll('#prompt .dpOpt').forEach((b,i)=>b.classList.toggle('on',i===UI.dpHL)); };
+(function(){ const rb=UI.renderBoard; UI.renderBoard=function(){ const r=rb.apply(this,arguments); try{ UI.applyDP(); }catch(e){} return r; }; })();
 </script>
 </body></html>
