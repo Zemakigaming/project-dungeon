@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.54</title>
+<title>Project Dungeon v1.1.55</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -822,7 +822,7 @@ body.nofx .tok .hpH{animation:none!important}
 .mmHero{bottom:14%}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.54 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.55 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -898,7 +898,7 @@ const D = DATA;
 const CFG = {
   cardPrice: {Common:1, Uncommon:1, Rare:2, Starter:1},
   coinsPerRest: 2,
-  exhPerDeckout: 2, /* v1.1.45 USER RULE: a deck-out reshuffle adds 2 Exhaust cards (was 1); USER RULING: if fewer than 2 are left when a reshuffle is needed, the player LOSES immediately */
+  exhPerDeckout: 1, exhPerDeckoutLate: 2, exhLateRound: 8 /* v1.1.55 USER RULE (confirmed): from round 8 of a room the deck-out adds exhPerDeckoutLate=2. Counted with G.roundsInRoom (same counter as ENRAGE_ROUND) */, /* v1.1.55 USER RULE back to rulebook 1: a deck-out reshuffle adds exactly 1 Exhaust card (v1.1.45 had 2). If a reshuffle is needed and 0 Exhaust are left (fewer than 1), the player LOSES immediately */
   firstRestDraw: 10, restDraw: 3, restItems: 2,
   exhaustPerPlayer: 6, // rulebook (updated 2026-10-12): Exhaust 6 ใบ ต่อ 1 ผู้เล่น
   startShard: 3, shardRefill: 3, heroUpRoom:6, shardMax: 5, manaMax: 10,
@@ -1346,14 +1346,16 @@ function newGame(opts){
 /* ---------- deck ops ---------- */
 function exhGain(P,src){ (G.exhStats=G.exhStats||{})[src]=(G.exhStats[src]||0)+1; }
 function exhBack(P,src){ (G.exhBack=G.exhBack||{})[src]=(G.exhBack[src]||0)+1; }
+/* v1.1.55 USER RULE: Exhaust per deck-out = 1, or CFG.exhPerDeckoutLate once G.roundsInRoom >= CFG.exhLateRound (placeholder) */
+function exhNeed(){ const L=CFG.exhLateRound; return (L!=null&&typeof G!=='undefined'&&G&&(G.roundsInRoom||0)>=L)?(CFG.exhPerDeckoutLate||2):(CFG.exhPerDeckout||1); }
 function ensureDeck(P){
   if (P.deck.length) return true;
   if (G.over) return false;
   /* v1.1.8: nothing to reshuffle (Draw AND Discard empty) -> the draw simply stops; no Exhaust is added.
      (v1.1.4 added 1 Exhaust per card drawn here, so drawing 5 from an empty deck+discard cost 5 Exhaust — a cascade) */
   if (!P.discard.length) return false;
-  if (P.exhaust<(CFG.exhPerDeckout||2)){ loseGame(P,`การ์ดเหนื่อยไม่พอ (Exhaust: ต้องรับ ${CFG.exhPerDeckout||2} ใบ เหลือ ${P.exhaust})`); return false; } /* v1.1.45 ruling */
-  const exk=Math.min(CFG.exhPerDeckout||2,P.exhaust); const exc=[]; for(let i=0;i<exk;i++){ P.exhaust--; exhGain(P,'deckout'); exc.push(mk('EXH')); }
+  if (P.exhaust<(exhNeed())){ loseGame(P,`การ์ดเหนื่อยไม่พอ (Exhaust: ต้องรับ ${exhNeed()} ใบ เหลือ ${P.exhaust})`); return false; } /* v1.1.45 ruling, v1.1.55: threshold 1 */
+  const exk=Math.min(exhNeed(),P.exhaust); const exc=[]; for(let i=0;i<exk;i++){ P.exhaust--; exhGain(P,'deckout'); exc.push(mk('EXH')); }
   P.deck=shuffle(P.discard.splice(0).concat(exc),'shuf'+P.id);
   if(hasItem(P,'Phantom Edge')) P.shardNext+=1;
   if(hasItem(P,'Burnout Sigil')) for(const m of monsters(P)) hitMon(P,m,3,{noWeak:1},{});
@@ -2411,7 +2413,7 @@ const BOT = {
   threat(P){ let t=0; for(const m of allMons()){ if(m.stun) continue; const d=dist(m,P); if(m.def.ak==='any'||(m.def.ak==='melee'&&d-1<=m.def.mv+(m.def.lunge||0))||m.def.ak==='line') t+=m.atk; } return Math.max(0,t-P.shield-(P.dodge?99:0)); },
   estDmg(P,op,ctx){ try{ return val(op.dmg,P,ctx||{movedThis:2,xPaid:P.shard,cnt:P.hand.length,x:1}); }catch(e){ return 3; } },
   evalCard(P,c){
-    const d=DEF[c.key]; if(c.key==='EXH') return (P.exhaust<2*(CFG.exhPerDeckout||2)?4:1.6)-(P.hand.length>3?0:0.5);
+    const d=DEF[c.key]; if(c.key==='EXH') return (P.exhaust<2*exhNeed()?4:1.6)-(P.hand.length>3?0:0.5);
     if(d.disabled) return -9;
     const up=c.up; const ops=up?d.opsU:d.opsN; const cst=cost(P,c);
     if(d.type==='buff'){ if(buffNoStack(d.name)&&P.buffs.some(b=>DEF[b.key].name===d.name)) return -5; /* v1.1.45: useless duplicate */ const left=allMons().length; return (P.roomTurn<=2?7:4)+(left>2?1:-2)-cst*0.3; }
@@ -2631,7 +2633,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.54', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.55', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -3208,7 +3210,7 @@ UI.undo=function(){ const r=$('#rest'); if(r&&!r.classList.contains('hide')){ co
   if(this.pending&&!this.askReq&&UNDO.snap&&G.active&&!G.active.bot) this.resolveAction({type:'_undo'}); };
 window.addEventListener('keydown',e=>{ if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&(e.key==='z'||e.key==='Z')){ const t=e.target; if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName)) return; e.preventDefault(); UI.emgUndo(); } });
 UI.deckOut=function(P,n,k){ k=k==null?1:k; const d=document.createElement('div'); d.className='deckOut';
-  d.innerHTML=`<div class="doCards"><span>🂠</span><span>🂠</span><span>🂠</span></div><div class="doTitle">Deck หมด!</div><div class="doSub">${esc(P.name)}: สับกองทิ้ง ${n} ใบใหม่ <b>+${k} การ์ดเหนื่อย (Exhaust)</b></div><div class="doLeft">😮‍💨 กองเหนื่อยเหลือ ${P.exhaust}${P.exhaust<(CFG.exhPerDeckout||2)?' — ⚠ สับครั้งหน้าแพ้ทันที!':P.exhaust<2*(CFG.exhPerDeckout||2)?' — ระวัง! เหลือไม่ถึง '+(CFG.exhPerDeckout||2)+' ใบ = แพ้':''}</div>`;
+  d.innerHTML=`<div class="doCards"><span>🂠</span><span>🂠</span><span>🂠</span></div><div class="doTitle">Deck หมด!</div><div class="doSub">${esc(P.name)}: สับกองทิ้ง ${n} ใบใหม่ <b>+${k} การ์ดเหนื่อย (Exhaust)</b></div><div class="doLeft">😮‍💨 กองเหนื่อยเหลือ ${P.exhaust}${P.exhaust<exhNeed()?' — ⚠ สับครั้งหน้าแพ้ทันที!':P.exhaust<2*exhNeed()?' — ระวัง! เหลือไม่ถึง '+exhNeed()+' ใบ = แพ้':''}</div>`;
   ($('#center')||document.body).appendChild(d); try{SND.play('warn');}catch(_){} setTimeout(()=>d.classList.add('out'),2300); setTimeout(()=>d.remove(),2800); };
 const PIPS={1:[5],2:[1,9],3:[1,5,9],4:[1,3,7,9],5:[1,3,5,7,9],6:[1,3,4,6,7,9]};
 const dieFace=f=>`<div class="pips">${[1,2,3,4,5,6,7,8,9].map(k=>`<i class="${PIPS[f].includes(k)?'on':''}"></i>`).join('')}</div>`;
@@ -3638,13 +3640,13 @@ const _i3=UI.init; UI.init=function(){ _i3.call(UI); try{ const mb=$('#btnMute')
 
 /* ===================== v1.1.30 Fatigue face (UI only) =====================
    Driven by Exhaust cards actually TAKEN from this hero's Exhaust pile = CFG.exhaustPerPlayer − P.exhaust (the real loss condition:
-   a reshuffle with P.exhaust < CFG.exhPerDeckout (2) = lose, v1.1.45). Removing/paying off/trashing an Exhaust returns it to the pile (P.exhaust++), so the face recovers.
+   a reshuffle with P.exhaust < CFG.exhPerDeckout (1) = lose, v1.1.55). Removing/paying off/trashing an Exhaust returns it to the pile (P.exhaust++), so the face recovers.
    Level 0..6 = taken (scaled to 6 when Easy mode gives 10); 7 = lost by exhaustion. */
 if(!HEADLESS){
 const FAT_TH=['สดชื่น','เริ่มไม่สดชื่น','เลิกยิ้มแล้ว','เริ่มเหนื่อย','เหนื่อยขึ้น','เหนื่อยมาก','ไม่ไหวแล้ว','เหนื่อยจนตาย'];
 const FAT_TIP=['ยังไม่ได้รับการ์ดเหนื่อยเลย','ได้การ์ดเหนื่อยไปแล้วบ้าง','ความสดชื่นเริ่มหาย','เริ่มเหนื่อย ระวังกองจั่วหมด','เหนื่อยขึ้นเรื่อย ๆ','เหนื่อยมาก กองเหนื่อยใกล้หมด','กองเหนื่อยหมดแล้ว! ถ้ากองจั่วหมดอีกครั้ง = แพ้','แพ้เพราะการ์ดเหนื่อยไม่พอ'];
 UI.fatInfo=function(p){ const max=CFG.exhaustPerPlayer||6, taken=Math.max(0,max-p.exhaust); let lv=max===6?Math.min(6,taken):Math.min(6,Math.ceil(taken*6/max));
-  const dead=!!(G&&G.over&&G.result&&!G.result.win&&/Exhaust/.test(G.result.why||'')&&p.exhaust<(CFG.exhPerDeckout||2)&&(G.result.why||'').startsWith(p.name)); if(dead) lv=7; return {lv,taken,max,dead}; };
+  const dead=!!(G&&G.over&&G.result&&!G.result.win&&/Exhaust/.test(G.result.why||'')&&p.exhaust<exhNeed()&&(G.result.why||'').startsWith(p.name)); if(dead) lv=7; return {lv,taken,max,dead}; };
 UI.faceSVG=function(lv,size){ size=size||64;
   const skin=['#ffd54f','#ffd166','#f6cd7e','#eec690','#e2c6a6','#d3cbbd','#c2c9c2','#9aa0a6'][lv], line=lv>=7?'#333':'#4a2c12', cheek=lv<=1?'<circle cx="28" cy="62" r="7" fill="#ff8a80" opacity=".55"/><circle cx="72" cy="62" r="7" fill="#ff8a80" opacity=".55"/>':'';
   const eye=(x)=>{ if(lv===0) return `<path d="M${x-8} 46 Q${x} 36 ${x+8} 46" stroke="${line}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
@@ -3914,7 +3916,7 @@ const HOWTO={
       ${sec('🔄','ลำดับการเล่น',`<ol class="htFlow"><li><b>🏕 Rest / Market</b> — รวมการ์ดทุกกองแล้วสับ ได้ Coin ไปช้อป</li><li><b>🚪 เข้าห้อง</b> — วางสิ่งกีดขวาง + Monster Wave · จั่ว 5 ใบ · ได้ Shard เริ่มห้อง · <b>Mana รีเซ็ตเป็น 0</b></li><li><b>⚔ เทิร์นฮีโร่</b> — เล่นการ์ด / เดิน ตามลำดับที่ต้องการ แล้วกด “จบเทิร์น”</li><li><b>🧹 จบเทิร์น</b> — ทิ้งมือ → จั่ว 5 ใบ → เติม 3 Shard</li><li><b>👹 เทิร์น Monster</b> — ตัวที่ใกล้ฮีโร่ที่สุดทำก่อน (เดิน หรือ โจมตี)</li></ol><p>วนไปจนกว่า Monster ในห้องหมด แล้วไปห้องถัดไป</p>`)}
       ${sec('💎','Shard — พลังงานในเทิร์น',`<p>จ่าย Shard เพื่อ <b>เล่นการ์ด</b> (ตามค่าร่ายบนการ์ด) และ <b>เดิน 1 ช่อง = 2 Shard</b></p><p>จบเทิร์นเติม 3 Shard · เก็บได้สูงสุด ${CFG.shardMax} (ส่วนเกินหายไป) · ไอเทมบางชิ้นเพิ่ม Shard ตอนเริ่มห้อง</p>`,'','shard')}
       ${sec('🔮','Mana — เสริมพลังการ์ด',`<p>ใช้ Mana เพิ่ม/ลดตัวเลขบนการ์ดที่เล่น (1 Mana ต่อการ์ด 1 ใบ, การ์ด [Magic] ใช้ได้ไม่จำกัด, เก็บสูงสุด 10)</p><p class="bad">ใช้ Mana กับ <b>การ์ดบัฟ</b> ไม่ได้ · Mana <b>ไม่ข้ามห้อง</b> — เข้าห้องใหม่รีเซ็ตเป็น 0</p>`)}
-      ${sec('😫','Exhaust — การ์ดเหนื่อย',`<p>เมื่อกองจั่วหมด สับกองทิ้งใหม่ <b>+ การ์ดเหนื่อย ${CFG.exhPerDeckout} ใบ</b> (มีคนละ ${CFG.exhaustPerPlayer} ใบ · ต้องสับแต่เหลือไม่ถึง ${CFG.exhPerDeckout} ใบ = แพ้ทันที) · การ์ดเหนื่อยในมือจ่าย 3 Shard เพื่อนำออก (กลับกองเหนื่อย) · Remove/Trash (จ่ายเหรียญที่ Market) ก็คืนกองได้ · ตอน Rest ไม่มีการคืนการ์ดเหนื่อยฟรี</p><div class="htFaces">${[0,2,4,6,7].map(l=>`<span>${face(l)}</span>`).join('')}</div><p class="dim">หน้าฮีโร่บอกระดับความเหนื่อย — ถ้าการ์ดเหนื่อยหมดแล้วต้องสับอีก = แพ้</p>`)}
+      ${sec('😫','Exhaust — การ์ดเหนื่อย',`<p>เมื่อกองจั่วหมด สับกองทิ้งใหม่ <b>+ การ์ดเหนื่อย ${CFG.exhPerDeckout} ใบ</b>${CFG.exhLateRound!=null?` (ตั้งแต่รอบที่ ${CFG.exhLateRound} ในห้อง: ${CFG.exhPerDeckoutLate} ใบ)`:''} (มีคนละ ${CFG.exhaustPerPlayer} ใบ · ต้องสับแต่การ์ดเหนื่อยเหลือไม่พอจำนวนที่ต้องรับ = แพ้ทันที) · การ์ดเหนื่อยในมือจ่าย 3 Shard เพื่อนำออก (กลับกองเหนื่อย) · Remove/Trash (จ่ายเหรียญที่ Market) ก็คืนกองได้ · ตอน Rest ไม่มีการคืนการ์ดเหนื่อยฟรี</p><div class="htFaces">${[0,2,4,6,7].map(l=>`<span>${face(l)}</span>`).join('')}</div><p class="dim">หน้าฮีโร่บอกระดับความเหนื่อย — ถ้าการ์ดเหนื่อยหมดแล้วต้องสับอีก = แพ้</p>`)}
       ${sec('👹','Monster',`<p><b>Fighter</b> เดินเข้าประชิด · <b>Shooter</b> หาจุดยิงที่ไกลฮีโร่ที่สุด</p><p>Melee = ช่องติดกัน · Range = เส้นตรง 4 ทิศ · Missile = ไม่สนแนว · ค่าพลังแรงขึ้นทุก 2 ห้อง · มี Elite และบอสห้อง 10</p><p>โล่กันได้ทุกทิศ · เฉพาะการ์ดที่มีความสามารถ <b>Weak Point</b> ตีจากด้านหลังจึงได้ผลพิเศษ</p>`,A('Goblin Warrior'),'mon')}
       ${sec('🏪','Market (Rest Phase)',`<p>ได้ ${CFG.coinsPerRest} Coin ทุกครั้งที่พัก ใช้กับ: <b>Heal 5</b> · <b>Trash</b> การ์ด · <b>Upgrade</b> การ์ด · <b>ซื้อการ์ด Level Up</b> · <b>ซื้อไอเทม</b> (เฉพาะคลาสตัวเอง) · รับ Basic Action Card ฟรี 1 ใบ</p><p class="dim">ราคาบน Market Board แพงขึ้นทุกครั้งที่ใช้บริการนั้น</p>`,I("Archangel's Edge"),'shop')}
       ${sec('🖱','วิธีควบคุม',`<p>คลิกการ์ดที่สว่างเพื่อเล่น · ช่องที่เลือกได้ไฮไลต์ (เขียว = ช่อง, แดง = ศัตรู) · ปุ่ม “เดิน 1 ช่อง” · “จบเทิร์น”</p><p>↶ ย้อนกลับ (Ctrl+Z) มุมจอ — <b>ปิดเมื่อเล่นออนไลน์</b></p>`)}
@@ -4577,7 +4579,7 @@ const TUT={on:false,i:-1,log:[],SEED:20261013,HERO:'Darius Sunward',
    {t:'เกมเริ่มที่ Rest (พักก่อนเข้าห้อง) — ตอนนี้กด "เสร็จสิ้น — เข้าห้องถัดไป" ไปก่อน เดี๋ยวท้ายบทค่อยสอนตลาด',sel:'#rest [data-a="done"]',wait:()=>TUT.battle(),done:()=>TUT.arrange()},
    {t:'นี่คือการ์ดในมือ 🃏 ต้นเทิร์นมี 5 ใบ จบเทิร์นจะทิ้งทั้งมือแล้วจั่วใหม่ 5 ใบ',sel:'#hand'},
    {t:'ตัวเลขกลมมุมซ้ายบนการ์ด = ค่าร่าย จ่ายด้วย Shard 💎 (ตรงนี้) — ได้ +3 ทุกเทิร์น เก็บได้สูงสุด 5 · บทเรียนนี้เติมให้เต็ม 5 แล้ว',sel:'#handShards'},
-   {t:'มุมซ้ายล่างคือกองจั่ว (คว่ำ) กับกองทิ้ง (หงายใบบนสุด) แตะเพื่อดูได้ — กองจั่วหมดเมื่อไหร่ จะสับกองทิ้งกลับมาพร้อมการ์ดเหนื่อย 2 ใบ',sel:'#piles'},
+   {t:'มุมซ้ายล่างคือกองจั่ว (คว่ำ) กับกองทิ้ง (หงายใบบนสุด) แตะเพื่อดูได้ — กองจั่วหมดเมื่อไหร่ จะสับกองทิ้งกลับมาพร้อมการ์ดเหนื่อย 1 ใบ (ตั้งแต่รอบที่ 8 ในห้อง: 2 ใบ)',sel:'#piles'},
    {t:'ชี้ (หรือแตะ) ที่มอนสเตอร์ 👀 เพื่อดูว่ามันจะทำอะไร "ถ้าเราจบเทิร์นตอนนี้"',sel:'#toks .tok.mon',wait:()=>TUT.sawIntent},
    {t:'เล่นการ์ดแบบคลิก: คลิก Guard แล้วกด "ตกลง" (การคลิกจะถามยืนยันก่อน ปิดได้ในตั้งค่า)',sel:()=>TUT.card(/^Guard/),wait:()=>TUT.P().shield>0},
    {t:'Guard ให้โล่ 🛡 3 — โล่กันดาเมจได้ทุกทิศ (รวมด้านหลัง) และโล่ของเราหายตอนเริ่มเทิร์นถัดไป',sel:'#toks .tok.hero'},
@@ -4590,7 +4592,7 @@ const TUT={on:false,i:-1,log:[],SEED:20261013,HERO:'Darius Sunward',
    {t:'พร้อมแล้วกด "จบเทิร์น" ⏭',sel:'#aEnd',wait:()=>TUT.monSeen},
    {t:'เฟสมอนสเตอร์: มอนทุกตัวขยับหรือโจมตีทีละตัว แล้วเริ่มรอบใหม่ (โล่ของมอนหายก่อนเฟสนี้) — รอแป๊บ…',sel:'#board',wait:()=>TUT.battle()},
    {t:'เทิร์นใหม่: ทิ้งมือ จั่วใหม่ 5 ใบ (ดูการ์ดบินจากกองจั่ว) และได้ +3 Shard',sel:'#piles'},
-   {t:'หน้านี้บอกความเหนื่อย 😮‍💨 ทุกครั้งที่กองจั่วหมดแล้วต้องสับ จะได้การ์ดเหนื่อย (Exhaust) 2 ใบ (กองเหนื่อยมี 6 ใบ ต่อคน) หน้าจะเหนื่อยขึ้น — การ์ดเหนื่อยจ่าย 3 Shard เพื่อรีมูฟออกจากมือได้ ถ้าต้องสับแต่การ์ดเหนื่อยเหลือไม่ถึง 2 ใบ (มีทั้งหมด 6 ใบ) = แพ้ทันที',sel:'#side .fatigue'},
+   {t:'หน้านี้บอกความเหนื่อย 😮‍💨 ทุกครั้งที่กองจั่วหมดแล้วต้องสับ จะได้การ์ดเหนื่อย (Exhaust) 1 ใบ — ตั้งแต่รอบที่ 8 ในห้องได้ 2 ใบ (กองเหนื่อยมี 6 ใบ ต่อคน) หน้าจะเหนื่อยขึ้น — การ์ดเหนื่อยจ่าย 3 Shard เพื่อรีมูฟออกจากมือได้ ถ้าต้องสับแต่การ์ดเหนื่อยเหลือไม่พอ (หมดแล้ว)  = แพ้ทันที',sel:'#side .fatigue'},
    {t:'ปราบมอนให้หมดห้อง! ⚔ (ห้องสอนเล่นมอนเลือดน้อยกว่าปกติ) เคลียร์ห้องแล้วเทิร์นจบทันที ไม่ต้องทิ้ง/จั่ว',sel:'#board',wait:()=>G&&G.phase==='rest'&&!document.getElementById('rest').classList.contains('hide')},
    {t:'Rest / ตลาด 🏪 ได้ 2 Coin ต่อการพัก ใช้ฮีล 5, ทิ้งการ์ด, อัปเกรด, ซื้อการ์ดหรือไอเทม และรับการ์ดพื้นฐานฟรี 1 ใบ — ราคาขึ้นทุกครั้งที่ใช้บริการเดิม',sel:'#rest .modal,#rest'},
    {t:'ชี้ที่การ์ด หรือกด "📜 ดู Deck" เพื่อดูด้านอัปเกรด 🌟 — อัปเกรดแล้วการ์ดเก่งขึ้น',sel:'#rest .dvBtn'},
