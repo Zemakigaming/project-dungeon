@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.62</title>
+<title>Project Dungeon v1.1.63</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -872,7 +872,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (prefers-reduced-motion:reduce){#cells .cell:has(.tre),#cells .cell .tre.img{animation:none}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.62 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.63 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -1452,7 +1452,7 @@ async function gainShield(P,n,raw){
   if(!raw && P.hero.name==='William Callahan') n+=P.heroUp?4:2;
   P.shield+=n; P.didShield=true;
   const is=buffLv(P,'Iron Sparks');
-  if(is){ const adj=adjEnemies(P); if(adj.length){ const isd=bn(P,'Iron Sparks','dmg',3,4); if(is===2) for(const m of adj) await hitMon(P,m,isd,{noWeak:1},{}); else for(const m of adj.slice(0,bn(P,'Iron Sparks','cnt',1,0))) await hitMon(P,m,isd,{noWeak:1},{}); } }
+  if(is){ const adj=adjEnemies(P); if(adj.length){ const isd=bn(P,'Iron Sparks','dmg',3,4); if(is===2) for(const m of adj) await hitMon(P,m,isd,{noWeak:1},{}); else for(const m of await pickMons(P,adj,bn(P,'Iron Sparks','cnt',1,0),`Iron Sparks: เลือกศัตรูที่อยู่ติดกัน (${isd} ดาเมจ)`,isd)) await hitMon(P,m,isd,{noWeak:1},{}); } }
 }
 async function gainMana(P,n){ if(!(n>0)) return; n+=bv(P,'Arcane Prosperity',1,2); const b=P.mana; P.mana=Math.min(manaMax(P),P.mana+n); if(buffN(P,'Mana Shield',true)) await gainShield(P,(P.mana-b)*buffN(P,'Mana Shield',true)); }
 function spendMana(P,n){ P.mana-=n; if(buffN(P,'Mana Shield')&&n>0) gainShield(P,n*buffN(P,'Mana Shield')); }
@@ -1775,7 +1775,7 @@ async function playCard0(P,c,o={}){
   if(d.type==='buff'){ delete c.manaD;
     /* v1.1.29 (Thongchai t9u): "mana ใช้กับการ์ดบัฟไม่ได้" — Mana can never be used on a Buff card: no Mana dialog when it is played
        (humans or bots, [Magic] buffs included) and no Mana on its numbers while it is in play. Replaces the v1.1.16 'Mana on buffs in play'. */
-    const dupNS=buffNoStack(d.name)&&P.buffs.some(b=>DEF[b.key].name===d.name); P.buffs.push(c); if(dupNS){ log(`⚠ ${d.name}: บัฟนี้ซ้อนไม่ได้ผลเพิ่ม — ผลออกแค่ใบเดียว`,'warn'); if(!HEADLESS&&!SIM.on&&!P.bot&&typeof UI!=='undefined'&&UI.toast) try{ UI.toast('⚠ บัฟนี้ซ้อนไม่ได้ผลเพิ่ม — ผลออกแค่ใบเดียว',true); }catch(_){} } afterPlay(P,c,d,ctx); log(`✨ ${d.name} วางไว้หน้าคุณ (ทำงานต่อเนื่องจนถึง Rest Phase)`,'sys'); return; }
+    const dupNS=buffNoStack(d.name)&&P.buffs.some(b=>DEF[b.key].name===d.name); P.buffs.push(c); if(dupNS){ log(`⚠ ${d.name}: บัฟนี้ซ้อนไม่ได้ผลเพิ่ม — ผลออกแค่ใบเดียว`,'warn'); if(!HEADLESS&&!SIM.on&&!P.bot&&typeof UI!=='undefined'&&UI.toast) try{ UI.toast('⚠ บัฟนี้ซ้อนไม่ได้ผลเพิ่ม — ผลออกแค่ใบเดียว',true); }catch(_){} } await afterPlay(P,c,d,ctx); log(`✨ ${d.name} วางไว้หน้าคุณ (ทำงานต่อเนื่องจนถึง Rest Phase)`,'sys'); return; }
   // Mana: +/-1 per card (Magic: any amount)
   const magic=!!f.magic; let maxM = magic? P.mana : Math.min(1,P.mana);
   if(!magic&&hasItem(P,'Sorcerer’s Override')) maxM=Math.min(2,P.mana);
@@ -1814,7 +1814,7 @@ async function playCard0(P,c,o={}){
   if(P.tackle&&P.tackle.card!==c&&d.type==='attack'){ if(ctx.hitU&&ctx.hitU.has(P.tackle.uid)){ const dd=ctx.debt&&ctx.debt.kind==='tackle'?ctx.debt.amt:0; if(dd) ctx.debt=null; const r=Math.min(P.tackle.less-dd,ctx.paid||0); if(r>0){ P.shard+=r; P.shardSpent-=r; log(`Tackle+: โจมตีเป้าเดิม ค่าร่ายลด ${r} (คืน ${r} Shard)`,'sys'); } } P.tackle=null; }
   if(P.hurtle&&ctx.hurtHit&&d.type==='attack'){ P.hurtle.n--; if(P.hurtle.n<=0) P.hurtle=null; }
   if(ops.some(op=>op.t==='atk')) P.rangeNext=0;
-  afterPlay(P,c,d,ctx);
+  await afterPlay(P,c,d,ctx);
   if(ctx.toHand){ c.spree=true; c.spreeV=mz(P,'spree',0); P.hand.push(c); }
   else if(P.mimic>0&&(d.type==='attack'||d.type==='trick')){ P.mimic--; P.deck.unshift(c); }
   else if(f.remove||o.removeAfter) await toRemove(P,c);
@@ -1831,11 +1831,11 @@ async function checkTrinity(P){
   const t=await ask(P,{kind:'mon',prompt:'Grand Trinity: ทำ 7 ดาเมจใส่ศัตรูตัวใดก็ได้',options:ms,purpose:'atk',dmg:7}); if(t){ log('🔺 Grand Trinity!','sys'); await hitMon(P,t,7,{noWeak:1},{}); }
 }
 async function closeQuarters(P,m){ const l=buffLv(P,'Close Quarters'); if(!l||m.hp<=0) return; const n=l===2?P.hand.length:P.hand.filter(h=>h.key!=='EXH'&&DEF[h.key].type==='trick').length; if(n>0){ log(`Close Quarters: ${P.name} → ${m.name}`,'sys'); for(let cq=1;cq<buffN(P,'Close Quarters')&&m.hp>0;cq++) await hitMon(P,m,n,{noWeak:1},{}); /* v1.1.44: per copy */ if(m.hp>0) await hitMon(P,m,n,{noWeak:1},{}); } }
-function afterPlay(P,c,d,ctx){
+async function afterPlay(P,c,d,ctx){
   P.playedTurn++;
   if(d.type==='attack'){ P.atkPlayedTurn=true; const bd=buffLv(P,'Best Defence'); if(bd) gainShield(P,bn(P,'Best Defence','sh',2,3)); }
   if(d.type==='trick'){ P.tricksTurn++; P.trickPlayed=true; if(buffN(P,'Best Defence',true)) gainShield(P,bn(P,'Best Defence','sh',0,3)); /* v1.1.44: trick part = upgraded copies only */
-    const vs=bv(P,'Voltaic Style',2,3); if(vs){ const ms=allMons(); if(ms.length){ const t=ms.reduce((a,b)=>a.hp<b.hp?a:b); hitMon(P,t,vs,{noWeak:1},{}); } }
+    const vs=bv(P,'Voltaic Style',2,3); if(vs&&!G.over){ const t=await pickMon(P,allMons(),`Voltaic Style: เลือกศัตรูตัวใดก็ได้ (${vs} ดาเมจ)`,vs); if(t) await hitMon(P,t,vs,{noWeak:1},{}); } /* v1.1.63: 'an enemy in any space' -> player chooses (was auto lowest HP) */
     if(hasItem(P,'Divine Beaconstaff')&&P.tricksTurn===2) gainShield(P,4); }
   const raw=c.up?d.ucost:d.cost;
   if(hasItem(P,'Voidborn Gauntlet')&&raw!=='X'&&raw>=2){ draw(P,1); heal(P,1); }
@@ -1986,6 +1986,10 @@ async function dariusPick(P,t,dmg){ const g=dariusPaths(P,t); if(!g.length) retu
     else { const ch=await ask(P,{kind:'opt',prompt:`Darius: เลือกเส้นทางการโจมตีไปยัง ${t.name} (ศัตรูบนเส้นทางโดน ${dmg} ดาเมจ)`,options:opts,purpose:'dariusPath',forcePrompt:true}); if(ch) pick=g[ch.v]; } }
   if(pick.mons.length) log(`➡ Darius โจมตีทะลุเส้นทาง: ${pick.mons.map(m=>m.name).join(', ')}`,'hit');
   return pick.mons; }
+/* v1.1.63: effects that hit "1 enemy" / "an enemy in any space" without saying random -> the human chooses (board click/tap, valid targets highlighted);
+   bots go through BOT.choose (kind 'mon', purpose 'atk' = killable / lowest-HP / threat scoring). Only text saying random (สุ่ม) stays random. */
+async function pickMon(P,opts,prompt,dmg){ opts=(opts||[]).filter(m=>m&&m.hp>0); if(!opts.length) return null; return await ask(P,{kind:'mon',prompt,options:opts,purpose:'atk',dmg}); }
+async function pickMons(P,opts,n,prompt,dmg){ const out=[]; for(let i=0;i<n;i++){ const left=(opts||[]).filter(m=>m&&m.hp>0&&!out.includes(m)); if(!left.length) break; const ch=await pickMon(P,left,n>1?`${prompt} ${i+1}/${n}`:prompt,dmg); if(!ch) break; out.push(ch); } return out; }
 async function doAttack(P,op,ctx){
   /* v1.1.17: printed target count ("1 enemy") adjustable by Mana: resolve once per target, never the same enemy twice */
   if(op.tn>1&&!(ctx&&ctx.__tn)){ ctx=ctx||{}; ctx.__tn=1; ctx.excl=new Set(); const o1=Object.assign({},op,{tn:1}); try{ for(let k=0;k<op.tn;k++){ if(G.over) break; await doAttack(P,o1,ctx); } } finally{ delete ctx.__tn; delete ctx.excl; } return; }
@@ -2047,8 +2051,8 @@ async function doAttack(P,op,ctx){
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
         if(ctx.up){ const c2=await ask(P,{kind:'cell',prompt:'ย้ายตัวคุณไปช่องใดก็ได้',options:allCells(c=>canStop(P,c.x,c.y)),purpose:'teleport',cancel:'ไม่ย้าย'}); if(c2) await enterCell(P,c2.x,c2.y,null);} }
       if(op.bomb){ const cx=ch.x,cy=ch.y; for(const [dx,dy] of DIRS){ const u=unitAt(cx+dx,cy+dy); if(!u) continue; if(u.isMon) await hitMon(P,u,op.bomb,{noWeak:1},{}); else await hurtHero(u,op.bomb,{self:true}); } }
-      if(op.echo){ const adj=allMons().filter(m=>m!==ch&&dist(m,ch)===1); for(const m of (op.echoAll?adj:adj.slice(0,op.echoN||1))) { targets.push(m); await hitMon(P,m,op.echo,{noWeak:1},{}); } }
-      if(op.chain){ const near=allMons().filter(m=>m!==ch&&dist(m,ch)<=(op.chainR||2)); for(const m of (op.chainAll?near:near.slice(0,op.chainN||1))) { targets.push(m); await hitMon(P,m,op.chain,{noWeak:1,isAtk:true},ctx); } }
+      if(op.echo){ const adj=allMons().filter(m=>m!==ch&&dist(m,ch)===1); for(const m of (op.echoAll?adj:await pickMons(P,adj,op.echoN||1,`เลือกศัตรูที่อยู่ติดกับเป้าหมาย (${op.echo} ดาเมจ)`,op.echo))) { targets.push(m); await hitMon(P,m,op.echo,{noWeak:1},{}); } }
+      if(op.chain){ const near=allMons().filter(m=>m!==ch&&dist(m,ch)<=(op.chainR||2)); for(const m of (op.chainAll?near:await pickMons(P,near,op.chainN||1,`เลือกศัตรูในระยะ ${op.chainR||2} ช่องจากเป้าหมาย (${op.chain} ดาเมจ)`,op.chain))) { targets.push(m); await hitMon(P,m,op.chain,{noWeak:1,isAtk:true},ctx); } }
     } }
   }
   if(P.hero.name==='Laura Emberlyn'){ const hit=[...new Set(targets)]; if(hit.length>1) for(const m of hit) if(m.hp>0) await hitMon(P,m,P.heroUp?5:3,{noWeak:1},{}); }
@@ -2704,7 +2708,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.62', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.63', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
