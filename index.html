@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.63</title>
+<title>Project Dungeon v1.1.64</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -870,9 +870,31 @@ body.dragging,body.dragging *{touch-action:none!important}
 #cells .cell .tre.img{animation:treBob 1.6s ease-in-out infinite}
 #cells .cell .tre.img img.prop{filter:brightness(1.25) saturate(1.3) drop-shadow(0 0 1.5px #fff8d0) drop-shadow(0 0 7px #ffd54a) drop-shadow(0 0 12px #ffb300) drop-shadow(0 3px 3px #000c)!important}
 @media (prefers-reduced-motion:reduce){#cells .cell:has(.tre),#cells .cell .tre.img{animation:none}}
+/* v1.1.64 bone undying + goblin traps */
+#toks .tok.mon.undying{opacity:.55;filter:grayscale(.7) brightness(1.2) drop-shadow(0 0 8px #b9e6ff)}
+#toks .tok.mon.undying .undy{position:absolute;left:50%;top:auto;bottom:22%;transform:translateX(-50%);white-space:nowrap;background:#1b1f2acc;color:#dff3ff;border:1px solid #9fd8ff;border-radius:8px;padding:1px 6px;font:700 11px/16px sans-serif;z-index:6;opacity:1}
+#cells .cell.trap .trapi{position:absolute;inset:14%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#3a2410 0,#5a3815 55%,#c88a2e 58%,#3a2410 64%,transparent 70%);box-shadow:0 0 0 2px #ffb24a,0 0 10px #ff7a1a99;pointer-events:none;z-index:0}
+#cells .cell.trap .trapi i{font-style:normal;font-size:calc(var(--cs)*.32);filter:drop-shadow(0 1px 1px #000)}
+#cells .cell.trap .trapi b{position:absolute;right:-6%;bottom:-6%;background:#c62828;color:#fff;border-radius:7px;padding:0 4px;font:800 calc(var(--cs)*.15)/1.3 sans-serif;border:1px solid #fff8}
+@keyframes trapWarn{0%,100%{box-shadow:inset 0 0 0 3px #ff3b3b,inset 0 0 calc(var(--cs)*.4) #ff000088}50%{box-shadow:inset 0 0 0 4px #ffd0d0,inset 0 0 calc(var(--cs)*.55) #ff0000bb}}
+#cells .cell.trapWarn{animation:trapWarn 1s ease-in-out infinite}
+#cells .mvstep.trapStep{background:#b71c1c!important}#cells .mvstep em{font-style:normal;margin-left:2px}
+/* v1.1.64 beast water tiles */
+@keyframes waterRip{0%{background-position:0 0,0 0}100%{background-position:40px 20px,-30px 30px}}
+#cells .cell.water .wateri{position:absolute;inset:6%;border-radius:38%;pointer-events:none;background:repeating-radial-gradient(circle at 30% 40%,#bfefff55 0 2px,transparent 3px 10px),linear-gradient(160deg,#2f8fc9e6,#145a8ce6);background-size:40px 40px,100% 100%;box-shadow:0 0 0 2px #8fdcff,inset 0 0 calc(var(--cs)*.25) #0b3456,0 0 8px #49b8ff88;animation:waterRip 3s linear infinite;opacity:.92}
+#cells .cell.water .wstop{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);white-space:nowrap;background:#0d47a1;color:#fff;border:1px solid #bfe9ff;border-radius:7px;padding:0 4px;font:800 calc(var(--cs)*.14)/1.4 sans-serif;z-index:2}
+@media (prefers-reduced-motion:reduce){#cells .cell.water .wateri{animation:none}}
+/* v1.1.64: ALL dungeons — obstacle tiles sunken/dark with a warm rim + ground shadow + lifted, outlined prop (beast treatment from v1.1.61 generalised) */
+#cells .cell.obs{box-shadow:inset 0 0 0 2px #f2d68aa8,inset 0 0 calc(var(--cs)*.42) calc(var(--cs)*.06) #000d!important;background-blend-mode:multiply;background-color:#5b5040!important}
+#cells .cell.obs:before{content:'';position:absolute;left:12%;right:12%;bottom:8%;height:22%;border-radius:50%;background:radial-gradient(ellipse,#000c 0,#0008 45%,transparent 72%);pointer-events:none}
+#cells .cell.obs .rock.img{transform:translateY(-5%);filter:none}
+#cells .cell.obs .rock.img img.prop{filter:brightness(1.22) saturate(1.3) contrast(1.12) drop-shadow(0 0 1.2px #fff1bf) drop-shadow(0 0 1.2px #fff1bf) drop-shadow(0 5px 4px #000e)}
+#cells .cell.obs .rock:not(.img){filter:brightness(1.2) drop-shadow(0 0 1.5px #fff1bf) drop-shadow(0 4px 4px #000e)}
+#toks .tok.mon.undying .undy{pointer-events:auto;cursor:help}#tip{white-space:pre-line}
+#prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.63 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.64 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <label>จำนวนผู้เล่น <select id="np"><option value="1">1 คน</option><option value="2">2 คน</option></select></label>
   <label>ความยาก <select id="diff"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></label>
@@ -1326,14 +1348,22 @@ const itemDef = n => D.items.find(i=>i.name===n);
 let G=null; let UID=1;
 const key=(x,y)=>x+','+y;
 const mk = (k,up=false)=>({uid:UID++,key:k,up,pow:0});
-function monsters(P){ if(!G) return []; const all=G.mons.filter(m=>m.hp>0); if(P&&G.players.length>1&&P.board!=null) return all.filter(m=>boardOf(m.x)===boardOf(P.x)); return all; }
-const allMons = () => G.mons.filter(m=>m.hp>0);
+function monsters(P){ if(!G) return []; const all=G.mons.filter(m=>m.hp>0&&!m.undying); if(P&&G.players.length>1&&P.board!=null) return all.filter(m=>boardOf(m.x)===boardOf(P.x)); return all; }
+const allMons = () => G.mons.filter(m=>m.hp>0&&!m.undying);
+/* v1.1.64 BONE DUNGEON RULE (สุสานกระดูก): a monster reaching 0 HP becomes 'undying' — HP stays 0, untargetable/undamageable/unhealable, still occupies its tile,
+   acts ONE more time on its next monster turn (normal AI) and then dies (kill count + on-kill triggers for the hero who dropped it happen THEN). The room only ends when no monster is alive or undying. */
+const liveMons = () => G.mons.filter(m=>m.hp>0||m.undying);
+const boneRule = m => !!G&&!G.tut&&((G.dungeons&&typeof boardOf==='function'&&G.dungeons[boardOf(m.x)])||G.dungeon)==='bone';
+async function downMon(P,m,perfect){ if(boneRule(m)&&!m.undying&&!m.undyDone){ m.hp=0; m.poison=0; m.shield=0; m.stun=0; m.undying={pid:P?P.id:0,perfect:!!perfect};
+    log(`💀 ${m.name} HP 0 — แต่ยังไม่ตาย! (กฎสุสานกระดูก: จะได้เดิน/โจมตีอีก 1 เทิร์นแล้วจึงตาย)`,'mon'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.boneBanner) try{ UI.boneBanner(m); }catch(_){} return; }
+  await killMon(P,m,perfect); }
+async function undyingDie(m){ const u=m.undying; m.undying=null; m.undyDone=true; m.hp=0; const P=G.players.find(p=>p.id===u.pid)||G.players[0]; log(`💀 ${m.name} สิ้นแรงหลังเทิร์นสุดท้าย`,'mon'); await killMon(P,m,u.perfect); }
 const heroes = ()=>G.players.filter(p=>p.hp>0);
 const boardOf = x => Math.floor(x/5);
 const dist=(a,b)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
 const inB=(x,y)=>x>=0&&y>=0&&x<G.W&&y<G.H;
 const isObs=(x,y)=>G.obs.has(key(x,y))||G.ice.has(key(x,y));
-const monAt=(x,y)=>G.mons.find(m=>m.hp>0&&m.x===x&&m.y===y);
+const monAt=(x,y)=>G.mons.find(m=>(m.hp>0||m.undying)&&m.x===x&&m.y===y);
 const heroAt=(x,y)=>G.players.find(p=>p.hp>0&&p.x===x&&p.y===y);
 const unitAt=(x,y)=>monAt(x,y)||heroAt(x,y);
 const onEdge=u=>{const bx=u.x%5;return bx===0||bx===4||u.y===0||u.y===G.H-1;};
@@ -1565,7 +1595,7 @@ async function rollCri(P,n){ let t=0; for(let i=0;i<n;i++){ let f=krnd('cri'+P.i
 async function rollDieShow(P,face,val,i,n,note){ if(HEADLESS||SIM.on||typeof UI==='undefined'||!UI.rollDie) return; await emgWrap(UI.rollDie(P,face,val,i,n,note)); }
 
 async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set()).add(m.uid);
-  if(!m||m.hp<=0) return 0;
+  if(!m||m.hp<=0||m.undying) return 0;
   if(op.isAtk&&ctx&&P&&!P.isMon&&ctx._faceOp!==op){ ctx._faceOp=op; faceToward(P,m); }
   /* v1.1.52 OWNER RULE: shields block attacks from every direction. Weak Point (shield bypass + bonus + FX) applies ONLY when
      the attacking card's text has the Weak Point ability (weakDmg/weakCri/weakDraw/weakShard/onWeak/cond 'weak') or a Weak Point
@@ -1601,7 +1631,7 @@ async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set())
     if(pz>0){ pz+=bv(P,'Toxic Catalyst',1,2); m.poison+=pz; log(`☠ ${m.name} ติดพิษ ${pz}`,'sys'); }
     if(op.stun){ m.stun=1; log(`💫 ${m.name} ติดสตัน`,'sys'); }
   }
-  if(m.hp<=0) await killMon(P,m,before===real);
+  if(m.hp<=0) await downMon(P,m,before===real);
   return real;
 }
 async function killMon(P,m,perfect){
@@ -1653,12 +1683,13 @@ const canStop=(P,x,y)=>inB(x,y)&&!isObs(x,y)&&!unitAt(x,y);
    ghost effects; allies (and ghosted enemies/obstacles) can be passed through but not stopped on.
    Returns stop-able destinations with the shortest legal path (length within [min,n]). */
 function moveCells(P,n,min,opt={}){
+  if(P&&!P.isMon&&P.waterStop) return []; const WS=P&&!P.isMon&&G.water&&G.water.size; /* v1.1.64 water: paths end on water */
   const sk=key(P.x,P.y); const best=new Map(); // key -> {x,y,d,path}
   let fr=[{x:P.x,y:P.y,path:[]}]; const seen=new Set([sk+'|0']);
   for(let s=1;s<=n;s++){ const nf=[];
     for(const c of fr) for(const d of DIRS){ const x=c.x+d[0],y=c.y+d[1]; if(!canEnter(P,x,y,opt)) continue;
       const k=key(x,y), sk2=k+'|'+s; if(seen.has(sk2)) continue; seen.add(sk2);
-      const nc={x,y,path:c.path.concat([{x,y,d}])}; nf.push(nc);
+      const nc={x,y,path:c.path.concat([{x,y,d}])}; if(WS&&isWater(x,y)){ if(!canStop(P,x,y)) continue; } else nf.push(nc);
       if(s>=min&&k!==sk&&canStop(P,x,y)&&!best.has(k)) best.set(k,{x,y,d,steps:s,path:nc.path}); }
     fr=nf; if(!fr.length) break; }
   /* v1.1.16: for each destination pick the BEST shortest path: pass over floor pickups, and maximise enemies hit by move-triggered effects */
@@ -1667,21 +1698,28 @@ function moveCells(P,n,min,opt={}){
 }
 function pathScore(P,path){ let sc=0; const seen=new Set(), passed=new Set(); let prev=new Set(adjEnemies(P).map(m=>m.uid));
   const cq=buffLv(P,'Close Quarters'), gw=buffLv(P,'Ghost Walk')===2, tg=!!P.toxicGhost, tr=!!P.trail;
-  path.forEach((st,i)=>{ const last=i===path.length-1; if(!last&&G.treasures.some(t=>t.x===st.x&&t.y===st.y)) sc+=10;
+  path.forEach((st,i)=>{ const last=i===path.length-1; if(!last&&G.treasures.some(t=>t.x===st.x&&t.y===st.y)) sc+=10; if(G.traps&&G.traps.has(key(st.x,st.y))) sc-=20; /* v1.1.64 avoid goblin traps when an equal-length path exists */
     const pm=monAt(st.x,st.y); if(pm&&!passed.has(pm.uid)&&(gw||tg)){ passed.add(pm.uid); sc+=4; }
     const adj=allMons().filter(m=>dist(m,st)===1); const now=new Set(adj.map(m=>m.uid));
     if(cq&&!pm) for(const m of adj) if(!prev.has(m.uid)&&!seen.has('cq'+m.uid)){ seen.add('cq'+m.uid); sc+=3; }
     if(tr) for(const m of adj) if(!seen.has('tr'+m.uid)){ seen.add('tr'+m.uid); sc+=3; }
     prev=now; });
   return sc; }
-function bestPath(P,dest,opt){ const L=dest.path.length; if(L<2) return null; let best=null,bs=-1,cnt=0;
+function bestPath(P,dest,opt){ const L=dest.path.length; if(L<2) return null; let best=null,bs=-1e9,cnt=0;
   const rec=(x,y,path)=>{ if(cnt>3000) return; if(path.length===L){ if(x===dest.x&&y===dest.y){ cnt++; const sc=pathScore(P,path); if(sc>bs){bs=sc;best=path.slice();} } return; }
     const left=L-path.length; if(Math.abs(dest.x-x)+Math.abs(dest.y-y)>left) return;
-    for(const d of DIRS){ const nx=x+d[0],ny=y+d[1]; if(!canEnter(P,nx,ny,opt)) continue; if(path.length===L-1&&!(nx===dest.x&&ny===dest.y)) continue; path.push({x:nx,y:ny,d}); rec(nx,ny,path); path.pop(); } };
-  rec(P.x,P.y,[]); return bs>0?best:null; }
+    for(const d of DIRS){ const nx=x+d[0],ny=y+d[1]; if(!canEnter(P,nx,ny,opt)) continue; if(!P.isMon&&path.length<L-1&&isWater(nx,ny)) continue; if(path.length===L-1&&!(nx===dest.x&&ny===dest.y)) continue; path.push({x:nx,y:ny,d}); rec(nx,ny,path); path.pop(); } };
+  rec(P.x,P.y,[]); return bs>pathScore(P,dest.path)?best:null; }
+/* v1.1.64 goblin trap: a HERO entering a trap tile (walking through, stopping, dash, swap or teleport landing) takes 3 damage each time; shields absorb as usual */
+/* v1.1.64 beast water: a HERO entering water (walk, dash, teleport/swap landing) stops there and cannot move again this turn */
+const isWater=(x,y)=>!!(G.water&&G.water.has(key(x,y)));
+function waterCheck(P,x,y){ if(P.isMon||!isWater(x,y)||P.waterStop) return; P.waterStop=true; log(`🌊 ${P.name} ตกแอ่งน้ำ! หยุดเดินทันที และเดินต่อไม่ได้ในเทิร์นนี้`,'warn'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.waterFx) try{ UI.waterFx(x,y,'หยุด!'); }catch(_){} }
+async function trapCheck(P,x,y){ if(!G.traps||!G.traps.has(key(x,y))||P.isMon||P.hp<=0||G.over) return; log(`🪤 ${P.name} เหยียบกับดักก็อปลิน! โดน 3 ดาเมจ`,'hit'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.trapFx) try{ UI.trapFx(P,x,y); }catch(_){} await hurtHero(P,3,{self:true,trap:true}); }
 async function enterCell(P,x,y,dir){
   const passMon=monAt(x,y); const adjBefore=new Set(adjEnemies(P).map(m=>m.uid));
   P.x=x;P.y=y; if(dir) P.face=dir; P.movedTurn=(P.movedTurn||0)+1;
+  await trapCheck(P,x,y);
+  waterCheck(P,x,y);
   if(passMon&&buffLv(P,'Ghost Walk')===2) await hitMon(P,passMon,bn(P,'Ghost Walk','dmg',0,2),{noWeak:1},{});
   if(passMon&&P.toxicGhost) { passMon.poison+=(P.toxicGhost===true?1:P.toxicGhost); }
   if(buffLv(P,'Close Quarters')&&!monAt(x,y)) for(const m of adjEnemies(P)) if(!adjBefore.has(m.uid)) await closeQuarters(P,m);
@@ -1738,12 +1776,22 @@ async function stepMoves(P,n,min,opt={}){
   if(P.fitFirm){ P.fitAcc=(P.fitAcc||0)+moved; while(P.fitAcc>=P.fitFirm[0]){P.fitAcc-=P.fitFirm[0];P.shard+=P.fitFirm[1];} }
   return moved;
 }
-async function takeTreasure(P,t){
-  if(t.type==='potion'){ log(`🧪 ${P.name} เก็บยา (ฮิล 3)`,'good'); await heal(P,3); }
-  else if(t.type==='chest'){ P.coins++; log(`💰 ${P.name} เปิดหีบ ได้ 1 Coin`,'good'); }
+/* v1.1.64 2P: the hero who picks up a pickup (card spot / potion / chest) chooses who receives it: keep or give to the partner. Solo: no prompt.
+   Card: the RECIPIENT's level-up pile offers the cards and the recipient picks (into the recipient's discard). Potion: recipient heals 3. Chest: recipient +1 Coin.
+   Bots: potion -> the hero missing more HP; card -> keep unless own level-up pile is empty and partner's isn't; chest -> keep. */
+function giveChoiceBot(P,Q,t){ if(t.type==='potion'){ const mp=P.maxhp-P.hp, mq=Q.maxhp-Q.hp; return (Q.hp>0&&mq>mp&&mp<3)?Q:P; } if(t.type==='card') return (!P.lv.length&&Q.lv.length)?Q:P; return P; }
+async function pickupRecipient(P,t){ const Q=G.players.length===2?G.players.find(x=>x!==P):null; if(!Q||Q.hp<=0) return P;
+  if(P.bot||(HEADLESS&&!globalThis.__askHook)||SIM.on) return giveChoiceBot(P,Q,t);
+  const what={card:'🃏 การ์ด (เลือกจากกองเลเวลอัปของผู้รับ)',potion:'🧪 ยาฮีล 3 HP',chest:'💰 หีบ 1 Coin'}[t.type]||'ของ';
+  const ch=await ask(P,{kind:'opt',prompt:`เก็บ ${what} — ให้ใคร?`,options:[{label:`เก็บเอง (${P.name} · ${P.hero.name})`,v:P.id,hero:P.hero.name},{label:`ให้เพื่อน: ${Q.name} · ${Q.hero.name}${t.type==='potion'?` (HP ${Q.hp}/${Q.maxhp})`:''}`,v:Q.id,hero:Q.hero.name}],purpose:'givePickup',forcePrompt:true});
+  return ch&&ch.v===Q.id?Q:P; }
+async function takeTreasure(P0,t){
+  const P=await pickupRecipient(P0,t); if(P!==P0) log(`🎁 ${P0.name} ส่งของให้ ${P.name}`,'good');
+  if(t.type==='potion'){ log(`🧪 ${P.name} ได้ยา (ฮีล 3)`,'good'); await heal(P,3); }
+  else if(t.type==='chest'){ P.coins++; log(`💰 ${P.name} ได้ 1 Coin จากหีบ`,'good'); }
   else { const keys=P.lv.splice(0,3+(hasItem(P,'Ruby Sigil')?3:0)); if(!keys.length) return;
     const cards=keys.map(k=>mk(k));
-    const ch=await ask(P,{kind:'card',prompt:'สมบัติการ์ด: เลือกการ์ด 1 ใบ (เข้ากองทิ้ง)',options:cards,purpose:'gain',cancel:'⏭ ข้าม (ไม่รับการ์ด)'});
+    const ch=await ask(P,{kind:'card',prompt:`สมบัติการ์ด${P!==P0?` (จาก ${P0.name})`:''}: เลือกการ์ด 1 ใบ (เข้ากองทิ้งของ ${P.name})`,options:cards,purpose:'gain',cancel:'⏭ ข้าม (ไม่รับการ์ด)'});
     if(!ch) log(`⏭ ${P.name} ข้ามรางวัลการ์ด (ไม่รับการ์ด)`,'sys');
     if(ch){ P.discard.push(ch); log(`🃏 ${P.name} ได้การ์ด ${DEF[ch.key].name}`,'good'); }
     cards.filter(c=>c!==ch).forEach(c=>P.lv.push(c.key)); }
@@ -1891,6 +1939,7 @@ function applyLit(ops,deltas,mult){ for(const [id,d0] of Object.entries(deltas))
 function bonus(ctx){ if(ctx.bonus&&!ctx.bonusUsed){ctx.bonusUsed=true;return ctx.bonus*ctx.manaMult;} return 0; }
 function allCells(filter){ const r=[]; for(let x=0;x<G.W;x++)for(let y=0;y<G.H;y++){ const c={x,y}; if(!filter||filter(c)) r.push(c);} return r; }
 async function doOp(P,op,ctx){
+  if(P&&!P.isMon&&P.waterStop&&MOVE_T.has(op.t)){ log(`🌊 ${P.name} อยู่ในแอ่งน้ำ — เดินไม่ได้อีกในเทิร์นนี้ (ข้ามการเดินของการ์ด)`,'warn'); return; }
   switch(op.t){
   case 'atk': return doAttack(P,op,ctx);
   case 'shield': return gainShield(P,val(op.n,P,ctx)+bonus(ctx));
@@ -1944,7 +1993,7 @@ async function doOp(P,op,ctx){
       G.obs.delete(key(cx,cy)); G.obs.add(key(nx,ny)); cx=nx; cy=ny; } } return;
   case 'stalk': { const ms=allMons().filter(m=>(!op.adj||dist(m,P)===1)&&(canStop(P,m.x-m.face[0],m.y-m.face[1])||(m.x-m.face[0]===P.x&&m.y-m.face[1]===P.y))); if(!ms.length) return;
     const ch=await ask(P,{kind:'mon',prompt:'เลือกศัตรูที่จะไปยืนด้านหลัง (Weak Point)',options:ms,purpose:'stalk'}); if(ch){ await enterCell(P,ch.x-ch.face[0],ch.y-ch.face[1],ch.face.slice()); } return; }
-  case 'swapAny': { const ms=allMons().filter(m=>dist(m,P)<=op.r); if(!ms.length) return; const ch=await ask(P,{kind:'mon',prompt:'เลือกศัตรูที่จะสลับตำแหน่ง',options:ms,purpose:'swap'}); if(ch){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; } return; }
+  case 'swapAny': { const ms=allMons().filter(m=>dist(m,P)<=op.r); if(!ms.length) return; const ch=await ask(P,{kind:'mon',prompt:'เลือกศัตรูที่จะสลับตำแหน่ง',options:ms,purpose:'swap'}); if(ch){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); waterCheck(P,P.x,P.y); } return; }
   case 'sling': { if(op.stop&&!P.bot){ /* v1.1.44: 'Move any number of spaces in a straight line' — the player picks the stopping cell (was: always the farthest) */
       const opts=[]; for(const d of DIRS){ let x=P.x,y=P.y; const path=[]; while(inB(x+d[0],y+d[1])&&canEnter(P,x+d[0],y+d[1])){ x+=d[0];y+=d[1]; path.push({x,y,d}); if(canStop(P,x,y)) opts.push({x,y,d,steps:path.length,path:path.slice()}); } }
       if(!opts.length){ log(`${P.name} เดินเป็นเส้นตรงไม่ได้ — ทุกทิศถูกขวาง`,'warn'); return; }
@@ -1952,8 +2001,8 @@ async function doOp(P,op,ctx){
       for(const st of c.path){ if(G.over) break; await enterCell(P,st.x,st.y,st.d); }
       return; }
     const ch=await ask(P,{kind:'opt',prompt:op.stop?'เลือกทิศที่จะเดินเป็นเส้นตรง (ไกลสุด)':'เลือกทิศที่จะพุ่ง (ทะลุทุกอย่าง)',options:DIRS.map(d=>({label:dirName(d),v:d})),purpose:'dir'}); if(!ch) return;
-    let x=P.x,y=P.y,lx=P.x,ly=P.y; while(inB(x+ch.v[0],y+ch.v[1])&&(!op.stop||canStop(P,x+ch.v[0],y+ch.v[1]))){ x+=ch.v[0];y+=ch.v[1]; if(canStop(P,x,y)){lx=x;ly=y;} }
-    if(lx!==P.x||ly!==P.y){ const steps=Math.abs(lx-P.x)+Math.abs(ly-P.y); P.x=lx;P.y=ly;P.face=ch.v; P.movedTurn=(P.movedTurn||0)+steps; const ti=G.treasures.findIndex(t=>t.x===lx&&t.y===ly); if(ti>=0) await takeTreasure(P,G.treasures.splice(ti,1)[0]); } return; }
+    let x=P.x,y=P.y,lx=P.x,ly=P.y; while(inB(x+ch.v[0],y+ch.v[1])&&(!op.stop||canStop(P,x+ch.v[0],y+ch.v[1]))){ x+=ch.v[0];y+=ch.v[1]; if(canStop(P,x,y)){lx=x;ly=y; if(isWater(x,y)) break; /* v1.1.64 water stops the dash */} }
+    if(lx!==P.x||ly!==P.y){ const steps=Math.abs(lx-P.x)+Math.abs(ly-P.y); { const sx=P.x,sy=P.y; for(let k=1;k<=steps&&!G.over;k++) await trapCheck(P,sx+ch.v[0]*k,sy+ch.v[1]*k); } P.x=lx;P.y=ly;P.face=ch.v; P.movedTurn=(P.movedTurn||0)+steps; waterCheck(P,lx,ly); const ti=G.treasures.findIndex(t=>t.x===lx&&t.y===ly); if(ti>=0) await takeTreasure(P,G.treasures.splice(ti,1)[0]); } return; }
   case 'playTop': return playTopFree(P);
   case 'freePlay': for(let fi=0;fi<(op.n||1);fi++){ const opts=P.hand.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ด 1 ใบเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; await playCard(P,ch,{free:true}); } return;
   case 'searchPlay': for(let si=0;si<(op.n||1);si++){ ensureDeck(P); const opts=P.deck.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled&&(!op.attack||DEF[h.key].type==='attack')); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'ค้นกองจั่ว: เลือกการ์ดเพื่อเล่นฟรี',options:opts,purpose:'free'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck,'shuf'+P.id); await playCard(P,ch,{free:true}); } } return;
@@ -2006,7 +2055,7 @@ async function doAttack(P,op,ctx){
     if(isWeak(P,m)) ctx.weak=true;
     P.perfectNow=false;
     const r=await hitMon(P,m,dmg,hop,ctx);
-    if(m.hp<=0){ ctx.killed=true; if(P.perfectNow) ctx.perfect=true; if(op.onKill) await op.onKill(P); if(op.spree) ctx.toHand=true; if(op.onPerfect&&P.perfectNow) await op.onPerfect(P); }
+    if(m.hp<=0&&!m.undying){ ctx.killed=true; if(P.perfectNow) ctx.perfect=true; if(op.onKill) await op.onKill(P); if(op.spree) ctx.toHand=true; if(op.onPerfect&&P.perfectNow) await op.onPerfect(P); }
     else {
       const dirTo=[Math.sign(m.x-P.x),Math.sign(m.y-P.y)]; if(dirTo[0]&&dirTo[1]) dirTo[1]=0;
       const pn=(op.push||0)+(hasItem(P,'Pushional')&&proj?1:0);
@@ -2019,10 +2068,12 @@ async function doAttack(P,op,ctx){
     const t=singleTargets(P,op); if(!t.length){ log('ไม่มีเป้าหมาย','warn'); return; }
     const ch=await ask(P,{kind:'mon',prompt:'เลือกเป้าหมาย Deep Freeze',options:t,purpose:'atk',dmg}); if(!ch) return;
     if(ch.lv!=='Boss'&&ch.hp<ch.maxhp/2){ ch.hp=0; G.ice.add(key(ch.x,ch.y)); P.stats.kills++; log(`❄ ${ch.name} ถูกแช่แข็งกลายเป็น Ice Pillar`,'good'); } else await hitOne(ch); return; }
-  const ms=monsters(P);
+  /* v1.1.64 FIX (2P joined boards): targeted/adjacent attacks use ALL monsters (same as targeting previews, singleTargets and atkTargetsFrom) so a hero who moved
+     across the seam / stands on the seam column still hits adjacent enemies on the other board; only 'all enemies' stays on the board you stand on. */
+  const ms=allMons(), msB=monsters(P);
   switch(op.mode){
   case 'adjAll': targets=ms.filter(m=>dist(m,P)===1); await aoePreview(P,targets,DIRS.map(([dx,dy])=>({x:P.x+dx,y:P.y+dy})),dmg); for(let i=0;i<times;i++) for(const m of targets) await hitOne(m); break;
-  case 'all': targets=ms.slice(); await aoePreview(P,targets,targets.map(m=>({x:m.x,y:m.y})),dmg); for(let i=0;i<times;i++) for(const m of targets) await hitOne(m); break;
+  case 'all': targets=msB.slice(); await aoePreview(P,targets,targets.map(m=>({x:m.x,y:m.y})),dmg); for(let i=0;i<times;i++) for(const m of targets) await hitOne(m); break;
   case 'cross': targets=lineTargets(P,P.x,P.y); await aoePreview(P,targets,lineCells(P),dmg); for(let i=0;i<times;i++) for(const m of targets) await hitOne(m); break;
   case 'front': { let m=monAt(P.x+P.face[0],P.y+P.face[1]); /* v1.1.15: move+attack card (human): pick the target (front or any adjacent — turning is free) or Skip */ if(ctx&&ctx.moveAtk){ const adj=ms.filter(x=>dist(x,P)===1); m=null; if(adj.length){ m=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ — การหันไม่นับเป็นการเดิน)`,options:adj,purpose:'atk',dmg,cancel:'⏭ ข้าม (ไม่โจมตี)'}); if(!m){ log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } if(m.x!==P.x+P.face[0]||m.y!==P.y+P.face[1]){ P.face=[m.x-P.x,m.y-P.y]; log(`↪ ${P.name} หันไปทาง ${m.name} (ไม่นับเป็นการเดิน)`,'sys'); } } } /* v1.1.14: turning is NOT a move — if no enemy in front but one is adjacent, turn to it for free and hit */ if(!m&&!(ctx&&ctx.moveAtk)){ const adj=ms.filter(x=>dist(x,P)===1); if(adj.length){ m=adj.length===1?adj[0]:await ask(P,{kind:'mon',prompt:'หันไปโจมตีศัตรูตัวไหน (การหันไม่นับเป็นการเดิน)',options:adj,purpose:'atk',dmg}); if(m){ P.face=[m.x-P.x,m.y-P.y]; log(`↪ ${P.name} หันไปทาง ${m.name} (ไม่นับเป็นการเดิน)`,'sys'); } } } if(m){ targets=[m]; await aoePreview(P,targets,[{x:m.x,y:m.y}],dmg); await hitOne(m);} else log('⏭ ข้ามการโจมตี — ไม่มีศัตรูด้านหน้า (การเดินยังเกิดผลตามปกติ)','warn'); break; }
   case 'multi': { const pool=singleTargets(P,op); const chosen=[]; for(let i=0;i<op.n;i++){ const left=pool.filter(m=>!chosen.includes(m)&&m.hp>0); if(!left.length) break; const ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย ${i+1}/${op.n} (${dmg} ดาเมจ)`,options:left,purpose:'atk',dmg,cancel:i>0?'พอแล้ว':null}); if(!ch) break; chosen.push(ch); }
@@ -2045,8 +2096,8 @@ async function doAttack(P,op,ctx){
       if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
       const dpm=dariusOn(P,op,hop)?await dariusPick(P,ch,dmg):[]; /* v1.1.61 Darius: 'hit all enemies in path' */
       await hitOne(ch);
-      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; await hitMon(P,m,dmg,hop,ctx); if(m.hp<=0){ ctx.killed=true; if(op.onKill) await op.onKill(P); } }
-      if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; } }
+      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; await hitMon(P,m,dmg,hop,ctx); if(m.hp<=0&&!m.undying){ ctx.killed=true; if(op.onKill) await op.onKill(P); } }
+      if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); } }
       if(op.tele){ const cs=DIRS.map(([dx,dy])=>({x:ch.x+dx,y:ch.y+dy})).filter(c=>canStop(P,c.x,c.y)); if(cs.length){ const c=await ask(P,{kind:'cell',prompt:'เทเลพอร์ตไปช่องข้างเป้าหมาย',options:cs,purpose:'teleport',cancel:'ไม่ย้าย'}); if(c) await enterCell(P,c.x,c.y,null);} }
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
         if(ctx.up){ const c2=await ask(P,{kind:'cell',prompt:'ย้ายตัวคุณไปช่องใดก็ได้',options:allCells(c=>canStop(P,c.x,c.y)),purpose:'teleport',cancel:'ไม่ย้าย'}); if(c2) await enterCell(P,c2.x,c2.y,null);} }
@@ -2083,7 +2134,7 @@ function canAtkFrom(m,c,kind){
   if(kind==='line'){ const r=[]; for(const [dx,dy] of DIRS){ let x=c.x+dx,y=c.y+dy; while(inB(x,y)&&!isObs(x,y)){ const h=heroAt(x,y); if(h){r.push(h);break;} x+=dx;y+=dy; } } return r; }
   return [];
 }
-async function moveMonAlong(m,path){ const before=new Set(heroes().filter(h=>dist(h,m)===1).map(h=>h.id)); let s=0; for(const c of path){ faceToward(m,c); m.x=c.x;m.y=c.y; s++; }
+async function moveMonAlong(m,path){ const before=new Set(heroes().filter(h=>dist(h,m)===1).map(h=>h.id)); let s=0; for(const c of path){ faceToward(m,c); m.x=c.x;m.y=c.y; s++; if(G.water&&G.water.has(key(c.x,c.y))&&!m.undying&&m.hp>0){ const g=Math.min(2,m.maxhp-m.hp); m.hp+=g; log(`🌊 ${m.name} เดินผ่านแอ่งน้ำ ฟื้น ${g} HP`,'mon'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.waterFx) try{ UI.waterFx(c.x,c.y,'+'+g+' HP'); }catch(_){} } } /* v1.1.64 beast water heals enemies 2 per water tile entered */
   for(const h of heroes()) if(dist(h,m)===1&&!before.has(h.id)) await closeQuarters(h,m); return s; }
 /* v1.1.12: multi-source BFS — walking distance from every tile to the nearest tile from which monster m can shoot a hero */
 function shooterDistMap(m,kind){ const dm={}; const q=[]; for(const c of allCells(c=>!isObs(c.x,c.y)&&!heroAt(c.x,c.y)&&(!monAt(c.x,c.y)||(c.x===m.x&&c.y===m.y))&&canAtkFrom(m,c,kind).length)){ dm[key(c.x,c.y)]=0; q.push(c); }
@@ -2180,6 +2231,9 @@ function healOthers(m,n,all){ const hurt=allMons().filter(o=>o!==m&&o.hp>0&&o.hp
   for(const o of tg){ const g=Math.min(n,o.maxhp-o.hp); o.hp+=g; log(`💚 ${m.name} ฮีล ${o.name} +${g}`,'mon'); if(!SIM.on&&typeof UI!=='undefined'&&UI.floatAt) try{UI.floatAt(o,'+'+g,'heal');}catch(_){} }
   return tg.length; }
 async function monTurn(m){
+  if(m.undying){ if(G.over) return; m.hp=1; try{ await monTurn0(m); } finally{ if(m.undying&&!G.over) await undyingDie(m); else if(m.undying) m.hp=0; } return; } /* v1.1.64 bone: last action, then death */
+  return monTurn0(m); }
+async function monTurn0(m){
   const def=m.def; if(m.hp<=0||G.over) return;
   if(m.stun){ m.stun=0; log(`💫 ${m.name} ข้ามเทิร์น (สตัน)`,'mon'); return; }
   const hg=G.players.find(p=>buffLv(p,'Hazardous Ground'));
@@ -2206,7 +2260,7 @@ function connected(){ // every non-obstacle cell reachable from every other (no 
   return seen.size===cells.length;
 }
 function setupRoom(){
-  G.room++; G.round=0; G.mons=[]; G.obs=new Set(); G.ice=new Set(); G.fire={}; G.treasures=[];
+  G.room++; G.round=0; G.mons=[]; G.obs=new Set(); G.ice=new Set(); G.fire={}; G.treasures=[]; G.traps=new Set(); G.water=new Set();
   const spec=ROOMS[G.room];
   for(let b=0;b<G.players.length;b++){
     const bx=b*5; const dg=DUNGEONS[G.dungeons[b]||G.dungeons[0]]; const pool=G.elitePools[b]||G.elitePools[0]; const P=G.players[b];
@@ -2228,8 +2282,16 @@ function setupRoom(){
     }
     // rulebook (updated): every room has a card spot; rooms 4,6,8,9 also a potion; rooms 5,7,8,9 also a treasure chest
     for(const type of treasureTypes(G.room)){ const c=free(); if(!c.length) break; const p=c[rnd(c.length)]; G.treasures.push({x:p.x,y:p.y,type}); }
+    /* v1.1.64 GOBLIN DUNGEON RULE (ถ้ำก็อปลิน): 1 hidden-free goblin trap per room (rooms 5-10: 2) on an empty tile — not hero start, pickup spot, obstacle or monster.
+       Traps never block movement (room stays solvable). Own keyed RNG stream so other dungeons' random sequences are unchanged. */
+    /* v1.1.64 BEAST FOREST RULE (ป่าอสูร): 3 water tiles per room on empty tiles (not hero start / obstacle / pickup / monster). Water never blocks (room stays solvable). */
+    if(!G.tut&&(G.dungeons[b]||G.dungeons[0])==='beast'){ for(let i=0;i<3;i++){ const c=free().filter(c=>!G.water.has(key(c.x,c.y))); if(!c.length) break; const p=c[krnd('water',c.length)]; G.water.add(key(p.x,p.y)); } }
+    if(!G.tut&&(G.dungeons[b]||G.dungeons[0])==='goblin'){ const nT=G.room>=5?2:1; for(let i=0;i<nT;i++){ const c=free().filter(c=>!G.traps.has(key(c.x,c.y))); if(!c.length) break; const p=c[krnd('trap',c.length)]; G.traps.add(key(p.x,p.y)); } }
   }
   log(`══ ห้องที่ ${G.room}${G.room===10?' (ห้องบอส)':''} — Monster Wave: ${spec} ══`,'room');
+  { const dgs=new Set(G.players.map((_,b)=>G.dungeons[b]||G.dungeons[0])); if(dgs.has('bone')) log('💀 กฎสุสานกระดูก: Monster ที่ HP เหลือ 0 จะยังไม่ตาย — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วจึงตาย (โจมตีมันไม่ได้แล้ว) · ห้องจบเมื่อมันตายจริง','room');
+    if(dgs.has('beast')) log('🌊 กฎป่าอสูร: มีแอ่งน้ำ 3 ช่อง — ฮีโร่ที่เดินเข้าแอ่งน้ำต้องหยุดทันทีและเดินต่อไม่ได้ในเทิร์นนั้น (ยังโจมตี/เล่นการ์ดอื่นได้) · ศัตรูที่เดินเข้า/ผ่านแอ่งน้ำฟื้น 2 HP ต่อช่อง','room');
+    if(dgs.has('goblin')) log(`🪤 กฎถ้ำก็อปลิน: มีกับดัก ${G.room>=5?2:1} อันในห้องนี้ — ฮีโร่ที่เดินผ่าน/หยุดบนกับดักโดน 3 ดาเมจทุกครั้งที่เข้าช่อง (Monster ไม่โดน)`,'room'); }
 }
 
 /* ---------- phases ---------- */
@@ -2294,7 +2356,7 @@ function enterRoom(){ G.enraged=false; /* v1.1.45 enrage resets each room */
 }
 function startTurn(P){
   G.active=P; P.playedTurn=0; P.tricksTurn=0; P.shardSpent=0; P.movedTurn=0; P.hitTurn=new Set(); P.trailHit=new Set(); P.atkPlayedTurn=false; P.trickPlayed=false; P.velaUsed=false; P.marcelUsed=false;
-  P.costMod=0; P.retainN=0; P.forceEnd=false; P.noDraw=false; P.perfectTurn=false; P.dmgTurn=0; P.imprint=0; P.trail=0; P.fitFirm=null; P.fitAcc=0; P.crimsonUsed=false; P.phantomUsed=false; P.atkCount=0; P.flameWall=0;
+  P.costMod=0; P.retainN=0; P.forceEnd=false; P.waterStop=false; P.noDraw=false; P.perfectTurn=false; P.dmgTurn=0; P.imprint=0; P.trail=0; P.fitFirm=null; P.fitAcc=0; P.crimsonUsed=false; P.phantomUsed=false; P.atkCount=0; P.flameWall=0;
   P.didPush=false; P.didShield=false; P.didDmg=false; P.trinityDone=false; P.magicCount=0; P.staffUsed=false; P.stormUsed=false; P.jomUsed=0; P.hurtle=null; P.tackle=null;
   P.doubleNext=false; P.twiceNext=false; P.rangeNext=0; P.nextCostSet=null; P.nextCostMinus=0;
   P.freeNext=!!P.freeNextTurn; P.freeNextTurn=false;
@@ -2350,7 +2412,7 @@ async function endTurn(P){
 async function endRound(){
   for(const P of G.players){ if(P.reserve&&P.shieldUsedRound){ const rt=P.reserve===true?1:P.reserve; log(`Shield Reserve: ${P.name} +${P.shieldUsedRound*rt} Mana`,'sys'); await gainMana(P,P.shieldUsedRound*rt);} P.reserve=false; P.shieldUsedRound=0; }
   for(const m of allMons()){ const o=G.fire[key(m.x,m.y)]; if(o){ const P=G.players[o-1]; const d=P.mana; if(d<=0) continue; log(`🔥 ${m.name} ยืนบน Fire Space โดน ${d}`,'hit'); await hitMon(P,m,d,{noWeak:1},{}); } }
-  for(const m of allMons()) if(m.poison>0){ log(`☠ ${m.name} เสีย HP จากพิษ ${m.poison}`,'hit'); m.hp-=m.poison; m.poison--; if(m.hp<=0){ const k=G.players.find(p=>buffLv(p,'Venom Requiem'))||nearestHero(m)||G.players[0]; m.poison=1; await killMon(k,m,m.hp===0); } }
+  for(const m of allMons()) if(m.poison>0){ log(`☠ ${m.name} เสีย HP จากพิษ ${m.poison}`,'hit'); m.hp-=m.poison; m.poison--; if(m.hp<=0){ const k=G.players.find(p=>buffLv(p,'Venom Requiem'))||nearestHero(m)||G.players[0]; m.poison=1; await downMon(k,m,m.hp===0); } }
 }
 async function heroTurn(P,mid){
   clearUndo(); EMG.last=null;
@@ -2360,7 +2422,7 @@ async function heroTurn(P,mid){
   if(!HEADLESS) UI.render();
   let guard=0;
   while(!G.over && guard++<150){
-    if(!allMons().length) break;
+    if(!liveMons().length) break;
     if(P.forceEnd) break;
     if(hasItem(P,'Infernal Bulwark')&&!P.hand.length&&!P.ibUsed){ P.ibUsed=true; await draw(P,1); P.shard+=1; }
     const human=!P.bot&&(!HEADLESS||globalThis.__undoTest);
@@ -2381,7 +2443,7 @@ async function heroTurn(P,mid){
   }
   P.ibUsed=false;
   /* v1.1.8: room cleared -> the turn ends immediately: NO end-of-turn discard/draw (so no reshuffle / no Exhaust); straight to Rest */
-  if(!G.over && !allMons().length){ clearUndo('ห้องเคลียร์แล้ว'); P.str=0; G.active=null; log(`🏁 ห้องเคลียร์! จบเทิร์นทันที — ${P.name} เก็บการ์ดในมือไว้ ${P.hand.length} ใบ (ไม่ทิ้ง/ไม่จั่วใหม่)`,'room'); return; }
+  if(!G.over && !liveMons().length){ clearUndo('ห้องเคลียร์แล้ว'); P.str=0; G.active=null; log(`🏁 ห้องเคลียร์! จบเทิร์นทันที — ${P.name} เก็บการ์ดในมือไว้ ${P.hand.length} ใบ (ไม่ทิ้ง/ไม่จั่วใหม่)`,'room'); return; }
   if(!G.over) await endTurn(P);
 }
 async function doAction(P,act){
@@ -2399,7 +2461,7 @@ async function doAction(P,act){
   else if(act.type==='cycle'){ const l=buffLv(P,'Mana Cycle'); const cst=bn(P,'Mana Cycle','cost',2,1); if(!l||P.mana<cst) return; spendMana(P,cst); log(`Mana Cycle: ${cst} Mana → จั่ว 1`,'sys'); await draw(P,1); }
   else if(act.type==='evelyn'){ if(!ensureDeck(P)) return; const c=P.deck[0]; if(c&&c.key!=='EXH'){ if(P.heroUp) c.evel=1; if(playable(P,c)){ P.deck.shift(); P.hand.push(c); await playCard(P,c,{}); } else delete c.evel; } }
 }
-function monOrder(){ return allMons().sort((a,b)=>{const na=nearestHero(a),nb=nearestHero(b);return (na?dist(a,na):99)-(nb?dist(b,nb):99);}); }
+function monOrder(){ return liveMons().sort((a,b)=>{const na=nearestHero(a),nb=nearestHero(b);return (na?dist(a,na):99)-(nb?dist(b,nb):99);}); }
 /* ---- v1.1.44: per-round first player (2P digital adaptation; solo unaffected) ----
    G.firstOrder = [first,second] player indices for the current round (saved with the game, so Continue resumes the same order).
    Chooser: round 1 of the game = P1; afterwards the player who went SECOND last round picks. A bot chooser (or headless/all-bot games)
@@ -2434,7 +2496,7 @@ async function enrageCheck(){ if(!enrageOn()) return; const r=G.roundsInRoom;
 async function battle(rs){
   if(!rs) for(const P of G.players){ /* v1.1.9: room start = fresh shuffle of every card the player owns (safety net if no Rest preceded this room) */ if(P.hand.length||P.discard.length||P.removed.length||P.buffs.length){ P.buffs.forEach(c=>delete c.manaD); P.deck=P.deck.concat(P.hand.splice(0),P.discard.splice(0),P.removed.splice(0),P.buffs.splice(0)); P.deck.forEach(c=>{delete c.costSet;delete c.spree;}); shuffle(P.deck); } await draw(P,CFG.handSize+(hasItem(P,'Dawnbringer Gauntlet')?1:0)); if(hasItem(P,'Life Crystal')) await heal(P,3); }
   let rounds=G.roundsInRoom||0;
-  while(!G.over && allMons().length && rounds++<150){
+  while(!G.over && liveMons().length && rounds++<150){
     G.roundsInRoom=rounds;
     let i0=0, mid=false; if(rs){ i0=rs.i||0; mid=rs.at==='turn'; if(rs.newRound===false||mid){ rounds--; G.roundsInRoom=rounds; } else { rounds--; G.roundsInRoom=rounds; /* v1.1.45: the 'เริ่มรอบ' checkpoint already saved this round's count (enrage timing must match) */ G.round++; G.stats.rounds++; await enrageCheck(); if(G.players.length===2){ await chooseFirst(); checkpoint({at:'battle',i:0,newRound:false},'เลือกผู้เริ่มก่อน'); } } rs=null; }
     else { checkpoint({at:'battle',i:0,newRound:true},'เริ่มรอบ'); G.round++; G.stats.rounds++;
@@ -2442,8 +2504,8 @@ async function battle(rs){
       await enrageCheck();
       if(G.players.length===2){ await chooseFirst(); if(G.over) break; checkpoint({at:'battle',i:0,newRound:false},'เลือกผู้เริ่มก่อน'); } }
     const ord=roundOrder();
-    for(let pi=i0;pi<G.players.length;pi++){ const P=G.players[ord[pi]]; if(G.over||!allMons().length) break; if(P.hp>0){ G.turnIdx=pi; /* position in this round's order (save/resume index) */ await heroTurn(P,mid&&pi===i0); } mid=false; G.turnIdx=null; if(!G.over&&allMons().length&&pi+1<G.players.length) checkpoint({at:'battle',i:pi+1,newRound:false},'จบเทิร์น'); }
-    if(G.over||!allMons().length) break;
+    for(let pi=i0;pi<G.players.length;pi++){ const P=G.players[ord[pi]]; if(G.over||!liveMons().length) break; if(P.hp>0){ G.turnIdx=pi; /* position in this round's order (save/resume index) */ await heroTurn(P,mid&&pi===i0); } mid=false; G.turnIdx=null; if(!G.over&&liveMons().length&&pi+1<G.players.length) checkpoint({at:'battle',i:pi+1,newRound:false},'จบเทิร์น'); }
+    if(G.over||!liveMons().length) break;
     checkpoint({at:'battle',i:G.players.length,newRound:false},'จบเทิร์นผู้เล่น (ก่อน Monster)');
     if(globalThis.__prePhase) await globalThis.__prePhase(); /* test hook */
     /* v1.1.8 user rule: MONSTER shields are removed after the heroes' turns, right before the monster phase (before v1.1.8 they never expired) */
@@ -2554,6 +2616,7 @@ const BOT = {
   },
   cellScore(P,c,atkOps){
     const ox=P.x,oy=P.y; P.x=c.x;P.y=c.y; let s=0;
+    if(G.traps&&G.traps.size&&c.path) s-=4*(c.path.length?c.path:[c]).filter(st=>G.traps.has(key(st.x,st.y))).length; if(G.water&&G.water.has(key(c.x,c.y))) s-=2; /* v1.1.64 bots avoid traps / water */
     for(const op of atkOps){ const t=op.mode==='adjAll'?adjEnemies(P):singleTargets(P,op); if(t.length){ s+=10; if(t.some(m=>isWeak(P,m))) s+=3; break; } }
     const ms=allMons(); if(ms.length) s-=Math.min(...ms.map(m=>dist(m,P)))*0.6;
     s-=this.threatAt(P,c)*(+process_w||0.15);
@@ -2708,7 +2771,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.63', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.64', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -2848,7 +2911,7 @@ const UI={
      The underlying controls (.seat/.pname/.ptype/hero radios/.pcls2/#dungeon/#dungeon2/#btnStart) are kept so start() and #demo/#selftest still work. */
   CLS_ICO:{Warrior:'🛡️',Fighter:'👊',Rogue:'🗡️',Assassin:'🥷',Sorcerer:'🔥',Wizard:'🔮'},
   CLS_DESC:{Warrior:'แท็งก์ โล่หนา ยืนหน้า',Fighter:'ต่อยหนัก เน้นดาเมจระยะประชิด',Rogue:'คล่องตัว หลบหลีก หาของ',Assassin:'แทงจุดอ่อน เด็ดหัวศัตรู',Sorcerer:'เวทไฟ Mana ระเบิดวงกว้าง',Wizard:'เวทควบคุม น้ำแข็ง ยิงไกล'},
-  DUN_TH:{bone:['สุสานกระดูก (Bone)','💀','อันเดดและวิญญาณ'],goblin:['ถ้ำก็อปลิน (Goblin)','👺','ก็อปลินฝูงใหญ่ ยิงไกล'],beast:['ป่าอสูร (Beast)','🐺','อสูรป่า ดุร้าย']},
+  DUN_TH:{bone:['สุสานกระดูก (Bone)','💀','อันเดดและวิญญาณ · กฎพิเศษ: Monster ที่ HP 0 ยังไม่ตาย — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วจึงตาย (โจมตีมันไม่ได้แล้ว)'],goblin:['ถ้ำก็อปลิน (Goblin)','👺','ก็อปลินฝูงใหญ่ ยิงไกล · กฎพิเศษ: กับดักห้องละ 1 อัน (ห้อง 5-10: 2 อัน) ฮีโร่ที่เข้าช่องกับดักโดน 3 ดาเมจ'],beast:['ป่าอสูร (Beast)','🐺','อสูรป่า ดุร้าย · กฎพิเศษ: แอ่งน้ำ 3 ช่อง ฮีโร่ที่เดินเข้าต้องหยุดและเดินต่อไม่ได้ในเทิร์นนั้น ศัตรูที่ผ่านฟื้น 2 HP']},
   clsArtHTML(c){ const hs=D.heroes.filter(h=>normCls(h.cls)===c).slice(0,2); return `<div class="clsArt">${hs.map(h=>`<img src="${artOf(h.name,'p')}" alt="">`).join('')}<span class="clsIco">${this.CLS_ICO[c]||'✨'}</span></div>`; },
   dunArtHTML(k){ const dg=DUNGEONS[k]||{}; const ns=[dg.B].concat(dg.E||[]).filter(n=>n&&artOf(n,'p')).slice(0,2); return `<div class="clsArt">${ns.map(n=>`<img src="${artOf(n,'p')}" alt="">`).join('')}<span class="clsIco">${this.DUN_TH[k][1]}</span></div>`; },
   buildSetup(){
@@ -3025,7 +3088,7 @@ const UI={
       this.askReq=req; this.askRes=res;
       const pr=$('#prompt'); pr.classList.remove('hide');
       let body=`<div class="ptxt">${esc(P.name)}: ${esc(req.prompt)}</div>`;
-      if(req.kind==='opt') body+=`<div class="opts">${req.options.map((o,i)=>`<button data-i="${i}">${esc(o.label)}</button>`).join('')}</div>`;
+      if(req.kind==='opt') body+=`<div class="opts">${req.options.map((o,i)=>`<button data-i="${i}"${o.hero?' class="optImg"':''}>${o.hero?`<img src="${artOf(o.hero,'t')}" alt="">`:''}${esc(o.label)}</button>`).join('')}</div>`;
       if(req.kind==='card') body+=`<div class="pcards">${req.options.map((c,i)=>this.cardHTML(c,P,'playable').replace('class="card','data-i="'+i+'" class="card')).join('')}</div>`;
       if(req.kind==='cell'||req.kind==='mon') body+=`<div class="hint">คลิกช่อง${req.kind==='mon'?'/ศัตรู':''}ที่ไฮไลต์บนกระดาน</div>`;
       if(req.cancel) body+=`<button class="cancel">${esc(req.cancel)}</button>`;
@@ -3169,11 +3232,15 @@ UI.renderBoard=function(){
   const req=this.askReq; const hl=new Map();
   if(req&&req.kind==='cell') req.options.forEach((o,i)=>hl.set(key(o.x,o.y),i));
   if(req&&req.kind==='mon') req.options.forEach((m,i)=>hl.set(key(m.x,m.y),i));
+  /* v1.1.64 goblin traps: tiles + move-preview warning (trap tiles on any offered move path pulse red; step badge shows 🪤xN) */
+  const TR=G.traps||new Set(); const trapN=o=>{ if(!TR.size||!o) return 0; const cs=(o.path&&o.path.length?o.path:[o]); return cs.filter(c=>TR.has(key(c.x,c.y))).length; };
+  const trapWarn=new Set(); if(TR.size&&req&&req.kind==='cell'&&req.move) req.options.forEach(o=>{ (o.path&&o.path.length?o.path:[o]).forEach(c=>{ const kk=key(c.x,c.y); if(TR.has(kk)) trapWarn.add(kk); }); });
   let h='';
   for(let y=0;y<H;y++) for(let x=0;x<W;x++){ const k=key(x,y); const cls=['cell','v'+((x*7+y*3+G.room)%4)]; cls.push('th-'+((G.dungeons&&G.dungeons[boardOf(x)])||G.dungeon)); /* v1.1.28 theme */ if(boardOf(x)%2) cls.push('alt'); if(x%5===0&&x>0) cls.push('sep');
-    if(G.obs.has(k)) cls.push('obs'); if(G.ice.has(k)) cls.push('ice'); if(G.fire[k]) cls.push('fire'); if(hl.has(k)) cls.push(req.kind==='mon'?'tgtc':'opt'); if(req&&req.aoe&&req.aoe.some(c=>c.x===x&&c.y===y)) cls.push('aoe'); const mvO=req&&req.move&&hl.has(k)?req.options[hl.get(k)]:null;
+    if(G.obs.has(k)) cls.push('obs'); if(G.ice.has(k)) cls.push('ice'); if(G.fire[k]) cls.push('fire'); if(G.water&&G.water.has(k)) cls.push('water'); if(TR.has(k)){ cls.push('trap'); if(trapWarn.has(k)) cls.push('trapWarn'); } if(hl.has(k)) cls.push(req.kind==='mon'?'tgtc':'opt'); if(req&&req.aoe&&req.aoe.some(c=>c.x===x&&c.y===y)) cls.push('aoe'); const mvO=req&&req.move&&hl.has(k)?req.options[hl.get(k)]:null;
     const tr=G.treasures.find(t=>t.x===x&&t.y===y);
-    h+=`<div class="${cls.join(' ')}" data-k="${k}" style="left:${x*cs}px;top:${y*cs}px">${mvO?`<span class="mvstep">${mvO.steps}</span>`:''}${(()=>{ const o=req&&req.kind==='cell'&&req.nextAtk&&hl.has(k)?req.options[hl.get(k)]:null; return o&&o.tg?`<span class="mvatk" title="โจมตีได้จากช่องนี้ (${o.tg} เป้าหมาย)">⚔</span>`:''; })()}${G.obs.has(k)?UI.obsHTML((G.dungeons&&G.dungeons[boardOf(x)])||G.dungeon,x,y):''}${G.ice.has(k)?UI.propHTML('ice','rock','🧊'):''}${G.fire[k]?UI.propHTML('fire','firei',''):''}${tr?UI.propHTML(tr.type==='card'?'card':tr.type==='potion'?'potion':'chest','tre',{card:'🃏',potion:'🧪',chest:'💰'}[tr.type],{card:'สมบัติการ์ด: เลือก 1 จาก 3',potion:'ยา: ฮีล 3',chest:'หีบ: +1 Coin'}[tr.type]):''}</div>`; }
+    const ctip=[G.obs.has(k)?'🪨 สิ่งกีดขวาง: เดินผ่าน/หยุดไม่ได้ และบังการโจมตีโพรเจกไทล์ (การโจมตีระยะประชิดไม่ถูกบัง)':'',TR.has(k)?'🪤 กับดักก็อปลิน: ฮีโร่ที่เดินเข้าช่องนี้ (เดินผ่าน หยุด พุ่ง สลับตำแหน่ง หรือวาร์ปลง) โดน 3 ดาเมจทุกครั้ง โล่ช่วยกันได้ · Monster ไม่โดน · กับดักอยู่ทั้งห้อง':'',(G.water&&G.water.has(k))?'🌊 แอ่งน้ำ (ป่าอสูร): ฮีโร่ที่เดินเข้าช่องนี้ต้องหยุดทันที และเดินไม่ได้อีกในเทิร์นนั้น (ยังโจมตี/เล่นการ์ดอื่นได้) · ศัตรูที่เดินเข้า/ผ่าน ฟื้น 2 HP ต่อช่อง':'',tr?'🃏 จุดเก็บของ: ฮีโร่ที่เดินเข้าช่องนี้ได้รับของทันที (การ์ด/ยา/หีบ)':''].filter(Boolean).join('\n'); /* v1.1.64 special-tile tooltips */
+    h+=`<div class="${cls.join(' ')}" data-k="${k}"${ctip?` data-tip="${esc(ctip)}"`:''} style="left:${x*cs}px;top:${y*cs}px">${G.water&&G.water.has(k)?`<span class="wateri" title="แอ่งน้ำ (ป่าอสูร): ฮีโร่ที่เข้ามาต้องหยุดและเดินต่อไม่ได้ในเทิร์นนี้ · ศัตรูที่ผ่านฟื้น 2 HP"></span>${mvO?'<span class="wstop">🌊 หยุด</span>':''}`:''}${TR.has(k)?'<span class="trapi" title="กับดักก็อปลิน: ฮีโร่ที่เข้าช่องนี้โดน 3 ดาเมจ (Monster ไม่โดน)"><i>🪤</i><b>-3</b></span>':''}${mvO?`<span class="mvstep${trapN(mvO)?' trapStep':''}">${mvO.steps}${trapN(mvO)?`<em>🪤${trapN(mvO)>1?'×'+trapN(mvO):''}</em>`:''}</span>`:''}${(()=>{ const o=req&&req.kind==='cell'&&req.nextAtk&&hl.has(k)?req.options[hl.get(k)]:null; return o&&o.tg?`<span class="mvatk" title="โจมตีได้จากช่องนี้ (${o.tg} เป้าหมาย)">⚔</span>`:''; })()}${G.obs.has(k)?UI.obsHTML((G.dungeons&&G.dungeons[boardOf(x)])||G.dungeon,x,y):''}${G.ice.has(k)?UI.propHTML('ice','rock','🧊'):''}${G.fire[k]?UI.propHTML('fire','firei',''):''}${tr?UI.propHTML(tr.type==='card'?'card':tr.type==='potion'?'potion':'chest','tre',{card:'🃏',potion:'🧪',chest:'💰'}[tr.type],{card:'สมบัติการ์ด: เลือก 1 จาก 3',potion:'ยา: ฮีล 3',chest:'หีบ: +1 Coin'}[tr.type]):''}</div>`; }
   $('#cells').innerHTML=h;
   const toks=$('#toks'); const seen=new Set(); const fx=$('#fx');
   const arrow=f=>({'0,-1':'▲','1,0':'▶','0,1':'▼','-1,0':'◀'})[f.join(',')]||'';
@@ -3184,10 +3251,10 @@ UI.renderBoard=function(){
     el.dataset.k=key(u.x,u.y); el.dataset.tip=tip; el.style.transform=''; el.style.left=u.x*cs+'px'; el.style.top=u.y*cs+'px'; el.style.setProperty('--row',u.y); el.style.width=el.style.height=cs+'px'; el.innerHTML=html; /* v1.1.53: left/top instead of transform (see .tok.sprite CSS) */
     const prev=this.prevHp[id]; if(prev!=null&&prev!==u.hp){ const d=u.hp-prev; this.floatAt(u,(d>0?'+':'')+d,d>0?'heal':'dmg'); if(d<0){ el.classList.remove('hurt'); void el.offsetWidth; el.classList.add('hurt'); clearTimeout(el._hurtT); el._hurtT=setTimeout(()=>el.classList.remove('hurt'),450); /* v1.1.31: hurt is one-shot (was kept forever and replayed on every re-render) */ }  if(UI.fxHp) UI.fxHp(id,u,d,el); /* v1.1.54 heart pulse */ const hh=el.querySelector('.hpH'); if(hh){ hh.classList.remove('pulseD','pulseH'); void hh.offsetWidth; hh.classList.add(d<0?'pulseD':'pulseH'); } }
     this.prevHp[id]=u.hp; };
-  for(const m of allMons()){ const pct=Math.max(0,m.hp/m.maxhp*100);
+  for(const m of liveMons()){ const pct=Math.max(0,m.hp/m.maxhp*100); const UD=!!m.undying; /* v1.1.64 bone undying: ghostly, HP 0, skull badge */
     const spM=UI.sprFor(m.uid,m.name,fixFace(m));
-    place(m.uid,m,`${spM?UI.sprHTML(spM,m.name,sprSize(m)):`<img src="${artOf(m.name,'t')}">`}<div class="face" style="${fpos(fixFace(m))}">${arrow(fixFace(m))}</div><div class="hpH" data-tip-hp="${m.hp}/${m.maxhp}"><span>${m.hp}</span></div><div class="atk">⚔${m.atk}</div>${m.shield?`<div class="shd">🛡${m.shield}</div>`:''}${m.poison?`<div class="psn">☠${m.poison}</div>`:''}${m.stun?'<div class="stn">💫</div>':''}${m.lv!=='Minion'?`<div class="lvb">${m.lv==='Boss'?'👑':'★'}</div>`:''}`,
-      ['mon',m.lv,spM?'sprite':'',spM?'sz-'+sprSize(m):'',m.stun?'stun':'',hl.has(key(m.x,m.y))&&req.kind==='mon'?'tgt':'',req&&req.kind==='mon'&&/atk|aoe/.test(req.purpose||'')&&!hl.has(key(m.x,m.y))?'untgt':''],`${m.name} (${{Minion:'ลูกสมุน',Elite:'อีลิท',Boss:'บอส'}[m.lv]})\nHP ${m.hp}/${m.maxhp} · ATK ${m.atk} · เดิน ${m.def.mv}\n${m.def.thd||''}`); }
+    place(m.uid,m,`${spM?UI.sprHTML(spM,m.name,sprSize(m)):`<img src="${artOf(m.name,'t')}">`}<div class="face" style="${fpos(fixFace(m))}">${arrow(fixFace(m))}</div><div class="hpH" data-tip-hp="${UD?0:m.hp}/${m.maxhp}"><span>${UD?0:m.hp}</span></div>${UD?'<div class="undy" data-tip="💀 กฎสุสานกระดูก: Monster ตัวนี้ HP เหลือ 0 แต่ยังไม่ตาย — จะได้เดิน/โจมตีอีก 1 เทิร์นใน Monster Phase ถัดไป แล้วจึงตาย · โจมตี/ฮีล/สร้างดาเมจเพิ่มไม่ได้ แต่ยังยืนขวางช่อง · รางวัลการฆ่าได้ตอนมันตายจริง">💀 เทิร์นสุดท้าย</div>':''}<div class="atk">⚔${m.atk}</div>${m.shield?`<div class="shd">🛡${m.shield}</div>`:''}${m.poison?`<div class="psn">☠${m.poison}</div>`:''}${m.stun?'<div class="stn">💫</div>':''}${m.lv!=='Minion'?`<div class="lvb">${m.lv==='Boss'?'👑':'★'}</div>`:''}`,
+      ['mon',m.lv,UD?'undying':'',spM?'sprite':'',spM?'sz-'+sprSize(m):'',m.stun?'stun':'',hl.has(key(m.x,m.y))&&req.kind==='mon'?'tgt':'',req&&req.kind==='mon'&&/atk|aoe/.test(req.purpose||'')&&!hl.has(key(m.x,m.y))?'untgt':''],`${m.name} (${{Minion:'ลูกสมุน',Elite:'อีลิท',Boss:'บอส'}[m.lv]})${UD?'\n💀 กฎสุสานกระดูก: HP 0 — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วตาย (โจมตีไม่ได้)':''}\nHP ${UD?0:m.hp}/${m.maxhp} · ATK ${m.atk} · เดิน ${m.def.mv}\n${m.def.thd||''}`); }
   for(const p of heroes()){ const pct=p.hp/p.maxhp*100;
     const spH=UI.sprFor('h'+p.id,p.hero.name,fixFace(p));
     place('h'+p.id,p,`${spH?UI.sprHTML(spH,p.hero.name,'n'):`<img src="${artOf(p.hero.name,'t')}">`}<div class="face" style="${fpos(fixFace(p))}">${arrow(fixFace(p))}</div><div class="hpH h ${pct<=30?'low':''}"><span>${p.hp}</span></div>${p.shield?`<div class="shd">🛡${p.shield}</div>`:''}`,
@@ -4418,7 +4485,7 @@ const RC={ log:[], t0:performance.now(),
   banner(n,spec){ const dg=(UI.MUS&&UI.MUS.dg&&UI.MUS.dg())||G.dungeon, D2=DUNGEONS[dg]||{}; const boss=n===10||/Boss|บอส/i.test(spec||''), elite=/Elite|\bE\d/i.test(spec||'');
     const tag=boss?'<em class="boss">BOSS</em>':elite?'<em class="elite">ELITE</em>':''; const th=(UI.DUN_TH&&UI.DUN_TH[dg]&&UI.DUN_TH[dg][0])||D2.th||dg;
     this.hide('roomClear');
-    this.show('roomBanner',`<div class="rbBox"><small>${esc(th||'')}</small><b>ห้องที่ ${n}</b>${tag}${boss&&D2.B?`<span>⚠ ${esc(D2.B)} ปรากฏตัว!</span>`:spec?`<span>${esc(spec)}</span>`:''}</div>`,(boss?'boss ':elite?'elite ':''),boss?2600:2000);
+    this.show('roomBanner',`<div class="rbBox"><small>${esc(th||'')}</small><b>ห้องที่ ${n}</b>${tag}${boss&&D2.B?`<span>⚠ ${esc(D2.B)} ปรากฏตัว!</span>`:spec?`<span>${esc(spec)}</span>`:''}${dg==='bone'?'<span class="rbRule">💀 กฎสุสาน: Monster HP 0 ยังได้อีก 1 เทิร์นก่อนตาย</span>':dg==='beast'?'<span class="rbRule">🌊 กฎป่าอสูร: แอ่งน้ำ 3 ช่อง — ฮีโร่เข้าแล้วหยุดเดิน · ศัตรูผ่านฟื้น 2 HP</span>':dg==='goblin'?`<span class="rbRule">🪤 กฎถ้ำก็อปลิน: กับดัก ${n>=5?2:1} อัน — เข้าช่องโดน 3 ดาเมจ</span>`:''}</div>`,(boss?'boss ':elite?'elite ':''),boss?2600:2000);
     this.whoosh(boss); this.log.push('banner:'+n+(boss?':boss':elite?':elite':'')); }
 };
 UI.RC=RC;
@@ -4715,7 +4782,7 @@ const TUT={on:false,i:-1,log:[],SEED:20261013,HERO:'Darius Sunward',
       document.getElementById('np').value='1'; UI.buildSetup(); document.querySelector('.ptype').value='h'; const pn=document.querySelector('.pname'); if(pn) pn.value='ผู้เล่น';
       const r=document.querySelector(`input[name=hero0][value="${this.HERO}"]`); if(r){ r.checked=true; r.dispatchEvent(new Event('change',{bubbles:true})); } const c2=document.querySelector('.pcls2'); if(c2) c2.value='';
       document.getElementById('diff').value='normal'; const dg=document.getElementById('dungeon'); if(dg) dg.value='bone';
-      RS.s=this.SEED; RS.n=0; UI.start(); G.tut=true; if(UI.VST){ const v=UI.VST.get(); v.tut=true; } }
+      RS.s=this.SEED; RS.n=0; UI.start(); G.tut=true; G.traps=new Set(); G.water=new Set(); /* v1.1.64: tutorial keeps the classic rules (no dungeon special rules) */ if(UI.VST){ const v=UI.VST.get(); v.tut=true; } }
     finally{ window.confirm=conf; } this.go(0); },
   ui(){ let r=document.getElementById('tut'); if(!r){ r=document.createElement('div'); r.id='tut'; r.innerHTML='<div id="tutSpot"></div><div id="tutArrow">▼</div><div id="tutBox"><div class="tTxt"></div><div class="tNav"><button id="tutSkip">ข้าม</button><span class="tN"></span><button id="tutBack">◀ ย้อน</button><button id="tutNext">ถัดไป ▶</button></div></div>'; document.body.appendChild(r);
       r.querySelector('#tutSkip').onclick=()=>this.end(true); r.querySelector('#tutBack').onclick=()=>this.go(this.i-1); r.querySelector('#tutNext').onclick=()=>{ const s=this.steps[this.i]; if(s.last) return this.end(false); if(!s.wait||s.wait()) this.go(this.i+1); }; } return r; },
@@ -5278,5 +5345,18 @@ UI.applyDP=function(){ const cl=document.querySelectorAll('#cells .dpCell,#cells
   const o=req.options[UI.dpHL]; if(!o) return; for(const c of o.cells){ const e=C(c.x+','+c.y); if(e) e.classList.add('dpCell'); } for(const m of o.mons){ const e=C(m.x+','+m.y); if(e) e.classList.add('dpHit'); } const tg=C(o.tgt.x+','+o.tgt.y); if(tg) tg.classList.add('dpTgt');
   document.querySelectorAll('#prompt .dpOpt').forEach((b,i)=>b.classList.toggle('on',i===UI.dpHL)); };
 (function(){ const rb=UI.renderBoard; UI.renderBoard=function(){ const r=rb.apply(this,arguments); try{ UI.applyDP(); }catch(e){} return r; }; })();
+
+/* v1.1.64 dungeon rules FX: bone 'undying' banner, goblin trap hit */
+UI.boneBanner=function(m){ try{ if(UI.floatAt) UI.floatAt(m,'💀 ยังไม่ตาย! เทิร์นสุดท้าย','bump'); }catch(_){} };
+UI.trapFx=function(P,x,y){ try{ if(UI.floatAt) UI.floatAt({x,y},'🪤 กับดัก −3','bump'); }catch(_){} try{ if(typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.noise){ SND.noise(.12,{f:2400,vol:.09,ft:'highpass'}); SND.noise(.2,{f:500,vol:.08,ft:'lowpass',at:.05}); } }catch(_){} };
+UI.waterFx=function(x,y,t){ try{ if(UI.floatAt) UI.floatAt({x,y},'🌊 '+t,'bump'); }catch(_){} try{ if(typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.noise) SND.noise(.35,{f:900,f2:300,vol:.08,ft:'bandpass'}); }catch(_){} };
+/* v1.1.64 mobile long-press tooltips for board tiles / undying badge (reuses #tip style); desktop uses the existing [data-tip] hover */
+(function(){ let lp=null; const hide=()=>{ const t=document.getElementById('tip'); if(t&&t.dataset.lp){ t.className=''; delete t.dataset.lp; } };
+  const under=(X,Y)=>{ for(const el of document.elementsFromPoint(X,Y)){ if(el.closest&&el.closest('#tip')) continue; const d=el.closest&&el.closest('#toks [data-tip],#cells [data-tip]'); if(d) return d; if(el.id==='board') break; } return null; };
+  /* #toks is a full-board layer above the cells -> look through it for tile tooltips on desktop hover */
+  document.addEventListener('mousemove',e=>{ if(!e.target||e.target.id!=='toks') return; const t=document.getElementById('tip'); if(!t) return; const d=under(e.clientX,e.clientY); if(d){ if(t.textContent!==d.dataset.tip) t.textContent=d.dataset.tip; t.className='show'; t.dataset.tt='1'; } else if(t.dataset.tt){ t.className=''; delete t.dataset.tt; } });
+  document.addEventListener('touchstart',e=>{ clearTimeout(lp); const tc0=e.touches[0]; const el=(e.target.closest&&e.target.closest('#cells [data-tip],#toks [data-tip]'))||(e.target.id==='toks'&&tc0?under(tc0.clientX,tc0.clientY):null); if(!el){ hide(); return; } const tc=e.touches[0]; const X=tc.clientX,Y=tc.clientY;
+    lp=setTimeout(()=>{ const t=document.getElementById('tip'); if(!t) return; t.textContent=el.dataset.tip; t.className='show'; t.dataset.lp='1'; const w=t.offsetWidth,h=t.offsetHeight; t.style.left=Math.max(8,Math.min(innerWidth-w-8,X-w/2))+'px'; t.style.top=Math.max(8,Y-h-24)+'px'; },450); },{passive:true});
+  document.addEventListener('touchmove',()=>clearTimeout(lp),{passive:true}); document.addEventListener('touchend',()=>{ clearTimeout(lp); setTimeout(hide,2200); },{passive:true}); })();
 </script>
 </body></html>
