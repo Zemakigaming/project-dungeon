@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.66</title>
+<title>Project Dungeon v1.1.67</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.66 setup start screen */
+/* v1.1.67 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,1fr);grid-template-areas:"hero panel" "duns duns";gap:18px;background:none;padding:6px 0;margin:0;position:relative;align-items:stretch}
 .opts1.hide{display:none}
@@ -935,11 +935,11 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.66 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.67 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sHero">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ดันเจี้ยนครอว์เลอร์ Deck-building · 10 ห้อง · ปราบบอสเพื่อชนะ</div><div class="sVer">v1.1.66 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ดันเจี้ยนครอว์เลอร์ Deck-building · 10 ห้อง · ปราบบอสเพื่อชนะ</div><div class="sVer">v1.1.67 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sShow" id="sShow"></div>
   </div>
   <div class="sPanel">
@@ -7041,7 +7041,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.66', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.67', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -9417,6 +9417,10 @@ if(!HEADLESS){
 const ONLINE={ ws:null, n:0, keys:{}, ref:0, hb:null, tries:0, topic:'realtime:pd_online', state:'idle', log:[],
   id:(()=>{ try{ let v=sessionStorage.getItem('pd_onid'); if(!v){ v=Math.random().toString(36).slice(2,10)+Date.now().toString(36); sessionStorage.setItem('pd_onid',v); } return v; }catch(e){ return 'x'+Math.random().toString(36).slice(2); } })(),
   guard(){ try{ if(HEADLESS) return true; if(window.__ONLINE_LIVE_TEST) return false; return !!navigator.webdriver||typeof WebSocket==='undefined'; }catch(e){ return true; } },
+  run:null, /* v1.1.67: own run info (or null = viewer) carried in the presence meta */
+  last1(e){ const ms=(e&&e.metas)||[]; return ms.length?ms[ms.length-1]:{}; },
+  meta(){ const o={at:Date.now(),v:APP_VER}; if(this.run) o.run=this.run; return o; },
+  setRun(info){ this.run=info||null; this.runLog=(this.runLog||[]).concat([info?{room:info.room,rd:info.rd}:null]).slice(-30); if(this.state==='joined'||this.state==='live'){ this.send({topic:this.topic,event:'presence',payload:{type:'presence',event:'track',payload:this.meta()},ref:String(++this.ref),join_ref:this.jref}); this.trackedAt=Date.now(); } },
   url(){ return HOFNET.URL.replace(/^http/,'ws')+'/realtime/v1/websocket?apikey='+HOFNET.KEY+'&vsn=1.0.0'; },
   send(o){ try{ if(this.ws&&this.ws.readyState===1) this.ws.send(JSON.stringify(o)); }catch(e){} },
   start(){ if(this.guard()||this.ws) return; this.state='connecting'; let ws; try{ ws=new WebSocket(this.url()); }catch(e){ return this.fail(); } this.ws=ws;
@@ -9424,14 +9428,14 @@ const ONLINE={ ws:null, n:0, keys:{}, ref:0, hb:null, tries:0, topic:'realtime:p
       this.send({topic:this.topic,event:'phx_join',payload:{config:{broadcast:{ack:false,self:false},presence:{key:this.id,enabled:true},postgres_changes:[],private:false},access_token:HOFNET.KEY},ref:r,join_ref:r});
       this.hb=setInterval(()=>this.send({topic:'phoenix',event:'heartbeat',payload:{},ref:String(++this.ref)}),25000); };
     ws.onmessage=e=>{ let m; try{ m=JSON.parse(e.data); }catch(x){ return; } this.raw=(this.raw||[]).concat([String(e.data).slice(0,200)]).slice(-20); if(m.topic!==this.topic) return;
-      if(m.event==='phx_reply'&&m.ref===this.jref){ if(m.payload&&m.payload.status==='ok'){ this.state='joined'; this.send({topic:this.topic,event:'presence',payload:{type:'presence',event:'track',payload:{at:Date.now(),v:APP_VER}},ref:String(++this.ref),join_ref:this.jref}); } else { this.lastErr=JSON.stringify(m.payload).slice(0,200); this.fail(); } }
-      else if(m.event==='presence_state'){ /* merge (a diff can arrive before the snapshot) */ for(const k in (m.payload||{})) this.keys[k]=1; this.upd(); }
-      else if(m.event==='presence_diff'){ const p=m.payload||{}; for(const k in (p.joins||{})) this.keys[k]=1; for(const k in (p.leaves||{})) delete this.keys[k]; this.upd(); }
+      if(m.event==='phx_reply'&&m.ref===this.jref){ if(m.payload&&m.payload.status==='ok'){ this.state='joined'; this.send({topic:this.topic,event:'presence',payload:{type:'presence',event:'track',payload:this.meta()},ref:String(++this.ref),join_ref:this.jref}); this.trackedAt=Date.now(); } else { this.lastErr=JSON.stringify(m.payload).slice(0,200); this.fail(); } }
+      else if(m.event==='presence_state'){ /* merge (a diff can arrive before the snapshot) */ for(const k in (m.payload||{})) this.keys[k]=this.last1(m.payload[k]); this.upd(); }
+      else if(m.event==='presence_diff'){ const p=m.payload||{}; /* v1.1.67: a re-track arrives as leave+join of the same key → keep the key, take the latest meta */ for(const k in (p.leaves||{})) if(!(p.joins||{})[k]) delete this.keys[k]; for(const k in (p.joins||{})) this.keys[k]=this.last1(p.joins[k]); this.upd(); }
       else if(m.event==='phx_error'||m.event==='phx_close'||m.event==='system'&&m.payload&&m.payload.status==='error'){ this.lastErr=m.event+' '+JSON.stringify(m.payload).slice(0,200); this.fail(); } };
     ws.onerror=()=>{ this.lastErr='ws error'; this.fail(); }; ws.onclose=e=>{ this.lastErr='ws close '+(e&&e.code); this.fail(); }; },
-  upd(){ this.tries=0; this.n=Math.max(1,Object.keys(this.keys).length); this.state='live'; this.log.push(this.n); this.render(); },
+  upd(){ this.tries=0; this.n=Math.max(1,Object.keys(this.keys).length); this.state='live'; this.log.push(this.n); this.render(); try{ if(typeof RUNS!=='undefined') RUNS.render(); }catch(e){} },
   fail(){ if(this.hb) clearInterval(this.hb); this.hb=null; const w=this.ws; this.ws=null; if(w){ w.onclose=w.onerror=w.onmessage=null; try{ w.close(); }catch(e){} }
-    this.state='off'; this.keys={}; this.n=0; this.render(); if(this.stopped) return; const d=Math.min(300000,(this.tries?15000*Math.pow(2,this.tries-1):3000)); this.tries++; (0); clearTimeout(this.rt); this.rt=setTimeout(()=>this.start(),d); },
+    this.state='off'; this.keys={}; this.n=0; this.render(); try{ if(typeof RUNS!=='undefined') RUNS.render(); }catch(e){} if(this.stopped) return; const d=Math.min(300000,(this.tries?15000*Math.pow(2,this.tries-1):3000)); this.tries++; (0); clearTimeout(this.rt); this.rt=setTimeout(()=>this.start(),d); },
   stop(){ this.stopped=true; clearTimeout(this.rt); const w=this.ws; if(w){ this.send({topic:this.topic,event:'phx_leave',payload:{},ref:String(++this.ref)}); } this.fail(); },
   render(){ const side=document.querySelector('#mainMenu .mmSide'); if(!side) return; let el=side.querySelector('.mmOnline');
     if(!el){ el=document.createElement('div'); el.className='mmOnline hide'; const t=side.querySelector('.mmTitle'); t?t.insertAdjacentElement('afterend',el):side.appendChild(el); }
@@ -9679,5 +9683,134 @@ const SETUP={
 };
 UI.SETUP=SETUP;
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>SETUP.init(),0)); else setTimeout(()=>SETUP.init(),0);
+
+/* ===== v1.1.67 (1) RUNS — "who's playing now": rides on the e23 ONLINE presence (topic pd_online, same socket).
+   Sender: ONLINE.setRun({team,heroes:[hero names],dg,room,rd,mode}) on game start / room / round change (>=5 s apart; viewer switch is immediate),
+   re-track every 10 min so the entry never goes stale; null (viewer) on victory/defeat/quit, when idle (tab hidden >5 min or no input 15 min),
+   for the online-P2P guest (only the host publishes, team 'A & B') and when the privacy toggle pd_showonline is off.
+   Receiver: validated + rendered with textContent only (team <=16 chars stripped, hero/dungeon ids must exist, room 1-10, round 1-99, <=20 rows, stale >30 min dropped).
+   UI: main-menu card '⚔️ กำลังเล่นอยู่ (N)' under the online counter; in game a small '🟢 N' pill (bottom-left) opens an overlay. ===== */
+const RUNS={ last:null, lastAt:0, pend:null, log:[], lastInput:Date.now(), hiddenAt:0, open:false,
+  clean(s,n){ return String(s==null?'':s).replace(/[\u0000-\u001f\u007f-\u009f<>"'`\\]/g,'').replace(/\s+/g,' ').trim().slice(0,n); },
+  showOn(){ try{ return localStorage.getItem('pd_showonline')!=='0'; }catch(e){ return true; } },
+  setShow(v){ try{ localStorage.setItem('pd_showonline',v?'1':'0'); }catch(e){} this.tick(true); },
+  idle(now){ now=now||Date.now(); if(typeof document!=='undefined'&&document.hidden&&this.hiddenAt&&now-this.hiddenAt>5*60e3) return true; return now-this.lastInput>15*60e3; },
+  info(now){ try{ if(typeof G==='undefined'||!G||!G.players||!G.players.length||G.over||G.tut||!(G.room>=0)) return null;
+      if(typeof document!=='undefined'){ const gm=document.getElementById('game'); if(gm&&gm.classList.contains('hide')) return null; }
+      if(typeof NET!=='undefined'&&NET.on&&NET.role!=='host') return null;
+      if(!this.showOn()||this.idle(now)) return null;
+      let team=''; try{ team=localStorage.getItem('pd_team')||''; }catch(e){}
+      team=this.clean(team,16)||this.clean(G.players.map(p=>p.name).join(' & '),16)||'ทีม';
+      const mode=(typeof NET!=='undefined'&&NET.on)?'online':(G.players.length>1?'local2p':'solo');
+      return {team,heroes:G.players.slice(0,2).map(p=>p.hero&&p.hero.name).filter(Boolean),dg:G.dungeon||(G.dungeons&&G.dungeons[0])||'',room:Math.min(10,Math.max(1,G.room|0)),rd:Math.max(1,G.roundsInRoom|0),mode}; }catch(e){ return null; } },
+  tick(force){ if(typeof ONLINE==='undefined') return; const now=Date.now(); const inf=this.info(now); const k=JSON.stringify(inf);
+    const stale=inf&&now-this.lastAt>10*60e3;
+    if(k===this.last&&!stale) return;
+    if(inf&&this.last!=='null'&&this.last!==null&&!force&&!stale&&now-this.lastAt<5000) return; /* throttle run updates; the next tick sends the latest */
+    this.last=k; this.lastAt=now; this.log.push(inf?inf.room+':'+inf.rd:'viewer'); ONLINE.setRun(inf); this.render(); },
+  heroOK(n){ try{ return D.heroes.some(h=>h.name===n); }catch(e){ return false; } },
+  valid(m,now){ now=now||Date.now(); const r=m&&m.run; if(!r||typeof r!=='object') return null;
+    if(!(typeof m.at==='number')||now-m.at>30*60e3||m.at-now>5*60e3) return null;
+    const team=this.clean(r.team,16); if(!team) return null;
+    const heroes=Array.isArray(r.heroes)?r.heroes.slice(0,2).filter(h=>typeof h==='string'&&this.heroOK(h)):[]; if(!heroes.length||heroes.length!==Math.min(2,(r.heroes||[]).length)) return null;
+    if(typeof r.dg!=='string'||!Object.prototype.hasOwnProperty.call(DUNGEONS,r.dg)) return null;
+    const room=r.room, rd=r.rd; if(!Number.isInteger(room)||room<1||room>10||!Number.isInteger(rd)||rd<1||rd>99) return null;
+    return {team,heroes,dg:r.dg,room,rd,mode:['solo','local2p','online'].includes(r.mode)?r.mode:'solo',at:m.at}; },
+  list(){ const now=Date.now(), out=[]; const ks=(typeof ONLINE!=='undefined'&&ONLINE.keys)||{}; for(const k in ks){ const e=this.valid(ks[k],now); if(e){ e.me=(k===ONLINE.id); out.push(e); } }
+    return out.sort((a,b)=>b.at-a.at).slice(0,20); },
+  dgName(k){ try{ return (UI.DUN_TH&&UI.DUN_TH[k]&&UI.DUN_TH[k][0])||DUNGEONS[k].th||k; }catch(e){ return k; } },
+  rows(box){ const L=this.list(); box.textContent=''; if(!L.length){ const e=document.createElement('div'); e.className='rnEmpty'; e.textContent='ยังไม่มีทีมกำลังเล่น'; box.appendChild(e); return L.length; }
+    for(const r of L){ const row=document.createElement('div'); row.className='rnRow'+(r.me?' me':'');
+      const t=document.createElement('b'); t.className='rnTeam'; t.textContent=r.team+(r.me?' (คุณ)':''); row.appendChild(t);
+      const hs=document.createElement('span'); hs.className='rnHeroes'; for(const h of r.heroes){ const src=(typeof HEROART!=='undefined'&&HEROART[h])||(typeof MENUART!=='undefined'&&MENUART[h])||''; if(src){ const i=document.createElement('img'); i.loading='lazy'; i.alt=h; i.title=h; i.src=src; hs.appendChild(i); } else { const i=document.createElement('i'); i.textContent=h.slice(0,1); i.title=h; hs.appendChild(i); } } row.appendChild(hs);
+      const d=document.createElement('span'); d.className='rnDg'; d.textContent=this.dgName(r.dg); row.appendChild(d);
+      const p=document.createElement('span'); p.className='rnProg'; p.textContent=`ห้อง ${r.room}/10 · รอบ ${r.rd}`; row.appendChild(p); box.appendChild(row); }
+    return L.length; },
+  render(){ if(typeof document==='undefined'||HEADLESS) return; const live=typeof ONLINE!=='undefined'&&ONLINE.state==='live'&&ONLINE.n>0; const n=live?this.list().length:0;
+    /* main menu card */
+    const side=document.querySelector('#mainMenu .mmSide'); if(side){ let c=side.querySelector('.mmRuns');
+      if(!c){ c=document.createElement('div'); c.className='mmRuns hide'; c.innerHTML='<button type="button" class="rnHead"></button><div class="rnList hide"></div>'; const on=side.querySelector('.mmOnline'); on?on.insertAdjacentElement('afterend',c):side.appendChild(c);
+        c.querySelector('.rnHead').onclick=()=>{ this.open=!this.open; this.render(); }; }
+      c.classList.toggle('hide',!live); c.querySelector('.rnHead').textContent=`⚔️ กำลังเล่นอยู่ (${n}) ${this.open?'▴':'▾'}`; const ls=c.querySelector('.rnList'); ls.classList.toggle('hide',!this.open); if(this.open) this.rows(ls); }
+    /* in-game pill + overlay */
+    const gm=document.getElementById('game'); const inGame=gm&&!gm.classList.contains('hide'); let pill=document.getElementById('rnPill');
+    if(!pill){ pill=document.createElement('button'); pill.id='rnPill'; pill.type='button'; pill.className='hide'; pill.title='ผู้เล่นออนไลน์ / ทีมที่กำลังเล่น'; pill.onclick=()=>this.overlay(!document.getElementById('rnOv')); document.body.appendChild(pill); }
+    pill.classList.toggle('hide',!(live&&inGame)); pill.textContent=`🟢 ${live?ONLINE.n:0}`;
+    const ov=document.getElementById('rnOv'); if(ov){ if(!(live&&inGame)) ov.remove(); else this.fillOv(ov); } },
+  fillOv(ov){ const h=ov.querySelector('.rnOvH'); const n=this.rows(ov.querySelector('.rnList')); h.textContent=`🟢 ออนไลน์ ${ONLINE.n} คน · ⚔️ กำลังเล่นอยู่ (${n})`; },
+  overlay(on){ let ov=document.getElementById('rnOv'); if(!on){ if(ov) ov.remove(); return; } if(ov) return;
+    ov=document.createElement('div'); ov.id='rnOv'; ov.innerHTML='<div class="rnOvT"><b class="rnOvH"></b><button type="button" class="rnX" title="ปิด">✖</button></div><div class="rnList"></div><label class="rnPriv"><input type="checkbox" class="rnShow"> แสดงทีมของฉันในรายชื่อออนไลน์</label>';
+    document.body.appendChild(ov); ov.querySelector('.rnX').onclick=()=>this.overlay(false); const cb=ov.querySelector('.rnShow'); cb.checked=this.showOn(); cb.onchange=()=>this.setShow(cb.checked); this.fillOv(ov); } };
+UI.RUNS=RUNS;
+if(!HEADLESS){
+  const st=document.createElement('style'); st.textContent=`
+.mmRuns{margin:0 auto 8px;max-width:340px;width:100%}.mmRuns.hide{display:none}
+.mmRuns .rnHead{width:100%;padding:6px 12px;border-radius:12px;background:rgba(40,24,14,.6);border:1px solid rgba(255,190,90,.4);color:#ffe2a8;font-size:13px;cursor:pointer}
+.rnList{display:flex;flex-direction:column;gap:5px;margin-top:6px;max-height:200px;overflow:auto}.rnList.hide{display:none}
+.rnRow{display:grid;grid-template-columns:1fr auto;grid-template-areas:"t h" "d p";gap:2px 8px;align-items:center;padding:6px 9px;border-radius:10px;background:rgba(16,12,26,.8);border:1px solid #ffffff1c;font-size:12px;color:#ddd;text-align:left}
+.rnRow.me{border-color:#4ee07a88}.rnTeam{grid-area:t;color:#fff;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rnHeroes{grid-area:h;display:flex;gap:3px}
+.rnHeroes img,.rnHeroes i{width:24px;height:24px;border-radius:50%;object-fit:cover;object-position:top;border:1px solid #ffd54a88;display:inline-grid;place-items:center;font-style:normal;background:#333;font-size:11px}
+.rnDg{grid-area:d;color:#cbb6ff}.rnProg{grid-area:p;color:#ffd54a}.rnEmpty{font-size:12px;color:#aaa;padding:6px;text-align:center}
+#rnPill{position:fixed;left:8px;bottom:8px;z-index:60;padding:2px 9px;font-size:12px;border-radius:999px;background:rgba(14,30,20,.8);border:1px solid rgba(110,220,140,.5);color:#cfe9d4;cursor:pointer;opacity:.85}#rnPill:hover{opacity:1}#rnPill.hide{display:none}
+#rnOv{position:fixed;left:8px;bottom:38px;z-index:61;width:min(320px,calc(100vw - 16px));max-height:min(60vh,420px);display:flex;flex-direction:column;gap:6px;padding:10px;border-radius:14px;background:rgba(18,14,30,.96);border:1px solid #ffd54a55;box-shadow:0 10px 30px #000c;color:#eee}
+#rnOv .rnOvT{display:flex;align-items:center;gap:6px;font-size:13px}#rnOv .rnOvT b{flex:1}#rnOv .rnX{padding:1px 7px;font-size:12px}#rnOv .rnList{margin:0;max-height:none;flex:1}
+.rnPriv{font-size:12px;color:#ccc;display:flex;gap:6px;align-items:center}
+#pdLoad{bottom:38px}`; document.head.appendChild(st);
+  ['pointerdown','keydown','wheel','touchstart'].forEach(ev=>addEventListener(ev,()=>{ const was=RUNS.idle(); RUNS.lastInput=Date.now(); if(was) RUNS.tick(true); },{passive:true,capture:true}));
+  document.addEventListener('visibilitychange',()=>{ if(document.hidden) RUNS.hiddenAt=Date.now(); else { const was=RUNS.idle(); RUNS.hiddenAt=0; RUNS.lastInput=Date.now(); if(was) RUNS.tick(true); } });
+  setInterval(()=>{ try{ RUNS.tick(); }catch(e){} },1000); setInterval(()=>{ try{ RUNS.render(); }catch(e){} },15000);
+  /* settings toggle next to the volume sliders */
+  if(typeof MENU!=='undefined'&&MENU.drawSet){ const _ds=MENU.drawSet.bind(MENU); MENU.drawSet=function(){ _ds(); const s=document.querySelector('#mainMenu .mmSet'); if(!s||s.querySelector('.mmShowOn')) return;
+    const l=document.createElement('label'); l.className='mmTog mmShowOn'; l.innerHTML='<span>🟢 แสดงทีมของฉันในรายชื่อออนไลน์</span><input type="checkbox" data-showon>'; s.appendChild(l); const cb=l.querySelector('input'); cb.checked=RUNS.showOn(); cb.onchange=()=>RUNS.setShow(cb.checked); }; }
+}
+
+/* ===== v1.1.67 (2) FB — player feedback on the victory and defeat screens. 'เขียนถึงเกมนี้' + optional 1-5 stars + optional name.
+   One submission per run (pd_fbdone = run id). Insert-only to Supabase table public.pd_feedback (feedback_supabase.sql; RLS: anon insert, NO select).
+   Client: comment <=1000 chars, name <=24, control chars stripped; rate limit >=30 s apart, <=5/hour; queue pd_fbq retried on load / 'online' / every 60 s
+   (also while the table does not exist yet: 404 keeps the item queued). client_id unique → a retried insert that already landed gives 409 = done.
+   Automated browsers never post unless a test mocks the network (window.__FB_MOCKED). ===== */
+const FB={ TABLE:'pd_feedback', QK:'pd_fbq', RK:'pd_fbrate', DK:'pd_fbdone', log:[],
+  cleanText(s,n){ return String(s==null?'':s).replace(/\r\n?/g,'\n').replace(/[\u0000-\u0009\u000b-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069]/g,'').replace(/\n{3,}/g,'\n\n').trim().slice(0,n); },
+  cleanName(s){ return String(s==null?'':s).replace(/[\u0000-\u001f\u007f-\u009f<>]/g,'').replace(/\s+/g,' ').trim().slice(0,24); },
+  runId(){ try{ return String(G.kseed||'')+':'+(G.players||[]).map(p=>p.hero&&p.hero.name).join(','); }catch(e){ return 'x'; } },
+  done(){ try{ return localStorage.getItem(this.DK)===this.runId(); }catch(e){ return false; } },
+  cid(){ return (typeof crypto!=='undefined'&&crypto.randomUUID)?crypto.randomUUID():('f'+Date.now().toString(36)+Math.random().toString(36).slice(2,10)); },
+  q(){ try{ return JSON.parse(localStorage.getItem(this.QK)||'[]'); }catch(e){ return []; } }, setQ(L){ try{ localStorage.setItem(this.QK,JSON.stringify(L.slice(-20))); }catch(e){} },
+  rateOK(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} const now=Date.now(); r=r.filter(t=>now-t<3600e3); return !(r.length&&now-r[r.length-1]<30e3)&&r.length<5; },
+  rateMark(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} r.push(Date.now()); try{ localStorage.setItem(this.RK,JSON.stringify(r.slice(-10))); }catch(e){} },
+  row(o){ const win=!!(G.result&&G.result.win); return { client_id:o.cid, name:this.cleanName(o.name)||null, stars:(Number.isInteger(o.stars)&&o.stars>=1&&o.stars<=5)?o.stars:null, comment:this.cleanText(o.comment,1000),
+      version:'v'+String(APP_VER).slice(0,12), dungeon:String(G.dungeon||'').slice(0,20), result:win?'win':'lose', room:Math.max(0,Math.min(10,G.room|0)), heroes:(G.players||[]).slice(0,2).map(p=>String(p.hero&&p.hero.name||'').slice(0,40)) }; },
+  canNet(){ try{ if(HEADLESS) return false; if(window.__FB_MOCKED) return true; return !navigator.webdriver; }catch(e){ return false; } },
+  async flush(){ if(this.busy||!this.canNet()) return; const L=this.q(); if(!L.length) return; if(typeof navigator!=='undefined'&&navigator.onLine===false) return; this.busy=true;
+    try{ for(const it of L.slice()){ let st=0; try{ const r=await fetch(`${HOFNET.URL}/rest/v1/${this.TABLE}`,{method:'POST',headers:HOFNET.hdr({Prefer:'return=minimal'}),body:JSON.stringify(it.row)}); st=r.status; }catch(e){ st=0; }
+        this.log.push({cid:it.row.client_id,st});
+        if(st===201||st===204||st===409){ this.setQ(this.q().filter(x=>x.row.client_id!==it.row.client_id)); continue; }
+        if(st>=400&&st<500&&st!==404&&st!==408&&st!==429){ it.bad=(it.bad||0)+1; const Q=this.q().map(x=>x.row.client_id===it.row.client_id?it:x).filter(x=>(x.bad||0)<5); this.setQ(Q); continue; }
+        break; /* offline / server / table not created yet: keep the queue, retry later */ } }
+    finally{ this.busy=false; } },
+  submit(o){ if(this.done()) return {ok:false,why:'done'}; const comment=this.cleanText(o.comment,1000); const stars=o.stars|0;
+    if(!comment&&!(stars>=1&&stars<=5)) return {ok:false,why:'empty'}; if(!this.rateOK()) return {ok:false,why:'rate'};
+    const row=this.row({cid:this.cid(),name:o.name,stars:stars||null,comment}); const L=this.q(); L.push({row,t:Date.now()}); this.setQ(L); this.rateMark();
+    try{ localStorage.setItem(this.DK,this.runId()); }catch(e){} this.flush(); return {ok:true,row}; },
+  html(){ return `<div class="fbBox" data-fb><h3>✍️ เขียนถึงเกมนี้</h3><div class="fbStars" role="radiogroup" aria-label="ให้ดาว (ไม่บังคับ)">${[1,2,3,4,5].map(i=>`<button type="button" data-st="${i}" aria-label="${i} ดาว">★</button>`).join('')}<small>ให้ดาว (ไม่บังคับ)</small></div>
+    <textarea class="fbText" maxlength="1000" rows="3" placeholder="ชอบอะไร อยากให้ปรับอะไร เจอบั๊กตรงไหน… (ไม่เกิน 1000 ตัวอักษร)"></textarea><div class="fbRow"><input class="fbName" maxlength="24" placeholder="ชื่อ (ไม่บังคับ)"><small class="fbCnt">0/1000</small><button type="button" class="fbSend end">ส่งความคิดเห็น</button></div><div class="fbMsg"></div></div>`; },
+  mount(host){ if(!host||host.querySelector('[data-fb]')) return; host.insertAdjacentHTML('beforeend',this.html()); const b=host.querySelector('[data-fb]'); let stars=0;
+    const thanks=()=>{ b.classList.add('fbDone'); b.innerHTML='<h3>💌 ขอบคุณสำหรับความคิดเห็น!</h3><p>ส่งถึงผู้พัฒนาแล้ว (ถ้าออฟไลน์ จะส่งให้อัตโนมัติเมื่อกลับมาออนไลน์)</p>'; };
+    if(this.done()) return thanks();
+    const paint=()=>b.querySelectorAll('[data-st]').forEach(x=>x.classList.toggle('on',+x.dataset.st<=stars));
+    b.querySelectorAll('[data-st]').forEach(x=>x.onclick=()=>{ stars=(stars===+x.dataset.st)?0:+x.dataset.st; paint(); });
+    const ta=b.querySelector('.fbText'), cnt=b.querySelector('.fbCnt'); ta.oninput=()=>{ cnt.textContent=ta.value.length+'/1000'; };
+    b.querySelector('.fbSend').onclick=()=>{ const r=this.submit({comment:ta.value,stars,name:b.querySelector('.fbName').value}); const m=b.querySelector('.fbMsg');
+      if(r.ok){ this.log.push('sent'); document.querySelectorAll('[data-fb]').forEach(x=>{ if(x!==b) x.remove(); }); thanks(); }
+      else m.textContent=r.why==='empty'?'กรุณาเขียนความคิดเห็นหรือให้ดาวก่อนส่ง':r.why==='rate'?'ส่งบ่อยเกินไป ลองใหม่อีกสักครู่':'ส่งความคิดเห็นของรอบนี้ไปแล้ว'; }; } };
+UI.FB=FB;
+if(!HEADLESS){
+  const st=document.createElement('style'); st.textContent=`.fbBox{margin:12px auto 4px;max-width:520px;text-align:left;background:rgba(20,16,32,.85);border:1px solid #ffd54a55;border-radius:12px;padding:10px 12px}
+.fbBox h3{margin:0 0 6px;font-size:15px;color:#ffd54a}.fbStars{display:flex;align-items:center;gap:2px}.fbStars button{background:none;border:none;font-size:24px;line-height:1;padding:0 2px;color:#555;cursor:pointer}.fbStars button.on{color:#ffc93c;text-shadow:0 0 8px #ffb30088}.fbStars small{margin-left:8px;color:#999}
+.fbText{width:100%;box-sizing:border-box;margin:6px 0;resize:vertical;min-height:60px;font:inherit;font-size:13px}.fbRow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.fbName{flex:1;min-width:120px}.fbCnt{color:#888}.fbMsg{color:#ff9a8a;font-size:12px;min-height:0}.fbBox.fbDone p{margin:0;font-size:13px;color:#ccc}`; document.head.appendChild(st);
+  const _go=UI.gameOver; UI.gameOver=function(){ const r=_go.apply(this,arguments); try{ RUNS.tick(true); const m=document.querySelector('#over .modal'); if(m&&!(G.result&&G.result.win)&&!G.tut) FB.mount(m); }catch(e){} return r; };
+  if(typeof VIC!=='undefined'&&VIC.show){ const _vs=VIC.show.bind(VIC); VIC.show=function(){ const r=_vs.apply(this,arguments); try{ const b=document.querySelector('#victory .vBox'); if(b&&!G.tut) FB.mount(b); }catch(e){} return r; }; }
+  addEventListener('online',()=>FB.flush()); setInterval(()=>FB.flush(),60000); setTimeout(()=>FB.flush(),5000);
+}
 </script>
 </body></html>
