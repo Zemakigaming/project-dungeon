@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.67</title>
+<title>Project Dungeon v1.1.68</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,9 +894,9 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.67 setup start screen */
+/* v1.1.68 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
-.opts1{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,1fr);grid-template-areas:"hero panel" "duns duns";gap:18px;background:none;padding:6px 0;margin:0;position:relative;align-items:stretch}
+.opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
 .sBg{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,#3a2350 0%,#160f22 55%,#07060b 100%) center/cover;overflow:hidden}
 .sBg.art{background-blend-mode:multiply}
@@ -907,12 +907,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sBrand{display:flex;align-items:center;gap:16px}.sBrand img{height:110px;max-width:42%;object-fit:contain;filter:drop-shadow(0 0 18px #8a5cff88)}
 .sTitle{margin:0;font-size:42px;line-height:1.05;letter-spacing:1px;background:linear-gradient(180deg,#fff3c4,#ffb347 60%,#c06a1a);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 2px 18px #ff9a3c44}
 .sVer{font-size:11.5px;color:#9d90b8;margin-top:2px}.sSub{color:#d8cbe9;font-size:14px;margin-top:4px}
-.sShow{flex:1;min-height:260px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.sShow figure{margin:0;position:relative;border-radius:14px;overflow:hidden;border:1px solid #ffd54a55;box-shadow:0 8px 26px #000a,inset 0 0 0 1px #0006;background:#1a1426;transition:transform .25s}
-.sShow figure:hover{transform:translateY(-4px)}
-.sShow img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;opacity:0;transition:opacity .5s}.sShow img.ld{opacity:1}
-.sShow figcaption{position:absolute;left:0;right:0;bottom:0;padding:18px 8px 6px;font:700 12px/1.2 sans-serif;color:#ffe9a8;background:linear-gradient(transparent,#000d);text-align:center}
-.sPanel{grid-area:panel;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 40px #000b}
+.sPanel{background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;box-shadow:0 10px 40px #000b}
 .sH{margin:0 0 8px;font-size:15px;color:#ffd54a;letter-spacing:.5px}
 .sCards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .sCard{display:flex;flex-direction:column;align-items:center;gap:3px;padding:12px 8px;border-radius:14px;background:#251d38;border:2px solid #4a3d66;color:var(--ink);cursor:pointer;text-align:center;transition:all .2s}
@@ -925,22 +920,68 @@ body.dragging,body.dragging *{touch-action:none!important}
 #btnNew:hover{filter:brightness(1.12)}#btnContinue{background:linear-gradient(180deg,#3fa047,#22692a)}
 .sSecBtns{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sSecBtns button{padding:9px 6px;font-size:13.5px}.sSecBtns button.hide{display:none}
 .sInfo{font-size:12px;color:var(--mut);text-align:center;min-height:0}
-.sDuns{grid-area:duns}
 .sDunRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .sDun{position:relative;border-radius:14px;overflow:hidden;min-height:130px;border:1px solid #ffffff22;background:#151020 center/cover;display:flex;align-items:flex-end;box-shadow:0 6px 20px #0009}
 .sDun:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0003 0%,#000d 70%)}
 .sDun .sDi{position:relative;padding:10px 12px}.sDun b{font-size:16px;color:#ffe9a8}.sDun small{display:block;font-size:11.5px;color:#ddd;line-height:1.35;margin-top:3px}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
-@media (max-width:900px){.opts1{grid-template-columns:1fr;grid-template-areas:"hero" "panel" "duns"}.sShow{min-height:0;grid-template-columns:repeat(4,1fr)}.sShow figure{aspect-ratio:3/4}}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
+
+/* v1.1.68 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+#setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
+.sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
+.sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
+.sBrand img{height:58px}.sTitle{font-size:30px}.sSub{font-size:13px;margin-top:0}
+.sSec{position:relative}.sLeft .sSec{background:linear-gradient(180deg,#1d1730d9,#120e1cd9);border:1px solid #ffd54a33;border-radius:16px;padding:10px 12px;box-shadow:0 8px 26px #0008;transition:box-shadow .3s,border-color .3s}
+.sSec.need{border-color:#ff8a5c;box-shadow:0 0 0 2px #ff8a5c55,0 0 24px #ff6a3c55;animation:sNeed .9s ease 2}@keyframes sNeed{50%{transform:translateX(3px)}}
+.sSecHead{display:flex;align-items:center;gap:10px;margin-bottom:6px}.sSecHead .sH{margin:0}.sPageNo{margin-left:auto;font-size:12px;color:#9d90b8}
+.sSeatTabs{display:flex;gap:6px}.sSeatTabs button{padding:3px 10px;font-size:12.5px;border-radius:999px;background:#251d38;border:1px solid #4a3d66;color:#cfc3e6}.sSeatTabs button.on{background:var(--gold);color:#111;border-color:var(--gold);font-weight:800}
+.sSeatTabs button.p2.on{background:#5ab8ff;border-color:#5ab8ff}
+.sPager{display:flex;align-items:center;gap:6px}.sArrow{flex:none;width:34px;height:64px;border-radius:12px;font-size:28px;line-height:1;padding:0;background:#251d38cc;border:1px solid #ffd54a55;color:#ffe9a8}.sArrow:disabled{opacity:.3}
+.sViewport{flex:1;overflow:hidden;touch-action:pan-y}.sTrack{display:flex;gap:10px;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.sHeroC{--per:4;flex:0 0 calc((100% - (var(--per) - 1)*10px)/var(--per));height:min(43vh,340px);min-height:200px;margin:0;position:relative;border-radius:14px;overflow:hidden;border:2px solid #ffd54a40;background:#1a1426;cursor:pointer;padding:0;transition:transform .25s,border-color .25s,box-shadow .25s,filter .25s;-webkit-touch-callout:none;user-select:none}
+.sHeroC:hover{transform:translateY(-3px);border-color:#ffd54aaa}
+.sHeroC img{width:100%;height:100%;object-fit:cover;object-position:top;display:block;opacity:0;transition:opacity .5s;pointer-events:none}.sHeroC img.ld{opacity:1}
+.sHeroC .cap{position:absolute;left:0;right:0;bottom:0;padding:22px 6px 6px;background:linear-gradient(transparent,#000e);text-align:center}.sHeroC .cap b{display:block;font-size:13px;color:#ffe9a8}.sHeroC .cap small{font-size:11px;color:var(--cc,#ccc)}
+.sHeroC.sel{border-color:var(--gold);box-shadow:0 0 0 2px #ffd54a88,0 0 26px #ffb347aa;transform:translateY(-3px)}.sHeroC.sel.p2{border-color:#5ab8ff;box-shadow:0 0 0 2px #5ab8ff88,0 0 26px #5ab8ffaa}
+.sHeroC.taken{filter:grayscale(.75) brightness(.6)}
+.sBadge{position:absolute;top:6px;left:6px;padding:2px 8px;border-radius:999px;font:800 12px/18px sans-serif;background:var(--gold);color:#111;box-shadow:0 2px 8px #000a;z-index:2}.sBadge.p2{background:#5ab8ff}
+.sRow2{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:10px}
+.sClsRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.sCls{display:flex;align-items:center;gap:7px;padding:5px 7px;border-radius:12px;background:#251d38;border:2px solid #4a3d66;color:var(--ink);cursor:pointer;text-align:left;transition:all .2s;min-width:0}
+.sCls .ci{flex:none;width:34px;height:34px;border-radius:50%;background:#333 center/cover;border:2px solid var(--cc,#888);position:relative}.sCls .ci i{position:absolute;right:-5px;bottom:-5px;font-style:normal;font-size:13px}
+.sCls span{min-width:0}.sCls b{display:block;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sCls small{display:block;font-size:10px;color:#a99cc2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sCls:hover{border-color:#ffd54a88}.sCls.on{border-color:var(--cc,#ffd54a);box-shadow:0 0 16px color-mix(in srgb,var(--cc,#ffd54a) 55%,transparent);background:#2f2446}.sCls.used small{color:#ff8a80}
+.sClsEmpty{grid-column:1/-1;font-size:12px;color:#a99cc2;padding:12px 4px;text-align:center}
+.sDunRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.sDunC{position:relative;height:92px;border-radius:12px;overflow:hidden;border:2px solid #ffffff22;background:#151020 center/cover;cursor:pointer;padding:0;color:#fff;text-align:left;transition:all .25s}
+.sDunC:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#0002,#000c)}.sDunC>*{position:relative}.sDunC>.sBadge{position:absolute}
+.sDunC .dn{position:absolute;left:7px;right:4px;bottom:6px;font-size:12.5px;font-weight:800;color:#ffe9a8}.sDunC .dm{position:absolute;right:5px;top:5px;display:flex;gap:2px}.sDunC .dm img{width:26px;height:26px;border-radius:50%;object-fit:cover;border:1px solid #ffd54a88}
+.sDunC:hover{border-color:#ffd54a88}.sDunC.sel{border-color:var(--gold);box-shadow:0 0 0 2px #ffd54a77,0 0 20px #ffb34799}.sDunC.sel.p2{border-color:#5ab8ff;box-shadow:0 0 0 2px #5ab8ff77,0 0 20px #5ab8ff99}.sDunC.taken{filter:grayscale(.7) brightness(.65)}
+.sDunRule{margin-top:6px;font-size:11.5px;line-height:1.35;color:#ddd;min-height:31px}.sDunRule b{color:#ffd54a}
+.sPanel{gap:10px;padding:14px}.sPanel .sCard{padding:8px 6px}.sPanel .sCard .sIco{font-size:20px}.sCard.sm{flex-direction:row;justify-content:center;padding:7px}
+.sSum{display:flex;flex-direction:column;gap:6px}.sSumR{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:12px;background:#120e1c;border:1px solid #ffffff1a;font-size:12px;color:#ccc;min-width:0}
+.sSumR img{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--gold);flex:none}.sSumR.p2 img{border-color:#5ab8ff}.sSumR .q{width:34px;height:34px;border-radius:50%;border:2px dashed #6d5f8a;display:grid;place-items:center;flex:none;color:#6d5f8a}
+.sSumR b{color:#fff;font-size:13px}.sSumR span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.sSumR em{font-style:normal;color:#ff9a7a}
+.sGo button{font-size:19px!important;padding:12px 14px!important}#btnNew.notReady{background:linear-gradient(180deg,#5a4a6e,#3a2f4a);box-shadow:none;border-color:#7a6a90;font-size:15px!important;color:#e8dcff}
+#sPop{position:fixed;z-index:80;width:300px;max-width:calc(100vw - 16px);background:linear-gradient(180deg,#221a36f7,#120e1cf7);border:1px solid #ffd54a88;border-radius:14px;padding:10px 12px;box-shadow:0 14px 40px #000d;color:#e8e0f4;font-size:12px;line-height:1.4;pointer-events:none;opacity:0;transform:translateY(6px);transition:opacity .18s,transform .18s}
+#sPop.show{opacity:1;transform:none}#sPop h4{margin:0;font-size:16px;color:#ffe9a8}#sPop .pc{color:var(--cc,#ccc);font-weight:700;margin:2px 0 6px}#sPop .ab{margin:5px 0;padding:6px 8px;border-radius:8px;background:#ffffff0d}#sPop .ab b{display:block;font-size:11px;color:#ffd54a}#sPop .ab.u b{color:#ffb3ff}#sPop .gd{margin-top:6px;color:#cfe9d4}#sPop .gd b{color:#8ef0a8}
+@media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
+@media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.67 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.68 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
-  <div class="sHero">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ดันเจี้ยนครอว์เลอร์ Deck-building · 10 ห้อง · ปราบบอสเพื่อชนะ</div><div class="sVer">v1.1.67 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
-   <div class="sShow" id="sShow"></div>
+  <div class="sMain">
+  <div class="sLeft">
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.68 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
+    <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
+   <div class="sRow2">
+    <div class="sSec sClsSec" id="sClsSec"><h3 class="sH">✨ คลาสที่ 2 <small id="sClsWho"></small></h3><div class="sClsRow" id="sClsRow"></div></div>
+    <div class="sSec sDunSec" id="sDunSec"><h3 class="sH">🗺 ดันเจี้ยน <small id="sDunWho"></small></h3><div class="sDunRow" id="sDunRow"></div><div class="sDunRule" id="sDunRule"></div></div>
+   </div>
   </div>
   <div class="sPanel">
    <div class="sSec"><h3 class="sH">👥 จำนวนผู้เล่น</h3>
@@ -949,11 +990,13 @@ body.dragging,body.dragging *{touch-action:none!important}
    <div class="sSec"><h3 class="sH">⚖ ความยาก</h3>
     <div class="sCards" id="sDiff"><button type="button" class="sCard" data-v="normal"><span class="sIco">⚔</span><b>ปกติ</b><small>ตามกติกาบอร์ดเกม</small></button><button type="button" class="sCard" data-v="easy"><span class="sIco">🌱</span><b>ง่าย</b><small>+10 HP · 3 Coins ตอนพัก · Exhaust 10</small></button></div>
     <select id="diff" class="sHidden" aria-label="ความยาก"><option value="normal">ปกติ (ตามกติกา)</option><option value="easy">ง่าย (+10 HP, 3 Coins/Rest, Exhaust 10)</option></select></div>
-   <div class="sGo"><button id="btnContinue" class="end hide">▶ เล่นต่อ (Continue)</button><button id="btnNew" class="end">⚔ เริ่มเกมใหม่ ▶</button></div>
+   <div class="sSec hide" id="sP2Sec"><h3 class="sH">🤝 ผู้เล่น 2 ควบคุมโดย</h3><div class="sCards" id="sP2"><button type="button" class="sCard sm" data-v="h"><b>👤 มนุษย์</b></button><button type="button" class="sCard sm" data-v="b"><b>🤖 CPU</b></button></div></div>
+   <div class="sSum" id="sSum"></div>
+   <div class="sGo"><button id="btnContinue" class="end hide">▶ เล่นต่อ (Continue)</button><button id="btnNew" class="end">⚔ เริ่มผจญภัย ▶</button></div>
    <div class="sSecBtns" id="sSecBtns"><button type="button" id="sRules" class="ghost">📖 กติกา / วิธีเล่น</button><button id="btnImport0" class="ghost" title="โหลดเซฟจากไฟล์ .json (ย้ายเซฟข้ามเบราว์เซอร์/เครื่อง)">📂 นำเข้าเซฟ</button><button id="btnDelSave" class="ghost hide" title="ลบเซฟที่บันทึกไว้">🗑 ลบเซฟ</button></div>
    <div id="saveInfo" class="sInfo"></div>
   </div>
-  <div class="sDuns"><h3 class="sH">🗺 ดันเจี้ยน 3 แห่ง</h3><div class="sDunRow" id="sDunRow"></div></div>
+  </div>
  </div>
  <div id="wizBar" class="hide"><div id="wizSteps"></div><span style="flex:1"></span><button id="wizBack" class="ghost">◀ ย้อนกลับ</button><button id="wizNext" class="end">ถัดไป ▶</button></div>
  <div id="seats"></div>
@@ -7041,7 +7084,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.67', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.68', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -9674,15 +9717,92 @@ const SETUP={
       const pick=names.sort(()=>Math.random()-.5).slice(0,4);
       sh.innerHTML=pick.map(n=>`<figure><img loading="lazy" decoding="async" alt="${n}" data-src="${(typeof MENUART!=='undefined'&&MENUART[n])||HEROART[n]}"><figcaption>${n}</figcaption></figure>`).join('');
       sh.querySelectorAll('img').forEach(i=>{ i.onload=()=>i.classList.add('ld'); i.src=i.dataset.src; }); }
-    // dungeon strip with special rules
-    const dr=q('#sDunRow'); if(dr&&!dr.children.length&&UI.DUN_TH){ dr.innerHTML=Object.keys(UI.DUN_TH).map(k=>{ const t=UI.DUN_TH[k], dg=DUNGEONS[k]||{}; const fl=ENVART['floor_'+k+'_0']||''; const ms=[dg.B].concat(dg.E||[]).filter(n=>n&&artOf(n,'p')).slice(0,2);
-        return `<div class="sDun" data-k="${k}" style="${fl?`background-image:url('${fl}')`:''}"><div class="sMon">${ms.map(n=>`<img loading="lazy" alt="" src="${artOf(n,'p')}">`).join('')}</div><div class="sDi"><b>${t[1]} ${t[0]}</b><small>${t[2]}</small></div></div>`; }).join(''); }
     // keyword button (added by e9 next to btnNew) goes into the secondary row
     const mv=()=>{ const g=q('#btnGloss2'), s=q('#sSecBtns'); if(g&&s&&g.parentNode!==s) s.insertBefore(g,s.children[1]||null); }; mv(); setTimeout(mv,0); setTimeout(mv,400);
   }
 };
 UI.SETUP=SETUP;
 if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>SETUP.init(),0)); else setTimeout(()=>SETUP.init(),0);
+
+/* ===== v1.1.68 one-screen setup (USER REQUEST): heroes (4 per page, arrows/swipe/keys, hover/long-press details), class 2, dungeon, players, difficulty → start.
+   The hidden wizard controls stay the source of truth for UI.start(): hero radios input[name=heroN], .pcls2, .ptype, #dungeon/#dungeon2 are synced on start.
+   The old wizard steps (hero carousel / class / dungeon) still exist (UI.wizGo) but the normal flow never enters them. ===== */
+const PICK={ S:{act:0,hero:[null,null],cls:['',''],dun:[null,null],p2:'h'}, page:0, log:[],
+  q:s=>document.querySelector(s), n(){ return +((this.q('#np')||{}).value||1); },
+  per(){ const w=window.innerWidth; return w>=760?4:w>=480?3:2; },
+  H(n){ return D.heroes.find(h=>h.name===n); }, CC(c){ return (typeof HSEL!=='undefined'&&HSEL.CLR[c])||'#ffd54a'; },
+  init(){ if(!this.q('#sHeroTrack')||this.ready) return; this.ready=true;
+    const tr=this.q('#sHeroTrack'); tr.innerHTML=D.heroes.map((h,k)=>{ const c=normCls(h.cls); return `<button type="button" class="sHeroC" data-h="${esc(h.name)}" data-k="${k}" style="--cc:${this.CC(c)}"><img alt="" decoding="async" data-src="${HSEL.art(h.name)}"><div class="cap"><b>${esc(h.name)}</b><small>${CLASS_TH[c]} · HP ${h.hp}</small></div></button>`; }).join('');
+    this.lazy();
+    tr.querySelectorAll('.sHeroC').forEach(b=>{ b.onclick=e=>{ if(this.lp){ this.lp=false; e.preventDefault(); return; } this.pickHero(b.dataset.h); };
+      b.onmouseenter=()=>{ if(!this.touch) this.pop(b); }; b.onmouseleave=()=>this.pop(null);
+      let t=null; b.addEventListener('touchstart',()=>{ this.touch=true; this.lp=false; clearTimeout(t); t=setTimeout(()=>{ this.lp=true; this.pop(b); },450); },{passive:true});
+      ['touchend','touchmove','touchcancel'].forEach(ev=>b.addEventListener(ev,()=>{ clearTimeout(t); if(this.lp) setTimeout(()=>{ this.lp=false; },400); },{passive:true})); });
+    document.addEventListener('touchstart',e=>{ if(!e.target.closest||!e.target.closest('.sHeroC')) this.pop(null); },{passive:true});
+    this.q('#sPrev').onclick=()=>this.go(-1); this.q('#sNext').onclick=()=>this.go(1);
+    const vp=this.q('#sViewport'); let x0=null; vp.addEventListener('touchstart',e=>{ x0=e.touches[0].clientX; },{passive:true}); vp.addEventListener('touchend',e=>{ if(x0==null) return; const dx=e.changedTouches[0].clientX-x0; x0=null; if(Math.abs(dx)>40){ this.lp=true; setTimeout(()=>this.lp=false,50); this.go(dx<0?1:-1); } },{passive:true});
+    addEventListener('keydown',e=>{ const o=this.q('#setup .opts1'); if(!o||o.classList.contains('hide')||this.q('#setup').classList.contains('hide')||/INPUT|TEXTAREA|SELECT/.test((e.target||{}).tagName||'')) return; if(e.key==='ArrowRight'){ this.go(1); e.preventDefault(); } if(e.key==='ArrowLeft'){ this.go(-1); e.preventDefault(); } });
+    addEventListener('resize',()=>this.paint());
+    this.q('#sDunRow').innerHTML=Object.keys(UI.DUN_TH).map(k=>{ const t=UI.DUN_TH[k], dg=DUNGEONS[k]||{}; const fl=ENVART['floor_'+k+'_0']||''; const ms=[dg.B].concat(dg.E||[]).filter(n=>n&&artOf(n,'p')).slice(0,2);
+      return `<button type="button" class="sDunC" data-k="${k}" style="${fl?`background-image:url('${fl}')`:''}" title="${esc(t[2])}"><span class="dm">${ms.map(n=>`<img loading="lazy" alt="" src="${artOf(n,'p')}">`).join('')}</span><span class="dn">${t[1]} ${esc(t[0])}</span></button>`; }).join('');
+    this.q('#sDunRow').querySelectorAll('.sDunC').forEach(b=>b.onclick=()=>this.pickDun(b.dataset.k));
+    this.q('#sP2').querySelectorAll('.sCard').forEach(b=>b.onclick=()=>{ this.S.p2=b.dataset.v; this.paint(); });
+    this.q('#np').addEventListener('change',()=>{ if(this.n()<2){ this.S.act=0; this.S.hero[1]=null; this.S.dun[1]=null; this.S.cls[1]=''; } this.paint(); });
+    const bn=this.q('#btnNew'); bn.onclick=null; bn.addEventListener('click',e=>{ e.stopImmediatePropagation(); this.go2(); },true);
+    this.paint(); },
+  lazy(){ const per=this.per(); this.q('#sHeroTrack').querySelectorAll('.sHeroC').forEach((b,k)=>{ const i=b.querySelector('img'); if(i.dataset.src&&k<(this.page+2)*per){ i.onload=()=>i.classList.add('ld'); i.src=i.dataset.src; i.removeAttribute('data-src'); } }); },
+  pages(){ return Math.ceil(D.heroes.length/this.per()); },
+  go(d){ this.page=Math.max(0,Math.min(this.pages()-1,this.page+d)); this.log.push('page'+this.page); this.pop(null); this.paint(); },
+  show(name){ const k=D.heroes.findIndex(h=>h.name===name); if(k>=0) this.page=Math.floor(k/this.per()); },
+  other(){ return this.S.act?0:1; },
+  pickHero(n){ const S=this.S, o=this.other(); if(this.n()>1&&S.hero[o]===n){ this.flash('#sHeroSec'); return; }
+    if(S.hero[S.act]!==n){ S.hero[S.act]=n; const h=this.H(n); if(S.cls[S.act]&&!cls2Choices(h).includes(S.cls[S.act])) S.cls[S.act]=''; }
+    this.log.push('hero'+S.act+':'+n); if(this.n()>1&&S.act===0&&!S.hero[1]){ /* stay on P1 until class/dungeon? move on to P2's hero */ }
+    this.paint(); },
+  pickCls(c){ this.S.cls[this.S.act]=c; this.paint(); },
+  pickDun(k){ const S=this.S, o=this.other(); if(this.n()>1&&S.dun[o]===k){ this.flash('#sDunSec'); return; } S.dun[S.act]=k; this.log.push('dun'+S.act+':'+k); this.paint(); },
+  seat(i){ this.S.act=i; this.paint(); },
+  flash(sel){ const e=this.q(sel); if(!e) return; e.classList.remove('need'); void e.offsetWidth; e.classList.add('need'); setTimeout(()=>e.classList.remove('need'),1900); },
+  missing(){ const S=this.S, n=this.n(), m=[]; for(let i=0;i<n;i++){ const p=n>1?' P'+(i+1):''; if(!S.hero[i]) m.push({t:'ฮีโร่'+p,s:'#sHeroSec',i}); if(!S.dun[i]) m.push({t:'ดันเจี้ยน'+p,s:'#sDunSec',i}); } return m; },
+  go2(){ const m=this.missing(); if(m.length){ this.S.act=m[0].i; this.paint(); this.flash(m[0].s); this.log.push('missing:'+m.map(x=>x.t).join(',')); return; } this.sync(); this.log.push('start'); UI.start(); },
+  sync(){ const S=this.S, n=this.n(); const seats=[...document.querySelectorAll('.seat')];
+    for(let i=0;i<n;i++){ const s=seats[i]; if(!s) continue; const r=[...s.querySelectorAll(`input[name=hero${i}]`)].find(x=>x.value===S.hero[i]); if(r){ r.checked=true; r.dispatchEvent(new Event('change',{bubbles:true})); }
+      const c=s.querySelector('.pcls2'); if(c) c.value=S.cls[i]||''; if(i===1){ const t=s.querySelector('.ptype'); if(t) t.value=S.p2; } }
+    this.q('#dungeon').value=S.dun[0]; if(n>1) this.q('#dungeon2').value=S.dun[1]; },
+  pop(b){ let p=document.getElementById('sPop'); if(!b){ if(p) p.classList.remove('show'); return; } const h=this.H(b.dataset.h); if(!h) return;
+    if(!p){ p=document.createElement('div'); p.id='sPop'; document.body.appendChild(p); } const c=normCls(h.cls);
+    p.style.setProperty('--cc',this.CC(c)); p.innerHTML=`<h4>${esc(h.name)}</h4><div class="pc">${CLASS_TH[c]} · กล่อง ${esc(h.box||'')} · ❤ HP ${h.hp}</div><div class="ab"><b>ความสามารถ (ด้านปกติ)</b>${esc(h.th)}</div><div class="ab u"><b>🌟 ด้าน Upgrade (ห้อง 6)</b>${esc(h.uth||h.th)}</div>${(typeof HEROGUIDE!=='undefined'&&HEROGUIDE[h.name])?`<div class="gd"><b>🧭 แนวทางการเล่น</b><br>${esc(HEROGUIDE[h.name])}</div>`:''}`;
+    const r=b.getBoundingClientRect(), W=innerWidth, Hh=innerHeight; p.classList.add('show'); const pw=p.offsetWidth, ph=p.offsetHeight;
+    let x=r.right+10; if(x+pw>W-8) x=r.left-pw-10; if(x<8) x=Math.max(8,Math.min(W-pw-8,r.left+r.width/2-pw/2)); let y=r.top; if(x>=r.left-pw-10&&x<=r.right&&W<700) y=r.bottom-ph*0.25; y=Math.max(8,Math.min(Hh-ph-8,y));
+    p.style.left=x+'px'; p.style.top=y+'px'; this.log.push('pop:'+h.name); },
+  paint(){ const S=this.S, n=this.n(), per=this.per(); if(!this.q('#sHeroTrack')) return; if(S.act>=n) S.act=0;
+    this.page=Math.min(this.page,this.pages()-1);
+    const tr=this.q('#sHeroTrack'); tr.querySelectorAll('.sHeroC').forEach(b=>b.style.setProperty('--per',per));
+    const card=tr.querySelector('.sHeroC'); const step=card?(card.getBoundingClientRect().width+10)*per:0; tr.style.transform=`translateX(${-this.page*step}px)`; this.lazy();
+    this.q('#sPrev').disabled=this.page===0; this.q('#sNext').disabled=this.page>=this.pages()-1; this.q('#sPageNo').textContent=`หน้า ${this.page+1}/${this.pages()} · ฮีโร่ ${D.heroes.length} ตัว`;
+    tr.querySelectorAll('.sHeroC').forEach(b=>{ const k=b.dataset.h; const who=[0,1].filter(i=>i<n&&S.hero[i]===k); b.classList.toggle('sel',who.includes(S.act)); b.classList.toggle('p2',who.includes(1)&&!who.includes(0)); b.classList.toggle('taken',n>1&&who.length>0&&!who.includes(S.act));
+      let bd=b.querySelector('.sBadge'); if(who.length){ if(!bd){ bd=document.createElement('span'); b.appendChild(bd); } bd.className='sBadge'+(who[0]===1?' p2':''); bd.textContent=n>1?'P'+(who[0]+1):'✔ เลือกแล้ว'; } else if(bd) bd.remove(); });
+    const tabs=this.q('#sSeatTabs'); tabs.innerHTML=n>1?[0,1].map(i=>`<button type="button" class="${S.act===i?'on':''} ${i?'p2':''}" data-seat="${i}">กำลังเลือก P${i+1}${S.hero[i]&&S.dun[i]?' ✔':''}</button>`).join(''):''; tabs.querySelectorAll('[data-seat]').forEach(b=>b.onclick=()=>this.seat(+b.dataset.seat));
+    const who=n>1?`— P${S.act+1}`:''; this.q('#sClsWho').textContent=who; this.q('#sDunWho').textContent=who;
+    /* class 2 row for the active seat */
+    const cr=this.q('#sClsRow'), hn=S.hero[S.act]; if(!hn) cr.innerHTML='<div class="sClsEmpty">เลือกฮีโร่ก่อน แล้วเลือกคลาสที่ 2 (หรือเล่นคลาสเดียว)</div>'; else { const h=this.H(hn), own=normCls(h.cls); const ch=cls2Choices(h);
+      const oth=n>1&&S.hero[this.other()]?[normCls(this.H(S.hero[this.other()]).cls),S.cls[this.other()]].filter(Boolean):[];
+      const ci=c=>{ const hh=D.heroes.find(x=>normCls(x.cls)===c); return hh?HSEL.art(hh.name):''; };
+      cr.innerHTML=`<button type="button" class="sCls" data-c="" style="--cc:${this.CC(own)}"><span class="ci" style="background-image:url('${HSEL.art(h.name)}')"><i>${UI.CLS_ICO[own]||''}</i></span><span><b>คลาสเดียว</b><small>เฉพาะ ${CLASS_TH[own].split(' ')[0]}</small></span></button>`+
+        ch.map(c=>`<button type="button" class="sCls${oth.includes(c)?' used':''}" data-c="${c}" style="--cc:${this.CC(c)}" title="${esc(UI.CLS_DESC[c]||'')}"><span class="ci" style="background-image:url('${ci(c)}')"><i>${UI.CLS_ICO[c]||''}</i></span><span><b>+ ${CLASS_TH[c].split(' ')[0]}</b><small>${oth.includes(c)?'อีกคนใช้แล้ว':esc(UI.CLS_DESC[c]||'')}</small></span></button>`).join('');
+      cr.querySelectorAll('.sCls').forEach(b=>{ b.classList.toggle('on',b.dataset.c===(S.cls[S.act]||'')); b.onclick=()=>this.pickCls(b.dataset.c); }); }
+    /* dungeon */
+    this.q('#sDunRow').querySelectorAll('.sDunC').forEach(b=>{ const k=b.dataset.k; const w=[0,1].filter(i=>i<n&&S.dun[i]===k); b.classList.toggle('sel',w.includes(S.act)); b.classList.toggle('p2',w.includes(1)&&!w.includes(0)); b.classList.toggle('taken',n>1&&w.length>0&&!w.includes(S.act));
+      let bd=b.querySelector('.sBadge'); if(w.length&&n>1){ if(!bd){ bd=document.createElement('span'); b.appendChild(bd); } bd.className='sBadge'+(w[0]===1?' p2':''); bd.textContent='P'+(w[0]+1); } else if(bd) bd.remove(); });
+    const dk=S.dun[S.act]; this.q('#sDunRule').innerHTML=dk?`<b>${esc(UI.DUN_TH[dk][0])}:</b> ${esc(UI.DUN_TH[dk][2])}`:(n>1?'ผู้เล่นแต่ละคนมีบอร์ดของตัวเอง — เลือกดันเจี้ยนคนละแห่ง':'เลือกดันเจี้ยน — กฎพิเศษจะแสดงตรงนี้');
+    /* panel */
+    this.q('#sP2Sec').classList.toggle('hide',n<2); this.q('#sP2').querySelectorAll('.sCard').forEach(b=>b.classList.toggle('on',b.dataset.v===S.p2));
+    this.q('#sSum').innerHTML=Array.from({length:n},(_,i)=>{ const h=S.hero[i], c=S.cls[i], d=S.dun[i];
+      return `<div class="sSumR${i?' p2':''}">${h?`<img alt="" src="${HSEL.art(h)}">`:'<span class="q">?</span>'}<span>${n>1?`<b>P${i+1}</b> · `:''}${h?`<b>${esc(h)}</b>${c?' + '+esc(CLASS_TH[c].split(' ')[0]):' (คลาสเดียว)'}`:'<em>ยังไม่เลือกฮีโร่</em>'}<br>${d?esc(UI.DUN_TH[d][1]+' '+UI.DUN_TH[d][0]):'<em>ยังไม่เลือกดันเจี้ยน</em>'}</span></div>`; }).join('');
+    const m=this.missing(), bn=this.q('#btnNew'); bn.classList.toggle('notReady',m.length>0); bn.textContent=m.length?`ยังขาด: ${m.slice(0,2).map(x=>x.t).join(', ')}${m.length>2?' …':''}`:'⚔ เริ่มผจญภัย ▶'; }
+};
+UI.PICK=PICK;
+if(!HEADLESS){ const pi=()=>{ try{ PICK.init(); }catch(e){ console.error(e); } }; if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(pi,30)); else setTimeout(pi,30); }
 
 /* ===== v1.1.67 (1) RUNS — "who's playing now": rides on the e23 ONLINE presence (topic pd_online, same socket).
    Sender: ONLINE.setRun({team,heroes:[hero names],dg,room,rd,mode}) on game start / room / round change (>=5 s apart; viewer switch is immediate),
