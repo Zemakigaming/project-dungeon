@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.69</title>
+<title>Project Dungeon v1.1.70</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.69 setup start screen */
+/* v1.1.70 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.69 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.70 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -968,14 +968,37 @@ body.dragging,body.dragging *{touch-action:none!important}
 #sPop.show{opacity:1;transform:none}#sPop h4{margin:0;font-size:16px;color:#ffe9a8}#sPop .pc{color:var(--cc,#ccc);font-weight:700;margin:2px 0 6px}#sPop .ab{margin:5px 0;padding:6px 8px;border-radius:8px;background:#ffffff0d}#sPop .ab b{display:block;font-size:11px;color:#ffd54a}#sPop .ab.u b{color:#ffb3ff}#sPop .gd{margin-top:6px;color:#cfe9d4}#sPop .gd b{color:#8ef0a8}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
+
+/* v1.1.70 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+html.pdLite .mmRays,html.pdLite .mmFog{display:none}
+html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
+html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
+html.pdLite .mmHero.h3,html.pdLite .mmHero.h4{filter:brightness(.55)}
+html.pdLite .mmEmbers i:nth-child(n+7),html.pdLite .sEmbers i:nth-child(n+7){display:none}
+html.pdLite .mmEmbers i,html.pdLite .sEmbers i{box-shadow:none}
+html.pdLite .cfOv{backdrop-filter:none;background:rgba(5,4,12,.86)}
+html.pdLite #board.persp{will-change:auto}
+html.pdOv #mainMenu *,html.pdOv #mainMenu *::before,html.pdOv #mainMenu *::after{animation-play-state:paused!important}
+html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
+#hof{background:#0b0814;align-items:center;padding:10px}
+.hofBox{box-shadow:0 0 24px #ffd36b22;background:#120d1c;display:flex;flex-direction:column;max-height:calc(100dvh - 20px);box-sizing:border-box;padding:12px 14px}
+@supports not (height:100dvh){.hofBox{max-height:calc(100vh - 20px)}}
+.hofBox h1{flex:none}
+.hofList{flex:1 1 auto;min-height:80px;max-height:none;overflow:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+#hofX{flex:none;margin-top:8px;align-self:center}
+.hofSpin{display:inline-block;width:18px;height:18px;border:3px solid #ffd36b44;border-top-color:#ffd36b;border-radius:50%;animation:hofSp .8s linear infinite;vertical-align:middle;margin-right:8px}
+@keyframes hofSp{to{transform:rotate(360deg)}}
+.hofState{padding:22px 10px;text-align:center;color:#c9cde0}
+.hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
+@media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.69 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.70 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.69 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.70 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -7084,7 +7107,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.69', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.70', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -9362,7 +9385,11 @@ const HOFNET={ URL:'https://wvmcfwuvewdindvtcvyn.supabase.co', KEY:'eyJhbGciOiJI
         this.setQ(this.q().filter(x=>x.cid!==it.cid)); this.markPosted(it.cid,id); } }
     finally{ this.busy=false; } },
   markPosted(cid,id){ const L=HOF.all(); const e=L.find(x=>x.cid===cid); if(e){ e.online=id||true; try{ localStorage.setItem(HOF.KEY,JSON.stringify(L)); }catch(err){} } },
-  async list(order){ const o=order==='rounds'?'rounds.asc,created_at.desc':'created_at.desc'; const r=await fetch(`${this.URL}/rest/v1/${this.TABLE}?select=*&order=${o}&limit=200`,{headers:this.hdr()}); if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); },
+  async list(order,offset,limit){ const o=order==='rounds'?'rounds.asc,created_at.desc':'created_at.desc'; const ac=typeof AbortController!=='undefined'?new AbortController():null; const to=setTimeout(()=>ac&&ac.abort(),9000);
+    try{ const r=await fetch(`${this.URL}/rest/v1/${this.TABLE}?select=*&order=${o}&limit=${limit||40}&offset=${offset|0}`,{headers:this.hdr(),signal:ac?ac.signal:undefined}); if(!r.ok) throw new Error('HTTP '+r.status); return await r.json(); }
+    catch(e){ throw new Error(e&&e.name==='AbortError'?'timeout':(e.message||'offline')); } finally{ clearTimeout(to); } },
+  cacheGet(order){ try{ return JSON.parse(localStorage.getItem('pd_hofcache_'+order)||'null'); }catch(e){ return null; } },
+  cacheSet(order,rows){ try{ localStorage.setItem('pd_hofcache_'+order,JSON.stringify(rows.slice(0,40))); }catch(e){} },
   /* rows 2-4 are test rows accidentally posted by the old test_victory142 run during v1.1.47 development (before the webdriver guard); anon cannot delete them, so hide them client-side until the owner removes them */
   HIDE:[2,3,4],
   fromRow(r){ const d=new Date(r.created_at); return {key:'o'+r.id,src:'online',id:r.id,cid:r.stats&&r.stats.client_id,team:r.team_name,dungeon:r.dungeon||'',rooms:r.rooms||10,rounds:r.rounds|0,turns:r.turns|0,ms:(r.play_seconds|0)*1000,ver:String(r.version||'').replace(/^v/,''),
@@ -9378,20 +9405,30 @@ HOF.add=function(D){ if(!D||D.diff!=='normal'||D.tut) return false; const ok=_ad
   try{ localStorage.setItem(HOF.KEY,JSON.stringify(L)); }catch(err){} HOFNET.enqueue(e); return true; };
 /* ---------- list ---------- */
 HOF.order='new';
+/* v1.1.70: opens instantly (local + last cached online list), spinner while the fresh list loads (9 s timeout), error + retry, empty state, 40 per page + "load more" */
 HOF.show=async function(){ let el=document.getElementById('hof'); if(!el){ el=document.createElement('div'); el.id='hof'; document.body.appendChild(el); }
-  const box=(inner)=>{ el.innerHTML=`<div class="hofBox" data-nokw><h1>🏛 หอเกียรติยศ</h1><div class="hofTabs"><button data-o="new" class="${HOF.order==='new'?'on':''}">ล่าสุด</button><button data-o="rounds" class="${HOF.order==='rounds'?'on':''}">รอบน้อยสุด</button></div>${inner}<button id="hofX">ปิด</button></div>`; el.className='show';
-    el.querySelector('#hofX').onclick=()=>{ el.className=''; }; el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{ HOF.order=b.dataset.o; HOF.show(); }); };
-  box('<div class="hofSub hofLoading">⏳ กำลังโหลดหอเกียรติยศออนไลน์…</div>');
-  let rows=null, err=''; try{ rows=await HOFNET.list(HOF.order); }catch(e){ err=e.message||'offline'; }
-  const online=(rows||[]).filter(r=>!HOFNET.HIDE.includes(r.id)).map(r=>HOFNET.fromRow(r)); const oc=new Set(online.map(e=>e.cid).filter(Boolean));
-  const local=HOF.all().map((e,i)=>HOFNET.fromLocal(e,i)).filter(e=>!(e.cid&&oc.has(e.cid))&&!(rows&&e.cid&&HOF.all().find(x=>x.cid===e.cid&&x.online)));
-  let L=online.concat(local); L.sort(HOF.order==='rounds'?((a,b)=>a.rounds-b.rounds||b.t-a.t):((a,b)=>b.t-a.t)); HOF.cur=L;
-  const tag=e=>e.src==='online'?'<span class="hofTag on">🌐 ออนไลน์</span>':e.queued?'<span class="hofTag q">⏳ รอส่ง</span>':'<span class="hofTag loc">📱 เฉพาะเครื่องนี้</span>';
-  box(`<div class="hofSub">${rows?`ออนไลน์ ${online.length} · เฉพาะเครื่องนี้ ${local.length}`:'⚠ ออฟไลน์ — แสดงเฉพาะบันทึกบนเครื่องนี้'}</div>
-    <div class="hofList">${L.length?L.map((e,i)=>`<div class="hofE" data-k="${esc(e.key)}" tabindex="0"><b>#${i+1}</b><div><div class="hofN">${esc(e.team||e.ps.map(p=>p.name).join(' & '))} ${tag(e)}</div>
-      <div class="hofD">${esc(e.ps.map(p=>p.name+' · '+p.hero+' — '+clsTxt(p)).join(' | '))}</div><div class="hofD">${esc(e.dungeon)} · ${e.rounds} รอบ · ${e.turns} เทิร์น · ${VIC.time(e.ms||0)}</div><div class="hofT">${esc(e.date||'')} · v${esc(e.ver||'')}</div></div></div>`).join(''):'<i>ยังไม่มีบันทึก — ชนะบอสห้องที่ 10 ในโหมดปกติเพื่อจารึกชื่อ</i>'}</div>`);
-  el.querySelectorAll('.hofE').forEach(r=>{ const go=()=>HOF.detail(HOF.cur.find(e=>e.key===r.dataset.k)); r.onclick=go; r.onkeydown=ev=>{ if(ev.key==='Enter') go(); }; });
-  HOFNET.log.push(rows?'list:'+online.length+'+'+local.length:'list:offline'); };
+  const order=HOF.order, tok=HOF._tok=(HOF._tok||0)+1; HOF._rows=null; HOF._more=false;
+  const render=(rows,state)=>{ if(tok!==HOF._tok) return;
+    const online=(rows||[]).filter(r=>!HOFNET.HIDE.includes(r.id)).map(r=>HOFNET.fromRow(r)); const oc=new Set(online.map(e=>e.cid).filter(Boolean));
+    const local=HOF.all().map((e,i)=>HOFNET.fromLocal(e,i)).filter(e=>!(e.cid&&oc.has(e.cid))&&!(rows&&e.cid&&HOF.all().find(x=>x.cid===e.cid&&x.online)));
+    let L=online.concat(local); L.sort(order==='rounds'?((a,b)=>a.rounds-b.rounds||b.t-a.t):((a,b)=>b.t-a.t)); HOF.cur=L;
+    const tag=e=>e.src==='online'?'<span class="hofTag on">🌐 ออนไลน์</span>':e.queued?'<span class="hofTag q">⏳ รอส่ง</span>':'<span class="hofTag loc">📱 เฉพาะเครื่องนี้</span>';
+    const sub=state==='loading'?'<span class="hofSpin"></span>กำลังโหลดหอเกียรติยศออนไลน์…':state==='error'?'⚠ ออฟไลน์หรือโหลดไม่สำเร็จ — แสดงเฉพาะบันทึกบนเครื่องนี้'+(rows?' และรายการล่าสุดที่จำไว้':''):`ออนไลน์ ${online.length}${HOF._more?'+':''} · เฉพาะเครื่องนี้ ${local.length}`;
+    const rowsH=L.map((e,i)=>`<div class="hofE" data-k="${esc(e.key)}" tabindex="0"><b>#${i+1}</b><div><div class="hofN">${esc(e.team||e.ps.map(p=>p.name).join(' & '))} ${tag(e)}</div>
+      <div class="hofD">${esc(e.ps.map(p=>p.name+' · '+p.hero+' — '+clsTxt(p)).join(' | '))}</div><div class="hofD">${esc(e.dungeon)} · ${e.rounds} รอบ · ${e.turns} เทิร์น · ${VIC.time(e.ms||0)}</div><div class="hofT">${esc(e.date||'')} · v${esc(e.ver||'')}</div></div></div>`).join('');
+    const empty=state==='loading'?'<div class="hofState"><span class="hofSpin"></span>กำลังโหลด…</div>':state==='error'?'<div class="hofState">ยังไม่มีบันทึกบนเครื่องนี้ และโหลดรายการออนไลน์ไม่ได้<button data-retry>↻ ลองใหม่</button></div>':'<div class="hofState"><i>ยังไม่มีบันทึก — ชนะบอสห้องที่ 10 ในโหมดปกติเพื่อจารึกชื่อ</i></div>';
+    el.innerHTML=`<div class="hofBox" data-nokw><h1>🏛 หอเกียรติยศ</h1><div class="hofTabs"><button data-o="new" class="${order==='new'?'on':''}">ล่าสุด</button><button data-o="rounds" class="${order==='rounds'?'on':''}">รอบน้อยสุด</button></div>
+      <div class="hofSub${state==='loading'?' hofLoading':''}">${sub}${state==='error'&&L.length?' <button data-retry class="hofMore" style="display:inline-block;margin:0 0 0 6px">↻ ลองใหม่</button>':''}</div>
+      <div class="hofList">${L.length?rowsH:empty}${HOF._more&&state==='ok'?'<button class="hofMore" data-more>โหลดเพิ่ม ▼</button>':''}</div><button id="hofX">ปิด</button></div>`;
+    el.className='show'; el.querySelector('#hofX').onclick=()=>{ el.className=''; HOF._tok++; };
+    el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{ HOF.order=b.dataset.o; HOF.show(); });
+    el.querySelectorAll('[data-retry]').forEach(b=>b.onclick=()=>HOF.show());
+    const mb=el.querySelector('[data-more]'); if(mb) mb.onclick=async()=>{ mb.disabled=true; mb.innerHTML='<span class="hofSpin"></span>กำลังโหลด…'; try{ const more=await HOFNET.list(order,HOF._rows.length,40); HOF._more=more.length===40; HOF._rows=HOF._rows.concat(more); const st=el.querySelector('.hofList').scrollTop; render(HOF._rows,'ok'); el.querySelector('.hofList').scrollTop=st; }catch(e){ mb.disabled=false; mb.textContent='⚠ ลองโหลดเพิ่มอีกครั้ง'; } };
+    el.querySelectorAll('.hofE').forEach(r=>{ const go=()=>HOF.detail(HOF.cur.find(e=>e.key===r.dataset.k)); r.onclick=go; r.onkeydown=ev=>{ if(ev.key==='Enter') go(); }; }); };
+  const cached=HOFNET.cacheGet(order); render(cached,'loading');
+  let rows=null; try{ rows=await HOFNET.list(order,0,40); }catch(e){ if(tok!==HOF._tok) return; HOFNET.log.push('list:'+(e.message||'offline')); render(cached,'error'); return; }
+  if(tok!==HOF._tok) return; HOFNET.cacheSet(order,rows); HOF._rows=rows; HOF._more=rows.length===40; render(rows,'ok');
+  HOFNET.log.push('list:'+rows.length+'+'+HOF.all().length); };
 /* ---------- detail: the victory-stats card ---------- */
 HOF.detail=function(e){ if(!e) return; let el=document.getElementById('hofCard'); if(!el){ el=document.createElement('div'); el.id='hofCard'; document.body.appendChild(el); }
   const st=(k,v)=>`<span>${k} <b>${v}</b></span>`;
@@ -9827,6 +9864,20 @@ const PICK={ S:{act:0,hero:[null,null],cls:['',''],dun:[null,null],p2:'h'}, page
 };
 UI.PICK=PICK;
 if(!HEADLESS){ const pi=()=>{ try{ PICK.init(); }catch(e){ console.error(e); } }; if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(pi,30)); else setTimeout(pi,30); }
+/* v1.1.70 paint budget: touch/low-memory devices → html.pdLite (no animated filters / blur layers);
+   any full-screen overlay open → html.pdOv (menu animations paused + hidden, menu video paused) so the GPU only paints the overlay */
+if(typeof document!=='undefined'&&!(typeof HEADLESS!=='undefined'&&HEADLESS)){ (function(){
+  const R=document.documentElement; let lite=false;
+  try{ lite=(matchMedia('(pointer:coarse)').matches)||((navigator.deviceMemory||8)<=4)||localStorage.getItem('pd_lite')==='1'; if(localStorage.getItem('pd_lite')==='0') lite=false; }catch(_){ }
+  if(lite) R.classList.add('pdLite');
+  const OVS='#hof.show,#hofCard.show,#pileView.show,#pdFb.show,.cfOv'; let raf=0;
+  const check=()=>{ raf=0; const on=!!document.querySelector(OVS)&&!!document.querySelector('#mainMenu:not(.hide)'); if(on===R.classList.contains('pdOv')) return; R.classList.toggle('pdOv',on);
+    document.querySelectorAll('#mainMenu video').forEach(v=>{ try{ if(on){ if(!v.paused){ v.pause(); v.dataset.pdOvPaused='1'; } } else if(v.dataset.pdOvPaused){ delete v.dataset.pdOvPaused; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); } }catch(_){ } }); };
+  const go=()=>{ if(!raf) raf=requestAnimationFrame(check); };
+  const start=()=>{ new MutationObserver(go).observe(document.body,{childList:true,attributes:true,attributeFilter:['class'],subtree:true}); go(); };
+  if(document.body) start(); else document.addEventListener('DOMContentLoaded',start);
+  window.PAINT={lite:()=>R.classList.contains('pdLite'),ov:()=>R.classList.contains('pdOv'),check};
+})(); }
 
 /* ===== v1.1.67 (1) RUNS — "who's playing now": rides on the e23 ONLINE presence (topic pd_online, same socket).
    Sender: ONLINE.setRun({team,heroes:[hero names],dg,room,rd,mode}) on game start / room / round change (>=5 s apart; viewer switch is immediate),
