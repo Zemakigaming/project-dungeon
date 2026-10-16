@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.72</title>
+<title>Project Dungeon v1.1.73</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.72 setup start screen */
+/* v1.1.73 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.72 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.73 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -969,7 +969,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.72 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.73 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -993,12 +993,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.72 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.73 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.72 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.73 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -7116,7 +7116,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.72', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.73', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -8338,10 +8338,10 @@ const NETUI={
         <div class="join"><input data-ncode placeholder="รหัสห้อง เช่น ABCD-2345" maxlength="9" value="${esc(fmtCode(localStorage.getItem('pd_netCode')||''))}"><button class="end" data-nj>เข้าห้อง</button></div>`;
     ov.innerHTML=`<div class="modal mp-card"><button class="ghost" data-nx style="float:right">✕ ปิด</button><h3>🌐 เล่นออนไลน์ (คนละเครื่อง)</h3>
       <p class="dim">คนหนึ่งสร้างห้อง แล้วส่งรหัสให้อีกคนกดเข้าห้อง — ต้องต่ออินเทอร์เน็ตทั้งสองเครื่อง</p>
-      <div class="mp-row"><label>ชื่อของคุณ</label><input data-nname value="${esc(n.myName)}" maxlength="16" placeholder="ชื่อผู้เล่น"></div>
+      <div class="mp-row"><label>ชื่อของคุณ</label><input data-nname value="${esc((typeof PNAME!=='undefined'&&PNAME.get())?PNAME.get().slice(0,16):n.myName)}" maxlength="16" placeholder="ชื่อผู้เล่น"></div>
       ${room}${n.err?`<div class="mp-err">${esc(n.err)}</div>`:''}
       <div class="mp-note">โฮสต์เป็นผู้รันเกม (ผลสุ่มมาจากเครื่องโฮสต์) · แต่ละคนควบคุมฮีโร่ของตัวเอง · ถ้าหลุด ให้เข้าห้องใหม่ด้วยรหัสเดิม เกมจะซิงก์ต่อจากโฮสต์ · ปิดการย้อนกลับ (Undo) ระหว่างเล่นออนไลน์</div></div>`;
-    const q=s=>ov.querySelector(s); const nm=q('[data-nname]'); nm.oninput=()=>{ n.myName=nm.value.trim(); try{ localStorage.setItem('pd_netName',n.myName); }catch(_){} };
+    const q=s=>ov.querySelector(s); const nm=q('[data-nname]'); nm.oninput=()=>{ n.myName=nm.value.trim(); try{ localStorage.setItem('pd_netName',n.myName); }catch(_){} }; nm.onchange=()=>{ try{ if(typeof PNAME!=='undefined'&&PNAME.check(nm.value).ok) PNAME.set(nm.value); }catch(_){} };
     if(q('[data-nh]')) q('[data-nh]').onclick=()=>NET.host();
     if(q('[data-nj]')) q('[data-nj]').onclick=()=>{ const code=q('[data-ncode]').value.toUpperCase().replace(/[^A-Z0-9]/g,''); if(code.length!==8){ n.err='รหัสห้องต้องมี 8 ตัว'; this.draw(); return; } NET.join(code); };
     if(q('[data-nc]')) q('[data-nc]').onclick=e=>{ try{ navigator.clipboard.writeText(fmtCode(n.code)); }catch(_){} e.target.textContent='✓ คัดลอกแล้ว'; };
@@ -9375,7 +9375,7 @@ const HOFNET={ URL:'https://wvmcfwuvewdindvtcvyn.supabase.co', KEY:'eyJhbGciOiJI
   cid(){ return (crypto&&crypto.randomUUID)?crypto.randomUUID():('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,10)); },
   row(e){ return { team_name:this.clean(e.team||e.ps.map(p=>p.name).join(' & '),40)||'ไม่มีชื่อทีม', dungeon:this.clean(e.dungeon,60), rooms:10, rounds:e.rounds|0, turns:e.turns|0, play_seconds:Math.round((e.ms||0)/1000),
       version:'v'+this.clean(e.ver,12), players:e.ps.slice(0,2).map(p=>({name:this.clean(p.name,24)||'ผู้เล่น',hero:this.clean(p.hero,40),cls:this.clean(p.cls,40),cls2:this.clean(p.cls2,40),dealt:p.dmg|0,taken:p.taken|0,kills:p.kills|0,crits:p.crits|0,cards:p.cards|0,maxHit:p.maxHit|0,coins:p.coins|0,items:(p.itemsN!=null?p.itemsN:(p.items||[]).length)|0,deck:(p.deckN!=null?p.deckN:(p.deck||[]).length)|0})),
-      stats:{difficulty:'normal',client_id:e.cid,date:this.clean(e.date,40),items:e.ps.map(p=>(p.items||[]).map(x=>this.clean(x,40))),deckList:e.ps.map(p=>(p.deck||[]).slice(0,60).map(x=>this.clean(x,40))),decks:e.ps.map(p=>(p.deckK||[]).slice(0,80).map(x=>String(x).slice(0,60)))} }; },
+      stats:{difficulty:'normal',client_id:e.cid,device_name:(typeof PNAME!=='undefined'&&PNAME.get())||'',date:this.clean(e.date,40),items:e.ps.map(p=>(p.items||[]).map(x=>this.clean(x,40))),deckList:e.ps.map(p=>(p.deck||[]).slice(0,60).map(x=>this.clean(x,40))),decks:e.ps.map(p=>(p.deckK||[]).slice(0,80).map(x=>String(x).slice(0,60)))} }; },
   q(){ try{ return JSON.parse(localStorage.getItem(this.QK)||'[]'); }catch(e){ return []; } }, setQ(L){ try{ localStorage.setItem(this.QK,JSON.stringify(L)); }catch(e){} },
   enqueue(e){ const L=this.q(); if(L.some(x=>x.cid===e.cid)) return; L.push({cid:e.cid,row:this.row(e)}); this.setQ(L); this.flush(); },
   rateOK(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} const now=Date.now(); r=r.filter(t=>now-t<3600e3); if(r.length&&now-r[r.length-1]<20e3) return false; if(r.length>=6) return false; return true; },
@@ -9982,7 +9982,7 @@ const FB={ TABLE:'pd_feedback', QK:'pd_fbq', RK:'pd_fbrate', DK:'pd_fbdone', log
   q(){ try{ return JSON.parse(localStorage.getItem(this.QK)||'[]'); }catch(e){ return []; } }, setQ(L){ try{ localStorage.setItem(this.QK,JSON.stringify(L.slice(-20))); }catch(e){} },
   rateOK(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} const now=Date.now(); r=r.filter(t=>now-t<3600e3); return !(r.length&&now-r[r.length-1]<30e3)&&r.length<5; },
   rateMark(){ let r=[]; try{ r=JSON.parse(localStorage.getItem(this.RK)||'[]'); }catch(e){} r.push(Date.now()); try{ localStorage.setItem(this.RK,JSON.stringify(r.slice(-10))); }catch(e){} },
-  row(o){ const win=!!(G.result&&G.result.win); return { client_id:o.cid, name:this.cleanName(o.name)||null, stars:(Number.isInteger(o.stars)&&o.stars>=1&&o.stars<=5)?o.stars:null, comment:this.cleanText(o.comment,1000),
+  row(o){ const win=!!(G.result&&G.result.win); return { client_id:o.cid, name:this.cleanName(o.name||(typeof PNAME!=='undefined'&&PNAME.get())||'')||null, stars:(Number.isInteger(o.stars)&&o.stars>=1&&o.stars<=5)?o.stars:null, comment:this.cleanText(o.comment,1000),
       version:'v'+String(APP_VER).slice(0,12), dungeon:String(G.dungeon||'').slice(0,20), result:win?'win':'lose', room:Math.max(0,Math.min(10,G.room|0)), heroes:(G.players||[]).slice(0,2).map(p=>String(p.hero&&p.hero.name||'').slice(0,40)) }; },
   canNet(){ try{ if(HEADLESS) return false; if(window.__FB_MOCKED) return true; return !navigator.webdriver; }catch(e){ return false; } },
   async flush(){ if(this.busy||!this.canNet()) return; const L=this.q(); if(!L.length) return; if(typeof navigator!=='undefined'&&navigator.onLine===false) return; this.busy=true;
@@ -10004,7 +10004,7 @@ const FB={ TABLE:'pd_feedback', QK:'pd_fbq', RK:'pd_fbrate', DK:'pd_fbdone', log
     const paint=()=>b.querySelectorAll('[data-st]').forEach(x=>x.classList.toggle('on',+x.dataset.st<=stars));
     b.querySelectorAll('[data-st]').forEach(x=>x.onclick=()=>{ stars=(stars===+x.dataset.st)?0:+x.dataset.st; paint(); });
     const ta=b.querySelector('.fbText'), cnt=b.querySelector('.fbCnt'); ta.oninput=()=>{ cnt.textContent=ta.value.length+'/1000'; };
-    b.querySelector('.fbSend').onclick=()=>{ const r=this.submit({comment:ta.value,stars,name:b.querySelector('.fbName').value}); const m=b.querySelector('.fbMsg');
+    { const fn=b.querySelector('.fbName'); if(fn&&typeof PNAME!=='undefined'&&PNAME.get()&&!fn.value) fn.value=PNAME.get(); } b.querySelector('.fbSend').onclick=()=>{ const r=this.submit({comment:ta.value,stars,name:b.querySelector('.fbName').value}); const m=b.querySelector('.fbMsg');
       if(r.ok){ this.log.push('sent'); document.querySelectorAll('[data-fb]').forEach(x=>{ if(x!==b) x.remove(); }); thanks(); }
       else m.textContent=r.why==='empty'?'กรุณาเขียนความคิดเห็นหรือให้ดาวก่อนส่ง':r.why==='rate'?'ส่งบ่อยเกินไป ลองใหม่อีกสักครู่':'ส่งความคิดเห็นของรอบนี้ไปแล้ว'; }; } };
 UI.FB=FB;
@@ -10015,6 +10015,65 @@ if(!HEADLESS){
   const _go=UI.gameOver; UI.gameOver=function(){ const r=_go.apply(this,arguments); try{ RUNS.tick(true); const m=document.querySelector('#over .modal'); if(m&&!(G.result&&G.result.win)&&!G.tut) FB.mount(m); }catch(e){} return r; };
   if(typeof VIC!=='undefined'&&VIC.show){ const _vs=VIC.show.bind(VIC); VIC.show=function(){ const r=_vs.apply(this,arguments); try{ const b=document.querySelector('#victory .vBox'); if(b&&!G.tut) FB.mount(b); }catch(e){} return r; }; }
   addEventListener('online',()=>FB.flush()); setInterval(()=>FB.flush(),60000); setTimeout(()=>FB.flush(),5000);
+}
+/* ===== v1.1.73 PNAME — required player name, remembered per device (localStorage pd_playername), NOT locked.
+   Every visit (once per page load / session, before the menu) and before starting play if not yet confirmed this session: name step pre-filled with the last name; continue keeps it, editing saves the new one. Menu label has ✏️ to change it; trim, collapse spaces, strip control/<>"'`\ chars, 1-20 characters (grapheme count, Thai OK), whitespace-only blocked.
+   Used in: menu label '👤 <name> ✏️', ONLINE presence meta.who (RUNS rows show it), pd_feedback.name, hall_of_fame stats.device_name, default P1 name in setup, online-lobby name.
+   Automated browsers (navigator.webdriver) skip the gate unless window.__PNAME_GATE is set, so the existing UI tests keep running. ===== */
+const PNAME={ KEY:'pd_playername', MAX:20, log:[],
+  clean(s){ return String(s==null?'':s).normalize('NFC').replace(/[\u0000-\u001f\u007f-\u009f<>"'`\\]/g,'').replace(/\s+/g,' ').trim(); },
+  len(s){ try{ if(typeof Intl!=='undefined'&&Intl.Segmenter) return [...new Intl.Segmenter('th',{granularity:'grapheme'}).segment(s)].length; }catch(e){} return Array.from(s).length; },
+  check(raw){ const n=this.clean(raw); if(!n) return {ok:false,err:'กรุณาใส่ชื่อ (ห้ามเว้นว่าง)'}; const l=this.len(n); if(l>this.MAX) return {ok:false,err:`ชื่อยาวเกินไป (${l}/${this.MAX} ตัวอักษร)`}; return {ok:true,name:n}; },
+  get(){ try{ const v=localStorage.getItem(this.KEY); const c=v&&this.check(v); return c&&c.ok?c.name:''; }catch(e){ return ''; } },
+  set(raw){ const c=this.check(raw); if(!c.ok) return c; try{ localStorage.setItem(this.KEY,c.name); sessionStorage.setItem('pd_nameok','1'); }catch(e){} this.log.push('set'); this.apply(); return c; },
+  confirmed(){ try{ return !!this.get()&&sessionStorage.getItem('pd_nameok')==='1'; }catch(e){ return !!this.get(); } },
+  skip(){ try{ return !!navigator.webdriver&&!window.__PNAME_GATE; }catch(e){ return false; } },
+  /* push the name everywhere it is used */
+  apply(){ const n=this.get(); if(!n) return;
+    try{ if(typeof NET!=='undefined'){ NET.myName=n.slice(0,16); try{ localStorage.setItem('pd_netName',NET.myName); }catch(e){} } }catch(e){}
+    try{ const p=document.querySelector('#setup .seat .pname'); if(p&&(!p.value||/^ผู้เล่น ?1$/.test(p.value)||p.value===this._applied)) p.value=n.slice(0,16); this._applied=n.slice(0,16); }catch(e){}
+    this.label(); try{ if(typeof ONLINE!=='undefined'&&ONLINE.setRun) ONLINE.setRun(ONLINE.run); }catch(e){} },
+  label(){ const side=document.querySelector('#mainMenu .mmSide'); if(!side) return; const n=this.get(); let l=side.querySelector('.mmWho');
+    if(!n){ if(l) l.remove(); return; } if(!l){ l=document.createElement('button'); l.type='button'; l.className='mmWho'; l.title='แตะเพื่อเปลี่ยนชื่อผู้เล่น'; l.onclick=()=>PNAME.gate(true); const t=side.querySelector('.mmTitle'); t?t.insertAdjacentElement('afterend',l):side.prepend(l); }
+    l.textContent=''; const i=document.createElement('span'); i.textContent='👤 ผู้เล่น: '; const b=document.createElement('b'); b.textContent=n; const k=document.createElement('span'); k.textContent=' ✏️'; l.append(i,b,k); },
+  gate(force){ if(!force&&(this.confirmed()||this.skip())) return false; if(document.getElementById('pnGate')) return true; this.log.push('gate');
+    const g=document.createElement('div'); g.id='pnGate'; g.setAttribute('role','dialog'); g.setAttribute('aria-modal','true');
+    g.innerHTML=`<form class="pnBox" autocomplete="off" novalidate><img class="pnLogo" alt="" src="${(typeof ART!=='undefined'&&ART.__logo)||''}"><h1>ยินดีต้อนรับสู่ Project Dungeon</h1>
+      <p>${this.get()?'ยืนยันชื่อผู้เล่น — กดดำเนินการต่อ หรือแก้เป็นชื่อใหม่':'ใส่ชื่อผู้เล่นของคุณก่อนเริ่มเล่น'}<br><small>ชื่อจะถูกจำไว้บนอุปกรณ์นี้ — ใช้แสดงในรายชื่อผู้เล่นออนไลน์ หอเกียรติยศ และความคิดเห็น</small></p>
+      <input id="pnIn" type="text" lang="th" inputmode="text" enterkeyhint="done" autocapitalize="words" spellcheck="false" placeholder="ชื่อผู้เล่น (1-20 ตัวอักษร)" aria-label="ชื่อผู้เล่น">
+      <div class="pnRow"><span class="pnErr" aria-live="polite"></span><span class="pnCnt">0/20</span></div><button type="submit" class="pnGo" disabled>▶ ดำเนินการต่อ</button>${force&&this.get()?'<button type="button" class="pnCancel">ยกเลิก</button>':''}</form>`;
+    document.body.appendChild(g); const f=g.querySelector('form'), inp=g.querySelector('#pnIn'), err=g.querySelector('.pnErr'), cnt=g.querySelector('.pnCnt'), go=g.querySelector('.pnGo');
+    const upd=()=>{ const n=this.clean(inp.value), l=this.len(n); cnt.textContent=`${l}/${this.MAX}`; cnt.classList.toggle('over',l>this.MAX); const c=this.check(inp.value); go.disabled=!c.ok; if(c.ok||!inp.value) err.textContent=''; else if(l>this.MAX) err.textContent=c.err; };
+    inp.addEventListener('input',upd); inp.addEventListener('compositionend',upd); /* Thai IME / mobile keyboards */
+    f.onsubmit=e=>{ e.preventDefault(); const c=this.set(inp.value); if(!c.ok){ err.textContent=c.err; inp.focus(); return; } g.remove(); this.log.push('saved'); try{ if(typeof MENU!=='undefined'&&document.getElementById('mainMenu')) MENU.show(); }catch(_){} };
+    inp.value=this.get(); upd(); const cx=g.querySelector('.pnCancel'); if(cx) cx.onclick=()=>g.remove();
+    setTimeout(()=>{ try{ inp.focus(); inp.select(); }catch(_){} },60); return true; },
+  ensure(){ if(!this.confirmed()) return this.gate(); this.apply(); return false; } };
+window.PNAME=PNAME;
+if(!HEADLESS){
+  const st2=document.createElement('style'); st2.textContent=`
+#pnGate{position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;padding:16px;background:radial-gradient(ellipse at 50% 30%,#3a1a46,#07060d 75%);font-family:Kanit,sans-serif;color:#eee;overflow:auto}
+#pnGate .pnBox{width:min(440px,100%);text-align:center;padding:22px 20px;border:2px solid #ffd36b88;border-radius:20px;background:#140e20;box-shadow:0 0 40px #ffd36b22}
+#pnGate .pnLogo{width:min(180px,40vw);max-height:22vh;object-fit:contain;filter:drop-shadow(0 0 8px #fff8)}#pnGate h1{margin:6px 0;color:#ffd36b;font-size:clamp(20px,4.5vw,28px)}
+#pnGate p{margin:6px 0 12px;font-size:15px;line-height:1.5}#pnGate small{color:#c9c2dc;font-size:12.5px}
+#pnIn{width:100%;box-sizing:border-box;font:500 20px Kanit,Sarabun,sans-serif;padding:12px 14px;border-radius:12px;border:2px solid #ffd36b66;background:#0b0814;color:#fff;text-align:center;outline:none}#pnIn:focus{border-color:#ffd36b}
+#pnGate .pnRow{display:flex;justify-content:space-between;font-size:12.5px;min-height:18px;margin:6px 2px 10px}.pnErr{color:#ff9a8a}.pnCnt{color:#aaa}.pnCnt.over{color:#ff9a8a}
+#pnGate .pnGo{width:100%;font:600 18px Kanit;padding:12px;border-radius:12px;border:1px solid #ffd36b;background:linear-gradient(#7a4e14,#3a2410);color:#ffe9b0;cursor:pointer}#pnGate .pnGo:disabled{opacity:.45;cursor:not-allowed}#pnGate .pnCancel{margin-top:8px;width:100%;font:500 15px Kanit;padding:8px;border-radius:10px;border:1px solid #ffffff33;background:transparent;color:#ccc;cursor:pointer}
+.mmWho{display:block;font-family:inherit;cursor:pointer;margin:2px auto 8px;padding:4px 12px;border-radius:999px;background:rgba(20,14,32,.7);border:1px solid #ffd36b55;color:#e8dcc0;font-size:13px;max-width:320px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mmWho b{color:#ffd36b}`;
+  document.head.appendChild(st2);
+  /* menu label on every show; name step before the menu each visit; ask again whenever the key goes missing */
+  if(typeof MENU!=='undefined'){ const _sh=MENU.show.bind(MENU); MENU.show=function(){ const r=_sh.apply(this,arguments); try{ PNAME.ensure(); PNAME.label(); }catch(e){} return r; }; }
+  const boot=()=>{ try{ PNAME.ensure(); }catch(e){} };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>setTimeout(boot,0)); else setTimeout(boot,0);
+  addEventListener('storage',e=>{ if((e.key===PNAME.KEY||e.key===null)&&!PNAME.get()) PNAME.gate(true); });
+  document.addEventListener('visibilitychange',()=>{ if(!document.hidden&&!PNAME.get()) boot(); });
+  /* starting a game also requires the name */
+  if(typeof UI!=='undefined'&&UI.start){ const _st=UI.start.bind(UI); UI.start=function(){ if(!PNAME.confirmed()&&!PNAME.skip()){ PNAME.gate(true); return; } PNAME.apply(); return _st.apply(this,arguments); }; }
+  /* presence: who */
+  if(typeof ONLINE!=='undefined'&&ONLINE.meta){ const _m=ONLINE.meta.bind(ONLINE); ONLINE.meta=function(){ const o=_m(); const n=PNAME.get(); if(n) o.who=n; return o; }; }
+  /* receiver: show the name in who's-playing rows */
+  const _v=RUNS.valid.bind(RUNS); RUNS.valid=function(m,now){ const e=_v(m,now); if(e){ const w=PNAME.clean(m&&m.who); if(w&&PNAME.len(w)<=PNAME.MAX) e.who=w; } return e; };
+  const _rows=RUNS.rows.bind(RUNS); RUNS.rows=function(box){ const n=_rows(box); try{ const L=this.list(); box.querySelectorAll('.rnRow').forEach((row,i)=>{ const e=L[i]; if(e&&e.who){ const t=row.querySelector('.rnTeam'); if(t) t.textContent=`👤 ${e.who} · ${e.team}${e.me?' (คุณ)':''}`; } }); }catch(e){} return n; };
 }
 </script>
 </body></html>
