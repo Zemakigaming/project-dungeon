@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.71</title>
+<title>Project Dungeon v1.1.72</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.71 setup start screen */
+/* v1.1.72 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.71 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.72 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -969,7 +969,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.71 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.72 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -993,12 +993,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.71 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.72 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.71 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.72 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -5687,13 +5687,17 @@ const mk = (k,up=false)=>({uid:UID++,key:k,up,pow:0});
 function monsters(P){ if(!G) return []; const all=G.mons.filter(m=>m.hp>0&&!m.undying); if(P&&G.players.length>1&&P.board!=null) return all.filter(m=>boardOf(m.x)===boardOf(P.x)); return all; }
 const allMons = () => G.mons.filter(m=>m.hp>0&&!m.undying);
 /* v1.1.64 BONE DUNGEON RULE (สุสานกระดูก): a monster reaching 0 HP becomes 'undying' — HP stays 0, untargetable/undamageable/unhealable, still occupies its tile,
-   acts ONE more time on its next monster turn (normal AI) and then dies (kill count + on-kill triggers for the hero who dropped it happen THEN). The room only ends when no monster is alive or undying. */
+   acts ONE more time on its next monster turn (normal AI) and then is removed. v1.1.72: kill count + on-kill triggers happen IMMEDIATELY at 0 HP (see downMon). The room only ends when no monster is alive or undying. */
 const liveMons = () => G.mons.filter(m=>m.hp>0||m.undying);
 const boneRule = m => !!G&&!G.tut&&((G.dungeons&&typeof boardOf==='function'&&G.dungeons[boardOf(m.x)])||G.dungeon)==='bone';
-async function downMon(P,m,perfect){ if(boneRule(m)&&!m.undying&&!m.undyDone){ m.hp=0; m.poison=0; m.shield=0; m.stun=0; m.undying={pid:P?P.id:0,perfect:!!perfect};
-    log(`💀 ${m.name} HP 0 — แต่ยังไม่ตาย! (กฎสุสานกระดูก: จะได้เดิน/โจมตีอีก 1 เทิร์นแล้วจึงตาย)`,'mon'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.boneBanner) try{ UI.boneBanner(m); }catch(_){} return; }
+/* v1.1.72 (USER RULE): in the Bone dungeon a monster at 0 HP counts as DEFEATED IMMEDIATELY — kill count, every on-kill trigger (hero, items, buffs, card onKill/spree/cond:'kill', perfect kill)
+   fires now for the hero who dropped it. It then stays 'undying' (HP 0, untargetable, can't be damaged/killed again), takes its one last turn, and is removed WITHOUT any further kill effects. */
+async function downMon(P,m,perfect){ if(m.killed) return; if(boneRule(m)&&!m.undying&&!m.undyDone){ m.hp=0; m.undying={pid:P?P.id:0,perfect:!!perfect};
+    log(`💀 ${m.name} HP 0 — นับว่ากำจัดแล้ว แต่ยังเดิน/โจมตีได้อีก 1 เทิร์นก่อนหายไป (กฎสุสานกระดูก)`,'mon'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.boneBanner) try{ UI.boneBanner(m); }catch(_){}
+    await killMon(P,m,perfect); /* kill effects first (Venom Requiem reads m.poison), then the undying shell is cleared */ m.poison=0; m.shield=0; m.stun=0; return; }
   await killMon(P,m,perfect); }
-async function undyingDie(m){ const u=m.undying; m.undying=null; m.undyDone=true; m.hp=0; const P=G.players.find(p=>p.id===u.pid)||G.players[0]; log(`💀 ${m.name} สิ้นแรงหลังเทิร์นสุดท้าย`,'mon'); await killMon(P,m,u.perfect); }
+async function undyingDie(m){ const u=m.undying||{}; m.undying=null; m.undyDone=true; m.hp=0; log(`💀 ${m.name} สิ้นแรงหลังเทิร์นสุดท้าย — หายไปจากห้อง`,'mon');
+  if(!m.killed){ /* only a pre-1.1.72 save can reach here */ const P=G.players.find(p=>p.id===u.pid)||G.players[0]; await killMon(P,m,u.perfect); } }
 const heroes = ()=>G.players.filter(p=>p.hp>0);
 const boardOf = x => Math.floor(x/5);
 const dist=(a,b)=>Math.abs(a.x-b.x)+Math.abs(a.y-b.y);
@@ -5975,6 +5979,7 @@ async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set())
   return real;
 }
 async function killMon(P,m,perfect){
+  if(m.killed) return; m.killed=(G.killSeq=(G.killSeq|0)+1); /* v1.1.72: a monster can be defeated only once */
   m.hp=0; P.stats.kills++; log(`☠ ${m.name} ถูกกำจัด${perfect?' (Perfect Kill!)':''}`,'good');
   if(P.hero.name==='Riviera Galeborn'){ await draw(P,P.heroUp?2:1); P.shard+=P.heroUp?3:2; }
   if(hasItem(P,'Obsidian Horned Aegis')) await heal(P,2);
@@ -6394,8 +6399,8 @@ async function doAttack(P,op,ctx){
     if(!m||m.hp<=0) return 0;
     if(isWeak(P,m)) ctx.weak=true;
     P.perfectNow=false;
-    const r=await hitMon(P,m,dmg,hop,ctx);
-    if(m.hp<=0&&!m.undying){ ctx.killed=true; if(P.perfectNow) ctx.perfect=true; if(op.onKill) await op.onKill(P); if(op.spree) ctx.toHand=true; if(op.onPerfect&&P.perfectNow) await op.onPerfect(P); }
+    const k0=m.killed; const r=await hitMon(P,m,dmg,hop,ctx);
+    if(m.killed&&m.killed!==k0){ ctx.killed=true; /* v1.1.72: defeated by THIS hit (Bone: also while it becomes undying) */ if(P.perfectNow) ctx.perfect=true; if(op.onKill) await op.onKill(P); if(op.spree) ctx.toHand=true; if(op.onPerfect&&P.perfectNow) await op.onPerfect(P); }
     else {
       const dirTo=[Math.sign(m.x-P.x),Math.sign(m.y-P.y)]; if(dirTo[0]&&dirTo[1]) dirTo[1]=0;
       const pn=(op.push||0)+(hasItem(P,'Pushional')&&proj?1:0);
@@ -6436,7 +6441,7 @@ async function doAttack(P,op,ctx){
       if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
       const dpm=dariusOn(P,op,hop)?await dariusPick(P,ch,dmg):[]; /* v1.1.61 Darius: 'hit all enemies in path' */
       await hitOne(ch);
-      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; await hitMon(P,m,dmg,hop,ctx); if(m.hp<=0&&!m.undying){ ctx.killed=true; if(op.onKill) await op.onKill(P); } }
+      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; const k0=m.killed; await hitMon(P,m,dmg,hop,ctx); if(m.killed&&m.killed!==k0){ ctx.killed=true; if(op.onKill) await op.onKill(P); } }
       if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); } }
       if(op.tele){ const cs=DIRS.map(([dx,dy])=>({x:ch.x+dx,y:ch.y+dy})).filter(c=>canStop(P,c.x,c.y)); if(cs.length){ const c=await ask(P,{kind:'cell',prompt:'เทเลพอร์ตไปช่องข้างเป้าหมาย',options:cs,purpose:'teleport',cancel:'ไม่ย้าย'}); if(c) await enterCell(P,c.x,c.y,null);} }
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
@@ -6629,7 +6634,7 @@ function setupRoom(){
     if(!G.tut&&(G.dungeons[b]||G.dungeons[0])==='goblin'){ const nT=G.room>=5?2:1; for(let i=0;i<nT;i++){ const c=free().filter(c=>!G.traps.has(key(c.x,c.y))); if(!c.length) break; const p=c[krnd('trap',c.length)]; G.traps.add(key(p.x,p.y)); } }
   }
   log(`══ ห้องที่ ${G.room}${G.room===10?' (ห้องบอส)':''} — Monster Wave: ${spec} ══`,'room');
-  { const dgs=new Set(G.players.map((_,b)=>G.dungeons[b]||G.dungeons[0])); if(dgs.has('bone')) log('💀 กฎสุสานกระดูก: Monster ที่ HP เหลือ 0 จะยังไม่ตาย — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วจึงตาย (โจมตีมันไม่ได้แล้ว) · ห้องจบเมื่อมันตายจริง','room');
+  { const dgs=new Set(G.players.map((_,b)=>G.dungeons[b]||G.dungeons[0])); if(dgs.has('bone')) log('💀 กฎสุสานกระดูก: Monster ที่ HP เหลือ 0 นับว่ากำจัดแล้วทันที (ได้ผลเมื่อสังหารทุกอย่าง) แต่ยังเดิน/โจมตีได้อีก 1 เทิร์นแล้วจึงหายไป (โจมตีมันไม่ได้แล้ว) · ห้องจบเมื่อมันตายจริง','room');
     if(dgs.has('beast')) log('🌊 กฎป่าอสูร: มีแอ่งน้ำ 3 ช่อง — ฮีโร่ที่เดินเข้าแอ่งน้ำต้องหยุดทันทีและเดินต่อไม่ได้ในเทิร์นนั้น (ยังโจมตี/เล่นการ์ดอื่นได้) · ศัตรูที่เดินเข้า/ผ่านแอ่งน้ำฟื้น 2 HP ต่อช่อง','room');
     if(dgs.has('goblin')) log(`🪤 กฎถ้ำก็อปลิน: มีกับดัก ${G.room>=5?2:1} อันในห้องนี้ — ฮีโร่ที่เดินผ่าน/หยุดบนกับดักโดน 3 ดาเมจทุกครั้งที่เข้าช่อง (Monster ไม่โดน)`,'room'); }
 }
@@ -7111,7 +7116,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.71', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.72', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -7251,7 +7256,7 @@ const UI={
      The underlying controls (.seat/.pname/.ptype/hero radios/.pcls2/#dungeon/#dungeon2/#btnStart) are kept so start() and #demo/#selftest still work. */
   CLS_ICO:{Warrior:'🛡️',Fighter:'👊',Rogue:'🗡️',Assassin:'🥷',Sorcerer:'🔥',Wizard:'🔮'},
   CLS_DESC:{Warrior:'แท็งก์ โล่หนา ยืนหน้า',Fighter:'ต่อยหนัก เน้นดาเมจระยะประชิด',Rogue:'คล่องตัว หลบหลีก หาของ',Assassin:'แทงจุดอ่อน เด็ดหัวศัตรู',Sorcerer:'เวทไฟ Mana ระเบิดวงกว้าง',Wizard:'เวทควบคุม น้ำแข็ง ยิงไกล'},
-  DUN_TH:{bone:['สุสานกระดูก (Bone)','💀','อันเดดและวิญญาณ · กฎพิเศษ: Monster ที่ HP 0 ยังไม่ตาย — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วจึงตาย (โจมตีมันไม่ได้แล้ว)'],goblin:['ถ้ำก็อปลิน (Goblin)','👺','ก็อปลินฝูงใหญ่ ยิงไกล · กฎพิเศษ: กับดักห้องละ 1 อัน (ห้อง 5-10: 2 อัน) ฮีโร่ที่เข้าช่องกับดักโดน 3 ดาเมจ'],beast:['ป่าอสูร (Beast)','🐺','อสูรป่า ดุร้าย · กฎพิเศษ: แอ่งน้ำ 3 ช่อง ฮีโร่ที่เดินเข้าต้องหยุดและเดินต่อไม่ได้ในเทิร์นนั้น ศัตรูที่ผ่านฟื้น 2 HP']},
+  DUN_TH:{bone:['สุสานกระดูก (Bone)','💀','อันเดดและวิญญาณ · กฎพิเศษ: Monster ที่ HP 0 นับว่ากำจัดแล้วทันที แต่ยังเดิน/โจมตีได้อีก 1 เทิร์นแล้วจึงหายไป'],goblin:['ถ้ำก็อปลิน (Goblin)','👺','ก็อปลินฝูงใหญ่ ยิงไกล · กฎพิเศษ: กับดักห้องละ 1 อัน (ห้อง 5-10: 2 อัน) ฮีโร่ที่เข้าช่องกับดักโดน 3 ดาเมจ'],beast:['ป่าอสูร (Beast)','🐺','อสูรป่า ดุร้าย · กฎพิเศษ: แอ่งน้ำ 3 ช่อง ฮีโร่ที่เดินเข้าต้องหยุดและเดินต่อไม่ได้ในเทิร์นนั้น ศัตรูที่ผ่านฟื้น 2 HP']},
   clsArtHTML(c){ const hs=D.heroes.filter(h=>normCls(h.cls)===c).slice(0,2); return `<div class="clsArt">${hs.map(h=>`<img src="${artOf(h.name,'p')}" alt="">`).join('')}<span class="clsIco">${this.CLS_ICO[c]||'✨'}</span></div>`; },
   dunArtHTML(k){ const dg=DUNGEONS[k]||{}; const ns=[dg.B].concat(dg.E||[]).filter(n=>n&&artOf(n,'p')).slice(0,2); return `<div class="clsArt">${ns.map(n=>`<img src="${artOf(n,'p')}" alt="">`).join('')}<span class="clsIco">${this.DUN_TH[k][1]}</span></div>`; },
   buildSetup(){
@@ -7593,7 +7598,7 @@ UI.renderBoard=function(){
     this.prevHp[id]=u.hp; };
   for(const m of liveMons()){ const pct=Math.max(0,m.hp/m.maxhp*100); const UD=!!m.undying; /* v1.1.64 bone undying: ghostly, HP 0, skull badge */
     const spM=UI.sprFor(m.uid,m.name,fixFace(m));
-    place(m.uid,m,`${spM?UI.sprHTML(spM,m.name,sprSize(m)):`<img src="${artOf(m.name,'t')}">`}<div class="face" style="${fpos(fixFace(m))}">${arrow(fixFace(m))}</div><div class="hpH" data-tip-hp="${UD?0:m.hp}/${m.maxhp}"><span>${UD?0:m.hp}</span></div>${UD?'<div class="undy" data-tip="💀 กฎสุสานกระดูก: Monster ตัวนี้ HP เหลือ 0 แต่ยังไม่ตาย — จะได้เดิน/โจมตีอีก 1 เทิร์นใน Monster Phase ถัดไป แล้วจึงตาย · โจมตี/ฮีล/สร้างดาเมจเพิ่มไม่ได้ แต่ยังยืนขวางช่อง · รางวัลการฆ่าได้ตอนมันตายจริง">💀 เทิร์นสุดท้าย</div>':''}<div class="atk">⚔${m.atk}</div>${m.shield?`<div class="shd">🛡${m.shield}</div>`:''}${m.poison?`<div class="psn">☠${m.poison}</div>`:''}${m.stun?'<div class="stn">💫</div>':''}${m.lv!=='Minion'?`<div class="lvb">${m.lv==='Boss'?'👑':'★'}</div>`:''}`,
+    place(m.uid,m,`${spM?UI.sprHTML(spM,m.name,sprSize(m)):`<img src="${artOf(m.name,'t')}">`}<div class="face" style="${fpos(fixFace(m))}">${arrow(fixFace(m))}</div><div class="hpH" data-tip-hp="${UD?0:m.hp}/${m.maxhp}"><span>${UD?0:m.hp}</span></div>${UD?'<div class="undy" data-tip="💀 กฎสุสานกระดูก: Monster ตัวนี้ HP เหลือ 0 — นับว่ากำจัดแล้ว (ได้ผลเมื่อสังหารไปแล้ว) แต่จะได้เดิน/โจมตีอีก 1 เทิร์นใน Monster Phase ถัดไป แล้วจึงหายไป · โจมตี/ฮีล/สร้างดาเมจเพิ่มไม่ได้ แต่ยังยืนขวางช่อง · รางวัลการฆ่าได้ตอนมันตายจริง">💀 เทิร์นสุดท้าย</div>':''}<div class="atk">⚔${m.atk}</div>${m.shield?`<div class="shd">🛡${m.shield}</div>`:''}${m.poison?`<div class="psn">☠${m.poison}</div>`:''}${m.stun?'<div class="stn">💫</div>':''}${m.lv!=='Minion'?`<div class="lvb">${m.lv==='Boss'?'👑':'★'}</div>`:''}`,
       ['mon',m.lv,UD?'undying':'',spM?'sprite':'',spM?'sz-'+sprSize(m):'',m.stun?'stun':'',hl.has(key(m.x,m.y))&&req.kind==='mon'?'tgt':'',req&&req.kind==='mon'&&/atk|aoe/.test(req.purpose||'')&&!hl.has(key(m.x,m.y))?'untgt':''],`${m.name} (${{Minion:'ลูกสมุน',Elite:'อีลิท',Boss:'บอส'}[m.lv]})${UD?'\n💀 กฎสุสานกระดูก: HP 0 — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วตาย (โจมตีไม่ได้)':''}\nHP ${UD?0:m.hp}/${m.maxhp} · ATK ${m.atk} · เดิน ${m.def.mv}\n${m.def.thd||''}`); }
   for(const p of heroes()){ const pct=p.hp/p.maxhp*100;
     const spH=UI.sprFor('h'+p.id,p.hero.name,fixFace(p));
@@ -9705,7 +9710,7 @@ UI.applyDP=function(){ const cl=document.querySelectorAll('#cells .dpCell,#cells
 (function(){ const rb=UI.renderBoard; UI.renderBoard=function(){ const r=rb.apply(this,arguments); try{ UI.applyDP(); }catch(e){} return r; }; })();
 
 /* v1.1.64 dungeon rules FX: bone 'undying' banner, goblin trap hit */
-UI.boneBanner=function(m){ try{ if(UI.floatAt) UI.floatAt(m,'💀 ยังไม่ตาย! เทิร์นสุดท้าย','bump'); }catch(_){} };
+UI.boneBanner=function(m){ try{ if(UI.floatAt) UI.floatAt(m,'💀 กำจัดแล้ว! เทิร์นสุดท้าย','bump'); }catch(_){} };
 UI.trapFx=function(P,x,y){ try{ if(UI.floatAt) UI.floatAt({x,y},'🪤 กับดัก −3','bump'); }catch(_){} try{ if(typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.noise){ SND.noise(.12,{f:2400,vol:.09,ft:'highpass'}); SND.noise(.2,{f:500,vol:.08,ft:'lowpass',at:.05}); } }catch(_){} };
 UI.waterFx=function(x,y,t){ try{ if(UI.floatAt) UI.floatAt({x,y},'🌊 '+t,'bump'); }catch(_){} try{ if(typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.noise) SND.noise(.35,{f:900,f2:300,vol:.08,ft:'bandpass'}); }catch(_){} };
 /* v1.1.64 mobile long-press tooltips for board tiles / undying badge (reuses #tip style); desktop uses the existing [data-tip] hover */
