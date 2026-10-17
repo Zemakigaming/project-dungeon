@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.73</title>
+<title>Project Dungeon v1.1.74</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.73 setup start screen */
+/* v1.1.74 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.73 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.74 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -969,7 +969,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.73 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.74 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -991,14 +991,27 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState{padding:22px 10px;text-align:center;color:#c9cde0}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
+
+/* v1.1.74 X picker */
+#prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
+#prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
+#prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
+#prompt .xm:disabled,#prompt .xp:disabled{opacity:.35;cursor:not-allowed}
+#prompt .xVal{min-width:84px;text-align:center;padding:4px 10px;border-radius:14px;background:#0b0814;border:1px solid #ffd36b66}#prompt .xVal small{display:block;color:#bba;font-size:12px}#prompt .xVal b{font:700 34px Kanit,sans-serif;color:#ffd36b}
+#prompt .xRange{width:100%;height:32px;accent-color:#ffb84d;touch-action:pan-y}
+#prompt .xEnds{display:flex;justify-content:space-between;font-size:12px;color:#aaa;margin-top:-6px}
+#prompt .xPrev{text-align:center;font-size:15px;color:#e8f0ff;min-height:20px;padding:4px 6px;border-radius:8px;background:#ffffff0d}
+#prompt.xpk{max-height:none;overflow:visible}#prompt.xpk .cancel{position:static;box-shadow:none;display:block;margin:8px auto 0}
+@media (max-height:720px){#prompt.xpk{padding:8px 12px}#prompt .xm,#prompt .xp{width:44px;height:44px;font-size:24px}#prompt .xVal b{font-size:28px}#prompt .xPick{gap:6px;margin:4px auto 2px}#prompt .xOk{padding:7px}}
+#prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.73 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.74 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.73 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.74 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -5475,7 +5488,7 @@ ov('Stacked',[{t:'draw',n:1},{t:'atk',dmg:P=>P.hand.length,mode:'single'}],[{t:'
 ov('Wandering Strike',[{t:'atk',dmg:P=>P.movedTurn,mode:'single'}],[{t:'atk',dmg:P=>P.movedTurn*2,mode:'single'}]);
 ov('Barrage',[{t:'atk',dmg:2,times:P=>monsters(P).length,mode:'single'}],[{t:'atk',dmg:3,times:P=>monsters(P).length,mode:'single'}]);
 ov('Overcharge',[{t:'atk',dmg:0,poison:P=>P.shardSpent,mode:'single'}],[{t:'atk',dmg:0,poison:P=>P.shardSpent*2,mode:'single'}]);
-const bloodX=async(P,c)=>{c.x=Math.max(0,Math.min(5,P.hp-1,P.bot?2:5)); if(!P.bot&&(!HEADLESS||globalThis.__askHook)){ const o=[];for(let i=0;i<=Math.min(5,P.hp-1);i++)o.push({label:`เสีย ${i} HP (ตี ${i+1} ครั้ง)`,v:i}); const ch=await ask(P,{kind:'opt',prompt:'Blood Rite: เลือก X',options:o}); c.x=ch?ch.v:0; } await loseHp(P,c.x,'self');};
+const bloodX=async(P,c)=>{c.x=Math.max(0,Math.min(5,P.hp-1,P.bot?2:5)); if(!P.bot&&(!HEADLESS||globalThis.__askHook)){ const o=[];for(let i=0;i<=Math.min(5,P.hp-1);i++)o.push({label:`เสีย ${i} HP (ตี ${i+1} ครั้ง)`,v:i}); const ch=await ask(P,{kind:'opt',xpick:true,prompt:'Blood Rite: เลือก X',options:o}); c.x=ch?ch.v:0; } await loseHp(P,c.x,'self');};
 ov('Blood Rite',[fnOp(bloodX),{t:'atk',dmg:1,poison:1,times:(P,c)=>c.x+1,mode:'single'}],[fnOp(bloodX),{t:'atk',dmg:3,poison:1,times:(P,c)=>c.x+1,mode:'single'}]);
 ov('Venom Echo',[fnOp(async P=>{for(const m of monsters(P)) if(m.poison) await hitMon(P,m,m.poison,{isAtk:true},{});})],[fnOp(async P=>{for(const m of monsters(P)) if(m.poison) await hitMon(P,m,m.poison+2,{isAtk:true},{});})]);
 ov('Venom Leech',[{t:'atk',dmg:0,poison:1,times:2,mode:'single'},{t:'heal',per:1,n:P=>monsters(P).filter(m=>m.poison).length}],[{t:'atk',dmg:0,poison:2,times:2,mode:'single'},{t:'heal',per:1,n:P=>monsters(P).filter(m=>m.poison).length}]);
@@ -6144,12 +6157,25 @@ async function takeTreasure(P0,t){
 
 /* ---------- playing cards ---------- */
 /* v1.1.17: Mana slot values (P._ms) live only while this card resolves */
+/* v1.1.74: preview text for an X choice — evaluates the card's own X formulas (dmg/poison/times) with xPaid=x (before Strength/Mana bonuses) */
+function xPreview(P,c,up,x){ try{ const d=DEF[c.key]; const ops=(up?d.opsU:d.opsN)||[]; const fake=Object.assign({},c,{xPaid:x,up}); const out=[];
+    for(const op of ops){ if(!op) continue; const val=k=>typeof op[k]==='function'?op[k](P,fake):op[k];
+      if(op.t==='atk'){ const dm=val('dmg'), tm=val('times'); if(dm!=null) out.push(`ดาเมจ ${dm}${tm>1?' × '+tm+' ครั้ง':''}`); const po=val('poison'); if(po) out.push(`พิษ ${po}`); } }
+    return out.length?out.join(' · '):(up?d.uth:d.th)||''; }catch(e){ return ''; } }
 async function playCard(P,c,o={}){ const sv=P._ms; P._ms=null; try{ return await playCard0(P,c,o); } finally{ P._ms=sv; } }
 async function playCard0(P,c,o={}){
   const d=DEF[c.key];
   /* v1.1.16: validate EVERYTHING before any Shard/Mana/card is spent */
   if(!o.free&&!o.copy&&!(o.staff?staffOK(P,c):playable(P,c))){ const why=c.key==='EXH'?'Shard ไม่พอ':blockReason(P,c)||'เงื่อนไขไม่ครบ'; log(`⛔ เล่น ${c.key==='EXH'?'Exhaust':d.name} ไม่ได้: ${why} (ไม่เสียทรัพยากร)`,'sys'); if(!HEADLESS&&!P.bot&&typeof UI!=='undefined'&&UI.alertC) UI.alertC('เล่นไม่ได้: '+why); return false; }
   if(c.key==='EXH'){ const v=cost(P,c); P.shard-=v; P.shardSpent+=v; const i=P.hand.indexOf(c); if(i>=0)P.hand.splice(i,1); P.exhaust++; exhBack(P,'paid3'); log(`${P.name} จ่าย ${v} ชาร์ด นำการ์ดเหนื่อยออก (กองเหนื่อย ${P.exhaust})`,'sys'); return; }
+  /* v1.1.74 (USER RULE): X-cost cards — the player CHOOSES X (0..shard) before anything is spent; cancel = card not played. Bots/sims spend all. o.x = scripted/online value. */
+  let xChosen=null; { const up0=o.marcel?true:c.up; const raw0=up0?d.ucost:d.cost;
+    if(raw0==='X'&&!o.free){ const max=Math.max(0,P.shard|0);
+      if(o.x!=null) xChosen=Math.max(0,Math.min(max,o.x|0));
+      else if(P.bot||SIM.on||max===0||(HEADLESS&&!globalThis.__askHook)) xChosen=max;
+      else { const opts=[]; for(let i=0;i<=max;i++) opts.push({label:`X = ${i}`,v:i,prev:xPreview(P,c,up0,i)});
+        const ch=await ask(P,{kind:'opt',xpick:true,forcePrompt:true,prompt:`${d.name}${up0?'+':''}: เลือกค่า X (จ่าย X ชาร์ด · มี ${max})`,options:opts,cancel:'ยกเลิก (ไม่เล่นการ์ด)',def:max});
+        if(!ch){ log(`↩ ยกเลิกการเล่น ${d.name}`,'sys'); return false; } xChosen=Math.max(0,Math.min(max,ch.v|0)); } } }
   let up=c.up;
   if(o.marcel&&!up){ up=true; P.marcelUsed=true; if(!P.heroUp) await loseHp(P,3,'self'); }
   let ops=up?d.opsU:d.opsN; const f=(up?d.fU:d.fN)||{};
@@ -6158,7 +6184,7 @@ async function playCard0(P,c,o={}){
   /* v1.1.20: any order (move→attack, attack→move): human may skip the move and/or the attack */ ctx.moveAtk=!P.bot&&hasMovePart(ops)&&hasAtkPart(ops);
   const raw=up?d.ucost:d.cost;
   if(!o.free){
-    if(raw==='X'){ ctx.xPaid=P.shard; P.shard=0; P.shardSpent+=ctx.xPaid; }
+    if(raw==='X'){ const x=xChosen!=null?xChosen:P.shard; ctx.xPaid=x; P.shard-=x; P.shardSpent+=x; log(`✖ ${P.name} เลือก X = ${x} (จ่าย ${x} ชาร์ด)`,'sys'); }
     else { const v=cost(P,c); if(o.staff){ P.shard-=v; P.shardSpent+=v; P.staffUsed=true; log(`🪄 Staff of Nocturne: จ่าย 2 เท่า เล่น 2 ครั้ง`,'sys'); } if(P.hero.name==='Vela Mercantalis'&&!P.velaUsed&&v===0&&(raw===1||(P.heroUp&&raw===2))) P.velaUsed=true; let pv=v; if(P.shard<v){ const cl=condLess(P,c); if(cl&&P.shard>=v-cl.less){ pv=P.shard; ctx.debt={kind:cl.kind,amt:v-pv,uid:cl.uid}; log(`${d.name}: จ่าย ${pv} Shard (ค่าร่ายลด ${v-pv} เมื่อทำตามเงื่อนไข)`,'sys'); } } P.shard-=pv; P.shardSpent+=pv; ctx.paid=pv; }
     P.nextCostSet=null; P.nextCostMinus=0; P.freeNext=false;
   } else if(raw==='X') ctx.xPaid=0;
@@ -7116,7 +7142,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.73', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.74', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -7433,13 +7459,23 @@ const UI={
       this.askReq=req; this.askRes=res;
       const pr=$('#prompt'); pr.classList.remove('hide');
       let body=`<div class="ptxt">${esc(P.name)}: ${esc(req.prompt)}</div>`;
-      if(req.kind==='opt') body+=`<div class="opts">${req.options.map((o,i)=>`<button data-i="${i}"${o.hero?' class="optImg"':''}>${o.hero?`<img src="${artOf(o.hero,'t')}" alt="">`:''}${esc(o.label)}</button>`).join('')}</div>`;
+      if(req.kind==='opt'&&req.xpick){ const n=req.options.length-1; let di=req.options.findIndex(o=>o.v===req.def); if(di<0) di=0;
+        body+=`<div class="xPick" data-xi="${di}"><div class="xRow"><button type="button" class="xm" aria-label="ลด X">−</button><div class="xVal"><small>X</small><b>${esc(String(req.options[di].v))}</b></div><button type="button" class="xp" aria-label="เพิ่ม X">+</button></div>
+          <input type="range" class="xRange" min="0" max="${n}" step="1" value="${di}" aria-label="เลือกค่า X"><div class="xEnds"><span>${esc(String(req.options[0].v))}</span><span>${esc(String(req.options[n].v))}</span></div>
+          <div class="xPrev"></div><button type="button" class="xOk">✔ ยืนยัน</button></div>`; }
+      else if(req.kind==='opt') body+=`<div class="opts">${req.options.map((o,i)=>`<button data-i="${i}"${o.hero?' class="optImg"':''}>${o.hero?`<img src="${artOf(o.hero,'t')}" alt="">`:''}${esc(o.label)}</button>`).join('')}</div>`;
       if(req.kind==='card') body+=`<div class="pcards">${req.options.map((c,i)=>this.cardHTML(c,P,'playable').replace('class="card','data-i="'+i+'" class="card')).join('')}</div>`;
       if(req.kind==='cell'||req.kind==='mon') body+=`<div class="hint">คลิกช่อง${req.kind==='mon'?'/ศัตรู':''}ที่ไฮไลต์บนกระดาน</div>`;
       if(req.cancel) body+=`<button class="cancel">${esc(req.cancel)}</button>`;
       pr.innerHTML=body;
       pr.onclick=e=>{ const b=e.target.closest('[data-i]'); if(b){ this.answer(req.options[+b.dataset.i]); return; } if(e.target.closest('.cancel')) this.answer(null); };
-      pr.classList.toggle('big',req.kind==='card'); pr.classList.toggle('inl',req.kind==='cell'||req.kind==='mon');
+      if(req.xpick){ const xp=pr.querySelector('.xPick'), rg=xp.querySelector('.xRange'); const n=req.options.length-1;
+        const show=i=>{ i=Math.max(0,Math.min(n,i)); xp.dataset.xi=i; rg.value=i; const o=req.options[i]; xp.querySelector('.xVal b').textContent=o.v; xp.querySelector('.xPrev').textContent=o.prev||o.label||''; xp.querySelector('.xOk').textContent=`✔ ยืนยัน X = ${o.v}`; xp.querySelector('.xm').disabled=i<=0; xp.querySelector('.xp').disabled=i>=n; };
+        xp.querySelector('.xm').onclick=e=>{ e.stopPropagation(); show(+xp.dataset.xi-1); }; xp.querySelector('.xp').onclick=e=>{ e.stopPropagation(); show(+xp.dataset.xi+1); };
+        rg.oninput=()=>show(+rg.value); xp.querySelector('.xOk').onclick=e=>{ e.stopPropagation(); this.answer(req.options[+xp.dataset.xi]); };
+        xp.onkeydown=e=>{ if(e.key==='ArrowLeft'||e.key==='-'){ show(+xp.dataset.xi-1); e.preventDefault(); } else if(e.key==='ArrowRight'||e.key==='+'){ show(+xp.dataset.xi+1); e.preventDefault(); } else if(e.key==='Enter'){ this.answer(req.options[+xp.dataset.xi]); e.preventDefault(); } };
+        show(+xp.dataset.xi); setTimeout(()=>{ try{ xp.querySelector('.xOk').focus(); }catch(_){} },30); }
+      pr.classList.toggle('xpk',!!req.xpick); pr.classList.toggle('big',req.kind==='card'); pr.classList.toggle('inl',req.kind==='cell'||req.kind==='mon');
       this.render();
       if(req.purpose==='dariusPath'){ UI.dpHL=0; pr.querySelectorAll('.opts button').forEach((b,i)=>{ b.classList.add('dpOpt','dp'+i); const f=()=>{UI.dpHL=i;UI.applyDP&&UI.applyDP();}; b.addEventListener('mouseenter',f); b.addEventListener('focus',f); b.addEventListener('touchstart',f,{passive:true}); }); UI.applyDP&&UI.applyDP(); } /* v1.1.61 */
     });
