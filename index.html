@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.74</title>
+<title>Project Dungeon v1.1.75</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.74 setup start screen */
+/* v1.1.75 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.74 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.75 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -969,7 +969,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.74 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.75 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -992,7 +992,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 
-/* v1.1.74 X picker */
+/* v1.1.75 X picker */
 #prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
 #prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
 #prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
@@ -1006,12 +1006,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.74 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.75 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.74 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.75 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -5854,7 +5854,7 @@ function rawCost(c){ const d=DEF[c.key]; return c.up?d.ucost:d.cost; }
 /* cost reduction with a printed floor: never raises a cost that is already at/below the floor */
 function floorLess(v,less,floor){ return v<=floor?v:Math.max(floor,v-less); }
 function cost(P,c){
-  const d=DEF[c.key]; if(c.key==='EXH') return Math.max(0,3-(hasItem(P,'Guardian\'s Bulwark')?1:0));
+  const d=DEF[c.key]; if(c.key==='EXH'){ let v=Math.max(0,3-(hasItem(P,'Guardian\'s Bulwark')?1:0)); /* v1.1.75: Evelyn upgraded -1 also applies to an Exhaust card face-up on her deck (never raises: 0 stays 0) */ if(c.evel||(P.heroUp&&P.hero&&P.hero.name==='Evelyn Mercantalis'&&P.deck&&P.deck[0]===c)) v=floorLess(v,1,1); return v; }
   let v=rawCost(c); if(v==='X') return 0;
   const nm=d.name;
   if(nm==='Walk'&&P.playedTurn===0) v=mz(P,'fc',0);
@@ -5889,6 +5889,7 @@ function condLess(P,c){ const d=DEF[c.key]; if(!d||c.key==='EXH') return null; c
 const effCost=(P,c)=>{ const v=cost(P,c), l=condLess(P,c); return l?Math.max(0,v-l.less):v; };
 function playable(P,c){
   const d=DEF[c.key];
+  if(typeof inObs==='function'&&inObs(P)) return false; /* v1.1.75: nothing but moving out while inside an obstacle */
   if(c.key==='EXH') return P.shard>=cost(P,c);
   if(d.disabled) return false;
   if(d.name==='Open Strike' && P.hand.some(h=>h!==c&&DEF[h.key].type!=='attack')) return false;
@@ -5909,7 +5910,7 @@ function noTarget(P,c){ const d=DEF[c.key]; if(!d||c.key==='EXH'||G.phase!=='bat
 function discardCost(c){ const d=DEF[c.key]; if(!d||c.key==='EXH') return 0; const ops=(c.up?d.opsU:d.opsN)||[]; let n=0;
   for(const o of ops){ if(o.t==='draw'||o.t==='searchPlay'||o.t==='playTop') break; if(o.t==='discard'||o.t==='removeHand') n+=o.n||1; } return n; }
 function costVerb(c){ const d=DEF[c.key]; const ops=(c.up?d.opsU:d.opsN)||[]; const r=ops.find(o=>o.t==='removeHand'), di=ops.some(o=>o.t==='discard'); return r?(r.orDiscard?'รีมูฟ/ทิ้ง':'รีมูฟ'):(di?'ทิ้ง':'ทิ้ง'); }
-function blockReason(P,c){ const need=discardCost(c), have=P.hand.filter(h=>h!==c).length;
+function blockReason(P,c){ if(typeof inObs==='function'&&inObs(P)) return OBS_MSG; const need=discardCost(c), have=P.hand.filter(h=>h!==c).length;
   if(need>have) return `ต้อง${costVerb(c)}การ์ดอื่น ${need} ใบเป็นค่าใช้จ่าย (มีในมือ ${have})`;
   if(noTarget(P,c)) return 'ไม่มีเป้าหมายที่โจมตีได้ในระยะ';
   if(P.shard<effCost(P,c)) return `Shard ไม่พอ (ต้องใช้ ${effCost(P,c)} มี ${P.shard})`; return ''; }
@@ -6029,10 +6030,15 @@ async function ask(P,req){
 /* v1.1.17: tag each card side's ops with its card so Mana can find engine-level printed numbers (CARD_SLOTS) */
 for(const d of Object.values(DEF)){ if(d.opsN&&d.opsU===d.opsN) d.opsU=d.opsN.slice(); if(d.opsN) d.opsN.__card={name:d.name,up:false}; if(d.opsU) d.opsU.__card={name:d.name,up:true}; }
 /* ---------- movement ---------- */
+/* v1.1.75 USER RULE (clarified): heroes NEVER enter obstacle tiles unless a pass-through-OBSTACLE effect is active.
+   data.json audit (EN+TH) of effects that pass obstacles: Ghost Walk (buff card: 'Enemy and obstacle will not block your movement' / 'ศัตรูและสิ่งกีดขวางจะไม่ขวาง…'),
+   Wand Helpzing (item: 'You may move pass the Obstacle' / 'คุณสามารถเคลื่อนที่ผ่านสิ่งกีดขวางได้'). Sling ('pass through everything') is a one-shot dash that only lands on a free tile.
+   Enemy-only pass effects (Ghost, Demon Barrier, Toxic step) do NOT count. */
+const obsPass=P=>!!(P&&!P.isMon&&(buffLv(P,'Ghost Walk')||hasItem(P,'Wand Helpzing')));
 function canEnter(P,x,y,opt={}){
   if(!inB(x,y)) return false;
   const ghostMon=opt.ghost||buffLv(P,'Ghost Walk')||hasItem(P,'Demon Barrier');
-  if(isObs(x,y)&&!(buffLv(P,'Ghost Walk')||hasItem(P,'Wand Helpzing'))) return false;
+  if(isObs(x,y)&&!obsPass(P)) return false;
   if(monAt(x,y)&&!ghostMon) return false;
   return true;
 }
@@ -6045,7 +6051,10 @@ function moveCells(P,n,min,opt={}){
   const sk=key(P.x,P.y); const best=new Map(); // key -> {x,y,d,path}
   let fr=[{x:P.x,y:P.y,path:[]}]; const seen=new Set([sk+'|0']);
   for(let s=1;s<=n;s++){ const nf=[];
-    for(const c of fr) for(const d of DIRS){ const x=c.x+d[0],y=c.y+d[1]; if(!canEnter(P,x,y,opt)) continue;
+    for(const c of fr) for(const d of DIRS){ const x=c.x+d[0],y=c.y+d[1];
+      /* v1.1.75 USER RULE: the paid 2-Shard step may step INTO an obstacle tile (1 step from the current tile only; never through it to a further tile) */
+      if(opt.obsIn&&s===1&&inB(x,y)&&isObs(x,y)&&!unitAt(x,y)){ const k=key(x,y); if(!best.has(k)) best.set(k,{x,y,d,steps:1,path:[{x,y,d}],obs:true}); continue; }
+      if(!canEnter(P,x,y,opt)) continue;
       const k=key(x,y), sk2=k+'|'+s; if(seen.has(sk2)) continue; seen.add(sk2);
       const nc={x,y,path:c.path.concat([{x,y,d}])}; if(WS&&isWater(x,y)){ if(!canStop(P,x,y)) continue; } else nf.push(nc);
       if(s>=min&&k!==sk&&canStop(P,x,y)&&!best.has(k)) best.set(k,{x,y,d,steps:s,path:nc.path}); }
@@ -6068,6 +6077,18 @@ function bestPath(P,dest,opt){ const L=dest.path.length; if(L<2) return null; le
     const left=L-path.length; if(Math.abs(dest.x-x)+Math.abs(dest.y-y)>left) return;
     for(const d of DIRS){ const nx=x+d[0],ny=y+d[1]; if(!canEnter(P,nx,ny,opt)) continue; if(!P.isMon&&path.length<L-1&&isWater(nx,ny)) continue; if(path.length===L-1&&!(nx===dest.x&&ny===dest.y)) continue; path.push({x:nx,y:ny,d}); rec(nx,ny,path); path.pop(); } };
   rec(P.x,P.y,[]); return bs>pathScore(P,dest.path)?best:null; }
+/* v1.1.75: hero standing inside an obstacle (only reachable with the paid step while Ghost Walk / Wand Helpzing is active) — may only move out; bounced back at end of turn */
+const inObs=P=>!!(P&&!P.isMon&&G&&G.obs&&isObs(P.x,P.y));
+/* only a real human prompt (UI / online / test hook) may step into an obstacle — bots & auto-driven players never do, so they can never get stuck */
+const obsStepOK=P=>!!(P&&!P.bot&&!SIM.on&&(!HEADLESS||!!globalThis.__askHook)&&obsPass(P)); /* paid step may enter an obstacle ONLY while a pass-obstacle effect is active */
+const OBS_MSG='อยู่ในสิ่งกีดขวาง: ต้องเดินออกก่อน';
+async function obsBounce(P){ if(!inObs(P)) { P.obsFrom=null; return false; } const fr=P.obsFrom; let to=null;
+  if(fr&&canStop(P,fr.x,fr.y)) to=fr;
+  else { const seen=new Set([key(P.x,P.y)]); let q=[{x:P.x,y:P.y}]; while(q.length&&!to){ const nq=[]; for(const c of q) for(const d of DIRS){ const x=c.x+d[0],y=c.y+d[1],k=key(x,y); if(!inB(x,y)||seen.has(k)) continue; seen.add(k); if(canStop(P,x,y)){ to={x,y}; break; } nq.push({x,y}); } q=nq; } }
+  if(!to) return false; const from={x:P.x,y:P.y}; P.x=to.x; P.y=to.y; P.face=[Math.sign(to.x-from.x),Math.sign(to.y-from.y)]; if(!P.face[0]&&!P.face[1]) P.face=[1,0]; P.obsFrom=null;
+  log(`↩ ${P.name} ยังอยู่ในสิ่งกีดขวางตอนจบเทิร์น — เด้งกลับไปช่อง (${to.x+1},${to.y+1})`,'warn');
+  if(!HEADLESS&&typeof UI!=='undefined'){ try{ UI.render(); if(UI.obsBounceFx) UI.obsBounceFx(P); }catch(_){ } }
+  return true; }
 /* v1.1.64 goblin trap: a HERO entering a trap tile (walking through, stopping, dash, swap or teleport landing) takes 3 damage each time; shields absorb as usual */
 /* v1.1.64 beast water: a HERO entering water (walk, dash, teleport/swap landing) stops there and cannot move again this turn */
 const isWater=(x,y)=>!!(G.water&&G.water.has(key(x,y)));
@@ -6123,6 +6144,7 @@ async function stepMoves(P,n,min,opt={}){
     if(!ch){ if(!leg&&opt.skip) log(`⏭ ${P.name} ข้ามการเดิน`,'sys'); break; }
     const path=ch.path||[{x:ch.x,y:ch.y,d:ch.d}];
     for(const st of path){ if(G.over) break; await enterCell(P,st.x,st.y,st.d); moved++; if(!HEADLESS&&!SIM.on){ UI.render(); await new Promise(r=>setTimeout(r,90)); } }
+    if(opt.obsIn&&isObs(P.x,P.y)){ if(!isObs(start.x,start.y)) P.obsFrom={x:start.x,y:start.y}; log(`🧱 ${P.name} เดินเข้าไปในสิ่งกีดขวาง — ต้องเดินออกก่อนจบเทิร์น (ไม่งั้นจะเด้งกลับ)`,'warn'); break; }
     const blk=(x,y)=>isObs(x,y)||monAt(x,y)||G.players.some(o=>o!==P&&o.hp>0&&o.x===x&&o.y===y);
     if(blk(P.x,P.y)){ const seq=[start].concat(path); let li=seq.length-1; while(li>0&&blk(seq[li].x,seq[li].y)) li--; const lf=seq[li]; if(lf){P.x=lf.x;P.y=lf.y; if(li>0) P.face=[lf.x-seq[li-1].x,lf.y-seq[li-1].y]; /* v1.1.25 */} log('หยุดบนช่องนั้นไม่ได้ — ถอยกลับช่องก่อนหน้า','warn'); }
     leg++;
@@ -6787,7 +6809,7 @@ async function endRound(){
 }
 async function heroTurn(P,mid){
   clearUndo(); EMG.last=null;
-  if(!mid){ startTurn(P); await startTurnEffects(P);
+  if(!mid){ startTurn(P); if(inObs(P)) await obsBounce(P); await startTurnEffects(P);
   if(G.over) return;
   log(`▶ เทิร์นของ ${P.name}`,'turn'); } else log(`▶ เล่นต่อเทิร์นของ ${P.name} (โหลดเซฟ)`,'turn');
   if(!HEADLESS) UI.render();
@@ -6813,13 +6835,22 @@ async function heroTurn(P,mid){
     if(!HEADLESS){ UI.render(); if(P.bot) await sleep(CFG.botDelay); }
   }
   P.ibUsed=false;
+  if(!G.over) await obsBounce(P); /* v1.1.75 */
   /* v1.1.8: room cleared -> the turn ends immediately: NO end-of-turn discard/draw (so no reshuffle / no Exhaust); straight to Rest */
   if(!G.over && !liveMons().length){ clearUndo('ห้องเคลียร์แล้ว'); P.str=0; G.active=null; log(`🏁 ห้องเคลียร์! จบเทิร์นทันที — ${P.name} เก็บการ์ดในมือไว้ ${P.hand.length} ใบ (ไม่ทิ้ง/ไม่จั่วใหม่)`,'room'); return; }
   if(!G.over) await endTurn(P);
 }
+/* v1.1.75: can Evelyn use the Exhaust card on top of her deck this way (same conditions as from hand; c is still on the deck so cost() already has her -1) */
+function eveExhOK(P,c,sub){ if(!P||!c||c.key!=='EXH'||!P.hero||P.hero.name!=='Evelyn Mercantalis'||P.deck[0]!==c||(typeof inObs==='function'&&inObs(P))) return false;
+  if(sub==='play') return P.shard>=cost(P,c);
+  if(sub==='adapt') return !!buffLv(P,'Adaptive Fight')&&P.shard>=bn(P,'Adaptive Fight','pay',0,0);
+  if(sub==='drain') return !!buffLv(P,'Hand Drain')&&P.hand.length+1>=bn(P,'Hand Drain','disc',2,2);
+  return false; }
 async function doAction(P,act){
+  /* v1.1.75: inside an obstacle only movement out is allowed */
+  if(inObs(P)&&!['move','mtok','end','_undo'].includes(act.type)){ log(`⛔ ${OBS_MSG}`,'warn'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.toast) try{ UI.toast('🧱 '+OBS_MSG); }catch(_){ } return; }
   if(act.type==='play'){ const c=P.hand.find(h=>h.uid===act.uid); if(!c||!playable(P,c)) return; if(act.staff&&!staffOK(P,c)) act.staff=false; await playCard(P,c,{marcel:act.marcel,staff:act.staff}); }
-  else if(act.type==='move'){ if(P.shard<CFG.moveCost) return; P.shard-=CFG.moveCost; P.shardSpent+=CFG.moveCost; /* v1.1.21 rulebook: pay 2 Shard = move 1 tile; repeatable while Shards last; Skip refunds; move effects/pickups/facing via stepMoves */ if(!moveCells(P,1,1).length){ P.shard+=CFG.moveCost;P.shardSpent-=CFG.moveCost; log(`${P.name} เดินไม่ได้ — ไม่มีช่องว่างติดกัน (ไม่เสีย Shard)`,'warn'); return; } log(`👣 ${P.name} จ่าย ${CFG.moveCost} Shard เพื่อเดิน 1 ช่อง`,'sys'); const m=await stepMoves(P,1,1,{skip:!P.bot}); if(!m){P.shard+=CFG.moveCost;P.shardSpent-=CFG.moveCost; log(`↩ ยกเลิกการเดิน — คืน ${CFG.moveCost} Shard`,'sys');} }
+  else if(act.type==='move'){ if(P.shard<CFG.moveCost) return; P.shard-=CFG.moveCost; P.shardSpent+=CFG.moveCost; /* v1.1.21 rulebook: pay 2 Shard = move 1 tile; repeatable while Shards last; Skip refunds; move effects/pickups/facing via stepMoves */ const _oi={skip:!P.bot,obsIn:obsStepOK(P)}; if(!moveCells(P,1,1,_oi).length){ P.shard+=CFG.moveCost;P.shardSpent-=CFG.moveCost; log(`${P.name} เดินไม่ได้ — ไม่มีช่องว่างติดกัน (ไม่เสีย Shard)`,'warn'); return; } log(`👣 ${P.name} จ่าย ${CFG.moveCost} Shard เพื่อเดิน 1 ช่อง`,'sys'); const m=await stepMoves(P,1,1,_oi); if(!m){P.shard+=CFG.moveCost;P.shardSpent-=CFG.moveCost; log(`↩ ยกเลิกการเดิน — คืน ${CFG.moveCost} Shard`,'sys');} }
   else if(act.type==='mtok'){ if(P.mtok<=0) return; P.mtok--; const m=await stepMoves(P,1,1); if(!m) P.mtok++; }
   else if(act.type==='storm'){ if(!hasItem(P,"Storm's Reach")||P.stormUsed) return; P.stormUsed=true; const t=await pickCards(P,P.hand.slice(),2,"Storm's Reach: เลือกการ์ดที่จะทิ้ง (สูงสุด 2) แล้วจั่วเท่าจำนวน",'storm'); t.forEach(c=>{P.hand.splice(P.hand.indexOf(c),1);P.discard.push(c);}); if(t.length){ log(`🌪 Storm's Reach: ทิ้ง ${t.length} จั่ว ${t.length}`,'sys'); await draw(P,t.length);} }
   else if(act.type==='jom'){ const l=buffLv(P,'Just One More'); if(!l||P.jomUsed>=jomMax(P)) return; const o=P.removed.filter(c=>c.key!=='EXH'&&!DEF[c.key].disabled&&playable(P,c)); if(!o.length) return;
@@ -6830,7 +6861,12 @@ async function doAction(P,act){
   else if(act.type==='alcSM'){ if(!buffLv(P,'Alchemy')||P.shard<1) return; P.shard--; await gainMana(P,1); log('⚗ Alchemy: 1 Shard → 1 Mana','sys'); }
   else if(act.type==='drain'){ const dn=bn(P,'Hand Drain','disc',2,2), gn=bn(P,'Hand Drain','gain',1,1); if(!buffLv(P,'Hand Drain')||P.hand.length<dn) return; const pre=act.uid!=null?P.hand.find(c=>c.uid==act.uid):null; /* v1.1.51: clicked Exhaust card is one of the discarded cards */ const rest=pre?P.hand.filter(c=>c!==pre):P.hand.slice(); let t=(pre&&dn<=1)?[]:await pickCards(P,rest,dn-(pre?1:0),`Hand Drain: ทิ้งการ์ด ${dn} ใบ เพื่อรับ ${gn} Mana`+(pre?' (การ์ดเหนื่อยที่เลือกนับเป็น 1 ใบแล้ว)':''),'discard',true); if(pre) t=[pre].concat(t); if(t.length<dn) return; t.forEach(c=>{P.hand.splice(P.hand.indexOf(c),1);P.discard.push(c);}); await gainMana(P,gn); log(`Hand Drain: +${gn} Mana`,'sys'); }
   else if(act.type==='cycle'){ const l=buffLv(P,'Mana Cycle'); const cst=bn(P,'Mana Cycle','cost',2,1); if(!l||P.mana<cst) return; spendMana(P,cst); log(`Mana Cycle: ${cst} Mana → จั่ว 1`,'sys'); await draw(P,1); }
-  else if(act.type==='evelyn'){ if(!ensureDeck(P)) return; const c=P.deck[0]; if(c&&c.key!=='EXH'){ if(P.heroUp) c.evel=1; if(playable(P,c)){ P.deck.shift(); P.hand.push(c); await playCard(P,c,{}); } else delete c.evel; } }
+  else if(act.type==='evelyn'){ if(!ensureDeck(P)) return; const c=P.deck[0];
+    /* v1.1.75 USER BUG FIX: an Exhaust card face-up on Evelyn's deck is usable EXACTLY like from hand (pay to remove / Adaptive Fight / Hand Drain).
+       It is moved to the hand and the very same hand action runs (same cost, exhaust counter, destination, log, undo, online); unused -> back on top. */
+    if(c&&c.key==='EXH'){ const sub=act.sub||'play'; if(!eveExhOK(P,c,sub)) return; if(P.heroUp) c.evel=1; P.deck.shift(); P.hand.push(c); log(`🂠 ${P.name} ใช้การ์ดเหนื่อยจากบนกองจั่ว (Evelyn)`,'play');
+      await doAction(P,{type:sub,uid:c.uid}); delete c.evel; const hi=P.hand.indexOf(c); if(hi>=0){ P.hand.splice(hi,1); P.deck.unshift(c); } return; }
+    if(c&&c.key!=='EXH'){ if(P.heroUp) c.evel=1; if(playable(P,c)){ P.deck.shift(); P.hand.push(c); await playCard(P,c,{}); } else delete c.evel; } }
 }
 function monOrder(){ return liveMons().sort((a,b)=>{const na=nearestHero(a),nb=nearestHero(b);return (na?dist(a,na):99)-(nb?dist(b,nb):99);}); }
 /* ---- v1.1.44: per-round first player (2P digital adaptation; solo unaffected) ----
@@ -6977,6 +7013,10 @@ const BOT = {
       else if(P.shard>=CFG.moveCost+1&&2>bs){ bs=2; best={type:'move'}; }
     }
     if(P.hero.name==='Evelyn Mercantalis'&&P.deck[0]&&P.deck[0].key!=='EXH'&&playable(P,P.deck[0])){ const s=this.evalCard(P,P.deck[0]); if(s>bs){bs=s;best={type:'evelyn'};} }
+    /* v1.1.75: bots also use an Exhaust card face-up on Evelyn's deck (Adaptive Fight if enemies adjacent, else pay to remove) */
+    if(P.hero.name==='Evelyn Mercantalis'&&P.deck[0]&&P.deck[0].key==='EXH'){ const t=P.deck[0]; const adj=adjEnemies(P).length;
+      if(adj&&eveExhOK(P,t,'adapt')){ const s=adj*(buffLv(P,'Adaptive Fight')===2?8:5); if(s>bs){bs=s;best={type:'evelyn',sub:'adapt'};} }
+      if(eveExhOK(P,t,'play')){ const s=this.evalCard(P,t); if(s>bs){bs=s;best={type:'evelyn',sub:'play'};} } }
     if(!best&&allMons().length&&(P.mtok>0||P.shard>=CFG.moveCost)){
       const here=this.threatAt(P,P); let bestC=null,bt=here;
       for(const [dx,dy] of DIRS){ const c={x:P.x+dx,y:P.y+dy}; if(!canStop(P,c.x,c.y)) continue; const t=this.threatAt(P,c); if(t<bt-2){bt=t;bestC=c;} }
@@ -7142,7 +7182,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.74', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.75', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -7430,10 +7470,10 @@ const UI={
     $('#hand').onclick=e=>{ const el=e.target.closest('.card'); if(!el||!this.pending||this.askReq) return; const c=P.hand.find(h=>h.uid==el.dataset.uid); if(c&&!playable(P,c)&&discardCost(c)){ log('⛔ '+DEF[c.key].name+': '+blockReason(P,c),'sys'); return; } if(!c||!playable(P,c)||this.confirming) return; const go=()=>this.resolveAction({type:'play',uid:c.uid,marcel:this.marcel,staff:this.staff&&staffOK(P,c)}); if(UI.confirmOn()&&UI.confirmPlay){ UI.confirmPlay(P,c).then(ok=>{ if(ok&&this.pending&&!this.askReq&&P.hand.includes(c)) go(); }); } else go(); };
     const acts=$('#actions');
     if(human&&!this.askReq){
-      acts.innerHTML=`<button id="aMove" class="aMoveBig" ${P.shard>=CFG.moveCost&&moveCells(P,1,1).length?'':'disabled'} title="กติกา: จ่าย ${CFG.moveCost} Shard เพื่อเดิน 1 ช่อง (กดซ้ำได้ตราบที่ Shard พอ) · คีย์ลัด M · ยกเลิกได้/ย้อนกลับได้">👣 เดิน 1 ช่อง <b>−${CFG.moveCost}💎</b>${P.shard>=CFG.moveCost?` <small>(ได้อีก ${Math.floor(P.shard/CFG.moveCost)} ครั้ง)</small>`:''}</button>
+      acts.innerHTML=`<button id="aMove" class="aMoveBig" ${P.shard>=CFG.moveCost&&moveCells(P,1,1,{obsIn:obsStepOK(P)}).length?'':'disabled'} title="กติกา: จ่าย ${CFG.moveCost} Shard เพื่อเดิน 1 ช่อง (กดซ้ำได้ตราบที่ Shard พอ) · คีย์ลัด M · ยกเลิกได้/ย้อนกลับได้">👣 เดิน 1 ช่อง <b>−${CFG.moveCost}💎</b>${P.shard>=CFG.moveCost?` <small>(ได้อีก ${Math.floor(P.shard/CFG.moveCost)} ครั้ง)</small>`:''}</button>
        ${P.mtok?`<button id="aTok">👣 ใช้ Move Token (${P.mtok})</button>`:''}
        ${P.hero.name==='Marcel Eclipsar'&&!P.marcelUsed?`<label class="chk"><input type="checkbox" id="aMarcel" ${this.marcel?'checked':''}> เล่นใบถัดไปแบบอัปเกรด (Marcel${P.heroUp?'':' −3 HP'})</label>`:''}
-       ${P.hero.name==='Evelyn Mercantalis'?`<button id="aEve">🂠 เล่นการ์ดบนสุดของกองจั่ว (${P.deck[0]&&P.deck[0].key!=='EXH'?esc(DEF[P.deck[0].key].name):'—'})</button>`:''}
+       ${P.hero.name==='Evelyn Mercantalis'?`<button id="aEve">🂠 เล่นการ์ดบนสุดของกองจั่ว (${P.deck[0]?(P.deck[0].key==='EXH'?'😮‍💨 การ์ดเหนื่อย':esc(DEF[P.deck[0].key].name)):'—'})</button>`:''}
        ${hasItem(P,'Staff of Nocturne')&&!P.staffUsed?`<label class="chk"><input type="checkbox" id="aStaff" ${this.staff?'checked':''}> 🪄 Staff: ใบถัดไปจ่าย 2 เท่า เล่น 2 ครั้ง</label>`:''}
        ${hasItem(P,"Storm's Reach")&&!P.stormUsed?'<button data-x="storm">🌪 Storm\'s Reach (ทิ้ง≤2 จั่วเท่ากัน)</button>':''}
        ${buffLv(P,'Just One More')&&(P.jomUsed||0)<(buffLv(P,'Just One More')===2?2:1)&&P.removed.some(c=>c.key!=='EXH'&&playable(P,c))?'<button data-x="jom">♻ Just One More (เล่นจากกองรีมูฟ)</button>':''}
@@ -7446,7 +7486,7 @@ const UI={
       if($('#aStaff')) $('#aStaff').onchange=e=>{this.staff=e.target.checked;};
       $('#aMove').onclick=()=>this.resolveAction({type:'move'});
       if($('#aTok')) $('#aTok').onclick=()=>this.resolveAction({type:'mtok'});
-      if($('#aEve')) $('#aEve').onclick=()=>this.resolveAction({type:'evelyn'});
+      if($('#aEve')) $('#aEve').onclick=()=>{ if(P.deck[0]&&P.deck[0].key==='EXH'&&typeof EVEX!=='undefined') EVEX.open(P); else this.resolveAction({type:'evelyn'}); };
       if($('#aMarcel')) $('#aMarcel').onchange=e=>{this.marcel=e.target.checked;};
       $('#aEnd').onclick=()=>this.resolveAction({type:'end'});
       $('#aUndo').onclick=()=>this.undo(); $('#aConfirm').onchange=e=>UI.setConfirm(e.target.checked);
@@ -7814,7 +7854,7 @@ UI.confirmPlay=function(P,c){ return new Promise(res=>{ const d=DEF[c.key], up=c
   setTimeout(()=>{ const b=ov.querySelector('#cfOK'); b&&b.focus(); },0); }); };
 
 /* v1.1.6: tooltip + badge for cards blocked by their discard cost */
-(function(){ const base=UI.renderHand; if(!base) return; UI.renderHand=function(...a){ const r=base.apply(this,a); try{ const P=G.active; if(P&&!P.bot) document.querySelectorAll('#hand .card.noDisc').forEach(el=>{ const c=P.hand.find(h=>h.uid==el.dataset.uid); if(c){ /* v1.1.50 USER REQUEST: unplayable (greyed) cards keep the full-card hover / long-press preview (data-tipcard kept; reason lives in the badge + data-reason, no native title so it doesn't cover the preview) */ el.dataset.reason='เล่นไม่ได้: '+blockReason(P,c); el.removeAttribute('title'); if(!el.querySelector('.ndB')) el.insertAdjacentHTML('beforeend',`<div class="ndB">${discardCost(c)>P.hand.length-1?`ต้อง${costVerb(c)} ${discardCost(c)} ใบ`:noTarget(P,c)?'ไม่มีเป้าหมาย':'Shard ไม่พอ'}</div>`); } }); }catch(_){} return r; }; })();
+(function(){ const base=UI.renderHand; if(!base) return; UI.renderHand=function(...a){ const r=base.apply(this,a); try{ const P=G.active; if(P&&!P.bot) document.querySelectorAll('#hand .card.noDisc').forEach(el=>{ const c=P.hand.find(h=>h.uid==el.dataset.uid); if(c){ /* v1.1.50 USER REQUEST: unplayable (greyed) cards keep the full-card hover / long-press preview (data-tipcard kept; reason lives in the badge + data-reason, no native title so it doesn't cover the preview) */ el.dataset.reason='เล่นไม่ได้: '+blockReason(P,c); el.removeAttribute('title'); if(!el.querySelector('.ndB')) el.insertAdjacentHTML('beforeend',`<div class="ndB">${(typeof inObs==='function'&&inObs(P))?'🧱 ต้องเดินออกก่อน':discardCost(c)>P.hand.length-1?`ต้อง${costVerb(c)} ${discardCost(c)} ใบ`:noTarget(P,c)?'ไม่มีเป้าหมาย':'Shard ไม่พอ'}</div>`); } }); }catch(_){} return r; }; })();
 
 /* ===================== v1.1.8 token tray: every token the player holds, one physical piece per token, RIGHT of the hand ===================== */
 const TOK_TYPES=[
@@ -9224,7 +9264,7 @@ const PILES={log:[],prev:null,
       e.addEventListener('click',ev=>{ const ev2=ev.target.closest('[data-eve]'); if(ev2){ ev.stopPropagation(); PILES.evePick(); return; } const p=ev.target.closest('[data-pile]'); if(p) PILES.view(p.dataset.pile); }); } return e; },
   render(){ const P=this.owner(); const e=this.el(); if(!P||!e||!G||!G.players) return; const top=P.discard[P.discard.length-1];
     const ib=document.getElementById('itemBar'); e.style.left=((ib&&ib.children.length)?ib.offsetWidth+10:6)+'px';
-    const eve=P.hero&&P.hero.name==='Evelyn Mercantalis'&&!G.over?P.deck[0]:null; const eveOk=!!(eve&&eve.key!=='EXH'&&this.eveCan(P));
+    const eve=P.hero&&P.hero.name==='Evelyn Mercantalis'&&!G.over?P.deck[0]:null; const eveOk=!!(eve&&this.eveCan(P));
     const key=[eve?eve.uid+':'+eve.up+':'+eveOk:'',P.id,P.deck.length,P.discard.length,top?top.uid+':'+top.up:'',P.exhaust,(P.removed||[]).length].join('|');
     if(e.dataset.k!==key){ e.dataset.k=key;
       e.innerHTML=`<div class="pdPile pDraw" data-pile="draw" title="กองจั่ว ${P.deck.length} ใบ — คลิกเพื่อดู (เรียงตามชื่อ)">${eve?`<div class="pFace eveTop ${eveOk?'ok':''}" data-eve="1" title="${eveOk?'Evelyn: คลิกการ์ดใบนี้เพื่อเล่นจากกองจั่ว':'Evelyn: การ์ดบนสุดของกองจั่ว (ตอนนี้เล่นไม่ได้)'}">${UI.cardHTML(eve,P,'pileTop')}</div>`:`<div class="pBack"><img src="${this.logo()}" alt=""></div>`}<b>${P.deck.length}</b><small>${eve?(eveOk?'▶ คลิกเพื่อเล่น':'กองจั่ว (เปิด)'):'กองจั่ว'}</small></div>`+
@@ -9243,8 +9283,8 @@ const PILES={log:[],prev:null,
   snap(){ const P=this.owner(); if(!P) return null; const hand={}; document.querySelectorAll('#hand .card').forEach(el=>{ hand[el.dataset.uid]=el.getBoundingClientRect(); });
     const S=a=>new Set((a||[]).map(c=>String(c.uid))); return {pid:P.id,room:G.room,hand,handU:P.hand.map(c=>String(c.uid)),deck:P.deck.length,disc:S(P.discard),rem:S(P.removed),discN:P.discard.length}; },
   /* v1.1.45: Evelyn Mercantalis — her top-of-deck card is shown face-up ON the draw pile; click it to play it directly (no menu step). Hover / long-press = enlarged card. */
-  eveCan(P){ try{ return !!(UI.pending&&!UI.askReq&&G.active===P&&!P.bot&&P.deck[0]&&P.deck[0].key!=='EXH'&&playable(P,P.deck[0])&&!(typeof NET!=='undefined'&&NET.on&&NET.role==='guest'&&P.id!==NET.myPid)); }catch(_){ return false; } },
-  evePick(){ const P=this.owner(); if(!P) return; if(this.eveCan(P)){ this.log.push('evelyn'); UI.resolveAction({type:'evelyn'}); } else { const c=P.deck[0]; UI.toast&&UI.toast(c&&c.key==='EXH'?'การ์ดบนสุดเป็นการ์ดเหนื่อย — เล่นไม่ได้':'ตอนนี้ยังเล่นการ์ดใบนี้ไม่ได้ (Shard/ค่าร่ายไม่พอ หรือไม่ใช่ตาคุณ)'); } },
+  eveCan(P){ try{ return !!(UI.pending&&!UI.askReq&&G.active===P&&!P.bot&&P.deck[0]&&(P.deck[0].key==='EXH'?EVEX.options(P).some(o=>!o.why):playable(P,P.deck[0]))&&!(typeof NET!=='undefined'&&NET.on&&NET.role==='guest'&&P.id!==NET.myPid)); }catch(_){ return false; } },
+  evePick(){ const P=this.owner(); if(!P) return; const c0=P.deck[0]; if(c0&&c0.key==='EXH'&&UI.pending&&!UI.askReq&&G.active===P&&!P.bot){ this.log.push('evelynEXH'); EVEX.open(P); return; } if(this.eveCan(P)){ this.log.push('evelyn'); UI.resolveAction({type:'evelyn'}); } else { const c=P.deck[0]; UI.toast&&UI.toast(c&&c.key==='EXH'?'การ์ดเหนื่อยบนกอง: ตอนนี้ใช้ไม่ได้ (Shard ไม่พอ)':'ตอนนี้ยังเล่นการ์ดใบนี้ไม่ได้ (Shard/ค่าร่ายไม่พอ หรือไม่ใช่ตาคุณ)'); } },
   inPlay:new Set(),played:new Set(),
   sfx(){ try{ if(typeof SND!=='undefined'&&SND.on&&SND.unlocked&&SND.noise) SND.noise(.07,{f:2600,f2:900,vol:.035,ft:'bandpass'}); }catch(e){} },
   rect(sel){ const e=document.querySelector(sel); return e&&e.getBoundingClientRect(); },
@@ -9923,6 +9963,38 @@ if(typeof document!=='undefined'&&!(typeof HEADLESS!=='undefined'&&HEADLESS)){ (
   if(document.body) start(); else document.addEventListener('DOMContentLoaded',start);
   window.PAINT={lite:()=>R.classList.contains('pdLite'),ov:()=>R.classList.contains('pdOv'),check};
 })(); }
+/* v1.1.75 obstacle step UI: banner + only move-out buttons enabled while the active human hero is inside an obstacle; bounce-back FX */
+if(typeof document!=='undefined'&&!(typeof HEADLESS!=='undefined'&&HEADLESS)){
+  const st=document.createElement('style'); st.textContent=`
+#obsWarn{position:fixed;transform:translateX(-50%);z-index:60;padding:5px 14px;border-radius:14px;width:max-content;max-width:min(92%,560px);text-align:center;line-height:1.25;background:#3a1d0ef2;border:1px solid #ffb35c;color:#ffe2b8;font:600 14px Kanit,sans-serif;box-shadow:0 4px 16px #000a;pointer-events:none;white-space:normal;animation:obsPulse 1.4s ease-in-out infinite}
+@keyframes obsPulse{0%,100%{box-shadow:0 0 0 0 #ffb35c66}50%{box-shadow:0 0 0 6px #ffb35c00}}
+.tok.inObs{z-index:30!important;filter:drop-shadow(0 0 6px #ffb35c) saturate(.7);opacity:.85}
+.tok.obsBounce{animation:obsBnc .55s ease-out}
+@keyframes obsBnc{0%{transform:scale(1.25) rotate(-6deg)}40%{transform:scale(.9) rotate(4deg)}100%{transform:none}}
+#acts button.obsOff{opacity:.35;pointer-events:none}`; document.head.appendChild(st);
+  UI.obsSync=function(){ const P=G&&G.active&&!G.active.isMon?G.active:null; const on=!!(P&&inObs(P)); const b=document.getElementById('board');
+    let w=document.getElementById('obsWarn'); if(on&&b){ if(!w){ w=document.createElement('div'); w.id='obsWarn'; } if(w.parentNode!==document.body) document.body.appendChild(w); const r=b.getBoundingClientRect(); w.style.left=(r.left+r.width/2)+'px'; const hh=w.offsetHeight||44; w.style.top=(r.top-hh-8>=4?r.top-hh-8:Math.max(4,r.top+6))+'px'; w.innerHTML=`🧱 ${OBS_MSG}<br><small style="font-weight:400;opacity:.85">เดินออก (จ่าย ${CFG.moveCost} Shard / Move Token) — จบเทิร์นในนี้ = เด้งกลับ</small>`; } else if(w) w.remove();
+    document.querySelectorAll('#acts button').forEach(x=>{ const keep=['aMove','aTok','aEnd','aUndo','aConfirm'].includes(x.id); x.classList.toggle('obsOff',on&&!keep); if(on&&!keep) x.title=OBS_MSG; });
+    if(G&&G.players) for(const p of G.players){ const t=document.querySelector(`[data-id="h${p.id}"]`); if(t){ t.classList.toggle('inObs',inObs(p)); if(inObs(p)) t.title=OBS_MSG; } } };
+  UI.obsBounceFx=function(P){ try{ const t=document.querySelector(`[data-id="h${P.id}"]`); if(t){ t.classList.remove('obsBounce'); void t.offsetWidth; t.classList.add('obsBounce'); setTimeout(()=>t.classList.remove('obsBounce'),700); } if(UI.floatAt) UI.floatAt(P,'↩ เด้งกลับ!','bump'); }catch(_){ } };
+  const _rO=UI.render; UI.render=function(){ const x=_rO.apply(this,arguments); try{ UI.obsSync(); }catch(e){} return x; };
+}
+
+/* v1.1.75 USER BUG FIX: Evelyn — Exhaust card face-up on top of her deck: chooser with the SAME options as an Exhaust card in hand
+   (😮‍💨 pay to remove · ⚔ Adaptive Fight · 💧 Hand Drain), each sent as {type:'evelyn',sub} → engine runs the same hand action (undo / online unchanged). */
+const EVEX={ log:[],
+  options(P){ const c=P&&P.deck&&P.deck[0]; if(!c||c.key!=='EXH') return []; const o=[];
+    o.push({k:'play',label:`😮‍💨 ใช้การ์ดเหนื่อยตามปกติ (จ่าย ${cost(P,c)} Shard นำออก → กลับกองเหนื่อย)`,why:eveExhOK(P,c,'play')?'':(typeof inObs==='function'&&inObs(P)?OBS_MSG:`Shard ไม่พอ (ต้องใช้ ${cost(P,c)} มี ${P.shard})`)});
+    if(buffLv(P,'Adaptive Fight')){ const pay=bn(P,'Adaptive Fight','pay',0,0), dmg=bn(P,'Adaptive Fight','dmg',5,8), adj=adjEnemies(P).length;
+      o.push({k:'adapt',label:`⚔ Adaptive Fight: ตีศัตรูรอบตัว ${dmg} ดาเมจ${pay?` (จ่าย ${pay} Shard)`:' (จ่าย 0)'}${adj?` · โดน ${adj} ตัว`:''}`,why:!adj?'ไม่มีศัตรูอยู่ติดกัน (ประชิด)':(eveExhOK(P,c,'adapt')?'':`Shard ไม่พอ (ต้องการ ${pay})`)}); }
+    if(buffLv(P,'Hand Drain')){ const dn=bn(P,'Hand Drain','disc',2,2), gn=bn(P,'Hand Drain','gain',1,1); o.push({k:'drain',label:`💧 Hand Drain: ทิ้งใบนี้${dn>1?` + อีก ${dn-1} ใบจากมือ`:''} → +${gn} Mana`,why:eveExhOK(P,c,'drain')?'':`การ์ดในมือไม่พอ (ต้อง ${dn-1} ใบ)`}); }
+    return o; },
+  open(P){ if(typeof document==='undefined'||!UI.pending||UI.askReq||document.getElementById('adaptBox')) return; const c=P.deck[0]; const opts=this.options(P); if(!opts.length) return; this.log.push({uid:c.uid,opts:opts.map(o=>o.k+(o.why?'!':''))});
+    const ov=document.createElement('div'); ov.id='adaptBox'; ov.className='manaOv eveX';
+    ov.innerHTML=`<div class="manaBox" style="max-width:460px"><h3>🂠 Evelyn: การ์ดเหนื่อยบนกองจั่ว — ใช้ยังไง?</h3><div style="display:flex;flex-direction:column;gap:8px;margin:10px 0">${opts.map((o,i)=>`<button data-ai="${i}" data-k="${o.k}" ${o.why?'disabled':''} style="text-align:left;padding:8px 10px">${esc(o.label)}${o.why?`<br><small style="color:#f88">⛔ ${esc(o.why)}</small>`:''}</button>`).join('')}</div><button data-ai="x" class="cancel">✖ ยกเลิก</button></div>`;
+    document.body.appendChild(ov); const close=()=>ov.remove();
+    ov.onclick=e=>{ const b=e.target.closest('[data-ai]'); if(!b||b.disabled) return; close(); if(b.dataset.ai==='x'){ this.log.push({cancel:1}); return; } const o=opts[+b.dataset.ai]; if(!UI.pending||UI.askReq||P.deck[0]!==c) return; this.log.push({pick:o.k}); UI.resolveAction({type:'evelyn',sub:o.k}); };
+    const key=e=>{ if(!document.body.contains(ov)){ removeEventListener('keydown',key,true); return; } if(e.key==='Escape'){ e.stopPropagation(); close(); } }; addEventListener('keydown',key,true); } };
 
 /* ===== v1.1.67 (1) RUNS — "who's playing now": rides on the e23 ONLINE presence (topic pd_online, same socket).
    Sender: ONLINE.setRun({team,heroes:[hero names],dg,room,rd,mode}) on game start / room / round change (>=5 s apart; viewer switch is immediate),
