@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.76</title>
+<title>Project Dungeon v1.1.77</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.76 setup start screen */
+/* v1.1.77 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.76 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.77 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -969,7 +969,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.76 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.77 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -992,7 +992,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 
-/* v1.1.76 X picker */
+/* v1.1.77 X picker */
 #prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
 #prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
 #prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
@@ -1006,12 +1006,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.76 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.77 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.76 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.77 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -4809,8 +4809,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Argus",
    "hp": "HP 70",
-   "en": "Move 4 inward. Heal HP equal to the number of spaces moved./ Deal 16 damage. If it hits HP, the target discards 3 cards.",
-   "th": "เดิน 4 เข้า ฮิลตามจำนวนก้าวที่เดิน / ตี 16 หากเข้าพลังชีวิต เป้าหมายทิ้งการ์ด 3 ใบ",
+   "en": "Move 4 inward. Heal HP equal to the number of spaces moved./ Move 1 Deal 16 damage. If it hits HP, the target discards 3 cards.",
+   "th": "เดิน 4 เข้า ฮิลตามจำนวนก้าวที่เดิน / เดิน 1 ตี 16 หากเข้าพลังชีวิต เป้าหมายทิ้งการ์ด 3 ใบ",
    "lvl": "Boss",
    "fam": "Beast",
    "kind": "Fighter",
@@ -4829,8 +4829,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Ursogar",
    "hp": "HP 38",
-   "en": "Move 3 inward./ Deal 7 melee damage. Push 2, then move adjacent to the target.",
-   "th": "เดิน 3 เข้า / ตีประชิด 7 ผลัก 2 แล้วเดินตามไปประชิด",
+   "en": "Move 3 inward./ Move 1 Deal 7 melee damage. Push 2, then move adjacent to the target.",
+   "th": "เดิน 3 เข้า / เดิน 1 ตีประชิด 7 ผลัก 2 แล้วเดินตามไปประชิด",
    "lvl": "Elite",
    "fam": "Beast",
    "kind": "Fighter",
@@ -5375,9 +5375,9 @@ const MON = {
  'Blossom Spirit [A]':{lv:'Minion',hp:[9,11,13,16,21],atk:[4,4,5,6,8],mv:2,ai:'F',ak:'melee',lunge:1},
  'Wild Spirit [B]':{lv:'Minion',hp:[4,6,8,11,14],atk:[6,7,9,11,13],mv:3,ai:'S',ak:'line'},
  'Stygian Howler':{lv:'Elite',hp:[25],atk:[9],mv:5,ai:'F',ak:'melee',lunge:2},
- 'Ursogar':{lv:'Elite',hp:[38],atk:[7],mv:3,ai:'F',ak:'melee',push:2,follow:1},
+ 'Ursogar':{lv:'Elite',hp:[38],atk:[7],mv:3,ai:'F',ak:'melee',push:2,follow:1,step1:1},
  'Vipress':{lv:'Elite',hp:[30],atk:[6],mv:2,ai:'F',ak:'melee',altLine:1,poison:4},
- 'Argus':{lv:'Boss',hp:[70],atk:[16],mv:4,ai:'F',ak:'melee',healPerStep:1,discard:3}
+ 'Argus':{lv:'Boss',hp:[70],atk:[16],mv:4,ai:'F',ak:'melee',healPerStep:1,discard:3,step1:1} /* v1.1.77 sheet: attack = 'Move 1, Deal …' */
 };
 const DUNGEONS = {
  bone:{th:'สุสานกระดูก (Bone)',M:'Undead Warriror',R:'The Deadeye',E:['Necrospecter','Morbira','Eldrin'],B:'King Psyros'},
@@ -5727,7 +5727,7 @@ const emptyAdj=P=>DIRS.filter(([dx,dy])=>inB(P.x+dx,P.y+dy)&&!isObs(P.x+dx,P.y+d
 const MARKET_ITEMS=new Set(['Ruby Sigil']);
 const hasItem=(P,n)=>P.items.includes(n)&&(G.phase!=='rest'||MARKET_ITEMS.has(n));
 const buffLv=(P,n)=>{let l=0;for(const c of P.buffs) if(DEF[c.key].name===n) l=Math.max(l,c.up?2:1);return l;};
-const BV_NUMS={"Shifting Defence": [5, 8], "Quick Arm": [1, 2], "Arcane Prosperity": [1, 2], "Eagle": [1, 2], "Precision": [1, 2], "Snipe": [1, 2], "Teasing": [1, 2], "Toxic Amplify": [3, 3], "Blazing Power": [2, 3], "Maniac": [1, 2], "On the Point": [8, 6], "Toxic Catalyst": [1, 2], "Wind Amplifier": [3, 5], "Swift Motion": [1, 1], "Voltaic Style": [2, 3], "Unarmor": [2, 1], "Poison Armor": [3, 4], "Hazardous Ground": [4, 7], "Demon Form": [2, 2], "Ready": [1, 2], "Mana Flow": [1, 2], "Foresight": [1, 2], "Granite Body": [2, 5], "Always Prepared": [1, 3], "Mana Reserve": [2, 2], "Stability": [1, 2], "Save Play": [1, 2], "Overflow": [1, 2]}; /* generated by gen_bv.py: printed buff numbers read through bv() */
+const BV_NUMS={"Shifting Defence": [5, 8], "Quick Arm": [1, 2], "Arcane Prosperity": [1, 2], "Eagle": [1, 2], "Toxic Amplify": [3, 3], "Blazing Power": [2, 3], "Precision": [1, 2], "Snipe": [1, 2], "Teasing": [1, 2], "Maniac": [1, 2], "On the Point": [8, 6], "Toxic Catalyst": [1, 2], "Wind Amplifier": [3, 5], "Swift Motion": [1, 1], "Voltaic Style": [2, 3], "Unarmor": [2, 1], "Poison Armor": [3, 4], "Hazardous Ground": [4, 7], "Demon Form": [2, 2], "Ready": [1, 2], "Mana Flow": [1, 2], "Foresight": [1, 2], "Granite Body": [2, 5], "Always Prepared": [1, 3], "Mana Reserve": [2, 2], "Stability": [1, 2], "Save Play": [1, 2], "Overflow": [1, 2]}; /* generated by gen_bv.py: printed buff numbers read through bv() */
 /* v1.1.29: Mana can't be used on Buff cards (t9u) — buff numbers are always the printed values (BV_NUMS is no longer read by the engine; gen_bv.py still regenerates it) */
 /* v1.1.44 USER RULE: duplicate Buff cards STACK — every copy in play adds its own value (normal copy = a, upgraded copy = b).
    Exceptions (not summed, see DUNGEON_KNOWLEDGE.md 'buff stacking'): thresholds / activation costs / conditions, and activated abilities. */
@@ -5856,7 +5856,8 @@ function rawCost(c){ const d=DEF[c.key]; return c.up?d.ucost:d.cost; }
 /* cost reduction with a printed floor: never raises a cost that is already at/below the floor */
 function floorLess(v,less,floor){ return v<=floor?v:Math.max(floor,v-less); }
 function cost(P,c){
-  const d=DEF[c.key]; if(c.key==='EXH'){ let v=Math.max(0,3-(hasItem(P,'Guardian\'s Bulwark')?1:0)); /* v1.1.75: Evelyn upgraded -1 also applies to an Exhaust card face-up on her deck (never raises: 0 stays 0) */ if(c.evel||(P.heroUp&&P.hero&&P.hero.name==='Evelyn Mercantalis'&&P.deck&&P.deck[0]===c)) v=floorLess(v,1,1); return v; }
+  const d=DEF[c.key]; if(c.key==='EXH'){ let v=Math.max(0,3-(hasItem(P,'Guardian\'s Bulwark')?1:0)); /* v1.1.75: Evelyn upgraded -1 also applies to an Exhaust card face-up on her deck (never raises: 0 stays 0) */ if(c.evel||(P.heroUp&&P.hero&&P.hero.name==='Evelyn Mercantalis'&&P.deck&&P.deck[0]===c)) v=floorLess(v,1,1); /* v1.1.77 USER RULE: paying to remove an Exhaust card COUNTS AS PLAYING A CARD -> generic play-order cost modifiers apply too */
+    if(hasItem(P,'Valor Guard Exalted')&&P.playedTurn===2) v-=1; v+=P.costMod||0; if(P.nextCostMinus) v-=P.nextCostMinus; if(P.nextCostSet!=null) v=Math.min(v,P.nextCostSet); if(P.freeNext) v=0; return Math.max(0,v); }
   let v=rawCost(c); if(v==='X') return 0;
   const nm=d.name;
   if(nm==='Walk'&&P.playedTurn===0) v=mz(P,'fc',0);
@@ -5945,7 +5946,13 @@ const FACES=['0,-1','1,0','0,1','-1,0'];
 function validFace(f){ return Array.isArray(f)&&FACES.includes(f.join(',')); }
 function faceToward(u,t){ if(!u||!t) return; const dx=t.x-u.x, dy=t.y-u.y; if(!dx&&!dy) return; u.face=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; }
 function fixFace(u){ if(!validFace(u.face)){ const f=u.face||[0,0]; u.face=f[0]?[Math.sign(f[0]),0]:f[1]?[0,Math.sign(f[1])]:(u.isMon?[0,1]:[0,-1]); } return u.face; }
-const isWeak=(P,m)=>P.x===m.x-m.face[0]&&P.y===m.y-m.face[1];
+/* v1.1.77 USER RULE: ranged / projectile attacks can hit Weak Point too. 'Behind' = the hit comes in on the target's BACK side:
+   the attacker lies in the 90° cone behind the target (distance along -facing > sideways offset). Adjacent: exactly the back tile (old rule).
+   A straight-line shot / projectile / pierce line from behind enters through the back. Diagonal ties are NOT behind (enters a corner).
+   Non-directional area effects ('all' enemies, chosen 'space') keep the old rule (only standing on the back tile). Chain/splash/echo hits = noWeak. */
+const isWeakAdj=(P,m)=>{ const f=fixFace(m); return P.x===m.x-f[0]&&P.y===m.y-f[1]; };
+const isWeak=(P,m,op)=>{ if(!P||!m) return false; if(op&&(op.mode==='all'||op.mode==='space')) return isWeakAdj(P,m);
+  const f=fixFace(m), dx=P.x-m.x, dy=P.y-m.y; if(!dx&&!dy) return false; const back=-(dx*f[0]+dy*f[1]), side=Math.abs(dx*f[1]-dy*f[0]); return back>0&&back>side; };
 /* v1.1.52: does this hit carry the Weak Point ability (card text / Weak Point buff)? */
 function wpAbility(P,op,ctx){ if(!op) return false; if(op.weakDmg||op.weakCri||op.weakDraw||op.weakShard||op.onWeak) return true; if(ctx&&ctx.ops&&ctx.ops.some(o=>o&&o.cond==='weak')) return true; if(op.isAtk&&P&&!P.isMon&&(buffLv(P,'Maniac')||buffLv(P,'Precision'))) return true; return false; }
 async function rollCri(P,n){ let t=0; for(let i=0;i<n;i++){ let f=krnd('cri'+P.id,6), r=CRI[f]; await rollDieShow(P,f,r,i,n);
@@ -5954,13 +5961,20 @@ async function rollCri(P,n){ let t=0; for(let i=0;i<n;i++){ let f=krnd('cri'+P.i
 /* v1.1.4: the result is fixed by the seeded RNG *before* showing; humans must click the die to reveal it, bots auto-roll */
 async function rollDieShow(P,face,val,i,n,note){ if(HEADLESS||SIM.on||typeof UI==='undefined'||!UI.rollDie) return; await emgWrap(UI.rollDie(P,face,val,i,n,note)); }
 
+/* v1.1.77 PERFECT KILL (USER DEF): a kill whose damage leaves the target at EXACTLY 0 HP (after shields; overkill = normal kill), from ANY source.
+   hitEst = the deterministic part of hitMon's damage (no crit dice) → final HP loss; used by the ⚡/🎯 target preview and bots. */
+function hitEst(P,m,dmg,op,ctx){ try{ op=op||{isAtk:true}; ctx=ctx||{}; const weak=!!P&&!P.isMon&&isWeak(P,m,op)&&!op.noWeak&&wpAbility(P,op,ctx); let d=dmg;
+  if(op.isAtk&&dmg>0){ d+=P.str*(op.strMult||1)+(ctx.pow||0)+(P.hero.name==='Jayne Aegisfera'?(P.heroUp?2:1):0)+(hasItem(P,'Archangel\'s Edge')?1:0)+(hasItem(P,'Blood Catalyst')?2:0)+(hasItem(P,'Chainflame Glaive')?4:0)+(P.helmBonus||0)+(ctx.amber||0)+(ctx.kindle||0)+(op.fireball&&hasItem(P,'Flame Orb')?3:0);
+    if(op.weakDmg&&weak) d+=op.weakDmg-dmg; if(ctx.double) d*=(ctx.double===true?2:ctx.double); }
+  if(d>0){ if(m.poison) d+=bv(P,'Toxic Amplify',3,3); d+=bv(P,'Blazing Power',2,3); }
+  const ab=(!weak&&m.shield>0&&d>0)?Math.min(m.shield,d):0; return {real:Math.max(0,d-ab),perfect:Math.max(0,d-ab)===m.hp&&m.hp>0,crit:!!((typeof op.cri==='function'?op.cri(P):op.cri)||(weak&&(op.weakCri||bv(P,'Precision',1,2)))||(onEdge(P)&&bv(P,'Snipe',1,2))||(!P.hitTurn||!P.hitTurn.has(m.uid))&&bv(P,'Teasing',1,2))}; }catch(e){ return {real:dmg,perfect:false}; } }
 async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set()).add(m.uid);
   if(!m||m.hp<=0||m.undying) return 0;
   if(op.isAtk&&ctx&&P&&!P.isMon&&ctx._faceOp!==op){ ctx._faceOp=op; faceToward(P,m); }
   /* v1.1.52 OWNER RULE: shields block attacks from every direction. Weak Point (shield bypass + bonus + FX) applies ONLY when
      the attacking card's text has the Weak Point ability (weakDmg/weakCri/weakDraw/weakShard/onWeak/cond 'weak') or a Weak Point
      buff (Maniac, Precision) is active on an attack. Plain attacks from behind are normal attacks. */
-  const behind = !!P && !P.isMon && isWeak(P,m) && !op.noWeak;
+  const behind = !!P && !P.isMon && isWeak(P,m,op) && !op.noWeak;
   const weak = behind && wpAbility(P,op,ctx);
   let d=dmg;
   if(op.isAtk && dmg>0){
@@ -6191,7 +6205,9 @@ async function playCard0(P,c,o={}){
   const d=DEF[c.key];
   /* v1.1.16: validate EVERYTHING before any Shard/Mana/card is spent */
   if(!o.free&&!o.copy&&!(o.staff?staffOK(P,c):playable(P,c))){ const why=c.key==='EXH'?'Shard ไม่พอ':blockReason(P,c)||'เงื่อนไขไม่ครบ'; log(`⛔ เล่น ${c.key==='EXH'?'Exhaust':d.name} ไม่ได้: ${why} (ไม่เสียทรัพยากร)`,'sys'); if(!HEADLESS&&!P.bot&&typeof UI!=='undefined'&&UI.alertC) UI.alertC('เล่นไม่ได้: '+why); return false; }
-  if(c.key==='EXH'){ const v=cost(P,c); P.shard-=v; P.shardSpent+=v; const i=P.hand.indexOf(c); if(i>=0)P.hand.splice(i,1); P.exhaust++; exhBack(P,'paid3'); log(`${P.name} จ่าย ${v} ชาร์ด นำการ์ดเหนื่อยออก (กองเหนื่อย ${P.exhaust})`,'sys'); return; }
+  if(c.key==='EXH'){ const v=o.free?0:cost(P,c); P.shard-=v; P.shardSpent+=v; if(!o.free){ P.nextCostSet=null; P.nextCostMinus=0; P.freeNext=false; } const i=P.hand.indexOf(c); if(i>=0)P.hand.splice(i,1); P.exhaust++; exhBack(P,'paid3');
+    /* v1.1.77 USER RULE ('การจ่าย 3 กับ exhaust ถือว่าเป็นการเล่นการ์ด'): counts as playing a card — 'play' log (stats), generic after-play triggers (cards-played counter, Voidborn Gauntlet, Mana Refund+, pending power). Type-specific (attack/trick/magic) triggers don't apply. */
+    log(`${P.name} เล่น Exhaust — จ่าย ${v} ชาร์ด นำการ์ดเหนื่อยออก (กองเหนื่อย ${P.exhaust})`,'play'); await afterPlay(P,c,d,{card:c}); return; }
   /* v1.1.74 (USER RULE): X-cost cards — the player CHOOSES X (0..shard) before anything is spent; cancel = card not played. Bots/sims spend all. o.x = scripted/online value. */
   let xChosen=null; { const up0=o.marcel?true:c.up; const raw0=up0?d.ucost:d.cost;
     if(raw0==='X'&&!o.free){ const max=Math.max(0,P.shard|0);
@@ -6280,7 +6296,7 @@ async function afterPlay(P,c,d,ctx){
   if(d.type==='trick'){ P.tricksTurn++; P.trickPlayed=true; if(buffN(P,'Best Defence',true)) gainShield(P,bn(P,'Best Defence','sh',0,4)); /* v1.1.44: trick part = upgraded copies only */
     const vs=bv(P,'Voltaic Style',2,3); if(vs&&!G.over){ const t=await pickMon(P,allMons(),`Voltaic Style: เลือกศัตรูตัวใดก็ได้ (${vs} ดาเมจ)`,vs); if(t) await hitMon(P,t,vs,{noWeak:1},{}); } /* v1.1.63: 'an enemy in any space' -> player chooses (was auto lowest HP) */
     if(hasItem(P,'Divine Beaconstaff')&&P.tricksTurn===2) gainShield(P,4); }
-  const raw=c.up?d.ucost:d.cost;
+  const raw=c.key==='EXH'?3:(c.up?d.ucost:d.cost); /* v1.1.77: Exhaust printed cost 3 */
   if(hasItem(P,'Voidborn Gauntlet')&&raw!=='X'&&raw>=2){ draw(P,1); heal(P,1); }
   { const mr=P.buffs.filter(b=>DEF[b.key].name==='Mana Refund'&&(b.up||(d.fN&&d.fN.magic))).length; if(mr) gainMana(P,mr); } /* v1.1.44: 1 Mana per qualifying copy */
   if(P.pendingPow){ const t=P.hand.find(h=>DEF[h.key].type==='attack'); if(t) t.pow+=P.pendingPow; P.pendingPow=0; }
@@ -6447,7 +6463,7 @@ async function doAttack(P,op,ctx){
   let targets=[];
   const hitOne=async m=>{
     if(!m||m.hp<=0) return 0;
-    if(isWeak(P,m)) ctx.weak=true;
+    if(isWeak(P,m,op)) ctx.weak=true;
     P.perfectNow=false;
     const k0=m.killed; const r=await hitMon(P,m,dmg,hop,ctx);
     if(m.killed&&m.killed!==k0){ ctx.killed=true; /* v1.1.72: defeated by THIS hit (Bone: also while it becomes undying) */ if(P.perfectNow) ctx.perfect=true; if(op.onKill) await op.onKill(P); if(op.spree) ctx.toHand=true; if(op.onPerfect&&P.perfectNow) await op.onPerfect(P); }
@@ -6471,14 +6487,14 @@ async function doAttack(P,op,ctx){
   case 'all': targets=msB.slice(); await aoePreview(P,targets,targets.map(m=>({x:m.x,y:m.y})),dmg); for(let i=0;i<times;i++) for(const m of targets) await hitOne(m); break;
   case 'cross': targets=lineTargets(P,P.x,P.y); await aoePreview(P,targets,lineCells(P),dmg); for(let i=0;i<times;i++) for(const m of targets) await hitOne(m); break;
   case 'front': { let m=monAt(P.x+P.face[0],P.y+P.face[1]); /* v1.1.15: move+attack card (human): pick the target (front or any adjacent — turning is free) or Skip */ if(ctx&&ctx.moveAtk){ const adj=ms.filter(x=>dist(x,P)===1); m=null; if(adj.length){ m=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ — การหันไม่นับเป็นการเดิน)`,options:adj,purpose:'atk',dmg,cancel:'⏭ ข้าม (ไม่โจมตี)'}); if(!m){ log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } if(m.x!==P.x+P.face[0]||m.y!==P.y+P.face[1]){ P.face=[m.x-P.x,m.y-P.y]; log(`↪ ${P.name} หันไปทาง ${m.name} (ไม่นับเป็นการเดิน)`,'sys'); } } } /* v1.1.14: turning is NOT a move — if no enemy in front but one is adjacent, turn to it for free and hit */ if(!m&&!(ctx&&ctx.moveAtk)){ const adj=ms.filter(x=>dist(x,P)===1); if(adj.length){ m=adj.length===1?adj[0]:await ask(P,{kind:'mon',prompt:'หันไปโจมตีศัตรูตัวไหน (การหันไม่นับเป็นการเดิน)',options:adj,purpose:'atk',dmg}); if(m){ P.face=[m.x-P.x,m.y-P.y]; log(`↪ ${P.name} หันไปทาง ${m.name} (ไม่นับเป็นการเดิน)`,'sys'); } } } if(m){ targets=[m]; await aoePreview(P,targets,[{x:m.x,y:m.y}],dmg); await hitOne(m);} else log('⏭ ข้ามการโจมตี — ไม่มีศัตรูด้านหน้า (การเดินยังเกิดผลตามปกติ)','warn'); break; }
-  case 'multi': { const pool=singleTargets(P,op); const chosen=[]; for(let i=0;i<op.n;i++){ const left=pool.filter(m=>!chosen.includes(m)&&m.hp>0); if(!left.length) break; const ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย ${i+1}/${op.n} (${dmg} ดาเมจ)`,options:left,purpose:'atk',dmg,cancel:i>0?'พอแล้ว':null}); if(!ch) break; chosen.push(ch); }
+  case 'multi': { const pool=singleTargets(P,op); const chosen=[]; for(let i=0;i<op.n;i++){ const left=pool.filter(m=>!chosen.includes(m)&&m.hp>0); if(!left.length) break; const ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย ${i+1}/${op.n} (${dmg} ดาเมจ)`,options:left,purpose:'atk',dmg,pkU:left.filter(x=>hitEst(P,x,dmg,Object.assign({},op,{isAtk:true}),ctx).perfect).map(x=>x.uid),wp:!!wpAbility(P,Object.assign({},op,{isAtk:true}),ctx),wpMode:op.mode,cancel:i>0?'พอแล้ว':null}); if(!ch) break; chosen.push(ch); }
     for(const m of chosen) await hitOne(m); targets=chosen; break; }
   case 'space': {
     if(op.iceOpt){ const o=await ask(P,{kind:'opt',prompt:'Glacial Spike: เลือกผล',options:[{label:`ทำดาเมจ ${dmg} ใส่ช่อง`,v:'d'},{label:'สร้าง Ice Pillar',v:'i'}],purpose:'glacial'}); if(o&&o.v==='i') return doOp(P,{t:'ice'},ctx); }
     const opts=allCells(c=>op.splash?!(ctx&&ctx.excl&&ctx.excl.has(c.x+','+c.y)):(!!monAt(c.x,c.y)&&!(ctx&&ctx.excl&&ctx.excl.has(monAt(c.x,c.y).uid))));
     const ch=await ask(P,{kind:'cell',prompt:`เลือกช่องเป้าหมาย (${dmg} ดาเมจ)`,options:opts,purpose:'space',dmg}); if(!ch) break; if(ctx&&ctx.excl) ctx.excl.add(ch.x+','+ch.y);
     const m=monAt(ch.x,ch.y); if(m){ targets=[m]; if(ctx&&ctx.excl) ctx.excl.add(m.uid); await hitOne(m); }
-    if(op.splash) for(const [dx,dy] of DIRS){ const a=monAt(ch.x+dx,ch.y+dy); if(a){ targets.push(a); await hitMon(P,a,op.splash,{noWeak:1},ctx);} }
+    if(op.splash) for(const [dx,dy] of DIRS){ const a=monAt(ch.x+dx,ch.y+dy); if(a){ targets.push(a); P.perfectNow=false; await hitMon(P,a,op.splash,{noWeak:1},ctx); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } }
     break; }
   default: {
     for(let i=0;i<times;i++){ if(G.over) break;
@@ -6487,18 +6503,18 @@ async function doAttack(P,op,ctx){
       if(!t.length){ if(i===0) log('⏭ ข้ามการโจมตี — ไม่มีเป้าหมายในระยะ (ผลอื่นของการ์ด เช่น การเดิน ยังเกิดตามปกติ)','warn'); break; }
       let ch;
       if(i>0&&op.same&&targets[0]&&targets[0].hp>0) ch=targets[0]; /* v1.1.51 OWNER RULE: every hit of a multi-hit card picks its own target (dead targets drop out); only op.same (text says 'same target') keeps it */
-      else ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ${times>1?` ครั้งที่ ${i+1}/${times}`:''})`,options:t,purpose:'atk',dmg,cancel:ctx&&ctx.moveAtk&&i===0?'⏭ ข้าม (ไม่โจมตี)':undefined});
+      else ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ${times>1?` ครั้งที่ ${i+1}/${times}`:''})`,options:t,purpose:'atk',dmg,pkU:t.filter(x=>hitEst(P,x,dmg,Object.assign({},op,{isAtk:true}),ctx).perfect).map(x=>x.uid),wp:!!wpAbility(P,Object.assign({},op,{isAtk:true}),ctx),wpMode:op.mode,cancel:ctx&&ctx.moveAtk&&i===0?'⏭ ข้าม (ไม่โจมตี)':undefined});
       if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
       const dpm=dariusOn(P,op,hop)?await dariusPick(P,ch,dmg):[]; /* v1.1.61 Darius: 'hit all enemies in path' */
       await hitOne(ch);
-      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; const k0=m.killed; await hitMon(P,m,dmg,hop,ctx); if(m.killed&&m.killed!==k0){ ctx.killed=true; if(op.onKill) await op.onKill(P); } }
+      for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; const k0=m.killed; await hitMon(P,m,dmg,hop,ctx); if(m.killed&&m.killed!==k0){ ctx.killed=true; if(op.onKill) await op.onKill(P); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } } /* v1.1.77: Perfect Kill on path hits counts for the card too */
       if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); } }
       if(op.tele){ const cs=DIRS.map(([dx,dy])=>({x:ch.x+dx,y:ch.y+dy})).filter(c=>canStop(P,c.x,c.y)); if(cs.length){ const c=await ask(P,{kind:'cell',prompt:'เทเลพอร์ตไปช่องข้างเป้าหมาย',options:cs,purpose:'teleport',cancel:'ไม่ย้าย'}); if(c) await enterCell(P,c.x,c.y,null);} }
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
         if(ctx.up){ const c2=await ask(P,{kind:'cell',prompt:'ย้ายตัวคุณไปช่องใดก็ได้',options:allCells(c=>canStop(P,c.x,c.y)),purpose:'teleport',cancel:'ไม่ย้าย'}); if(c2) await enterCell(P,c2.x,c2.y,null);} }
-      if(op.bomb){ const cx=ch.x,cy=ch.y; for(const [dx,dy] of DIRS){ const u=unitAt(cx+dx,cy+dy); if(!u) continue; if(u.isMon) await hitMon(P,u,op.bomb,{noWeak:1},{}); else await hurtHero(u,op.bomb,{self:true}); } }
+      if(op.bomb){ const cx=ch.x,cy=ch.y; for(const [dx,dy] of DIRS){ const u=unitAt(cx+dx,cy+dy); if(!u) continue; if(G.mons.includes(u)) /* v1.1.77: isMon was never set — splash onto a monster crashed */ await hitMon(P,u,op.bomb,{noWeak:1},{}); else await hurtHero(u,op.bomb,{self:true}); } }
       if(op.echo){ const adj=allMons().filter(m=>m!==ch&&dist(m,ch)===1); for(const m of (op.echoAll?adj:await pickMons(P,adj,op.echoN||1,`เลือกศัตรูที่อยู่ติดกับเป้าหมาย (${op.echo} ดาเมจ)`,op.echo))) { targets.push(m); await hitMon(P,m,op.echo,{noWeak:1},{}); } }
-      if(op.chain){ const near=allMons().filter(m=>m!==ch&&dist(m,ch)<=(op.chainR||2)); for(const m of (op.chainAll?near:await pickMons(P,near,op.chainN||1,`เลือกศัตรูในระยะ ${op.chainR||2} ช่องจากเป้าหมาย (${op.chain} ดาเมจ)`,op.chain))) { targets.push(m); await hitMon(P,m,op.chain,{noWeak:1,isAtk:true},ctx); } }
+      if(op.chain){ const near=allMons().filter(m=>m!==ch&&dist(m,ch)<=(op.chainR||2)); for(const m of (op.chainAll?near:await pickMons(P,near,op.chainN||1,`เลือกศัตรูในระยะ ${op.chainR||2} ช่องจากเป้าหมาย (${op.chain} ดาเมจ)`,op.chain))) { targets.push(m); P.perfectNow=false; await hitMon(P,m,op.chain,{noWeak:1,isAtk:true},ctx); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } }
     } }
   }
   if(P.hero.name==='Laura Emberlyn'){ const hit=[...new Set(targets)]; if(hit.length>1) for(const m of hit) if(m.hp>0) await hitMon(P,m,P.heroUp?5:3,{noWeak:1},{}); }
@@ -6642,6 +6658,9 @@ async function monTurn0(m){
   if(t.length){ await monAttack(m,pickT(t),atk,def.ak); return; }
   if(def.altLine&&!(def.avoidAdj)){ const lt=canAtkFrom(m,m,'line'); if(lt.length){ await monAttack(m,pickT(lt),def.altLine,'line'); return; } }
   if(def.lunge){ const R=reachable(m,def.lunge).filter(c=>c.d>0&&hs.some(h=>dist(h,c)===1)); if(R.length){ const c=R.sort((a,b)=>a.d-b.d)[0]; await moveMonAlong(m,c.path); const tt=canAtkFrom(m,m,'melee'); if(tt.length){ await monAttack(m,pickT(tt),atk,'melee'); return; } } }
+  /* v1.1.77 USER RULE + sheet ('Move 1 Deal 16…' / 'เดิน 1 ตี…'): Argus & Ursogar — if ONE step brings it next to a hero, it steps 1 and attacks in the same activation.
+     Already adjacent -> attacks without moving (as before). Farther -> normal Move (Argus heals per step) and no attack. The attack's 1 step is not the Move action, so no Argus heal. */
+  if(def.step1){ const R=reachable(m,1).filter(c=>c.d===1&&hs.some(h=>dist(h,c)===1)); if(R.length){ const c=R.sort((a,b)=>Math.min(...hs.map(h=>dist(h,a)))-Math.min(...hs.map(h=>dist(h,b))))[0]; await moveMonAlong(m,c.path); log(`${m.name} เดิน 1 ช่องแล้วโจมตีทันที`,'mon'); const tt=canAtkFrom(m,m,'melee'); if(tt.length){ await monAttack(m,pickT(tt),atk,'melee'); return; } return; } }
   if(def.nisho){ const R=reachable(m,3).filter(c=>c.d>0&&hs.some(h=>dist(h,c)===1)); if(R.length){ const c=R.sort((a,b)=>a.d-b.d)[0]; await moveMonAlong(m,c.path); log(`${m.name} เดิน ${c.d} ช่องแล้วโจมตีทันที`,'mon'); await monAttack(m,pickT(canAtkFrom(m,m,'melee')),atk,'melee'); return; } }
   await monMove(m);
   /* v1.1.13 (user decision): Monster action = move OR attack per rulebook — a Shooter that had to move does NOT shoot this turn */
@@ -6972,7 +6991,7 @@ const BOT = {
           else tg=singleTargets(P,op); if(!tg.length&&P.ptok>0) tg=lineTargets(P,P.x,P.y);
           if(tg.length){ atkOK=true; const n=['adjAll','all','cross'].includes(op.mode)?tg.length:(op.mode==='multi'?Math.min(op.n,tg.length):1);
             const e=Math.max(dm,0)*times*n+(op.poison?val(op.poison,P,{xPaid:P.shard,movedThis:2,cnt:P.hand.length,x:1})*1.2*n:0)+(op.stun?4:0);
-            s+=e; if(tg.some(m=>m.hp+m.shield<=dm*times)) s+=5; if(tg.some(m=>isWeak(P,m))) s+=2; }
+            s+=e; if(tg.some(m=>m.hp+m.shield<=dm*times)) s+=5; { const pk=tg.some(m=>hitEst(P,m,val(op.dmg,P,{xPaid:P.shard,movedThis:2,cnt:P.hand.length,x:1}),Object.assign({},op,{isAtk:true}),{}).perfect); if(pk) s+=(op.onPerfect?6:0)+(buffLv(P,'Momentum')?5:0)+1; } /* v1.1.77 Perfect Kill value */ if(tg.some(m=>isWeak(P,m,op))) s+=2; }
           break; }
         case 'shield': { const n=Math.max(0,val(op.n,P,{})); s+=Math.min(n,threat)*1.1+Math.max(0,n-threat)*0.1; break; }
         case 'draw': s+=Math.min(3,val(op.n,P,{}))*1.8; break;
@@ -7030,7 +7049,7 @@ const BOT = {
   cellScore(P,c,atkOps){
     const ox=P.x,oy=P.y; P.x=c.x;P.y=c.y; let s=0;
     if(G.traps&&G.traps.size&&c.path) s-=4*(c.path.length?c.path:[c]).filter(st=>G.traps.has(key(st.x,st.y))).length; if(G.water&&G.water.has(key(c.x,c.y))) s-=2; /* v1.1.64 bots avoid traps / water */
-    for(const op of atkOps){ const t=op.mode==='adjAll'?adjEnemies(P):singleTargets(P,op); if(t.length){ s+=10; if(t.some(m=>isWeak(P,m))) s+=3; break; } }
+    for(const op of atkOps){ const t=op.mode==='adjAll'?adjEnemies(P):singleTargets(P,op); if(t.length){ s+=10; if(t.some(m=>isWeak(P,m,op))) s+=3; break; } }
     const ms=allMons(); if(ms.length) s-=Math.min(...ms.map(m=>dist(m,P)))*0.6;
     s-=this.threatAt(P,c)*(+process_w||0.15);
     if(G.treasures.some(t=>t.x===c.x&&t.y===c.y)) s+=4;
@@ -7041,7 +7060,7 @@ const BOT = {
     const o=req.options;
     if(req.kind==='mon'){
       const dmg=req.dmg||0;
-      if(req.purpose==='atk'){ return o.slice().sort((a,b)=>{ const ka=a.hp+a.shield<=dmg?1:0, kb=b.hp+b.shield<=dmg?1:0; /* v1.1.52: shields block from behind too */ if(ka!==kb) return kb-ka; const wa=isWeak(P,a)?1:0, wb=isWeak(P,b)?1:0; if(wa!==wb) return wb-wa; return (b.atk/(b.hp+b.shield+1))-(a.atk/(a.hp+a.shield+1)); })[0]; }
+      if(req.purpose==='atk'){ return o.slice().sort((a,b)=>{ const ka=a.hp+a.shield<=dmg?1:0, kb=b.hp+b.shield<=dmg?1:0; /* v1.1.52: shields block from behind too */ if(ka!==kb) return kb-ka; /* v1.1.77: among kills prefer an exact Perfect Kill */ if(ka&&kb&&req.pkU){ const pa=req.pkU.includes(a.uid)?1:0, pb=req.pkU.includes(b.uid)?1:0; if(pa!==pb) return pb-pa; } const wa=req.wp&&isWeak(P,a,{mode:req.wpMode})?1:0, wb=req.wp&&isWeak(P,b,{mode:req.wpMode})?1:0; /* v1.1.77: only when this attack has the WP ability */ if(wa!==wb) return wb-wa; return (b.atk/(b.hp+b.shield+1))-(a.atk/(a.hp+a.shield+1)); })[0]; }
       return o.slice().sort((a,b)=>a.hp-b.hp)[0];
     }
     if(req.kind==='cell'){
@@ -7184,7 +7203,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.76', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.77', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -7677,7 +7696,7 @@ UI.renderBoard=function(){
   for(const m of liveMons()){ const pct=Math.max(0,m.hp/m.maxhp*100); const UD=!!m.undying; /* v1.1.64 bone undying: ghostly, HP 0, skull badge */
     const spM=UI.sprFor(m.uid,m.name,fixFace(m));
     place(m.uid,m,`${spM?UI.sprHTML(spM,m.name,sprSize(m)):`<img src="${artOf(m.name,'t')}">`}<div class="face" style="${fpos(fixFace(m))}">${arrow(fixFace(m))}</div><div class="hpH" data-tip-hp="${UD?0:m.hp}/${m.maxhp}"><span>${UD?0:m.hp}</span></div>${UD?'<div class="undy" data-tip="💀 กฎสุสานกระดูก: Monster ตัวนี้ HP เหลือ 0 — นับว่ากำจัดแล้ว (ได้ผลเมื่อสังหารไปแล้ว) แต่จะได้เดิน/โจมตีอีก 1 เทิร์นใน Monster Phase ถัดไป แล้วจึงหายไป · โจมตี/ฮีล/สร้างดาเมจเพิ่มไม่ได้ แต่ยังยืนขวางช่อง · รางวัลการฆ่าได้ตอนมันตายจริง">💀 เทิร์นสุดท้าย</div>':''}<div class="atk">⚔${m.atk}</div>${m.shield?`<div class="shd">🛡${m.shield}</div>`:''}${m.poison?`<div class="psn">☠${m.poison}</div>`:''}${m.stun?'<div class="stn">💫</div>':''}${m.lv!=='Minion'?`<div class="lvb">${m.lv==='Boss'?'👑':'★'}</div>`:''}`,
-      ['mon',m.lv,UD?'undying':'',spM?'sprite':'',spM?'sz-'+sprSize(m):'',m.stun?'stun':'',hl.has(key(m.x,m.y))&&req.kind==='mon'?'tgt':'',req&&req.kind==='mon'&&/atk|aoe/.test(req.purpose||'')&&!hl.has(key(m.x,m.y))?'untgt':''],`${m.name} (${{Minion:'ลูกสมุน',Elite:'อีลิท',Boss:'บอส'}[m.lv]})${UD?'\n💀 กฎสุสานกระดูก: HP 0 — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วตาย (โจมตีไม่ได้)':''}\nHP ${UD?0:m.hp}/${m.maxhp} · ATK ${m.atk} · เดิน ${m.def.mv}\n${m.def.thd||''}`); }
+      ['mon',m.lv,UD?'undying':'',spM?'sprite':'',spM?'sz-'+sprSize(m):'',m.stun?'stun':'',hl.has(key(m.x,m.y))&&req.kind==='mon'?'tgt':'',hl.has(key(m.x,m.y))&&req.kind==='mon'&&req.wp&&G.active&&isWeak(G.active,m,{mode:req.wpMode})?'wpT':'',hl.has(key(m.x,m.y))&&req.kind==='mon'&&req.pkU&&req.pkU.includes(m.uid)?'pkT':'',req&&req.kind==='mon'&&/atk|aoe/.test(req.purpose||'')&&!hl.has(key(m.x,m.y))?'untgt':''],`${m.name} (${{Minion:'ลูกสมุน',Elite:'อีลิท',Boss:'บอส'}[m.lv]})${UD?'\n💀 กฎสุสานกระดูก: HP 0 — ได้เดิน/โจมตีอีก 1 เทิร์นแล้วตาย (โจมตีไม่ได้)':''}\nHP ${UD?0:m.hp}/${m.maxhp} · ATK ${m.atk} · เดิน ${m.def.mv}\n${m.def.thd||''}`); }
   for(const p of heroes()){ const pct=p.hp/p.maxhp*100;
     const spH=UI.sprFor('h'+p.id,p.hero.name,fixFace(p));
     place('h'+p.id,p,`${spH?UI.sprHTML(spH,p.hero.name,'n'):`<img src="${artOf(p.hero.name,'t')}">`}<div class="face" style="${fpos(fixFace(p))}">${arrow(fixFace(p))}</div><div class="hpH h ${pct<=30?'low':''}"><span>${p.hp}</span></div>${p.shield?`<div class="shd">🛡${p.shield}</div>`:''}`,
@@ -9997,6 +10016,15 @@ const EVEX={ log:[],
     document.body.appendChild(ov); const close=()=>ov.remove();
     ov.onclick=e=>{ const b=e.target.closest('[data-ai]'); if(!b||b.disabled) return; close(); if(b.dataset.ai==='x'){ this.log.push({cancel:1}); return; } const o=opts[+b.dataset.ai]; if(!UI.pending||UI.askReq||P.deck[0]!==c) return; this.log.push({pick:o.k}); UI.resolveAction({type:'evelyn',sub:o.k}); };
     const key=e=>{ if(!document.body.contains(ov)){ removeEventListener('keydown',key,true); return; } if(e.key==='Escape'){ e.stopPropagation(); close(); } }; addEventListener('keydown',key,true); } };
+
+/* v1.1.77: Weak Point target highlight — a target this Weak-Point attack would hit from behind (melee or ranged/projectile) */
+if(typeof document!=='undefined'&&!(typeof HEADLESS!=='undefined'&&HEADLESS)){ const st=document.createElement('style'); st.textContent=`
+.tok.mon.wpT{filter:drop-shadow(0 0 7px #ffe14d) drop-shadow(0 0 3px #ff9800)}
+.tok.mon .wpB{position:absolute;left:50%;top:-20px;transform:translateX(-50%);padding:1px 6px;border-radius:8px;background:#3b2a00f2;border:1px solid #ffd54f;color:#ffe9a8;font:700 11px Kanit,sans-serif;white-space:nowrap;pointer-events:none;z-index:40}
+.tok.mon.wpT,.tok.mon.pkT{z-index:25!important}
+.tok.mon.pkT{filter:drop-shadow(0 0 7px #ff5d8f)}
+.tok.mon .pkB{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);padding:1px 6px;border-radius:8px;background:#3a0018f2;border:1px solid #ff7aa8;color:#ffd0e0;font:700 11px Kanit,sans-serif;white-space:nowrap;pointer-events:none;z-index:40}`; document.head.appendChild(st); }
+{ const _rW=UI.render; UI.render=function(){ const x=_rW.apply(this,arguments); try{ document.querySelectorAll('.tok.mon').forEach(el=>{ const on=el.classList.contains('wpT'); let b=el.querySelector(':scope>.wpB'); if(on&&!b){ b=document.createElement('div'); b.className='wpB'; b.textContent='⚡ Weak Point'; el.appendChild(b); } else if(!on&&b) b.remove(); }); document.querySelectorAll('.tok.mon').forEach(el=>{ const on=el.classList.contains('pkT'); let b=el.querySelector(':scope>.pkB'); if(on&&!b){ b=document.createElement('div'); b.className='pkB'; b.textContent='🎯 Perfect Kill'; el.appendChild(b); } else if(!on&&b) b.remove(); }); }catch(e){} return x; }; }
 
 /* ===== v1.1.67 (1) RUNS — "who's playing now": rides on the e23 ONLINE presence (topic pd_online, same socket).
    Sender: ONLINE.setRun({team,heroes:[hero names],dg,room,rd,mode}) on game start / room / round change (>=5 s apart; viewer switch is immediate),
