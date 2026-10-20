@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.77</title>
+<title>Project Dungeon v1.1.78</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -894,7 +894,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.77 setup start screen */
+/* v1.1.78 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -927,7 +927,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.77 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.78 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -969,7 +969,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.77 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.78 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -992,7 +992,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 
-/* v1.1.77 X picker */
+/* v1.1.78 X picker */
 #prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
 #prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
 #prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
@@ -1006,12 +1006,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.77 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.78 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.77 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.78 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -5465,6 +5465,10 @@ function parseOps(text){
   return {ops,f,unknown};
 }
 
+/* v1.1.78: optional-count picker (same X-picker UI) for 'up to N' / 'any number' counts. Bots/headless take def. */
+async function pickCount(P,min,max,o){ o=o||{}; const def=o.def!=null?o.def:max; if(max<=min) return max; if(P.bot||SIM.on||(HEADLESS&&!globalThis.__askHook)) return def;
+  const opts=[]; for(let i=min;i<=max;i++) opts.push({label:`${i} ${o.name||''}`,v:i,prev:o.prev?o.prev(i):''});
+  const ch=await ask(P,{kind:'opt',xpick:true,xName:o.name||'',forcePrompt:true,prompt:o.prompt||'เลือกจำนวน',options:opts,def,purpose:'count'}); return ch?Math.max(min,Math.min(max,ch.v|0)):def; }
 async function pickCards(P,pool,n,prompt,purpose,must){ const res=[]; for(let i=0;i<n;i++){ const o=pool.filter(c=>!res.includes(c)); if(!o.length) break; const ch=await ask(P,{kind:'card',prompt:prompt+(n>1?` (${i+1}/${n})`:''),options:o,purpose,cancel:(must&&i===0)?null:'พอแล้ว'}); if(!ch) break; res.push(ch);} return res; }
 /* ---------- hand-coded card overrides (X values, conditions, special movement) ---------- */
 const X = {};
@@ -5567,7 +5571,7 @@ ov('Force Push',[{t:'push',n:0}],[{t:'push',n:2,proj:1}]);
 ov('Aero Push',[{t:'push',n:4,proj:1}],[{t:'push',n:5,proj:1}]);
 ov('Impact Hit',[{t:'atk',dmg:3,mode:'single',push:1}],[{t:'atk',dmg:5,mode:'single',proj:true,push:2}]);
 ov('Wound Pact',[{t:'heal',n:P=>Math.min(mz(P,'show',1),P.hand.concat(P.discard).filter(c=>c.key==='EXH').length)*mz(P,'per',1)}],[{t:'heal',n:P=>Math.min(mz(P,'show',1),P.hand.concat(P.discard).filter(c=>c.key==='EXH').length)*mz(P,'per',2)}]);
-ov('Waste to Power',[fnOp(async P=>{const ex=P.deck.filter(c=>c.key==='EXH');ex.forEach(c=>{P.deck.splice(P.deck.indexOf(c),1);P.hand.push(c);});await gainMana(P,ex.length);})],[fnOp(async P=>{const ex=P.deck.filter(c=>c.key==='EXH');ex.forEach(c=>{P.deck.splice(P.deck.indexOf(c),1);P.hand.push(c);});for(const c of ex){const o=await ask(P,{kind:'opt',prompt:'Waste to Power+: รับ 1 Mana หรือ 1 Shard',options:[{label:'🔮 1 Mana',v:'m'},{label:'💎 1 Shard',v:'s'}],purpose:'wtp'});const q=mz(P,'per',1);if(o&&o.v==='s')P.shard+=q;else await gainMana(P,q);}})]);
+ov('Waste to Power',[fnOp(async P=>{const ex0=P.deck.filter(c=>c.key==='EXH');const ex=ex0.slice(0,await pickCount(P,0,ex0.length,{name:'ใบ',prompt:`Waste to Power: ค้นการ์ดเหนื่อยกี่ใบ? (มี ${ex0.length})`,prev:i=>`${i} ใบเข้ามือ · +${i} Mana`}));ex.forEach(c=>{P.deck.splice(P.deck.indexOf(c),1);P.hand.push(c);});await gainMana(P,ex.length);})],[fnOp(async P=>{const ex0=P.deck.filter(c=>c.key==='EXH');const ex=ex0.slice(0,await pickCount(P,0,ex0.length,{name:'ใบ',prompt:`Waste to Power+: ค้นการ์ดเหนื่อยกี่ใบ? (มี ${ex0.length})`,prev:i=>`${i} ใบเข้ามือ · +${i} Mana/Shard`}));ex.forEach(c=>{P.deck.splice(P.deck.indexOf(c),1);P.hand.push(c);});for(const c of ex){const o=await ask(P,{kind:'opt',prompt:'Waste to Power+: รับ 1 Mana หรือ 1 Shard',options:[{label:'🔮 1 Mana',v:'m'},{label:'💎 1 Shard',v:'s'}],purpose:'wtp'});const q=mz(P,'per',1);if(o&&o.v==='s')P.shard+=q;else await gainMana(P,q);}})]);
 ov('Memory of Magic',[fnOp(async P=>{const t=await pickCards(P,P.discard,2,'เลือกการ์ดในกองทิ้ง (สูงสุด 2) สับกลับเข้ากองจั่ว','memory');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.push(c);});shuffle(P.deck,'shuf'+P.id);})],[fnOp(async P=>{const t=await pickCards(P,P.discard,2,'เลือกการ์ดในกองทิ้ง (สูงสุด 2) วางบนกองจั่ว','memory');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.unshift(c);});})]);
 const diveF_=n=>fnOp(async P=>{const t=await pickCards(P,P.discard,n,`เลือกการ์ดในกองทิ้ง${n>1?' (สูงสุด '+n+')':''} วางบนสุดของกองจั่ว`,'dive');t.forEach(c=>{P.discard.splice(P.discard.indexOf(c),1);P.deck.unshift(c);});});
 const diveF=FAC(diveF_); /* v1.1.16: remembers its printed-number args so Mana can rebuild it */
@@ -5577,7 +5581,7 @@ ov('Enhance',[fnOp(async P=>{await gainShield(P,P.shield,true);})],[fnOp(async P
 ov('Parry',[{t:'shield',n:P=>P.dmgTurn}]);
 
 /* v1.1.44: removed the old 'Push|WF' override — it shadowed the Push+ 1-3 pick below (Push exists only in WF) */
-const ripF_=v=>fnOp(async P=>{for(let ri=0,rn=mz(P,'cnt',1);ri<rn;ri++){const o=P.hand.filter(c=>c.key!=='EXH'&&!DEF[c.key].disabled&&c.costSet!==v);if(!o.length)return;const ch=await ask(P,{kind:'card',prompt:`Riposte: เลือกการ์ดในมือ ลดค่าร่ายเหลือ ${v} ในเทิร์นนี้`,options:o,purpose:'riposte'});if(ch){ch.costSet=v;log(`${DEF[ch.key].name} ค่าร่ายเหลือ ${v}`,'sys');}}});
+const ripF_=v=>fnOp(async P=>{for(let ri=0,rn=mz(P,'cnt',1);ri<rn;ri++){const o=P.hand.filter(c=>(c.key==='EXH'||!DEF[c.key].disabled)&&c.costSet!==v); /* v1.1.78: Exhaust eligible */if(!o.length)return;const ch=await ask(P,{kind:'card',prompt:`Riposte: เลือกการ์ดในมือ ลดค่าร่ายเหลือ ${v} ในเทิร์นนี้`,options:o,purpose:'riposte'});if(ch){ch.costSet=v;log(`${DEF[ch.key].name} ค่าร่ายเหลือ ${v}`,'sys');}}});
 const ripF=FAC(ripF_); /* v1.1.16: remembers its printed-number args so Mana can rebuild it */
 ov('Riposte',[{t:'atk',dmg:5,mode:'single'},ripF(1)],[{t:'atk',dmg:4,mode:'single'},ripF(0)]);
 ov('Reckless Swing',[{t:'losehp',n:1},{t:'atk',dmg:16,mode:'single'}],[{t:'losehp',n:1},{t:'atk',dmg:21,mode:'single'},fnOp(async P=>{P.nextCostMinus=(P.nextCostMinus||0)+1;})]);
@@ -5585,7 +5589,7 @@ ov('Reckless Swing',[{t:'losehp',n:1},{t:'atk',dmg:16,mode:'single'}],[{t:'loseh
 const udF=FAC((s,d)=>fnOp(async P=>{if(P.lostHpPrev){P.shard+=s;await draw(P,d);}}));
 ov('Unaware Dive',[{t:'atk',dmg:3,mode:'single'},udF(1,1)],[{t:'atk',dmg:5,mode:'single'},udF(1,2)]);
 ov('Still Venom',[{t:'atk',dmg:3,poison:P=>P.lostHpPrev?0:3,mode:'single'}],[{t:'atk',dmg:4,poison:P=>P.lostHpPrev?0:5,mode:'single'}]);
-ov('Rift Barrage',[{t:'atk',dmg:1,poison:1,times:3,mode:'single'}],[{t:'atk',dmg:2,poison:1,times:3,mode:'single'}]);
+ov('Rift Barrage',[{t:'atk',dmg:1,poison:1,times:3,optT:1,refund:1,mode:'single'}],[{t:'atk',dmg:2,poison:1,times:3,optT:1,refund:1,mode:'single'}]); /* v1.1.78: choose how many times; +1 shard per unused */
 ov('Toxic Imprint',[fnOp(async P=>{P.imprint=2;})],[fnOp(async P=>{P.imprint=3;})]);
 ov('Impact Trail',[fnOp(async P=>{P.trail=2;})],[fnOp(async P=>{P.trail=4;})]);
 ov('Flowstep',[{t:'move',min:0,n:4},{t:'freePlay'}]);
@@ -5603,7 +5607,7 @@ const sweepF_=(n,k=1)=>fnOp(async P=>{ let rev=[]; for(let i=0;i<n;i++){ if(!ens
 const sweepF=FAC(sweepF_); /* v1.1.16: remembers its printed-number args so Mana can rebuild it */
 ov('Sweeping Blade',[{t:'atk',dmg:4,mode:'single'},sweepF(1)],[{t:'atk',dmg:6,mode:'single'},sweepF(2,1)]);
 ov('Fury',[fnOp(async P=>{for(let i=0;i<3;i++){if(!ensureDeck(P))break;const c=P.deck.shift();if(!c)break;const d=DEF[c.key];if(c.key!=='EXH'&&!d.disabled&&d.type!=='buff'&&(c.up?d.ucost:d.cost)<=1){await playCard(P,c,{free:true});}else P.discard.push(c);}})],
-  [fnOp(async P=>{for(let i=0;i<3;i++){if(!ensureDeck(P))break;const c=P.deck.shift();if(!c)break;const d=DEF[c.key];if(c.key!=='EXH'&&!d.disabled&&d.type!=='buff')await playCard(P,c,{free:true});else P.discard.push(c);}})]);
+  [fnOp(async P=>{for(let i=0;i<3;i++){if(!ensureDeck(P))break;const c=P.deck.shift();if(!c)break;const d=DEF[c.key];if(c.key==='EXH'||(!d.disabled&&d.type!=='buff'))await playCard(P,c,{free:true}); /* v1.1.78: Fury+ 'all cards' includes Exhaust */else P.discard.push(c);}})]);
 ov('Overstride',[{t:'searchPlay'}]);
 ov('Overdrive',[fnOp(async P=>{for(let i=0;i<3;i++){if(!ensureDeck(P))break;const c=P.deck.shift();if(c)await toRemove(P,c);}}),{t:'searchPlay',attack:1}],[fnOp(async P=>{for(let i=0,n=mz(P,'cnt',1);i<n;i++){if(!ensureDeck(P))return;const c=P.deck.shift();if(c)await toRemove(P,c);}}),{t:'searchPlay',attack:1}]);
 ov('Prepare to Strike',[{t:'nextDouble'}],[{t:'shield',n:5},{t:'nextDouble'}]);
@@ -5648,7 +5652,7 @@ ov('Pump Up',[{t:'str',n:2},fnOp(async P=>{P.pumpUp=(P.pumpUp||0)+1;})],[{t:'str
 ov('Hurtle',[{t:'toNearest',hurtle:1}],[{t:'toNearest',hurtle:2}]);
 ov('Open Hard',[{t:'atk',dmg:7,mode:'single',push:1}],[{t:'atk',dmg:10,mode:'single',push:1}]);
 ov('Claymore Slap',[{t:'atk',dmg:6,mode:'single',push:9}],[{t:'atk',dmg:9,mode:'multi',n:2,push:9}]);
-ov('Double Steps',[{t:'nextTwice'}],[{t:'nextTwice'},fnOp(async P=>{P.nextCostMinus=(P.nextCostMinus||0)+1;})]);
+ov('Double Steps',[{t:'nextTwice'}],[{t:'nextTwice'},fnOp(async P=>{P.nextATMinus=(P.nextATMinus||0)+1;})] /* v1.1.78: text says next Attack or Trick */);
 ov('Flurry Blow',[{t:'atk',dmg:4,mode:'single'},{t:'nextTwice',atkOnly:1}],[{t:'atk',dmg:6,mode:'single'},{t:'nextTwice',atkOnly:1}]);
 ov('Intent of Fire',[{t:'losehp',n:2},{t:'shard',n:1}],[{t:'losehp',n:3},{t:'shard',n:2}]);
 /* v1.1.4 audit fixes */
@@ -5826,7 +5830,7 @@ async function toRemove(P,c){
       if(pick&&pick.total>0){ const dv=pick.deltas.rb||0; const nv=dv<0?(v<=1?v:Math.max(1,v+dv)):v+dv; if(nv!==v){ spendMana(P,pick.total); log(`🔮 ${P.name} ใช้ ${pick.total} Mana กับ ${nm} (ถูกรีมูฟ): ${rb.lbl} ${v}→${nv}`,'sys'); v=nv; } } }
     rb.apply(P,v); }
   const sd=bv(P,'Shifting Defence',5,8); if(sd) gainShield(P,sd);
-  const qa=bv(P,'Quick Arm',1,2); if(qa) draw(P,qa);
+  const qa=bv(P,'Quick Arm',1,2); if(qa){ const n=await pickCount(P,0,qa,{name:'ใบ',prompt:`Quick Arm: จั่วกี่ใบ? (สูงสุด ${qa})`,prev:i=>`จั่ว ${i} ใบ`}); if(n) draw(P,n); } /* v1.1.78 'draw up to' */
 }
 function cardValue(c){ const d=DEF[c.key]; if(c.key==='EXH') return -5; const r={Starter:1,Common:2,Uncommon:3,Rare:4}[d.rar]||1; return r+(c.up?1:0)+(d.type==='attack'?1:0)+(d.disabled?-9:0); }
 function bestOf(arr){ let b=null,bs=-99; for(const c of arr){ if(c.key==='EXH')continue; const s=cardValue(c); if(s>bs){bs=s;b=c;} } return b; }
@@ -5857,7 +5861,7 @@ function rawCost(c){ const d=DEF[c.key]; return c.up?d.ucost:d.cost; }
 function floorLess(v,less,floor){ return v<=floor?v:Math.max(floor,v-less); }
 function cost(P,c){
   const d=DEF[c.key]; if(c.key==='EXH'){ let v=Math.max(0,3-(hasItem(P,'Guardian\'s Bulwark')?1:0)); /* v1.1.75: Evelyn upgraded -1 also applies to an Exhaust card face-up on her deck (never raises: 0 stays 0) */ if(c.evel||(P.heroUp&&P.hero&&P.hero.name==='Evelyn Mercantalis'&&P.deck&&P.deck[0]===c)) v=floorLess(v,1,1); /* v1.1.77 USER RULE: paying to remove an Exhaust card COUNTS AS PLAYING A CARD -> generic play-order cost modifiers apply too */
-    if(hasItem(P,'Valor Guard Exalted')&&P.playedTurn===2) v-=1; v+=P.costMod||0; if(P.nextCostMinus) v-=P.nextCostMinus; if(P.nextCostSet!=null) v=Math.min(v,P.nextCostSet); if(P.freeNext) v=0; return Math.max(0,v); }
+    if(hasItem(P,'Valor Guard Exalted')&&P.playedTurn===2) v-=1; if(c.costSet!=null) v=Math.min(v,c.costSet); /* v1.1.78 Riposte */ v+=P.costMod||0; if(P.nextCostMinus) v-=P.nextCostMinus; if(P.nextCostSet!=null) v=Math.min(v,P.nextCostSet); if(P.freeNext) v=0; return Math.max(0,v); }
   let v=rawCost(c); if(v==='X') return 0;
   const nm=d.name;
   if(nm==='Walk'&&P.playedTurn===0) v=mz(P,'fc',0);
@@ -5875,7 +5879,7 @@ function cost(P,c){
   if(c.evel||(P.heroUp&&P.hero&&P.hero.name==='Evelyn Mercantalis'&&P.deck&&P.deck[0]===c)) v=floorLess(v,1,1);
   if(c.costSet!=null) v=Math.min(v,c.costSet);
   if(P.hero.name==='Vela Mercantalis'&&!P.velaUsed&&(v===1||(P.heroUp&&v===2))) v=0;
-  v+=P.costMod; if(P.nextCostMinus) v-=P.nextCostMinus;
+  v+=P.costMod; if(P.nextCostMinus) v-=P.nextCostMinus; if(P.nextATMinus&&(d.type==='attack'||d.type==='trick')) v-=P.nextATMinus;
   if(P.nextCostSet!=null) v=Math.min(v,P.nextCostSet);
   if(c.spree) v=c.spreeV||0;
   if(P.freeNext) v=0;
@@ -5963,8 +5967,12 @@ async function rollDieShow(P,face,val,i,n,note){ if(HEADLESS||SIM.on||typeof UI=
 
 /* v1.1.77 PERFECT KILL (USER DEF): a kill whose damage leaves the target at EXACTLY 0 HP (after shields; overkill = normal kill), from ANY source.
    hitEst = the deterministic part of hitMon's damage (no crit dice) → final HP loss; used by the ⚡/🎯 target preview and bots. */
+/* v1.1.78 USER RULE: poison cards that are Attack cards get EVERY attack-damage bonus (Strength, Power Up, items, hero, Weak Point, crits, double…)
+   as extra damage on EVERY target they poison, once per target per hit — even when the card's base damage is 0. The poison COUNT itself is not boosted. */
+function atkPz(P,op,ctx){ try{ let pz=typeof op.poison==='function'?op.poison(P,ctx||{}):op.poison; if(P&&P.imprint&&op.isAtk) pz=(pz||0)+P.imprint; return pz||0; }catch(e){ return 0; } }
+function atkBonusOn(P,op,ctx,dmg){ return !!(op&&op.isAtk&&(dmg>0||(P&&!P.isMon&&atkPz(P,op,ctx)>0))); }
 function hitEst(P,m,dmg,op,ctx){ try{ op=op||{isAtk:true}; ctx=ctx||{}; const weak=!!P&&!P.isMon&&isWeak(P,m,op)&&!op.noWeak&&wpAbility(P,op,ctx); let d=dmg;
-  if(op.isAtk&&dmg>0){ d+=P.str*(op.strMult||1)+(ctx.pow||0)+(P.hero.name==='Jayne Aegisfera'?(P.heroUp?2:1):0)+(hasItem(P,'Archangel\'s Edge')?1:0)+(hasItem(P,'Blood Catalyst')?2:0)+(hasItem(P,'Chainflame Glaive')?4:0)+(P.helmBonus||0)+(ctx.amber||0)+(ctx.kindle||0)+(op.fireball&&hasItem(P,'Flame Orb')?3:0);
+  if(atkBonusOn(P,op,ctx,dmg)){ d+=P.str*(op.strMult||1)+(ctx.pow||0)+(P.hero.name==='Jayne Aegisfera'?(P.heroUp?2:1):0)+(hasItem(P,'Archangel\'s Edge')?1:0)+(hasItem(P,'Blood Catalyst')?2:0)+(hasItem(P,'Chainflame Glaive')?4:0)+(P.helmBonus||0)+(ctx.amber||0)+(ctx.kindle||0)+(op.fireball&&hasItem(P,'Flame Orb')?3:0);
     if(op.weakDmg&&weak) d+=op.weakDmg-dmg; if(ctx.double) d*=(ctx.double===true?2:ctx.double); }
   if(d>0){ if(m.poison) d+=bv(P,'Toxic Amplify',3,3); d+=bv(P,'Blazing Power',2,3); }
   const ab=(!weak&&m.shield>0&&d>0)?Math.min(m.shield,d):0; return {real:Math.max(0,d-ab),perfect:Math.max(0,d-ab)===m.hp&&m.hp>0,crit:!!((typeof op.cri==='function'?op.cri(P):op.cri)||(weak&&(op.weakCri||bv(P,'Precision',1,2)))||(onEdge(P)&&bv(P,'Snipe',1,2))||(!P.hitTurn||!P.hitTurn.has(m.uid))&&bv(P,'Teasing',1,2))}; }catch(e){ return {real:dmg,perfect:false}; } }
@@ -5977,7 +5985,7 @@ async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set())
   const behind = !!P && !P.isMon && isWeak(P,m,op) && !op.noWeak;
   const weak = behind && wpAbility(P,op,ctx);
   let d=dmg;
-  if(op.isAtk && dmg>0){
+  if(atkBonusOn(P,op,ctx,dmg)){ /* v1.1.78: also poison-only attack hits */
     d+= P.str*(op.strMult||1) + (ctx.pow||0) + (P.hero.name==='Jayne Aegisfera'?(P.heroUp?2:1):0)
       + (hasItem(P,'Archangel\'s Edge')?1:0)+(hasItem(P,'Blood Catalyst')?2:0)+(hasItem(P,'Chainflame Glaive')?4:0)+(P.helmBonus||0)+(ctx.amber||0)+(ctx.kindle||0)+(op.fireball&&hasItem(P,'Flame Orb')?3:0);
     if(op.weakDmg&&weak) d+=op.weakDmg-dmg;
@@ -6226,7 +6234,7 @@ async function playCard0(P,c,o={}){
   if(!o.free){
     if(raw==='X'){ const x=xChosen!=null?xChosen:P.shard; ctx.xPaid=x; P.shard-=x; P.shardSpent+=x; log(`✖ ${P.name} เลือก X = ${x} (จ่าย ${x} ชาร์ด)`,'sys'); }
     else { const v=cost(P,c); if(o.staff){ P.shard-=v; P.shardSpent+=v; P.staffUsed=true; log(`🪄 Staff of Nocturne: จ่าย 2 เท่า เล่น 2 ครั้ง`,'sys'); } if(P.hero.name==='Vela Mercantalis'&&!P.velaUsed&&v===0&&(raw===1||(P.heroUp&&raw===2))) P.velaUsed=true; let pv=v; if(P.shard<v){ const cl=condLess(P,c); if(cl&&P.shard>=v-cl.less){ pv=P.shard; ctx.debt={kind:cl.kind,amt:v-pv,uid:cl.uid}; log(`${d.name}: จ่าย ${pv} Shard (ค่าร่ายลด ${v-pv} เมื่อทำตามเงื่อนไข)`,'sys'); } } P.shard-=pv; P.shardSpent+=pv; ctx.paid=pv; }
-    P.nextCostSet=null; P.nextCostMinus=0; P.freeNext=false;
+    P.nextCostSet=null; P.nextCostMinus=0; P.freeNext=false; if(d.type==='attack'||d.type==='trick') P.nextATMinus=0;
   } else if(raw==='X') ctx.xPaid=0;
   const hi=P.hand.indexOf(c); if(hi>=0) P.hand.splice(hi,1);
   const wasSpree=c.spree; delete c.spree; delete c.evel;
@@ -6303,7 +6311,7 @@ async function afterPlay(P,c,d,ctx){
 }
 async function playTopFree(P,removeAfter){
   if(!ensureDeck(P)) return; const c=P.deck.shift(); if(!c) return;
-  if(c.key==='EXH'||DEF[c.key].disabled){ P.discard.push(c); return; }
+  if(c.key!=='EXH'&&DEF[c.key].disabled){ P.discard.push(c); return; } /* v1.1.78: an Exhaust card on top is played (removed) for free */
   log(`${P.name} เปิดการ์ดบนสุด: ${DEF[c.key].name}`,'sys');
   await playCard(P,c,{free:true,removeAfter});
 }
@@ -6415,9 +6423,9 @@ async function doOp(P,op,ctx){
     let x=P.x,y=P.y,lx=P.x,ly=P.y; while(inB(x+ch.v[0],y+ch.v[1])&&(!op.stop||canStop(P,x+ch.v[0],y+ch.v[1]))){ x+=ch.v[0];y+=ch.v[1]; if(canStop(P,x,y)){lx=x;ly=y; if(isWater(x,y)) break; /* v1.1.64 water stops the dash */} }
     if(lx!==P.x||ly!==P.y){ const steps=Math.abs(lx-P.x)+Math.abs(ly-P.y); { const sx=P.x,sy=P.y; for(let k=1;k<=steps&&!G.over;k++) await trapCheck(P,sx+ch.v[0]*k,sy+ch.v[1]*k); } P.x=lx;P.y=ly;P.face=ch.v; P.movedTurn=(P.movedTurn||0)+steps; waterCheck(P,lx,ly); const ti=G.treasures.findIndex(t=>t.x===lx&&t.y===ly); if(ti>=0) await takeTreasure(P,G.treasures.splice(ti,1)[0]); } return; }
   case 'playTop': return playTopFree(P);
-  case 'freePlay': for(let fi=0;fi<(op.n||1);fi++){ const opts=P.hand.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ด 1 ใบเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; await playCard(P,ch,{free:true}); } return;
-  case 'searchPlay': for(let si=0;si<(op.n||1);si++){ ensureDeck(P); const opts=P.deck.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled&&(!op.attack||DEF[h.key].type==='attack')); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'ค้นกองจั่ว: เลือกการ์ดเพื่อเล่นฟรี',options:opts,purpose:'free'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck,'shuf'+P.id); await playCard(P,ch,{free:true}); } } return;
-  case 'playRemoved': { for(let i=0;i<op.n;i++){ const opts=P.removed.filter(h=>h.key!=='EXH'&&!DEF[h.key].disabled&&DEF[h.key].name!=='Meditate'); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ดจากกองรีมูฟเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; P.removed.splice(P.removed.indexOf(ch),1); const v=rawCost(ch); await heal(P,v==='X'?0:v); await playCard(P,ch,{free:true}); } return; }
+  case 'freePlay': for(let fi=0;fi<(op.n||1);fi++){ /* v1.1.78 USER RULE: removing an Exhaust card counts as playing a card -> free plays may take it (0 cost). Evelyn: her face-up top Deck card is also playable. */ const opts=P.hand.filter(h=>h.key==='EXH'||!DEF[h.key].disabled); if(P.hero&&P.hero.name==='Evelyn Mercantalis'&&P.deck[0]&&(P.deck[0].key==='EXH'||!DEF[P.deck[0].key].disabled)&&!opts.includes(P.deck[0])) opts.push(P.deck[0]); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ด 1 ใบเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; if(P.deck[0]===ch&&!P.hand.includes(ch)) P.deck.shift(); await playCard(P,ch,{free:true}); } return;
+  case 'searchPlay': for(let si=0;si<(op.n||1);si++){ ensureDeck(P); const opts=P.deck.filter(h=>(h.key==='EXH'?!op.attack:!DEF[h.key].disabled&&(!op.attack||DEF[h.key].type==='attack'))); /* v1.1.78: Exhaust eligible unless Attack-only */ if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'ค้นกองจั่ว: เลือกการ์ดเพื่อเล่นฟรี',options:opts,purpose:'free'}); if(ch){ P.deck.splice(P.deck.indexOf(ch),1); shuffle(P.deck,'shuf'+P.id); await playCard(P,ch,{free:true}); } } return;
+  case 'playRemoved': { for(let i=0;i<op.n;i++){ const opts=P.removed.filter(h=>(h.key==='EXH'||!DEF[h.key].disabled)&&DEF[h.key].name!=='Meditate'); if(!opts.length) return; const ch=await ask(P,{kind:'card',prompt:'เลือกการ์ดจากกองรีมูฟเพื่อเล่นฟรี',options:opts,purpose:'free',cancel:'ไม่เล่น'}); if(!ch) return; P.removed.splice(P.removed.indexOf(ch),1); const v=rawCost(ch); await heal(P,v==='X'?0:v); await playCard(P,ch,{free:true}); } return; }
   case 'toNearest': { const ms=allMons(); if(!ms.length) return; const t=ms.reduce((a,b)=>dist(a,P)<=dist(b,P)?a:b); const path=bfsPath({x:P.x,y:P.y},c=>dist(c,t)===1&&canStop(P,c.x,c.y)||(c.x===P.x&&c.y===P.y&&dist(c,t)===1),false); if(path) for(const c of path.slice(1)) await enterCell(P,c.x,c.y,[c.x-P.x,c.y-P.y]); /* v1.1.25: after walking, face the last step; only turn to the target when no step was taken */ if(!(path&&path.length>1)) faceToward(P,t); if(op.hurtle) P.hurtle={uid:t.uid,n:op.hurtle}; return; }
   case 'fn': return op.f(P,ctx);
   }
@@ -6456,8 +6464,18 @@ async function doAttack(P,op,ctx){
   let dmg=val(op.dmg,P,ctx)+bonus(ctx);
   if(op.alt){ if(P.bot||(HEADLESS&&!globalThis.__askHook)){ const t=singleTargets(P,op); if(t.find(m=>m.hp+m.shield===op.alt)) dmg=op.alt; }
     else { const ch=await ask(P,{kind:'opt',prompt:'เลือกดาเมจ',options:[{label:`${dmg} ดาเมจ`,v:dmg},{label:`${op.alt} ดาเมจ`,v:op.alt}],purpose:'alt'}); if(ch) dmg=ch.v; } }
-  const times=val(op.times,P,ctx)||1;
+  let times=val(op.times,P,ctx)||1;
   const hop=Object.assign({},op,{isAtk:true});
+  /* v1.1.78 USER BUG FIX: optional-count attacks (Rift Barrage: 'Deal N and Poison 3 times. Gain 1 shard for each time you do not use') —
+     the player picks how many times (0..max) on the X-picker; every unused time (chosen or with no target left) refunds op.refund shard. */
+  if(op.optT){ const mx=times; const t0=singleTargets(P,op).filter(m=>m.hp>0); let n=mx;
+    if(ctx&&ctx.optN!=null) n=Math.max(0,Math.min(mx,ctx.optN|0));
+    else if(P.bot||SIM.on||(HEADLESS&&!globalThis.__askHook)){ n=BOT.optTimes?BOT.optTimes(P,op,dmg,mx,t0,ctx):mx; }
+    else { const pz=atkPz(P,hop,ctx); const e1=t0.length?Math.max(...t0.map(m=>hitEst(P,m,dmg,hop,ctx).real)):dmg; const opts=[]; for(let i=0;i<=mx;i++) opts.push({label:`${i} ครั้ง`,v:i,prev:`${i} ครั้ง: ${i?`ตี ${e1}${pz?` + พิษ ${pz}`:''} × ${i}`:'ไม่โจมตี'} · คืน ${(mx-i)*(op.refund||0)} ชาร์ด${t0.length?'':' (ไม่มีเป้าหมายในระยะ)'}`});
+      const ch=await ask(P,{kind:'opt',xpick:true,xName:'ครั้ง',forcePrompt:true,prompt:`${DEF[ctx&&ctx.card?ctx.card.key:'EXH'].name}: เลือกจำนวนครั้งที่จะใช้ (สูงสุด ${mx} · ไม่ใช้ครั้งละ +${op.refund||0} ชาร์ด)`,options:opts,def:t0.length?mx:0});
+      n=ch?Math.max(0,Math.min(mx,ch.v|0)):mx; }
+    times=n; ctx.optUsed=0; ctx.optMax=mx; log(`🔁 ${P.name} เลือกใช้ ${n}/${mx} ครั้ง`,'sys'); }
+  const optRefund=()=>{ if(!op.optT) return; const left=(ctx.optMax||0)-(ctx.optUsed||0); if(left>0&&op.refund){ P.shard+=left*op.refund; log(`💎 ${P.name} ไม่ได้ใช้ ${left} ครั้ง → +${left*op.refund} ชาร์ด`,'good'); } };
   const proj=isProj(P,op);
   if(proj) hop.proj=true;
   let targets=[];
@@ -6506,6 +6524,7 @@ async function doAttack(P,op,ctx){
       else ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ${times>1?` ครั้งที่ ${i+1}/${times}`:''})`,options:t,purpose:'atk',dmg,pkU:t.filter(x=>hitEst(P,x,dmg,Object.assign({},op,{isAtk:true}),ctx).perfect).map(x=>x.uid),wp:!!wpAbility(P,Object.assign({},op,{isAtk:true}),ctx),wpMode:op.mode,cancel:ctx&&ctx.moveAtk&&i===0?'⏭ ข้าม (ไม่โจมตี)':undefined});
       if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
       const dpm=dariusOn(P,op,hop)?await dariusPick(P,ch,dmg):[]; /* v1.1.61 Darius: 'hit all enemies in path' */
+      if(op.optT) ctx.optUsed=(ctx.optUsed||0)+1;
       await hitOne(ch);
       for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; const k0=m.killed; await hitMon(P,m,dmg,hop,ctx); if(m.killed&&m.killed!==k0){ ctx.killed=true; if(op.onKill) await op.onKill(P); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } } /* v1.1.77: Perfect Kill on path hits counts for the card too */
       if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); } }
@@ -6517,6 +6536,7 @@ async function doAttack(P,op,ctx){
       if(op.chain){ const near=allMons().filter(m=>m!==ch&&dist(m,ch)<=(op.chainR||2)); for(const m of (op.chainAll?near:await pickMons(P,near,op.chainN||1,`เลือกศัตรูในระยะ ${op.chainR||2} ช่องจากเป้าหมาย (${op.chain} ดาเมจ)`,op.chain))) { targets.push(m); P.perfectNow=false; await hitMon(P,m,op.chain,{noWeak:1,isAtk:true},ctx); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } }
     } }
   }
+  optRefund();
   if(P.hero.name==='Laura Emberlyn'){ const hit=[...new Set(targets)]; if(hit.length>1) for(const m of hit) if(m.hp>0) await hitMon(P,m,P.heroUp?5:3,{noWeak:1},{}); }
   if(hasItem(P,'Resonance Prism')){ P.multiHit=P.multiHit||new Set(); targets.forEach(m=>P.multiHit.add(m.uid)); }
 }
@@ -6629,7 +6649,7 @@ async function hurtHero(P,dmg,o={}){
   }
   if(!o.self&&!G.over){
     if(hasItem(P,'Serenity Plume')){ P.deck=shuffle(P.deck.concat(P.discard.splice(0)),'shuf'+P.id); await draw(P,1); }
-    if(P.hero.name==='Skara Grimbash'){ await draw(P,1); if(P.hand.length){ const c=await ask(P,{kind:'card',prompt:'Skara: เลือกการ์ดในมือ 1 ใบ วางใต้กองจั่ว',options:P.hand.slice(),purpose:'discard'}); if(c){ P.hand.splice(P.hand.indexOf(c),1); P.deck.push(c);} } }
+    if(P.hero.name==='Skara Grimbash'){ await draw(P,P.heroUp?await pickCount(P,1,2,{name:'ใบ',prompt:'Skara+: จั่วกี่ใบ? (1-2)',prev:i=>`จั่ว ${i} ใบ`}):1); /* v1.1.78 'draw 1-2' */ if(P.hand.length){ const c=await ask(P,{kind:'card',prompt:'Skara: เลือกการ์ดในมือ 1 ใบ วางใต้กองจั่ว',options:P.hand.slice(),purpose:'discard'}); if(c){ P.hand.splice(P.hand.indexOf(c),1); P.deck.push(c);} } }
   }
   if(!o.self&&o.src&&hasItem(P,'Twilight Piercer')&&P.shard>=1&&P.hp>0&&!G.over){
     const y=await ask(P,{kind:'opt',prompt:'Twilight Piercer: จ่าย 1 ชาร์ดเพื่อเดิน 1 ช่อง?',options:[{label:'ไม่',v:false},{label:'👣 เดิน 1 (1 ชาร์ด)',v:true}],purpose:'twilight'});
@@ -6772,7 +6792,7 @@ function startTurn(P){
   G.active=P; P.playedTurn=0; P.tricksTurn=0; P.shardSpent=0; P.movedTurn=0; P.hitTurn=new Set(); P.trailHit=new Set(); P.atkPlayedTurn=false; P.trickPlayed=false; P.velaUsed=false; P.marcelUsed=false;
   P.costMod=0; P.retainN=0; P.forceEnd=false; P.waterStop=false; P.noDraw=false; P.perfectTurn=false; P.dmgTurn=0; P.imprint=0; P.trail=0; P.fitFirm=null; P.fitAcc=0; P.crimsonUsed=false; P.phantomUsed=false; P.atkCount=0; P.flameWall=0;
   P.didPush=false; P.didShield=false; P.didDmg=false; P.trinityDone=false; P.magicCount=0; P.staffUsed=false; P.stormUsed=false; P.jomUsed=0; P.hurtle=null; P.tackle=null;
-  P.doubleNext=false; P.twiceNext=false; P.rangeNext=0; P.nextCostSet=null; P.nextCostMinus=0;
+  P.doubleNext=false; P.twiceNext=false; P.rangeNext=0; P.nextCostSet=null; P.nextCostMinus=0; P.nextATMinus=0;
   P.freeNext=!!P.freeNextTurn; P.freeNextTurn=false;
   P.lostHpPrev=!!P.lostHpNow; P.lostHpNow=false; P.helmBonus=(hasItem(P,'Dawnfeather Helm')&&(P.lostHpTurnPrev||0)>=3)?3:0; P.lostHpTurn=0;
   if(P.keepShield) P.keepShield=(P.keepShield===true?0:P.keepShield-1); else if(buffLv(P,'Vigilance')) P.shield=Math.floor(P.shield/2); else P.shield=0;
@@ -6970,6 +6990,10 @@ async function runGame(resume){
 /* ---------- CPU bot ---------- */
 var process_w=0.4; // bot: weight of incoming-threat when choosing a cell
 const BOT = {
+  /* v1.1.78: optional-count attacks (Rift Barrage) — no target: 0 (all refunded); if fewer hits finish the weakest target, use just those
+     (refund the rest unless Shard is already full); otherwise use every hit. */
+  optTimes(P,op,dmg,mx,t0,ctx){ try{ if(!t0.length) return 0; if(P.shard>=CFG.shardMax) return mx; const hop=Object.assign({},op,{isAtk:true});
+    let best=mx; for(const m of t0){ const e=Math.max(1,hitEst(P,m,dmg,hop,ctx||{}).real); const k=Math.ceil((m.hp+(m.shield||0))/e); if(k<best) best=k; } return Math.max(1,Math.min(mx,best)); }catch(e){ return mx; } },
   itemPref:{'Shardforge':3,'Staff of Nocturne':3,"Storm's Reach":2,'Grand Trinity':2,'Twilight Piercer':2,'Axiom of Nothingness':2,'Briarstrike Axe':2,'Spellbound':2,"Spellweaver's Grimoire":2,'Mystic Index':1,'This is a Book':2,'Vanguard\'s Plate':3,'Life Crystal':3,'Savage Protector':0,'Blood Catalyst':0},
   threatAt(P,c){ let t=0; for(const m of allMons()){ if(m.stun) continue; const d=dist(m,c);
       if(m.def.ak==='melee'||m.def.altLine===undefined&&m.def.ak==='melee'){ if(d-1<=m.def.mv+(m.def.lunge||0)) t+=m.atk; }
@@ -7203,7 +7227,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.77', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.78', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -7476,7 +7500,7 @@ const UI={
   },
   cardHTML(c,P,extra=''){
     const d=DEF[c.key]; const up=c.up;
-    const raw=up?d.ucost:d.cost; const cst=P&&c.key!=='EXH'&&raw!=='X'?cost(P,c):raw;
+    const raw=up?d.ucost:d.cost; const cst=P&&raw!=='X'?cost(P,c):raw; /* v1.1.78: Exhaust shows its real (discounted/free) cost */
     const txt=c.key==='EXH'?d.th:(up?d.uth:d.th);
     return `<div class="card t-${d.type} ${up?'up':''} ${d.disabled?'dis':''} ${extra}" data-uid="${c.uid}" title="${esc(up?d.uen:d.en)}">
       <div class="cost ${P&&cst!==raw?'mod':''}">${cst}</div><div class="cname">${esc(d.name)}${up?'<sup>+</sup>':''}</div>
@@ -7521,17 +7545,17 @@ const UI={
       const pr=$('#prompt'); pr.classList.remove('hide');
       let body=`<div class="ptxt">${esc(P.name)}: ${esc(req.prompt)}</div>`;
       if(req.kind==='opt'&&req.xpick){ const n=req.options.length-1; let di=req.options.findIndex(o=>o.v===req.def); if(di<0) di=0;
-        body+=`<div class="xPick" data-xi="${di}"><div class="xRow"><button type="button" class="xm" aria-label="ลด X">−</button><div class="xVal"><small>X</small><b>${esc(String(req.options[di].v))}</b></div><button type="button" class="xp" aria-label="เพิ่ม X">+</button></div>
+        body+=`<div class="xPick" data-xi="${di}"><div class="xRow"><button type="button" class="xm" aria-label="ลด X">−</button><div class="xVal"><small>${esc(req.xName||'X')}</small><b>${esc(String(req.options[di].v))}</b></div><button type="button" class="xp" aria-label="เพิ่ม X">+</button></div>
           <input type="range" class="xRange" min="0" max="${n}" step="1" value="${di}" aria-label="เลือกค่า X"><div class="xEnds"><span>${esc(String(req.options[0].v))}</span><span>${esc(String(req.options[n].v))}</span></div>
           <div class="xPrev"></div><button type="button" class="xOk">✔ ยืนยัน</button></div>`; }
       else if(req.kind==='opt') body+=`<div class="opts">${req.options.map((o,i)=>`<button data-i="${i}"${o.hero?' class="optImg"':''}>${o.hero?`<img src="${artOf(o.hero,'t')}" alt="">`:''}${esc(o.label)}</button>`).join('')}</div>`;
-      if(req.kind==='card') body+=`<div class="pcards">${req.options.map((c,i)=>this.cardHTML(c,P,'playable').replace('class="card','data-i="'+i+'" class="card')).join('')}</div>`;
+      if(req.kind==='card') body+=`<div class="pcards">${req.options.map((c,i)=>{ let h=this.cardHTML(c,P,'playable').replace('class="card','data-i="'+i+'" class="card'); if(req.purpose==='free'&&!/Just One More/.test(req.prompt||'')) h=h.replace(/<div class="cost[^"]*">[^<]*<\/div>/,'<div class="cost mod">0</div>'); /* v1.1.78: free-play picker shows 0 */ return h; }).join('')}</div>`;
       if(req.kind==='cell'||req.kind==='mon') body+=`<div class="hint">คลิกช่อง${req.kind==='mon'?'/ศัตรู':''}ที่ไฮไลต์บนกระดาน</div>`;
       if(req.cancel) body+=`<button class="cancel">${esc(req.cancel)}</button>`;
       pr.innerHTML=body;
       pr.onclick=e=>{ const b=e.target.closest('[data-i]'); if(b){ this.answer(req.options[+b.dataset.i]); return; } if(e.target.closest('.cancel')) this.answer(null); };
       if(req.xpick){ const xp=pr.querySelector('.xPick'), rg=xp.querySelector('.xRange'); const n=req.options.length-1;
-        const show=i=>{ i=Math.max(0,Math.min(n,i)); xp.dataset.xi=i; rg.value=i; const o=req.options[i]; xp.querySelector('.xVal b').textContent=o.v; xp.querySelector('.xPrev').textContent=o.prev||o.label||''; xp.querySelector('.xOk').textContent=`✔ ยืนยัน X = ${o.v}`; xp.querySelector('.xm').disabled=i<=0; xp.querySelector('.xp').disabled=i>=n; };
+        const show=i=>{ i=Math.max(0,Math.min(n,i)); xp.dataset.xi=i; rg.value=i; const o=req.options[i]; xp.querySelector('.xVal b').textContent=o.v; xp.querySelector('.xPrev').textContent=o.prev||o.label||''; xp.querySelector('.xOk').textContent=req.xName?`✔ ยืนยัน ${o.v} ${req.xName}`:`✔ ยืนยัน X = ${o.v}`; xp.querySelector('.xm').disabled=i<=0; xp.querySelector('.xp').disabled=i>=n; };
         xp.querySelector('.xm').onclick=e=>{ e.stopPropagation(); show(+xp.dataset.xi-1); }; xp.querySelector('.xp').onclick=e=>{ e.stopPropagation(); show(+xp.dataset.xi+1); };
         rg.oninput=()=>show(+rg.value); xp.querySelector('.xOk').onclick=e=>{ e.stopPropagation(); this.answer(req.options[+xp.dataset.xi]); };
         xp.onkeydown=e=>{ if(e.key==='ArrowLeft'||e.key==='-'){ show(+xp.dataset.xi-1); e.preventDefault(); } else if(e.key==='ArrowRight'||e.key==='+'){ show(+xp.dataset.xi+1); e.preventDefault(); } else if(e.key==='Enter'){ this.answer(req.options[+xp.dataset.xi]); e.preventDefault(); } };
@@ -7625,7 +7649,7 @@ function cardArtHTML(d){
     <svg viewBox="0 0 100 100" class="mot">${sparks}<g transform="translate(18 10) scale(.64)">${MOTIF[mot]}</g></svg></div>`;
 }
 UI.cardHTML=function(c,P,extra=''){
-  const d=DEF[c.key]; const up=c.up; const raw=up?d.ucost:d.cost; const cst=P&&c.key!=='EXH'&&raw!=='X'?cost(P,c):raw;
+  const d=DEF[c.key]; const up=c.up; const raw=up?d.ucost:d.cost; const cst=P&&raw!=='X'?cost(P,c):raw; /* v1.1.78: Exhaust shows its real (discounted/free) cost */
   const txt=c.key==='EXH'?d.th:(up?d.uth:d.th); const rar=d.rar||'-';
   return `<div class="card t-${d.type} ${up?'up':''} ${d.disabled?'dis':''} ${extra}" data-uid="${c.uid}" data-tipcard="1" style="--rar:${RAR_COL[rar]||'#999'}">
     <div class="cost ${P&&cst!==raw?'mod':''}">${cst}</div>${d.elem?`<div class="elem" title="${esc(d.elem)}">${ELEM_ICON[d.elem]||'✦'}</div>`:''}
