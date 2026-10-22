@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.80</title>
+<title>Project Dungeon v1.1.81</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -725,7 +725,7 @@ body.dragging{user-select:none;cursor:grabbing}
 .tok.sprite.mon .sring{box-shadow:0 0 0 2px #e04040cc}.tok.sprite.mon.Elite .sring{box-shadow:0 0 0 2px #c6f,0 0 12px #c6f}.tok.sprite.mon.Boss .sring{box-shadow:0 0 0 3px gold,0 0 18px gold}
 .tok.sprite.hero.act .sring{box-shadow:0 0 0 3px #fff,0 0 16px #fff}
 .tok.sprite img.spr{position:absolute;left:50%;bottom:20%;width:calc(var(--cs) * var(--sw));height:calc(var(--cs) * var(--sh));object-fit:contain;object-position:50% 100%;border:0;border-radius:0;background:none;box-shadow:none!important;padding:0;transform-origin:50% 100%;transform:translateX(-50%) scaleY(var(--upr,1));z-index:calc(10 + var(--row,0));filter:drop-shadow(0 2px 2px #000a);pointer-events:auto}
-/* v1.1.80 USER REQUEST: Argus sprite was too tall and hid the unit on the tile behind it. Same drawn WIDTH as before (contain-fit of a 177×224 sprite in a --sh box = cs*sh*177/224), height cut to 80% (modest vertical squash, bottom-anchored). */
+/* v1.1.81 USER REQUEST: Argus sprite was too tall and hid the unit on the tile behind it. Same drawn WIDTH as before (contain-fit of a 177×224 sprite in a --sh box = cs*sh*177/224), height cut to 80% (modest vertical squash, bottom-anchored). */
 .tok.sprite img.spr[data-sn="Argus"]{object-fit:fill;width:calc(var(--cs) * var(--sh) * 0.7902);height:calc(var(--cs) * var(--sh) * 0.8)}
 .tok.sprite img.spr.flip{transform:translateX(-50%) scaleX(-1) scaleY(var(--upr,1))}
 .tok.sprite.mon.Elite img.spr{filter:drop-shadow(0 0 3px #c6f) drop-shadow(0 2px 2px #000a)}.tok.sprite.mon.Boss img.spr{filter:drop-shadow(0 0 4px gold) drop-shadow(0 2px 2px #000a)}
@@ -896,7 +896,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.80 setup start screen */
+/* v1.1.81 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -929,7 +929,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.80 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.81 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -971,7 +971,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.80 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.81 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -994,7 +994,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 
-/* v1.1.80 X picker */
+/* v1.1.81 X picker */
 #prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
 #prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
 #prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
@@ -1008,12 +1008,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.80 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.81 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.80 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.81 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -6255,7 +6255,7 @@ async function playCard0(P,c,o={}){
      -> the player chooses WHICH number on the card and +1 or -1 per Mana (Magic: any amount, spread freely) */
   const mFields=manaFields(ops,(up?d.uen:d.en)||'');
   if(maxM>0 && mFields.length && !o.free){
-    const mult=(/Mana Amplify|Overload Volley|Stone Wall/.test(d.name)||(/Mystic Nova|Stoneguard/.test(d.name)&&up))?((d.name==='Mana Amplify Shot'&&up)?3:2):1;
+    /* v1.1.81 sheet (light-blue): Overload Volley — 'All Mana used on this card effect double' is on the UPGRADE side only */ const mult=(/Mana Amplify|Stone Wall/.test(d.name)||(/Mystic Nova|Stoneguard|Overload Volley/.test(d.name)&&up))?((d.name==='Mana Amplify Shot'&&up)?3:2):1;
     const pick=o.manaForce?{total:Math.abs(o.manaForce.dv),deltas:{[o.manaForce.id]:o.manaForce.dv}}:(P.bot||HEADLESS||typeof UI==='undefined')?BOT.manaPick(P,c,ops,mFields,maxM,mult):await emgWrap(UI.manaPick(P,c,ops,mFields,maxM,mult,magic));
     if(pick&&pick.total>0){
       /* v1.1.17: engine-level printed numbers (CARD_SLOTS) -> P._ms for this resolution only; cost-type numbers re-price the card (validated before anything is spent) */
@@ -7232,7 +7232,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.80', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.81', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
