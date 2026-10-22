@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.79</title>
+<title>Project Dungeon v1.1.80</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -725,7 +725,7 @@ body.dragging{user-select:none;cursor:grabbing}
 .tok.sprite.mon .sring{box-shadow:0 0 0 2px #e04040cc}.tok.sprite.mon.Elite .sring{box-shadow:0 0 0 2px #c6f,0 0 12px #c6f}.tok.sprite.mon.Boss .sring{box-shadow:0 0 0 3px gold,0 0 18px gold}
 .tok.sprite.hero.act .sring{box-shadow:0 0 0 3px #fff,0 0 16px #fff}
 .tok.sprite img.spr{position:absolute;left:50%;bottom:20%;width:calc(var(--cs) * var(--sw));height:calc(var(--cs) * var(--sh));object-fit:contain;object-position:50% 100%;border:0;border-radius:0;background:none;box-shadow:none!important;padding:0;transform-origin:50% 100%;transform:translateX(-50%) scaleY(var(--upr,1));z-index:calc(10 + var(--row,0));filter:drop-shadow(0 2px 2px #000a);pointer-events:auto}
-/* v1.1.79 USER REQUEST: Argus sprite was too tall and hid the unit on the tile behind it. Same drawn WIDTH as before (contain-fit of a 177×224 sprite in a --sh box = cs*sh*177/224), height cut to 80% (modest vertical squash, bottom-anchored). */
+/* v1.1.80 USER REQUEST: Argus sprite was too tall and hid the unit on the tile behind it. Same drawn WIDTH as before (contain-fit of a 177×224 sprite in a --sh box = cs*sh*177/224), height cut to 80% (modest vertical squash, bottom-anchored). */
 .tok.sprite img.spr[data-sn="Argus"]{object-fit:fill;width:calc(var(--cs) * var(--sh) * 0.7902);height:calc(var(--cs) * var(--sh) * 0.8)}
 .tok.sprite img.spr.flip{transform:translateX(-50%) scaleX(-1) scaleY(var(--upr,1))}
 .tok.sprite.mon.Elite img.spr{filter:drop-shadow(0 0 3px #c6f) drop-shadow(0 2px 2px #000a)}.tok.sprite.mon.Boss img.spr{filter:drop-shadow(0 0 4px gold) drop-shadow(0 2px 2px #000a)}
@@ -896,7 +896,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.79 setup start screen */
+/* v1.1.80 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -929,7 +929,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.79 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.80 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -971,7 +971,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.79 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.80 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -994,7 +994,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 
-/* v1.1.79 X picker */
+/* v1.1.80 X picker */
 #prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
 #prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
 #prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
@@ -1008,12 +1008,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.79 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.80 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.79 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.80 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -1332,10 +1332,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Just One More",
-   "cost": 1,
+   "cost": 4,
    "en": "Once per turn, may play a card from your Remove pile.",
    "th": "หนึ่งครั้งต่อเทิร์น สามารถเล่นการ์ดจากกองรีมูฟ ของคุณได้ 1 ใบ",
-   "ucost": 1,
+   "ucost": 4,
    "uen": "Once per turn, may play up to 2 cards from your Remove pile.",
    "uth": "หนึ่งครั้งต่อเทิร์น สามารถเล่นการ์ดจากกองรีมูฟ ของคุณได้สูงสุด 2 ใบ",
    "rar": "Rare",
@@ -1458,10 +1458,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Meditate",
-   "cost": 1,
+   "cost": 3,
    "en": "Play 1 card in Remove Pile for free and Gain Life equal to its cost.",
    "th": "เล่นการ์ด 1 ใบจากกอง รีมูฟ ได้ฟรี และฮีล เท่ากับค่าร่าย ของการ์ดใบนั้น",
-   "ucost": 2,
+   "ucost": 5,
    "uen": "Play up to 2 cards card in Remove Pile for free and Gain Life equal to those cards cost.",
    "uth": "เล่นการ์ดจากกองรีมูฟ ได้ฟรีสูงสุด 2 ใบ และฮีล เท่ากับค่าร่าย รวมของการ์ดเหล่านั้น",
    "rar": "Rare",
@@ -2274,8 +2274,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "en": "Deal 4 damage. The next Attack Card play twice.",
    "th": "สร้างความเสียหาย 4 หน่วย การ์ดโจมตี ใบถัดไปที่คุณเล่นจะถูกเล่นซ้ำ 2 ครั้ง",
    "ucost": 1,
-   "uen": "Deal 6 damage. The next Attack Card play twice.",
-   "uth": "สร้างความเสียหาย 6 หน่วย การ์ดโจมตี ใบถัดไปที่คุณเล่นจะถูกเล่นซ้ำ 2 ครั้ง",
+   "uen": "Deal 5 damage. The next Attack Card play twice.",
+   "uth": "สร้างความเสียหาย 5 หน่วย การ์ดโจมตี ใบถัดไปที่คุณเล่นจะถูกเล่นซ้ำ 2 ครั้ง",
    "rar": "Uncommon",
    "type": "attack",
    "cls": "Rogue",
@@ -2383,11 +2383,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Mini Bomb",
    "cost": 2,
-   "en": "Deal 6 Projectile damage, also do 3 damage to adjacents including you",
-   "th": "สร้างความเสียหาย [โพรเจกไทล์] 6 หน่วย และสร้างความเสียหาย 3 หน่วยแก่ยูนิตที่อยู่ติดกับเป้าหมายทั้งหมด รวมถึงตัวคุณเอง",
+   "en": "Deal 7 Projectile damage, also do 3 damage to each adjacents",
+   "th": "สร้างความเสียหาย [โพรเจกไทล์] 7 หน่วย และสร้างความเสียหาย 3 หน่วยแก่ยูนิตที่อยู่ติดกับเป้าหมายทั้งหมด",
    "ucost": 2,
-   "uen": "Deal 9 Projectile damage, also do 5 damage to adjacents including you",
-   "uth": "สร้างความเสียหาย [โพรเจกไทล์] 9 หน่วย และสร้างความเสียหาย 5 หน่วยแก่ยูนิตที่อยู่ติดกันทั้งหมด รวมถึงตัวคุณเอง",
+   "uen": "Deal 10 Projectile damage, also do 5 damage to each adjacents",
+   "uth": "สร้างความเสียหาย [โพรเจกไทล์] 10 หน่วย และสร้างความเสียหาย 5 หน่วยแก่ยูนิตที่อยู่ติดกันทั้งหมด",
    "rar": "Rare",
    "type": "attack",
    "cls": "Rogue",
@@ -2425,11 +2425,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Severe",
    "cost": 1,
-   "en": "Deal 2 damage. If you attack Weak Point, gain 2 Cri.",
-   "th": "สร้างความเสียหาย 2 หน่วย หากโจมตีจุดอ่อน ได้รับคริติคอล 2 หน่วย",
+   "en": "Deal 4 damage. If you attack Weak Point, gain 2 Cri.",
+   "th": "สร้างความเสียหาย 4 หน่วย หากโจมตีจุดอ่อน ได้รับคริติคอล 2 หน่วย",
    "ucost": 1,
-   "uen": "Deal 5 damage. If you attack Weak Point, gain 3 Cri.",
-   "uth": "สร้างความเสียหาย 5 หน่วย หากโจมตีจุดอ่อน ได้รับคริติคอล 3 หน่วย",
+   "uen": "Deal 7 damage. If you attack Weak Point, gain 3 Cri.",
+   "uth": "สร้างความเสียหาย 7 หน่วย หากโจมตีจุดอ่อน ได้รับคริติคอล 3 หน่วย",
    "rar": "Common",
    "type": "attack",
    "cls": "Rogue",
@@ -2438,9 +2438,9 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Stacked",
-   "cost": 2,
-   "en": "Draw a Card. Deal X damage. (X=Cards remaining in your hand)",
-   "th": "จั่วการ์ด 1 ใบ สร้างความเสียหาย X หน่วย (X = จำนวนการ์ดที่เหลืออยู่ในมือของคุณ)",
+   "cost": 1,
+   "en": "Deal X damage. (X=Cards remaining in your hand)",
+   "th": "สร้างความเสียหาย X หน่วย (X = จำนวนการ์ดที่เหลืออยู่ในมือของคุณ)",
    "ucost": 2,
    "uen": "Draw a Card. Deal Xx2 damage. (X=Cards remaining in your hand)",
    "uth": "จั่วการ์ด 1 ใบ สร้างความเสียหาย X×2 หน่วย (X = จำนวนการ์ดที่เหลืออยู่ในมือของคุณ)",
@@ -2537,11 +2537,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Precision",
    "cost": 1,
-   "en": "Attacking Weak Point gain 1 Cri.",
-   "th": "เมื่อโจมตีจุดอ่อน ได้รับคริติคอล 1 หน่วย",
+   "en": "Attacking Weak Point gain 2 Cri.",
+   "th": "เมื่อโจมตีจุดอ่อน ได้รับคริติคอล 2 หน่วย",
    "ucost": 1,
-   "uen": "Attacking Weak Point gain 2 Cri.",
-   "uth": "เมื่อโจมตีจุดอ่อน ได้รับคริติคอล 2 หน่วย",
+   "uen": "Attacking Weak Point gain 3 Cri.",
+   "uth": "เมื่อโจมตีจุดอ่อน ได้รับคริติคอล 3 หน่วย",
    "rar": "Uncommon",
    "type": "buff",
    "cls": "Rogue",
@@ -2704,10 +2704,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Greed",
-   "cost": 0,
+   "cost": 1,
    "en": "Draw 2 Cards, choose 1 play for free and keep another in to your hand.",
    "th": "จั่วการ์ด 2 ใบ เลือก 1 ใบเล่นฟรี และเก็บอีก 1 ใบไว้ในมือ",
-   "ucost": 0,
+   "ucost": 1,
    "uen": "Draw 3 Cards, choose 1 play for free and keep others cards in to your hand.",
    "uth": "จั่วการ์ด 3 ใบ เลือก 1 ใบเล่นฟรี และเก็บการ์ดที่เหลือทั้งหมดไว้ในมือ",
    "rar": "Rare",
@@ -2789,11 +2789,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Stalk",
    "cost": 0,
-   "en": "Move behind an enemy adjacent to you. Retain.",
-   "th": "เคลื่อนที่ไปอยู่ด้านหลังศัตรูที่อยู่ติดกับคุณ สามารถเก็บการ์ดใบนี้ไว้ได้",
+   "en": "Discard a card, Move behind an enemy adjacent to you. Retain.",
+   "th": "ทิ้งการ์ด 1 ใบ, เคลื่อนที่ไปอยู่ด้านหลังศัตรูที่อยู่ติดกับคุณ สามารถเก็บการ์ดใบนี้ไว้ได้",
    "ucost": 0,
-   "uen": "Move behind any enemy. Retain.",
-   "uth": "เคลื่อนที่ไปอยู่ด้านหลังศัตรูตัวใดก็ได้ และสามารถเก็บการ์ดใบนี้ไว้ได้",
+   "uen": "Discard a card, Move behind any enemy. Retain.",
+   "uth": "ทิ้งการ์ด 1 ใบ, เคลื่อนที่ไปอยู่ด้านหลังศัตรูตัวใดก็ได้ และสามารถเก็บการ์ดใบนี้ไว้ได้",
    "rar": "Uncommon",
    "type": "trick",
    "cls": "Rogue",
@@ -2834,8 +2834,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "en": "Projectile, inflict 2 Poison",
    "th": "โจมตีแบบโพรเจกไทล์ จะติดพิษ 2 หน่วย",
    "ucost": 0,
-   "uen": "Projectile, inflict 2 Poison",
-   "uth": "โจมตีแบบโพรเจกไทล์ จะติดพิษ 2 หน่วย",
+   "uen": "Projectile, inflict 3 Poison",
+   "uth": "โจมตีแบบโพรเจกไทล์ จะติดพิษ 3 หน่วย",
    "rar": "Common",
    "type": "attack",
    "cls": "Assassin",
@@ -3041,11 +3041,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Split Strike",
    "cost": 3,
-   "en": "Deal 9 damage to 2 different target.",
-   "th": "สร้างความเสียหาย 9 หน่วยแก่ศัตรู 2 เป้าหมายที่แตกต่างกัน",
+   "en": "Deal 10 damage to 2 different target.",
+   "th": "สร้างความเสียหาย 10 หน่วยแก่ศัตรู 2 เป้าหมายที่แตกต่างกัน",
    "ucost": 3,
-   "uen": "Deal 11 damage to 3 different target.",
-   "uth": "สร้างความเสียหาย 11 หน่วยแก่ศัตรู 3 เป้าหมายที่แตกต่างกัน",
+   "uen": "Deal 14 damage to 3 different target.",
+   "uth": "สร้างความเสียหาย 14 หน่วยแก่ศัตรู 3 เป้าหมายที่แตกต่างกัน",
    "rar": "Uncommon",
    "type": "attack",
    "cls": "Assassin",
@@ -3069,11 +3069,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Poison Armor",
    "cost": 1,
-   "en": "Whenever you get hit by an enemy, inflict 3 Poison to that enemy.",
-   "th": "ทุกครั้งที่คุณถูกศัตรูโจมตี ติดพิษ 3 หน่วยแก่ศัตรูตัวนั้น",
+   "en": "Whenever you get hit by an enemy, inflict 4 Poison to that enemy.",
+   "th": "ทุกครั้งที่คุณถูกศัตรูโจมตี ติดพิษ 4 หน่วยแก่ศัตรูตัวนั้น",
    "ucost": 1,
-   "uen": "Whenever you get hit by an enemy, inflict 4 Poison to that enemy.",
-   "uth": "ทุกครั้งที่คุณถูกศัตรูโจมตี ติดพิษ 4 หน่วยแก่ศัตรูตัวนั้น",
+   "uen": "Whenever you get hit by an enemy, inflict 6 Poison to that enemy.",
+   "uth": "ทุกครั้งที่คุณถูกศัตรูโจมตี ติดพิษ 6 หน่วยแก่ศัตรูตัวนั้น",
    "rar": "Rare",
    "type": "buff",
    "cls": "Assassin",
@@ -3086,8 +3086,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "en": "All Enemies with Poison take 3 more damage from you each hit.",
    "th": "ศัตรูทั้งหมดที่ติดพิษ จะได้รับความเสียหายเพิ่ม +3 หน่วยต่อการโจมตีแต่ละครั้ง",
    "ucost": 1,
-   "uen": "All Enemies with Poison take 3 more damage from you each hit.",
-   "uth": "ศัตรูทั้งหมดที่ติดพิษ จะได้รับความเสียหายเพิ่ม +3 หน่วยต่อการโจมตีแต่ละครั้ง",
+   "uen": "All Enemies with Poison take 4 more damage from you each hit.",
+   "uth": "ศัตรูทั้งหมดที่ติดพิษ จะได้รับความเสียหายเพิ่ม +4 หน่วยต่อการโจมตีแต่ละครั้ง",
    "rar": "Common",
    "type": "buff",
    "cls": "Assassin",
@@ -5490,7 +5490,7 @@ ov('Behide the Shield',[{t:'shield',n:6},{t:'removeHand',n:1}],[{t:'shield',n:9}
 ov('Surviving Stand',[fnOp(async P=>{const hs=P.hand.slice();P.hand.length=0;for(const x of hs) await toRemove(P,x);await gainShield(P,4*hs.length);})],[fnOp(async P=>{const hs=P.hand.slice();P.hand.length=0;for(const x of hs) await toRemove(P,x);await gainShield(P,5*hs.length);})]);
 ov('Sprint',[{t:'removeHand',n:1},{t:'draw',n:3}],[{t:'removeHand',n:1,orDiscard:1},{t:'draw',n:3}]);
 ov('Plan B',[fnOp(async P=>{const hs=P.hand.slice();P.hand.length=0;for(const x of hs) await toRemove(P,x);await draw(P,hs.length);P.costMod-=1;})]);
-ov('Stacked',[{t:'draw',n:1},{t:'atk',dmg:P=>P.hand.length,mode:'single'}],[{t:'draw',n:1},{t:'atk',dmg:P=>P.hand.length*2,mode:'single'}]);
+ov('Stacked',[{t:'atk',dmg:P=>P.hand.length,mode:'single'}] /* v1.1.80: normal side no longer draws */,[{t:'draw',n:1},{t:'atk',dmg:P=>P.hand.length*2,mode:'single'}]);
 ov('Wandering Strike',[{t:'atk',dmg:P=>P.movedTurn,mode:'single'}],[{t:'atk',dmg:P=>P.movedTurn*2,mode:'single'}]);
 ov('Barrage',[{t:'atk',dmg:2,times:P=>monsters(P).length,mode:'single'}],[{t:'atk',dmg:3,times:P=>monsters(P).length,mode:'single'}]);
 ov('Overcharge',[{t:'atk',dmg:0,poison:P=>P.shardSpent,mode:'single'}],[{t:'atk',dmg:0,poison:P=>P.shardSpent*2,mode:'single'}]);
@@ -5526,7 +5526,7 @@ ov('Ice Wall',[{t:'ice',adj:1,n:1}],[{t:'ice',n:1}]);
 ov('Cold Snap',[{t:'atk',dmg:0,stun:1,mode:'single',adj:true,tn:1}],[{t:'atk',dmg:0,stun:1,mode:'adjAll'}]);
 ov('Hook Shot',[{t:'atk',dmg:2,mode:'single',proj:true,pull:1}],[{t:'atk',dmg:5,mode:'single',proj:true,pull:1}]);
 ov('Retaliate',[{t:'atk',dmg:2,mode:'single',swap:'may'}],[{t:'atk',dmg:4,mode:'single',swap:'may'},{t:'mtok',n:1}]);
-ov('Stalk',[{t:'stalk',adj:1}],[{t:'stalk'}]);
+ov('Stalk',[{t:'discard',n:1},{t:'stalk',adj:1}],[{t:'discard',n:1},{t:'stalk'}]); /* v1.1.80 sheet (light-blue): discard a card first */
 ov('Lunge Swap',[{t:'swapAny',r:2}],[{t:'swapAny',r:99}]);
 ov('Sling',[{t:'sling'}]);
 ov('Gale Rush',[{t:'sling',stop:1}],[{t:'move',min:0,n:99}]); /* v1.1.51 OWNER RULING: Gale Rush+ 'Move any number of spaces' = normal orthogonal step movement, UNLIMITED (99), with the เดินต่อ/พอแล้ว prompt; normal side (straight line, sling) unchanged, no prompt */
@@ -5542,7 +5542,7 @@ ov('Strike Harder',[{t:'str',n:1},{t:'atk',dmg:3,mode:'single',strMult:2}],[{t:'
 ov('Tackle',[{t:'atk',dmg:3,mode:'single',push:1,follow:1}],[{t:'atk',dmg:5,mode:'single',push:1,follow:1},fnOp(async(P,ctx)=>{ const u=[...((ctx&&ctx.hitU)||[])][0]; if(u!=null) P.tackle={uid:u,less:mz(P,'less',1),card:ctx.card}; })]);
 ov('Footwork',[{t:'move',min:1,n:1},{t:'atk',dmg:3,mode:'single'},{t:'move',min:1,n:1}],[{t:'mtok',n:2},{t:'atk',dmg:5,mode:'single'}]);
 ov('Hit & Run',[{t:'atk',dmg:3,cri:1,mode:'single'},{t:'move',min:0,n:2},{t:'atk',dmg:3,cri:1,mode:'single'}],[{t:'atk',dmg:5,cri:1,mode:'single'},{t:'move',min:0,n:4},{t:'atk',dmg:5,cri:1,mode:'single'}]);
-ov('Severe',[{t:'atk',dmg:2,weakCri:2,mode:'single'}],[{t:'atk',dmg:5,weakCri:3,mode:'single'}]);
+ov('Severe',[{t:'atk',dmg:4,weakCri:2,mode:'single'}],[{t:'atk',dmg:7,weakCri:3,mode:'single'}]);
 ov('Steady',[{t:'atk',dmg:3,cri:P=>P.movedTurn?1:0,mode:'single'}],[{t:'atk',dmg:5,cri:P=>P.movedTurn?2:0,mode:'single'}]);
 ov('Seek',[{t:'atk',dmg:4,cri:P=>P.hitTurn.size?1:0,mode:'single'}],[{t:'atk',dmg:5,cri:P=>P.hitTurn.size?2:0,mode:'single'}]);
 ov('Evasive Strike',[{t:'atk',dmg:4,mode:'single'},{t:'move',min:1,n:1},fnOp(async P=>{P.rangeNext=1;})],[{t:'atk',dmg:6,mode:'single'},{t:'move',min:0,n:2},fnOp(async P=>{P.rangeNext=2;})]);
@@ -5562,7 +5562,7 @@ ov('Double Blade',[{t:'atk',dmg:5,mode:'multi',n:2}],[{t:'atk',dmg:8,mode:'multi
 ov('Round Strike',[{t:'atk',dmg:4,mode:'multi',n:2,adj:true}],[{t:'atk',dmg:6,mode:'adjAll'}]);
 ov('Swift Strike',[{t:'atk',dmg:3,times:3,mode:'single',retarget:1}],[{t:'atk',dmg:3,times:5,mode:'single',retarget:1}]);
 ov('Twin Strike',[{t:'atk',dmg:2,times:2,mode:'single'}],[{t:'atk',dmg:2,times:3,mode:'single'}]);
-ov('Mini Bomb',[{t:'atk',dmg:6,mode:'single',proj:true,bomb:3}],[{t:'atk',dmg:9,mode:'single',proj:true,bomb:5}]);
+ov('Mini Bomb',[{t:'atk',dmg:7,mode:'single',proj:true,bomb:3,bombNoSelf:1}],[{t:'atk',dmg:10,mode:'single',proj:true,bomb:5,bombNoSelf:1}]); /* v1.1.80 sheet (light-blue): 7/10, splash no longer hits you */
 ov('Echo Bolt',[{t:'atk',dmg:3,mode:'single',proj:true,echo:2,echoN:1}],[{t:'atk',dmg:4,mode:'single',proj:true,echo:4,echoAll:1}]);
 ov('Chain Lightning',[{t:'atk',dmg:3,mode:'single',proj:true,chain:3,chainN:1,chainR:2}],[{t:'atk',dmg:4,mode:'single',proj:true,chain:4,chainAll:1,chainR:2}]);
 ov('Blink Bolt',[{t:'atk',dmg:4,mode:'single',proj:true,blink:1}],[{t:'atk',dmg:6,mode:'single',proj:true,blink:1}]);
@@ -5625,9 +5625,9 @@ ov('Stoneguard',[{t:'shield',n:2}],[{t:'shield',n:0}]);
 ov('Execution Insight',[{t:'atk',dmg:1,mode:'single',onPerfect:async P=>{P.costMod-=1;}}],[{t:'atk',dmg:1,alt:3,mode:'single',onPerfect:async P=>{P.costMod-=1;await draw(P,1);}}]);
 ov('Execution Sidestep',[{t:'atk',dmg:4,mode:'single',onPerfect:async P=>{P.dodge+=2;}}],[{t:'atk',dmg:5,alt:7,mode:'single',onPerfect:async P=>{P.dodge+=2;}}]);
 ov('Kill Reflux',[{t:'atk',dmg:7,mode:'single',onPerfect:async P=>{P.shard+=5;}}],[{t:'atk',dmg:7,alt:9,mode:'single',onPerfect:async P=>{P.shard+=5;}}]);
-ov('Split Strike',[{t:'atk',dmg:9,mode:'multi',n:2}],[{t:'atk',dmg:11,mode:'multi',n:3}]);
+ov('Split Strike',[{t:'atk',dmg:10,mode:'multi',n:2}],[{t:'atk',dmg:14,mode:'multi',n:3}]);
 ov('Toxin',[{t:'atk',dmg:0,poison:3,mode:'single'}],[{t:'atk',dmg:0,poison:4,mode:'adjAll'}]);
-ov('Poison Dart',[{t:'atk',dmg:0,poison:2,mode:'single',proj:true}]);
+ov('Poison Dart',[{t:'atk',dmg:0,poison:2,mode:'single',proj:true}],[{t:'atk',dmg:0,poison:3,mode:'single',proj:true}]); /* v1.1.80 sheet (light-blue): upgrade 3 poison */
 ov('Last Hope',[{t:'draw',n:3},fnOp(async P=>{P.noDraw=true;})],[{t:'draw',n:3}]);
 ov('Guardian Will',[{t:'shield',n:5}],[{t:'shield',n:7}]);
 ov('Swing',[{t:'atk',dmg:5,mode:'single'}],[{t:'atk',dmg:8,mode:'single'}]);
@@ -5655,7 +5655,7 @@ ov('Hurtle',[{t:'toNearest',hurtle:1}],[{t:'toNearest',hurtle:2}]);
 ov('Open Hard',[{t:'atk',dmg:7,mode:'single',push:1}],[{t:'atk',dmg:10,mode:'single',push:1}]);
 ov('Claymore Slap',[{t:'atk',dmg:6,mode:'single',push:9}],[{t:'atk',dmg:9,mode:'multi',n:2,push:9}]);
 ov('Double Steps',[{t:'nextTwice'}],[{t:'nextTwice'},fnOp(async P=>{P.nextATMinus=(P.nextATMinus||0)+1;})] /* v1.1.78: text says next Attack or Trick */);
-ov('Flurry Blow',[{t:'atk',dmg:4,mode:'single'},{t:'nextTwice',atkOnly:1}],[{t:'atk',dmg:6,mode:'single'},{t:'nextTwice',atkOnly:1}]);
+ov('Flurry Blow',[{t:'atk',dmg:4,mode:'single'},{t:'nextTwice',atkOnly:1}],[{t:'atk',dmg:5,mode:'single'},{t:'nextTwice',atkOnly:1}]);
 ov('Intent of Fire',[{t:'losehp',n:2},{t:'shard',n:1}],[{t:'losehp',n:3},{t:'shard',n:2}]);
 /* v1.1.4 audit fixes */
 ov('Walk',[{t:'move',min:1,n:2}],[{t:'move',min:1,n:3},{t:'shield',n:3}]);
@@ -5736,7 +5736,7 @@ const emptyAdj=P=>DIRS.filter(([dx,dy])=>inB(P.x+dx,P.y+dy)&&!isObs(P.x+dx,P.y+d
 const MARKET_ITEMS=new Set(['Ruby Sigil']);
 const hasItem=(P,n)=>P.items.includes(n)&&(G.phase!=='rest'||MARKET_ITEMS.has(n));
 const buffLv=(P,n)=>{let l=0;for(const c of P.buffs) if(DEF[c.key].name===n) l=Math.max(l,c.up?2:1);return l;};
-const BV_NUMS={"Shifting Defence": [5, 8], "Quick Arm": [1, 2], "Arcane Prosperity": [1, 2], "Eagle": [1, 2], "Toxic Amplify": [3, 3], "Blazing Power": [2, 3], "Precision": [1, 2], "Snipe": [1, 2], "Teasing": [1, 2], "Maniac": [1, 2], "On the Point": [8, 6], "Toxic Catalyst": [1, 2], "Wind Amplifier": [3, 5], "Swift Motion": [1, 1], "Voltaic Style": [2, 3], "Unarmor": [2, 1], "Poison Armor": [3, 4], "Hazardous Ground": [4, 7], "Demon Form": [2, 2], "Ready": [1, 2], "Mana Flow": [1, 2], "Foresight": [1, 2], "Granite Body": [2, 5], "Always Prepared": [1, 3], "Mana Reserve": [2, 2], "Stability": [1, 2], "Save Play": [1, 2], "Overflow": [1, 2]}; /* generated by gen_bv.py: printed buff numbers read through bv() */
+const BV_NUMS={"Shifting Defence": [5, 8], "Quick Arm": [1, 2], "Arcane Prosperity": [1, 2], "Eagle": [1, 2], "Toxic Amplify": [3, 4], "Blazing Power": [2, 3], "Precision": [2, 3], "Snipe": [1, 2], "Teasing": [1, 2], "Maniac": [1, 2], "On the Point": [8, 6], "Toxic Catalyst": [1, 2], "Wind Amplifier": [3, 5], "Swift Motion": [1, 1], "Voltaic Style": [2, 3], "Unarmor": [2, 1], "Poison Armor": [4, 6], "Hazardous Ground": [4, 7], "Demon Form": [2, 2], "Ready": [1, 2], "Mana Flow": [1, 2], "Foresight": [1, 2], "Granite Body": [2, 5], "Always Prepared": [1, 3], "Mana Reserve": [2, 2], "Stability": [1, 2], "Save Play": [1, 2], "Overflow": [1, 2]}; /* generated by gen_bv.py: printed buff numbers read through bv() */
 /* v1.1.29: Mana can't be used on Buff cards (t9u) — buff numbers are always the printed values (BV_NUMS is no longer read by the engine; gen_bv.py still regenerates it) */
 /* v1.1.44 USER RULE: duplicate Buff cards STACK — every copy in play adds its own value (normal copy = a, upgraded copy = b).
    Exceptions (not summed, see DUNGEON_KNOWLEDGE.md 'buff stacking'): thresholds / activation costs / conditions, and activated abilities. */
@@ -5979,8 +5979,8 @@ function atkBonusOn(P,op,ctx,dmg){ return !!(op&&op.isAtk&&(dmg>0||(P&&!P.isMon&
 function hitEst(P,m,dmg,op,ctx){ try{ op=op||{isAtk:true}; ctx=ctx||{}; const weak=!!P&&!P.isMon&&isWeak(P,m,op)&&!op.noWeak&&wpAbility(P,op,ctx); let d=dmg;
   if(atkBonusOn(P,op,ctx,dmg)){ d+=P.str*(op.strMult||1)+(ctx.pow||0)+(P.hero.name==='Jayne Aegisfera'?(P.heroUp?2:1):0)+(hasItem(P,'Archangel\'s Edge')?1:0)+(hasItem(P,'Blood Catalyst')?2:0)+(hasItem(P,'Chainflame Glaive')?4:0)+(P.helmBonus||0)+(ctx.amber||0)+(ctx.kindle||0)+(op.fireball&&hasItem(P,'Flame Orb')?3:0);
     if(op.weakDmg&&weak) d+=op.weakDmg-dmg; if(ctx.double) d*=(ctx.double===true?2:ctx.double); }
-  if(d>0){ if(m.poison) d+=bv(P,'Toxic Amplify',3,3); d+=bv(P,'Blazing Power',2,3); }
-  const ab=(!weak&&m.shield>0&&d>0)?Math.min(m.shield,d):0; return {real:Math.max(0,d-ab),perfect:Math.max(0,d-ab)===m.hp&&m.hp>0,crit:!!((typeof op.cri==='function'?op.cri(P):op.cri)||(weak&&(op.weakCri||bv(P,'Precision',1,2)))||(onEdge(P)&&bv(P,'Snipe',1,2))||(!P.hitTurn||!P.hitTurn.has(m.uid))&&bv(P,'Teasing',1,2))}; }catch(e){ return {real:dmg,perfect:false}; } }
+  if(d>0){ if(m.poison) d+=bv(P,'Toxic Amplify',3,4); d+=bv(P,'Blazing Power',2,3); }
+  const ab=(!weak&&m.shield>0&&d>0)?Math.min(m.shield,d):0; return {real:Math.max(0,d-ab),perfect:Math.max(0,d-ab)===m.hp&&m.hp>0,crit:!!((typeof op.cri==='function'?op.cri(P):op.cri)||(weak&&(op.weakCri||bv(P,'Precision',2,3)))||(onEdge(P)&&bv(P,'Snipe',1,2))||(!P.hitTurn||!P.hitTurn.has(m.uid))&&bv(P,'Teasing',1,2))}; }catch(e){ return {real:dmg,perfect:false}; } }
 async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set()).add(m.uid);
   if(!m||m.hp<=0||m.undying) return 0;
   if(op.isAtk&&ctx&&P&&!P.isMon&&ctx._faceOp!==op){ ctx._faceOp=op; faceToward(P,m); }
@@ -5995,13 +5995,13 @@ async function hitMon(P,m,dmg,op,ctx){ if(ctx&&m) (ctx.hitU=ctx.hitU||new Set())
       + (hasItem(P,'Archangel\'s Edge')?1:0)+(hasItem(P,'Blood Catalyst')?2:0)+(hasItem(P,'Chainflame Glaive')?4:0)+(P.helmBonus||0)+(ctx.amber||0)+(ctx.kindle||0)+(op.fireball&&hasItem(P,'Flame Orb')?3:0);
     if(op.weakDmg&&weak) d+=op.weakDmg-dmg;
     let cri=(typeof op.cri==='function'?op.cri(P):op.cri)||0;
-    if(weak){ cri+=op.weakCri||0; cri+=bv(P,'Precision',1,2); }
+    if(weak){ cri+=op.weakCri||0; cri+=bv(P,'Precision',2,3); }
     if(onEdge(P)) cri+=bv(P,'Snipe',1,2);
     if(!P.hitTurn.has(m.uid)) cri+=bv(P,'Teasing',1,2);
     if(cri) { const c=await rollCri(P,cri); d+=c; log(`🎲 ทอยคริ ${cri} ลูก: +${c}`,'sys'); }
     if(ctx.double) d*=(ctx.double===true?2:ctx.double);
   }
-  if(d>0){ if(m.poison) d+=bv(P,'Toxic Amplify',3,3); d+=bv(P,'Blazing Power',2,3); }
+  if(d>0){ if(m.poison) d+=bv(P,'Toxic Amplify',3,4); d+=bv(P,'Blazing Power',2,3); }
   let absorbed=0;
   if(!weak && m.shield>0 && d>0){ absorbed=Math.min(m.shield,d); m.shield-=absorbed; }
   const real=Math.max(0,d-absorbed); const before=m.hp;
@@ -6536,7 +6536,7 @@ async function doAttack(P,op,ctx){
       if(op.tele){ const cs=DIRS.map(([dx,dy])=>({x:ch.x+dx,y:ch.y+dy})).filter(c=>canStop(P,c.x,c.y)); if(cs.length){ const c=await ask(P,{kind:'cell',prompt:'เทเลพอร์ตไปช่องข้างเป้าหมาย',options:cs,purpose:'teleport',cancel:'ไม่ย้าย'}); if(c) await enterCell(P,c.x,c.y,null);} }
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
         if(ctx.up){ const c2=await ask(P,{kind:'cell',prompt:'ย้ายตัวคุณไปช่องใดก็ได้',options:allCells(c=>canStop(P,c.x,c.y)),purpose:'teleport',cancel:'ไม่ย้าย'}); if(c2) await enterCell(P,c2.x,c2.y,null);} }
-      if(op.bomb){ const cx=ch.x,cy=ch.y; for(const [dx,dy] of DIRS){ const u=unitAt(cx+dx,cy+dy); if(!u) continue; if(G.mons.includes(u)) /* v1.1.77: isMon was never set — splash onto a monster crashed */ await hitMon(P,u,op.bomb,{noWeak:1},{}); else await hurtHero(u,op.bomb,{self:true}); } }
+      if(op.bomb){ const cx=ch.x,cy=ch.y; for(const [dx,dy] of DIRS){ const u=unitAt(cx+dx,cy+dy); if(!u) continue; if(G.mons.includes(u)) /* v1.1.77: isMon was never set — splash onto a monster crashed */ await hitMon(P,u,op.bomb,{noWeak:1},{}); else if(!(op.bombNoSelf&&u===P)) await hurtHero(u,op.bomb,{self:true}); /* v1.1.80: 'each adjacent' — no longer 'including you' */ } }
       if(op.echo){ const adj=allMons().filter(m=>m!==ch&&dist(m,ch)===1); for(const m of (op.echoAll?adj:await pickMons(P,adj,op.echoN||1,`เลือกศัตรูที่อยู่ติดกับเป้าหมาย (${op.echo} ดาเมจ)`,op.echo))) { targets.push(m); await hitMon(P,m,op.echo,{noWeak:1},{}); } }
       if(op.chain){ const near=allMons().filter(m=>m!==ch&&dist(m,ch)<=(op.chainR||2)); for(const m of (op.chainAll?near:await pickMons(P,near,op.chainN||1,`เลือกศัตรูในระยะ ${op.chainR||2} ช่องจากเป้าหมาย (${op.chain} ดาเมจ)`,op.chain))) { targets.push(m); P.perfectNow=false; await hitMon(P,m,op.chain,{noWeak:1,isAtk:true},ctx); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } }
     } }
@@ -6648,7 +6648,7 @@ async function hurtHero(P,dmg,o={}){
   if(real>0) log(`${P.name} เสีย ${real} HP${abs?` (โล่กัน ${abs})`:''}`,'bad'); else if(abs) log(`โล่ของ ${P.name} กันได้ ${abs}`,'sys');
   await loseHp(P,real);
   if(!o.self&&o.src&&o.src.hp>0){
-    if(buffLv(P,'Poison Armor')) o.src.poison+=bv(P,'Poison Armor',3,4);
+    if(buffLv(P,'Poison Armor')) o.src.poison+=bv(P,'Poison Armor',4,6);
     if(hasItem(P,'Shard Rifle')) await hitMon(P,o.src,2,{noWeak:1},{});
     if(P.flameWall) await hitMon(P,o.src,P.flameWall,{noWeak:1},{});
   }
@@ -7232,7 +7232,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.79', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.80', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
