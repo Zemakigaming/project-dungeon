@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.82</title>
+<title>Project Dungeon v1.1.83</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -725,7 +725,7 @@ body.dragging{user-select:none;cursor:grabbing}
 .tok.sprite.mon .sring{box-shadow:0 0 0 2px #e04040cc}.tok.sprite.mon.Elite .sring{box-shadow:0 0 0 2px #c6f,0 0 12px #c6f}.tok.sprite.mon.Boss .sring{box-shadow:0 0 0 3px gold,0 0 18px gold}
 .tok.sprite.hero.act .sring{box-shadow:0 0 0 3px #fff,0 0 16px #fff}
 .tok.sprite img.spr{position:absolute;left:50%;bottom:20%;width:calc(var(--cs) * var(--sw));height:calc(var(--cs) * var(--sh));object-fit:contain;object-position:50% 100%;border:0;border-radius:0;background:none;box-shadow:none!important;padding:0;transform-origin:50% 100%;transform:translateX(-50%) scaleY(var(--upr,1));z-index:calc(10 + var(--row,0));filter:drop-shadow(0 2px 2px #000a);pointer-events:auto}
-/* v1.1.82 USER REQUEST: Argus sprite was too tall and hid the unit on the tile behind it. Same drawn WIDTH as before (contain-fit of a 177×224 sprite in a --sh box = cs*sh*177/224), height cut to 80% (modest vertical squash, bottom-anchored). */
+/* v1.1.83 USER REQUEST: Argus sprite was too tall and hid the unit on the tile behind it. Same drawn WIDTH as before (contain-fit of a 177×224 sprite in a --sh box = cs*sh*177/224), height cut to 80% (modest vertical squash, bottom-anchored). */
 .tok.sprite img.spr[data-sn="Argus"]{object-fit:fill;width:calc(var(--cs) * var(--sh) * 0.7902);height:calc(var(--cs) * var(--sh) * 0.8)}
 .tok.sprite img.spr.flip{transform:translateX(-50%) scaleX(-1) scaleY(var(--upr,1))}
 .tok.sprite.mon.Elite img.spr{filter:drop-shadow(0 0 3px #c6f) drop-shadow(0 2px 2px #000a)}.tok.sprite.mon.Boss img.spr{filter:drop-shadow(0 0 4px gold) drop-shadow(0 2px 2px #000a)}
@@ -896,7 +896,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 #prompt .opts button.optImg{display:inline-flex;align-items:center;gap:8px}#prompt .opts button.optImg img{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a}
 #pdLoad{position:fixed;left:8px;bottom:8px;z-index:9999;background:#1b1f2ae6;color:#ffe9a8;border:1px solid #ffd54a88;border-radius:10px;padding:3px 10px;font:600 12px/18px sans-serif;display:none;pointer-events:none}#pdLoad.show{display:block}
 
-/* v1.1.82 setup start screen */
+/* v1.1.83 setup start screen */
 #setup:has(.opts1:not(.hide)) .top{display:none}
 .opts1{display:block;background:none;padding:2px 0;margin:0;position:relative}
 .opts1.hide{display:none}
@@ -929,7 +929,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 .sDun .sMon{position:absolute;right:6px;top:6px;display:flex;gap:4px;z-index:1}.sDun .sMon img{width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid #ffd54a99}
 @media (max-width:560px){.sBrand img{height:64px}.sTitle{font-size:28px}.sSub{font-size:12px}.sShow{grid-template-columns:repeat(4,1fr);gap:6px}.sShow figcaption{font-size:9px;padding:12px 2px 3px}.sDunRow{grid-template-columns:1fr}.sDun{min-height:96px}.sPanel{padding:12px}.sCard small{font-size:10.5px}#setup:has(.opts1:not(.hide)){padding-top:78px}}
 
-/* v1.1.82 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
+/* v1.1.83 one-screen setup: hero pager (4 per page), class 2, dungeon, settings panel */
 #setup:has(.opts1:not(.hide)){max-width:1340px;padding:10px 14px}
 .sMain{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:14px;align-items:start}
 .sLeft{display:flex;flex-direction:column;gap:10px;min-width:0}
@@ -971,7 +971,7 @@ body.dragging,body.dragging *{touch-action:none!important}
 @media (max-width:1100px){.sMain{grid-template-columns:1fr}.sPanel{display:contents}.sMain{display:flex;flex-direction:column}.sPanel>.sSec{order:-1;background:linear-gradient(180deg,#1d1730ee,#120e1cee);border:1px solid #ffd54a44;border-radius:16px;padding:10px 12px}.sPanel>.sSum,.sPanel>.sGo,.sPanel>.sSecBtns,.sPanel>.sInfo{order:5}.sLeft{display:contents}.sBrand{order:-2}.sPanel>*,.sLeft>*{width:100%;box-sizing:border-box}.sMain{gap:10px}}
 @media (max-width:640px){.sRow2{grid-template-columns:1fr}.sDunRow{grid-template-columns:1fr}.sDunC{height:60px}.sDunC .dn{left:auto;right:70px;bottom:auto;top:50%;transform:translateY(-50%);text-align:right}.sHeroC{height:250px}.sArrow{width:26px;height:56px;font-size:22px}.sClsRow{grid-template-columns:repeat(2,minmax(0,1fr))}.sBrand img{height:48px}.sTitle{font-size:24px}#setup:has(.opts1:not(.hide)){padding:78px 8px 10px}.sSecHead{flex-wrap:wrap}}
 
-/* v1.1.82 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
+/* v1.1.83 tablet paint budget: touch devices get no animated filters/blur layers; while an overlay is open the menu is frozen + hidden */
 html.pdLite .mmRays,html.pdLite .mmFog{display:none}
 html.pdLite .mmAura,html.pdLite .hsAura{filter:none;animation:none;opacity:.45}
 html.pdLite .mmLogo{animation:none;filter:drop-shadow(0 0 8px rgba(255,255,255,.75))}
@@ -994,7 +994,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 .hofState button,.hofMore{font:600 14px Kanit;margin:10px auto 0;display:block;padding:7px 16px;border-radius:10px;border:1px solid #ffd36b88;background:#2a1d10;color:#ffe9b0;cursor:pointer}
 @media (max-height:720px){.hofBox h1{font-size:28px;margin:0}.hofTabs button{padding:3px 12px}}
 
-/* v1.1.82 X picker */
+/* v1.1.83 X picker */
 #prompt .xPick{display:flex;flex-direction:column;align-items:stretch;gap:8px;min-width:min(320px,80vw);margin:8px auto 4px;max-width:420px}
 #prompt .xRow{display:flex;align-items:center;justify-content:center;gap:14px}
 #prompt .xm,#prompt .xp{width:52px;height:52px;border-radius:50%;font:700 28px Kanit,sans-serif;line-height:1;border:2px solid #ffd36b;background:#2a1d10;color:#ffe9b0;cursor:pointer;touch-action:manipulation}
@@ -1008,12 +1008,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.82 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.83 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.82 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.83 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -6110,6 +6110,8 @@ function bestPath(P,dest,opt){ const L=dest.path.length; if(L<2) return null; le
 const inObs=P=>!!(P&&!P.isMon&&G&&G.obs&&isObs(P.x,P.y));
 /* only a real human prompt (UI / online / test hook) may step into an obstacle — bots & auto-driven players never do, so they can never get stuck */
 const obsStepOK=P=>!!(P&&!P.bot&&!SIM.on&&(!HEADLESS||!!globalThis.__askHook)&&obsPass(P)); /* paid step may enter an obstacle ONLY while a pass-obstacle effect is active */
+/* v1.1.83: a hero moved by ANY forced/other movement (monster push/knockback e.g. Ursogar, swap, obstacle bounce) collects a pickup on the tile it lands on, same as walking (enterCell). */
+async function landPickup(P){ if(!P||P.hp<=0||G.over) return; const ti=G.treasures.findIndex(t=>t.x===P.x&&t.y===P.y); if(ti>=0) await takeTreasure(P,G.treasures.splice(ti,1)[0]); }
 const OBS_MSG='อยู่ในสิ่งกีดขวาง: ต้องเดินออกก่อน';
 async function obsBounce(P){ if(!inObs(P)) { P.obsFrom=null; return false; } const fr=P.obsFrom; let to=null;
   if(fr&&canStop(P,fr.x,fr.y)) to=fr;
@@ -6117,7 +6119,7 @@ async function obsBounce(P){ if(!inObs(P)) { P.obsFrom=null; return false; } con
   if(!to) return false; const from={x:P.x,y:P.y}; P.x=to.x; P.y=to.y; P.face=[Math.sign(to.x-from.x),Math.sign(to.y-from.y)]; if(!P.face[0]&&!P.face[1]) P.face=[1,0]; P.obsFrom=null;
   log(`↩ ${P.name} ยังอยู่ในสิ่งกีดขวางตอนจบเทิร์น — เด้งกลับไปช่อง (${to.x+1},${to.y+1})`,'warn');
   if(!HEADLESS&&typeof UI!=='undefined'){ try{ UI.render(); if(UI.obsBounceFx) UI.obsBounceFx(P); }catch(_){ } }
-  return true; }
+  await landPickup(P); return true; }
 /* v1.1.64 goblin trap: a HERO entering a trap tile (walking through, stopping, dash, swap or teleport landing) takes 3 damage each time; shields absorb as usual */
 /* v1.1.64 beast water: a HERO entering water (walk, dash, teleport/swap landing) stops there and cannot move again this turn */
 const isWater=(x,y)=>!!(G.water&&G.water.has(key(x,y)));
@@ -6417,7 +6419,7 @@ async function doOp(P,op,ctx){
       G.obs.delete(key(cx,cy)); G.obs.add(key(nx,ny)); cx=nx; cy=ny; } } return;
   case 'stalk': { const ms=allMons().filter(m=>(!op.adj||dist(m,P)===1)&&(canStop(P,m.x-m.face[0],m.y-m.face[1])||(m.x-m.face[0]===P.x&&m.y-m.face[1]===P.y))); if(!ms.length) return;
     const ch=await ask(P,{kind:'mon',prompt:'เลือกศัตรูที่จะไปยืนด้านหลัง (Weak Point)',options:ms,purpose:'stalk'}); if(ch){ await enterCell(P,ch.x-ch.face[0],ch.y-ch.face[1],ch.face.slice()); } return; }
-  case 'swapAny': { const ms=allMons().filter(m=>dist(m,P)<=op.r); if(!ms.length) return; const ch=await ask(P,{kind:'mon',prompt:'เลือกศัตรูที่จะสลับตำแหน่ง',options:ms,purpose:'swap'}); if(ch){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); waterCheck(P,P.x,P.y); } return; }
+  case 'swapAny': { const ms=allMons().filter(m=>dist(m,P)<=op.r); if(!ms.length) return; const ch=await ask(P,{kind:'mon',prompt:'เลือกศัตรูที่จะสลับตำแหน่ง',options:ms,purpose:'swap'}); if(ch){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); waterCheck(P,P.x,P.y); await landPickup(P); } return; }
   case 'sling': { if(op.stop&&!P.bot){ /* v1.1.44: 'Move any number of spaces in a straight line' — the player picks the stopping cell (was: always the farthest) */
       const opts=[]; for(const d of DIRS){ let x=P.x,y=P.y; const path=[]; while(inB(x+d[0],y+d[1])&&canEnter(P,x+d[0],y+d[1])){ x+=d[0];y+=d[1]; path.push({x,y,d}); if(canStop(P,x,y)) opts.push({x,y,d,steps:path.length,path:path.slice()}); } }
       if(!opts.length){ log(`${P.name} เดินเป็นเส้นตรงไม่ได้ — ทุกทิศถูกขวาง`,'warn'); return; }
@@ -6483,7 +6485,7 @@ async function doAttack(P,op,ctx){
   const optRefund=()=>{ if(!op.optT) return; const left=(ctx.optMax||0)-(ctx.optUsed||0); if(left>0&&op.refund){ P.shard+=left*op.refund; log(`💎 ${P.name} ไม่ได้ใช้ ${left} ครั้ง → +${left*op.refund} ชาร์ด`,'good'); } };
   const proj=isProj(P,op);
   if(proj) hop.proj=true;
-  let targets=[];
+  let targets=[]; const hitAcc=[]; /* v1.1.83: every enemy hit by this Attack across ALL repeats (incl. Mana-added times) */
   const hitOne=async m=>{
     if(!m||m.hp<=0) return 0;
     if(isWeak(P,m,op)) ctx.weak=true;
@@ -6527,12 +6529,12 @@ async function doAttack(P,op,ctx){
       let ch;
       if(i>0&&op.same&&targets[0]&&targets[0].hp>0) ch=targets[0]; /* v1.1.51 OWNER RULE: every hit of a multi-hit card picks its own target (dead targets drop out); only op.same (text says 'same target') keeps it */
       else ch=await ask(P,{kind:'mon',prompt:`เลือกเป้าหมาย (${dmg} ดาเมจ${times>1?` ครั้งที่ ${i+1}/${times}`:''})`,options:t,purpose:'atk',dmg,pkU:t.filter(x=>hitEst(P,x,dmg,Object.assign({},op,{isAtk:true}),ctx).perfect).map(x=>x.uid),wp:!!wpAbility(P,Object.assign({},op,{isAtk:true}),ctx),wpMode:op.mode,cancel:ctx&&ctx.moveAtk&&i===0?'⏭ ข้าม (ไม่โจมตี)':undefined});
-      if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
+      if(!ch){ if(ctx&&ctx.moveAtk&&i===0) log(`⏭ ${P.name} ข้ามการโจมตี`,'sys'); break; } hitAcc.push(...targets); targets=[ch]; if(ctx&&ctx.excl) ctx.excl.add(ch.uid);
       const dpm=dariusOn(P,op,hop)?await dariusPick(P,ch,dmg):[]; /* v1.1.61 Darius: 'hit all enemies in path' */
       if(op.optT) ctx.optUsed=(ctx.optUsed||0)+1;
       await hitOne(ch);
       for(const m of dpm){ if(G.over||m.hp<=0) continue; targets.push(m); P.perfectNow=false; const k0=m.killed; await hitMon(P,m,dmg,hop,ctx); if(m.killed&&m.killed!==k0){ ctx.killed=true; if(op.onKill) await op.onKill(P); if(P.perfectNow){ ctx.perfect=true; if(op.onPerfect) await op.onPerfect(P); } } } /* v1.1.77: Perfect Kill on path hits counts for the card too */
-      if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); } }
+      if(op.swap&&ch.hp>0){ /* v1.1.44: 'may swap' is optional for a human */ let go=true; if(op.swap==='may'&&!P.bot){ const a=await ask(P,{kind:'opt',prompt:`สลับตำแหน่งกับ ${ch.name} ไหม? (may swap)`,options:[{label:'🔄 สลับ',v:true},{label:'ไม่สลับ',v:false}],purpose:'swapMay',forcePrompt:true}); go=!!(a&&a.v); } if(go){ const x=P.x,y=P.y; P.x=ch.x;P.y=ch.y;ch.x=x;ch.y=y; await trapCheck(P,P.x,P.y); await landPickup(P); } }
       if(op.tele){ const cs=DIRS.map(([dx,dy])=>({x:ch.x+dx,y:ch.y+dy})).filter(c=>canStop(P,c.x,c.y)); if(cs.length){ const c=await ask(P,{kind:'cell',prompt:'เทเลพอร์ตไปช่องข้างเป้าหมาย',options:cs,purpose:'teleport',cancel:'ไม่ย้าย'}); if(c) await enterCell(P,c.x,c.y,null);} }
       if(op.blink&&ch.hp>0){ const cs=allCells(c=>canStop(P,c.x,c.y)); const c=await ask(P,{kind:'cell',prompt:'ย้ายเป้าหมายไปช่องใดก็ได้',options:cs,purpose:'blink'}); if(c){ch.x=c.x;ch.y=c.y;}
         if(ctx.up){ const c2=await ask(P,{kind:'cell',prompt:'ย้ายตัวคุณไปช่องใดก็ได้',options:allCells(c=>canStop(P,c.x,c.y)),purpose:'teleport',cancel:'ไม่ย้าย'}); if(c2) await enterCell(P,c2.x,c2.y,null);} }
@@ -6542,8 +6544,9 @@ async function doAttack(P,op,ctx){
     } }
   }
   optRefund();
-  if(P.hero.name==='Laura Emberlyn'){ const hit=[...new Set(targets)]; if(hit.length>1) for(const m of hit) if(m.hp>0) await hitMon(P,m,P.heroUp?5:3,{noWeak:1},{}); }
-  if(hasItem(P,'Resonance Prism')){ P.multiHit=P.multiHit||new Set(); targets.forEach(m=>P.multiHit.add(m.uid)); }
+  const allHit=[...new Set(hitAcc.concat(targets))];
+  if(P.hero.name==='Laura Emberlyn'){ const hit=allHit; if(hit.length>1) for(const m of hit) if(m.hp>0) await hitMon(P,m,P.heroUp?5:3,{noWeak:1},{}); }
+  if(hasItem(P,'Resonance Prism')){ P.multiHit=P.multiHit||new Set(); allHit.forEach(m=>P.multiHit.add(m.uid)); }
 }
 
 /* ---------- monster AI ---------- */
@@ -6628,7 +6631,7 @@ async function monAttack(m,target,dmg,kind){
   if(def.shardLoss) target.shardNext-=def.shardLoss;
   if(def.poison&&res.hit){ target.poison+=def.poison; log(`☠ ${target.name} ติดพิษ ${def.poison}`,'bad'); }
   if(def.discard&&res.hp>0){ for(let i=0;i<def.discard&&target.hand.length;i++) target.discard.push(target.hand.splice(krnd('mdisc'+target.id,target.hand.length),1)[0]); log(`${target.name} ต้องทิ้งการ์ด ${def.discard} ใบ`,'warn'); }
-  if(def.push&&kind==='melee'&&target.hp>0){ const dir=[Math.sign(target.x-m.x),Math.sign(target.y-m.y)]; for(let i=0;i<def.push;i++){ const nx=target.x+dir[0],ny=target.y+dir[1]; if(!inB(nx,ny)||isObs(nx,ny)||unitAt(nx,ny)){ await hurtHero(target,def.push-i,{self:true}); break; } target.x=nx;target.y=ny; }
+  if(def.push&&kind==='melee'&&target.hp>0){ const dir=[Math.sign(target.x-m.x),Math.sign(target.y-m.y)]; for(let i=0;i<def.push;i++){ const nx=target.x+dir[0],ny=target.y+dir[1]; if(!inB(nx,ny)||isObs(nx,ny)||unitAt(nx,ny)){ await hurtHero(target,def.push-i,{self:true}); break; } target.x=nx;target.y=ny; await landPickup(target); }
     if(def.follow){ const fx=target.x-dir[0],fy=target.y-dir[1]; if(inB(fx,fy)&&!unitAt(fx,fy)&&!isObs(fx,fy)){ faceToward(m,{x:fx,y:fy}); m.x=fx;m.y=fy; } } }
   if(def.nisho){ const back=[-m.face[0],-m.face[1]]; for(let i=0;i<2;i++){ const nx=m.x+back[0],ny=m.y+back[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)){m.x=nx;m.y=ny; m.face=back.slice(); /* v1.1.25: walked -> faces its last step */} } }
   if(def.lunge===1){ const nx=m.x-m.face[0],ny=m.y-m.face[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)){ m.face=[-m.face[0],-m.face[1]]; m.x=nx;m.y=ny; /* v1.1.25 */ } }
@@ -7233,7 +7236,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.82', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.83', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
