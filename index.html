@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.90</title>
+<title>Project Dungeon v1.1.91</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -1009,12 +1009,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.90 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.91 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
   <div class="sLeft">
-   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.90 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
+   <div class="sBrand"><img id="sLogo" alt="Project Dungeon"><div><h1 class="sTitle">Project Dungeon</h1><div class="sSub">ตั้งค่าทุกอย่างในหน้านี้ แล้วกดเริ่มผจญภัย</div><div class="sVer">v1.1.91 — Digital Prototype · ศิลป์จาก Synchro Horizon</div></div></div>
    <div class="sSec sHeroSec" id="sHeroSec"><div class="sSecHead"><h3 class="sH">🦸 เลือกฮีโร่</h3><div class="sSeatTabs" id="sSeatTabs"></div><span class="sPageNo" id="sPageNo"></span></div>
     <div class="sPager"><button type="button" class="sArrow l" id="sPrev" aria-label="ฮีโร่ก่อนหน้า">‹</button><div class="sViewport" id="sViewport"><div class="sTrack" id="sHeroTrack"></div></div><button type="button" class="sArrow r" id="sNext" aria-label="ฮีโร่ถัดไป">›</button></div></div>
    <div class="sRow2">
@@ -8139,7 +8139,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.90', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.91', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -8923,6 +8923,11 @@ if(typeof document!=='undefined'){
 
 /* ===== v1.1.10 token tray / Shard / Coin tooltips (rulebook-sourced; flagged if not in rulebook) ===== */
 KW.push({id:'Coin',en:'Coins?',th:'เหรียญ',def:"ได้ 2 Coins เลือกใช้ได้ Heal 5, Trash 1 Card, Upgrade การ์ด 1 ใบ, ซื้อการ์ด Action, ซื้อ Item หรือเอาการ์ด Basic Action Card ของอาชีพเรา 1 ใบ ฟรี (ดูวิธีการใช้ Market Board ได้ที่หน้า…)",enDef:'Currency for the Rest-Phase Market (Heal 5, Trash, Upgrade, buy card/Item). Prices rise each use.',rb:true}); kwBuildRe();
+/* v1.1.91 Ranger keywords */
+KW.push({id:'Companion',en:'Companions?',th:'คู่หู',def:'การ์ด Buff; มีคู่หูได้ครั้งละ 1 ตัวเท่านั้น (ลงตัวใหม่จะแทนที่ตัวเก่า); ทำงานอัตโนมัติเมื่อจบเทิร์นของคุณ',enDef:'Buff; max 1 Companion at a time (new replaces old); acts automatically at the end of your turn.',rb:true},
+ {id:'Mark',en:'Mark(?:ed|s)?',th:'ติด Mark',def:'ศัตรูที่ติด Mark รับความเสียหาย +1 ทุกครั้งที่โดนฮีโร่ตี (การโจมตี, บ่วงดัก, คู่หู); ติดได้ 1 อันต่อศัตรู; หายเมื่อตาย หรือจบห้อง',enDef:'A Marked enemy takes +1 damage from every hero hit (attacks, Snares, Companions). Max 1 per enemy; gone on death or at room end.',rb:true},
+ {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; วางได้สูงสุด 3 อันต่อฮีโร่',enDef:'Placed on an empty space in range; triggers when an enemy enters it (walk or push/pull), then is removed. Heroes never trigger it; not an Attack. Max 3 per hero.',rb:true},
+ {id:'Far',en:'Far',th:'ไกล(?=:)',def:'เป้าหมายอยู่ห่างจากคุณ 2 ช่องขึ้นไป',enDef:'The target is 2+ spaces away from you.',rb:true}); kwBuildRe();
 const TOK_KW={mana:'Mana',shield:'Shield',str:'Strength',pow:'Power Up',dodge:'Dodge',mtok:'Move Token',ptok:'Projectile Token',poison:'Poison',stun:'Stun',shardstack:'Shard',coinstack:'Coin'};
 const TOK_USE={mana:'วิธีใช้: ตอนเล่นการ์ด เลือก +/− ตัวเลขที่พิมพ์บนการ์ด (การ์ดปกติ: ครั้งเดียว ใช้ 2 Mana · การ์ด [Magic]: 1 Mana/จุด ใช้ได้หลาย Mana)',shield:'ทำงานอัตโนมัติเมื่อโดนดาเมจ',str:'ทำงานอัตโนมัติกับการ์ด Attack',pow:'จะใส่ให้การ์ด Attack ใบถัดไปที่เลือกอัตโนมัติ',dodge:'ใช้อัตโนมัติเมื่อโดนโจมตีครั้งถัดไป',mtok:'วิธีใช้: กดเดิน — ระบบใช้ Move Token ก่อน Shard',ptok:'ใช้กับการโจมตีครั้งถัดไป (ระบบถามเมื่อเล่นการ์ด Attack)',poison:'สถานะ — ลดลงเองทุกจบเทิร์น',stun:'สถานะ — ข้ามเทิร์นถัดไป',shardstack:'วิธีใช้: กดปุ่มเดิน (2 Shard/ช่อง)',coinstack:'วิธีใช้: ใช้ในร้านค้าช่วง Rest Phase'};
 (function(){ const fix=h=>String(h).replace(/data-tip=/g,'data-tokinfo=').replace(/ title="[^"]*"/g,'');
