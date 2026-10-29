@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.92</title>
+<title>Project Dungeon v1.1.93</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -1009,7 +1009,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.92 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.93 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
@@ -4568,8 +4568,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Quick Shot",
    "cost": 1,
-   "en": "[Projectile] Deal 2 damage. Far: +1 damage.",
-   "th": "[โพรเจกไทล์] สร้างความเสียหาย 2 หน่วย ไกล: ความเสียหาย +1",
+   "en": "[Projectile] Deal 3 damage. Far: +1 damage.",
+   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย ไกล: ความเสียหาย +1",
    "ucost": 1,
    "uen": "[Projectile] Deal 4 damage. Far: +1 damage.",
    "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย ไกล: ความเสียหาย +1",
@@ -4582,11 +4582,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Hunter's Mark",
    "cost": 1,
-   "en": "Mark 1 enemy anywhere. Move 1.",
-   "th": "ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ เคลื่อนที่ 1 ช่อง",
+   "en": "If no enemy is Marked, Mark 1 enemy anywhere; otherwise gain 1 extra Shield. Move 1. Gain 1 Shield.",
+   "th": "ถ้ายังไม่มีศัตรูตัวใดติด Mark ให้ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ ไม่เช่นนั้นได้รับโล่เพิ่ม 1 โล่ เคลื่อนที่ 1 ช่อง ได้รับ 1 โล่",
    "ucost": 1,
-   "uen": "Mark 1 enemy anywhere. Move 1-2. Gain 2 Shields.",
-   "uth": "ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ เคลื่อนที่ 1–2 ช่อง ได้รับ 2 โล่",
+   "uen": "If no enemy is Marked, Mark 1 enemy anywhere; otherwise gain 2 extra Shields. Move 1-2. Gain 2 Shields.",
+   "uth": "ถ้ายังไม่มีศัตรูตัวใดติด Mark ให้ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ ไม่เช่นนั้นได้รับโล่เพิ่ม 2 โล่ เคลื่อนที่ 1–2 ช่อง ได้รับ 2 โล่",
    "rar": "Starter",
    "type": "trick",
    "cls": "All",
@@ -4597,10 +4597,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "name": "Walk",
    "cost": 1,
    "en": "Move 1-2. If this is the first card you play, it cost 0.",
-   "th": "เคลื่อนที่ 1–2 ช่อง หากนี่เป็นการ์ดใบแรกที่คุณเล่นในเทิร์นนี้ จะใช้ค่าร่าย 0",
+   "th": "เคลื่อนที่ 1–2 ช่อง หากนี่เป็นการ์ดใบแรกที่คุณเล่นในเทิร์นนี้ จะมีค่าร่ายเป็น 0",
    "ucost": 1,
    "uen": "Move 1-3 Gain 3 Shields. If this is the first card you play, it cost 0.",
-   "uth": "เคลื่อนที่ 1–3 ช่อง ได้รับ 3 โล่ หากนี่เป็นการ์ดใบแรกที่คุณเล่นในเทิร์นนี้ จะใช้ค่าร่าย 0",
+   "uth": "เคลื่อนที่ 1–3 ช่อง ได้รับ 3 โล่ หากนี่เป็นการ์ดใบแรกที่คุณเล่นในเทิร์นนี้ จะมีค่าร่ายเป็น 0",
    "rar": "Starter",
    "type": "trick",
    "cls": "All",
@@ -4638,11 +4638,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Pinning Shot",
    "cost": 1,
-   "en": "[Projectile] Deal 3 damage. If the target is next to an obstacle or the Edge, Mark it.",
-   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย หากเป้าหมายอยู่ติดสิ่งกีดขวางหรือขอบกระดาน ให้ติด Mark เป้าหมาย",
+   "en": "[Projectile] Deal 3 damage. If the target is next to an obstacle or the Edge, +2 damage.",
+   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย หากเป้าหมายอยู่ติดสิ่งกีดขวางหรือขอบกระดาน ความเสียหาย +2",
    "ucost": 1,
-   "uen": "[Projectile] Deal 5 damage. If the target is next to an obstacle or the Edge, Mark it.",
-   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 5 หน่วย หากเป้าหมายอยู่ติดสิ่งกีดขวางหรือขอบกระดาน ให้ติด Mark เป้าหมาย",
+   "uen": "[Projectile] Deal 5 damage. If the target is next to an obstacle or the Edge, +3 damage.",
+   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 5 หน่วย หากเป้าหมายอยู่ติดสิ่งกีดขวางหรือขอบกระดาน ความเสียหาย +3",
    "rar": "Common",
    "type": "attack",
    "cls": "Ranger",
@@ -4652,11 +4652,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Retreating Shot",
    "cost": 1,
-   "en": "Deal 2 damage to an adjacent enemy and Mark it. Then Move 2.",
-   "th": "สร้างความเสียหาย 2 หน่วยแก่ศัตรูที่อยู่ติดกับคุณ และติด Mark ศัตรูตัวนั้น จากนั้นเคลื่อนที่ 2 ช่อง",
+   "en": "Deal 4 damage to an adjacent enemy. If it is Marked: remove the Mark, +3 damage and draw 1 card. Then Move 2.",
+   "th": "สร้างความเสียหาย 4 หน่วยแก่ศัตรูที่อยู่ติดกับคุณ หากศัตรูตัวนั้นติด Mark: ลบ Mark ความเสียหาย +3 และจั่วการ์ด 1 ใบ จากนั้นเคลื่อนที่ 2 ช่อง",
    "ucost": 1,
-   "uen": "Deal 4 damage to an adjacent enemy and Mark it. Then Move 3.",
-   "uth": "สร้างความเสียหาย 4 หน่วยแก่ศัตรูที่อยู่ติดกับคุณ และติด Mark ศัตรูตัวนั้น จากนั้นเคลื่อนที่ 3 ช่อง",
+   "uen": "Deal 6 damage to an adjacent enemy. If it is Marked: remove the Mark, +4 damage and draw 1 card. Then Move 3.",
+   "uth": "สร้างความเสียหาย 6 หน่วยแก่ศัตรูที่อยู่ติดกับคุณ หากศัตรูตัวนั้นติด Mark: ลบ Mark ความเสียหาย +4 และจั่วการ์ด 1 ใบ จากนั้นเคลื่อนที่ 3 ช่อง",
    "rar": "Common",
    "type": "attack",
    "cls": "Ranger",
@@ -4664,13 +4664,13 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "elem": ""
   },
   {
-   "name": "Venom Snare",
+   "name": "Whip Snare",
    "cost": 1,
-   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it gets 3 Poison.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาติดพิษ 3 หน่วย",
+   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it takes 2 damage and is Pushed 2 spaces away from you.",
+   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 2 หน่วย และถูกผลักออกห่างจากคุณ 2 ช่อง",
    "ucost": 1,
-   "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it gets 5 Poison and is Marked.",
-   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาติดพิษ 5 หน่วย และติด Mark",
+   "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it takes 4 damage and is Pushed 3 spaces away from you.",
+   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 4 หน่วย และถูกผลักออกห่างจากคุณ 3 ช่อง",
    "rar": "Common",
    "type": "trick",
    "cls": "Ranger",
@@ -4778,11 +4778,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Spike Snare",
    "cost": 1,
-   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it takes 5 damage.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 5 หน่วย",
+   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it takes 6 damage.",
+   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 6 หน่วย",
    "ucost": 1,
-   "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it takes 7 damage and is Marked.",
-   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 7 หน่วย และติด Mark",
+   "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it takes 10 damage.",
+   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 10 หน่วย",
    "rar": "Common",
    "type": "trick",
    "cls": "Ranger",
@@ -4792,8 +4792,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Net Snare",
    "cost": 1,
-   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it stops moving there and is Marked.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาจะหยุดเดินทันทีที่ช่องนั้น และติด Mark",
+   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it stops moving there and is Marked. Draw 1 card.",
+   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาจะหยุดเดินทันทีที่ช่องนั้น และติด Mark จั่วการ์ด 1 ใบ",
    "ucost": 1,
    "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it stops moving there, is Marked and is Stunned.",
    "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาจะหยุดเดินทันทีที่ช่องนั้น ติด Mark และติดสถานะสตัน",
@@ -4834,11 +4834,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Calm Breath",
    "cost": 1,
-   "en": "Your next [Projectile] Attack this turn deals +2 damage to a Marked target; otherwise it Marks the target. Retain.",
-   "th": "การโจมตี [โพรเจกไทล์] ครั้งถัดไปในเทิร์นนี้สร้างความเสียหาย +2 หน่วย หากเป้าหมายติด Mark หากเป้าหมายไม่ติด Mark ให้ติด Mark เป้าหมายแทน สามารถเก็บการ์ดใบนี้ไว้ได้",
+   "en": "Your next [Projectile] Attack this turn deals +3 damage to a Marked target; otherwise it Marks the target. Retain.",
+   "th": "การโจมตี [โพรเจกไทล์] ครั้งถัดไปในเทิร์นนี้สร้างความเสียหาย +3 หน่วย หากเป้าหมายติด Mark หากเป้าหมายไม่ติด Mark ให้ติด Mark เป้าหมายแทน สามารถเก็บการ์ดใบนี้ไว้ได้",
    "ucost": 1,
-   "uen": "Your next [Projectile] Attack this turn deals +3 damage to a Marked target; otherwise it deals +1 damage and Marks the target. Retain.",
-   "uth": "การโจมตี [โพรเจกไทล์] ครั้งถัดไปในเทิร์นนี้สร้างความเสียหาย +3 หน่วย หากเป้าหมายติด Mark หากเป้าหมายไม่ติด Mark ให้สร้างความเสียหาย +1 หน่วย และติด Mark เป้าหมายแทน สามารถเก็บการ์ดใบนี้ไว้ได้",
+   "uen": "Your next [Projectile] Attack this turn deals +4 damage to a Marked target; otherwise it deals +1 damage and Marks the target. Retain.",
+   "uth": "การโจมตี [โพรเจกไทล์] ครั้งถัดไปในเทิร์นนี้สร้างความเสียหาย +4 หน่วย หากเป้าหมายติด Mark หากเป้าหมายไม่ติด Mark ให้สร้างความเสียหาย +1 หน่วย และติด Mark เป้าหมายแทน สามารถเก็บการ์ดใบนี้ไว้ได้",
    "rar": "Uncommon",
    "type": "trick",
    "cls": "Ranger",
@@ -4875,10 +4875,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Skyward Arc",
-   "cost": 2,
+   "cost": 1,
    "en": "Your Attacks are not blocked by obstacles: [Projectile] and straight-line Attacks pass through obstacles and Ice Pillars (enemies still block / get hit as printed).",
    "th": "การโจมตีของคุณไม่ถูกสิ่งกีดขวางบัง: การโจมตี [โพรเจกไทล์] และการโจมตีแนวเส้นตรงผ่านสิ่งกีดขวางและเสาน้ำแข็งได้ (ศัตรูยังบัง/โดนโจมตีตามที่การ์ดระบุ)",
-   "ucost": 1,
+   "ucost": 0,
    "uen": "Your Attacks are not blocked by obstacles: [Projectile] and straight-line Attacks pass through obstacles and Ice Pillars (enemies still block / get hit as printed).",
    "uth": "การโจมตีของคุณไม่ถูกสิ่งกีดขวางบัง: การโจมตี [โพรเจกไทล์] และการโจมตีแนวเส้นตรงผ่านสิ่งกีดขวางและเสาน้ำแข็งได้ (ศัตรูยังบัง/โดนโจมตีตามที่การ์ดระบุ)",
    "rar": "Rare",
@@ -4946,11 +4946,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Barbed Arrow",
    "cost": 1,
-   "en": "[Projectile] Deal 3 damage. Far: the target also gets 2 Poison.",
-   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย ไกล: เป้าหมายติดพิษ 2 หน่วยด้วย",
+   "en": "[Projectile] Deal 3 damage. Far: +2 damage.",
+   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย ไกล: ความเสียหาย +2",
    "ucost": 1,
-   "uen": "[Projectile] Deal 4 damage. Far: the target also gets 4 Poison.",
-   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย ไกล: เป้าหมายติดพิษ 4 หน่วยด้วย",
+   "uen": "[Projectile] Deal 4 damage. Far: +3 damage.",
+   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย ไกล: ความเสียหาย +3",
    "rar": "Common",
    "type": "attack",
    "cls": "Ranger",
@@ -5030,11 +5030,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Fade Back",
    "cost": 1,
-   "en": "Move 3, then Mark 1 enemy within 3 spaces of you.",
-   "th": "เคลื่อนที่ 3 ช่อง จากนั้นติด Mark ศัตรู 1 ตัวในระยะ 3 ช่องจากคุณ",
+   "en": "Move 3. Gain 3 Shields. You may remove the Mark from 1 enemy within 4 spaces of you: if you do, gain 3 more Shields and draw 1 card.",
+   "th": "เคลื่อนที่ 3 ช่อง ได้รับ 3 โล่ คุณสามารถลบ Mark ของศัตรู 1 ตัวในระยะ 4 ช่องจากคุณได้: หากทำ ได้รับโล่เพิ่ม 3 โล่ และจั่วการ์ด 1 ใบ",
    "ucost": 1,
-   "uen": "Move 4, then Mark 1 enemy within 4 spaces of you. Draw 1 card.",
-   "uth": "เคลื่อนที่ 4 ช่อง จากนั้นติด Mark ศัตรู 1 ตัวในระยะ 4 ช่องจากคุณ จั่วการ์ด 1 ใบ",
+   "uen": "Move 4. Gain 4 Shields. You may remove the Mark from 1 enemy within 5 spaces of you: if you do, gain 4 more Shields and draw 1 card.",
+   "uth": "เคลื่อนที่ 4 ช่อง ได้รับ 4 โล่ คุณสามารถลบ Mark ของศัตรู 1 ตัวในระยะ 5 ช่องจากคุณได้: หากทำ ได้รับโล่เพิ่ม 4 โล่ และจั่วการ์ด 1 ใบ",
    "rar": "Common",
    "type": "trick",
    "cls": "Ranger",
@@ -5044,11 +5044,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Caltrops",
    "cost": 1,
-   "en": "Place 2 Snares within 2 spaces of you: the first enemy to enter each takes 2 damage.",
-   "th": "วางบ่วงดัก 2 อันในระยะ 2 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 2 หน่วย",
+   "en": "Place 2 Snares within 2 spaces of you: the first enemy to enter each takes 3 damage.",
+   "th": "วางบ่วงดัก 2 อันในระยะ 2 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 3 หน่วย",
    "ucost": 1,
-   "uen": "Place 2 Snares within 3 spaces of you: the first enemy to enter each takes 4 damage.",
-   "uth": "วางบ่วงดัก 2 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 4 หน่วย",
+   "uen": "Place 2 Snares within 3 spaces of you: the first enemy to enter each takes 5 damage.",
+   "uth": "วางบ่วงดัก 2 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 5 หน่วย",
    "rar": "Common",
    "type": "trick",
    "cls": "Ranger",
@@ -5057,12 +5057,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Bear Trap",
-   "cost": 2,
-   "en": "Place a Snare within 2 spaces of you: the first enemy to enter it takes 8 damage and is Marked.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 8 หน่วย และติด Mark",
-   "ucost": 2,
-   "uen": "Place a Snare within 3 spaces of you: the first enemy to enter it takes 12 damage and is Marked.",
-   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 12 หน่วย และติด Mark",
+   "cost": 1,
+   "en": "Place a Snare within 2 spaces of you: the first enemy to enter it takes 10 damage.",
+   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 10 หน่วย",
+   "ucost": 1,
+   "uen": "Place a Snare within 3 spaces of you: the first enemy to enter it takes 14 damage.",
+   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 14 หน่วย",
    "rar": "Uncommon",
    "type": "trick",
    "cls": "Ranger",
@@ -5085,12 +5085,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Trapline",
-   "cost": 2,
+   "cost": 1,
    "en": "Place 3 Snares within 3 spaces of you: the first enemy to enter each takes 4 damage. Exhaust.",
    "th": "วางบ่วงดัก 3 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 4 หน่วย [Exhaust]",
-   "ucost": 2,
-   "uen": "Place 3 Snares within 4 spaces of you: the first enemy to enter each takes 6 damage and is Marked. Exhaust.",
-   "uth": "วางบ่วงดัก 3 อันในระยะ 4 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 6 หน่วย และติด Mark [Exhaust]",
+   "ucost": 1,
+   "uen": "Place 3 Snares within 4 spaces of you: the first enemy to enter each takes 7 damage. Exhaust.",
+   "uth": "วางบ่วงดัก 3 อันในระยะ 4 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 7 หน่วย [Exhaust]",
    "rar": "Rare",
    "type": "trick",
    "cls": "Ranger",
@@ -5099,7 +5099,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Gather the Arrows",
-   "cost": 1,
+   "cost": 0,
    "en": "At the end of your turn, shuffle the cards left in your hand into your draw pile instead of discarding them.",
    "th": "เมื่อจบเทิร์น นำการ์ดที่เหลืออยู่ในมือสับกลับเข้ากองจั่ว แทนการทิ้ง",
    "ucost": 0,
@@ -5113,10 +5113,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Owl Companion",
-   "cost": 2,
+   "cost": 1,
    "en": "[Companion] (HP 4 · Move 3, flying) Place the Owl on an empty space adjacent to you (you choose which one). At the end of your turn, you may move the Owl up to 3 spaces (flying; you choose where), then you choose 1 enemy within 4 spaces of it that is not Marked: Mark it.",
    "th": "[คู่หู] (HP 4 · เดิน 3 บินข้ามได้) วางนกฮูกบนช่องว่างที่ติดกับคุณ (คุณเลือกช่องเอง) เมื่อจบเทิร์นของคุณ คุณสามารถบังคับนกฮูกเดินได้สูงสุด 3 ช่อง (บินข้ามได้ คุณเลือกเองว่าไปไหน) จากนั้นคุณเลือกศัตรู 1 ตัวในระยะ 4 ช่องจากมันที่ยังไม่ติด Mark: ติด Mark ศัตรูตัวนั้น",
-   "ucost": 2,
+   "ucost": 1,
    "uen": "[Companion] (HP 6 · Move 3, flying) Place the Owl on an empty space adjacent to you (you choose which one). At the end of your turn, you may move the Owl up to 3 spaces (flying; you choose where), then you choose up to 2 enemies within 4 spaces of it that are not Marked: Mark them.",
    "uth": "[คู่หู] (HP 6 · เดิน 3 บินข้ามได้) วางนกฮูกบนช่องว่างที่ติดกับคุณ (คุณเลือกช่องเอง) เมื่อจบเทิร์นของคุณ คุณสามารถบังคับนกฮูกเดินได้สูงสุด 3 ช่อง (บินข้ามได้ คุณเลือกเองว่าไปไหน) จากนั้นคุณเลือกศัตรูสูงสุด 2 ตัวในระยะ 4 ช่องจากมันที่ยังไม่ติด Mark: ติด Mark ศัตรูเหล่านั้น",
    "rar": "Uncommon",
@@ -5127,7 +5127,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Trapmaster",
-   "cost": 1,
+   "cost": 0,
    "en": "Your Snares can be placed up to 2 spaces farther, and you may have up to 5 Snares on the board.",
    "th": "คุณวางบ่วงดักได้ไกลขึ้นอีก 2 ช่อง และมีบ่วงดักบนกระดานได้สูงสุด 5 อัน",
    "ucost": 0,
@@ -5155,7 +5155,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Apex Predator",
-   "cost": 2,
+   "cost": 1,
    "en": "At the start of each of your turns, Mark 1 enemy anywhere.",
    "th": "เมื่อเริ่มเทิร์นของคุณทุกเทิร์น ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้",
    "ucost": 1,
@@ -6389,11 +6389,11 @@ async function rgTrigger(s,m,extra,keepOverride){ const P=rgOwner(s); if(!P||!m|
   if(!keep&&i>=0) G.snares.splice(i,1);
   log(`🪢 บ่วงดักของ ${P.name} ทำงานใส่ ${m.name}`,'hit'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.floatAt) try{ UI.floatAt(m,'🪢','bump'); }catch(_){}
   const d=rgSnareDmg(P,s)+(extra||0); if(d>0) await hitMon(P,m,d,{markOk:1,noWeak:1,snare:1},{});
-  if(m.hp>0&&!m.undying){ if(s.poison){ m.poison+=s.poison; log(`☠ ${m.name} ติดพิษ ${s.poison}`,'sys'); } if(s.stun){ m.stun=1; log(`💫 ${m.name} ติดสตัน (Net Snare+)`,'sys'); }
+  if(m.hp>0&&!m.undying){ if(s.poison){ m.poison+=s.poison; log(`☠ ${m.name} ติดพิษ ${s.poison}`,'sys'); } if(s.push){ await pushUnit(P,m,rgDirAway(m,P),s.push); } if(s.stun){ m.stun=1; log(`💫 ${m.name} ติดสตัน (Net Snare+)`,'sys'); }
     if(s.mark||(P.hero.name==='Rhodan Forgehart'&&P.heroUp)) await rgMark(P,m,'บ่วงดัก'); }
   if(hasItem(P,'Goldbriar Buckler')){ for(const o of rgLive().filter(o=>o!==m&&dist(o,s)<=2&&dist(o,s)>0)){ const dx=s.x-o.x,dy=s.y-o.y; const dir=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; const nx=o.x+dir[0],ny=o.y+dir[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)){ o.x=nx;o.y=ny; log(`Goldbriar Buckler: ดึง ${o.name} เข้าหาบ่วง 1 ช่อง`,'sys'); const s2=rgSnareAt(nx,ny); if(s2&&s2!==s) await rgTrigger(s2,o,0); } } }
   return !!s.net; }
-async function rgSnareStep(m){ if(!m||!m.isMon||!G.snares||!G.snares.length||m.hp<=0) return false; const s=rgSnareAt(m.x,m.y); if(!s) return false; const net=s.net; await rgTrigger(s,m,0); if(net) log(`🕸 ${m.name} ติดตาข่าย หยุดเดิน`,'mon'); return !!net||m.hp<=0; }
+async function rgSnareStep(m){ if(!m||!m.isMon||!G.snares||!G.snares.length||m.hp<=0) return false; const s=rgSnareAt(m.x,m.y); if(!s) return false; const net=s.net,psh=s.push; await rgTrigger(s,m,0); if(net) log(`🕸 ${m.name} ติดตาข่าย หยุดเดิน`,'mon'); return !!net||!!psh||m.hp<=0; }
 /* damage-side hooks called from hitMon / hitEst (est=true: pure preview, nothing consumed) */
 function rgBonus(P,m,d,op,ctx,est){ if(!P||P.isMon||!m) return 0; let b=0;
   const atk=!!op.isAtk, proj=atk&&isProj(P,op);
@@ -6478,6 +6478,7 @@ function rgBotChoose(P,req){ const o=req.options; if(!o||!o.length) return null;
   const best=(arr,f)=>arr.reduce((a,b)=>f(b)>f(a)?b:a);
   switch(req.purpose){
     case 'rgMark': return best(o,m=>(singleTargets(P,{t:'atk',mode:'single',proj:true}).includes(m)?6:0)+m.atk*0.8+Math.min(m.hp,25)/4+(m.lv==='Boss'?4:m.lv==='Elite'?2:0)-dist(m,P)*0.2);
+    case 'rgUnmark': return best(o,m=>-m.hp);
     case 'rgHit': { const d=req.dmg||0; const k=o.filter(m=>m.hp+m.shield<=d+1); if(k.length) return best(k,m=>m.atk); return best(o,m=>m.atk*2-m.hp/5); }
     case 'rgSnare': case 'rgMoveTo': { if(!ms.length) return o[0]; const sc=c=>{ let s=0; for(const m of ms){ const det=dist(m,c)+dist(c,P)-dist(m,P); s+=Math.max(0,4-det)*(m.def&&m.def.ak==='melee'?1.5:1)-dist(m,c)*0.4; } return s-dist(c,P)*0.2+(dist(c,P)===1?1:0); }; return best(o,sc); }
     case 'rgSnarePick': return best(o,s=>ms.filter(m=>dist(m,s)<=1).length*3-(req.forMove?ms.filter(m=>dist(m,s)<=3).length:0));
@@ -6496,18 +6497,23 @@ const rgEvMark=n=>P=>{ const um=rgLive().filter(m=>!m.mark).length; if(!um) retu
 const rgMarkOp=FAC((n,prompt,pool)=>({t:'fn',f:async P=>{ await rgPickMark(P,pool?()=>pool(P):rgLive,n,prompt,true); },ev:rgEvMark(n)}));
 const rgFarCnt=P=>rgLive().filter(m=>rgFar(P,m)).length;
 const rgPA=(dmg,x)=>Object.assign({t:'atk',dmg,mode:'single',proj:true},x||{});
+/* v1.1.93 pkg D helpers */
+const rgPdNear=m=>DIRS.some(([dx,dy])=>!inB(m.x+dx,m.y+dy)||isObs(m.x+dx,m.y+dy));
+const rgHM=FAC(sh=>({t:'fn',f:async P=>{ if(rgLive().some(m=>m.mark)){ log(`Hunter's Mark: มีศัตรูติด Mark อยู่แล้ว → ได้ Shield เพิ่ม ${sh}`,'sys'); await gainShield(P,sh); } else await rgPickMark(P,rgLive,1,"Hunter's Mark: ติด Mark ศัตรู 1 ตัว (ที่ใดก็ได้)",true); },ev:P=>rgLive().some(m=>m.mark)?sh*0.8:rgEvMark(1)(P)}));
+const rgRS=(d,b)=>({t:'atk',dmg:d,mode:'single',adj:true,dmgFor:(P,m,c,x)=>m.mark?x+b:x,after:async(P,m,ctx)=>{ if(!ctx.wasMarked||ctx._rs) return; ctx._rs=true; if(m.hp>0&&m.mark){ m.mark=0; log(`Retreating Shot: ลบ Mark ของ ${m.name}`,'sys'); } await draw(P,1); }});
+const rgFade=FAC((r,sh)=>({t:'fn',f:async P=>{ const ms=rgLive().filter(m=>m.mark&&dist(m,P)<=r); if(!ms.length) return; const t=await ask(P,{kind:'mon',prompt:`Fade Back: ลบ Mark ศัตรู 1 ตัวในระยะ ${r} เพื่อได้ Shield +${sh} และจั่ว 1 ใบ?`,options:ms,purpose:'rgUnmark',cancel:'ไม่ลบ'}); if(!t) return; t.mark=0; log(`Fade Back: ลบ Mark ของ ${t.name}`,'sys'); await gainShield(P,sh); await draw(P,1); },ev:P=>rgLive().some(m=>m.mark&&dist(m,P)<=r)?sh+1:0}));
 /* ---- cards ---- */
-ov('Quick Shot|RS',[rgPA(2,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})],[rgPA(4,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})]);
-ov("Hunter's Mark|RS",[rgMarkOp(1,"Hunter's Mark: ติด Mark ศัตรู 1 ตัว (ที่ใดก็ได้)"),{t:'move',min:0,n:1}],[rgMarkOp(1,"Hunter's Mark+: ติด Mark ศัตรู 1 ตัว"),{t:'move',min:1,n:2},{t:'shield',n:2}]);
+ov('Quick Shot|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})],[rgPA(4,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})]);
+ov("Hunter's Mark|RS",[rgHM(1),{t:'move',min:0,n:1},{t:'shield',n:1}],[rgHM(2),{t:'move',min:1,n:2},{t:'shield',n:2}]);
 const rgDrawIfMk={after:async(P,m,ctx)=>{ if(ctx.wasMarked&&!ctx._bull){ ctx._bull=true; await draw(P,1); log('Bullseye: เป้าหมายติด Mark → จั่ว 1','sys'); } }};
 ov('Bullseye|RS',[rgPA(5,Object.assign({dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)},rgDrawIfMk))],[rgPA(8,Object.assign({dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)},rgDrawIfMk))]);
 const rgFollow=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const mk=rgLive().filter(m=>m.mark); if(!mk.length) return; const t=await ask(P,{kind:'mon',prompt:`Follow-Up Arrow: ${n} ดาเมจใส่ศัตรูติด Mark`,options:mk,purpose:'rgHit',dmg:n}); if(t) await hitMon(P,t,n,{isAtk:true,noWeak:1},ctx||{}); },ev:P=>rgLive().some(m=>m.mark)?n+1:0}));
 ov('Follow-Up Arrow|RS',[rgPA(3),rgFollow(2)],[rgPA(5),rgFollow(3)]);
 const rgPinMk={after:async(P,m)=>{ if(m.hp>0&&DIRS.some(([dx,dy])=>!inB(m.x+dx,m.y+dy)||isObs(m.x+dx,m.y+dy))) await rgMark(P,m,'ติดสิ่งกีดขวาง/ขอบ'); }};
-ov('Pinning Shot|RS',[rgPA(3,rgPinMk)],[rgPA(5,rgPinMk)]);
+ov('Pinning Shot|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>rgPdNear(m)?d+2:d})],[rgPA(5,{dmgFor:(P,m,c,d)=>rgPdNear(m)?d+3:d})]);
 const rgMkT={after:async(P,m)=>{ if(m.hp>0) await rgMark(P,m); }};
-ov('Retreating Shot|RS',[Object.assign({t:'atk',dmg:2,mode:'single',adj:true},rgMkT),{t:'move',min:0,n:2}],[Object.assign({t:'atk',dmg:4,mode:'single',adj:true},rgMkT),{t:'move',min:0,n:3}]);
-ov('Venom Snare|RS',[rgSnareOp(1,2,{poison:3})],[rgSnareOp(1,3,{poison:5,mark:1})]);
+ov('Retreating Shot|RS',[rgRS(4,3),{t:'move',min:0,n:2}],[rgRS(6,4),{t:'move',min:0,n:3}]);
+ov('Whip Snare|RS',[rgSnareOp(1,2,{dmg:2,push:2})],[rgSnareOp(1,3,{dmg:4,push:3})]);
 const rgLong=(a,b,c)=>(P,m)=>{ const d=dist(m,P); return d>=4?c:d>=2?b:a; };
 ov('Long Shot|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>{ const x=dist(m,P); return x>=4?6:x>=2?4:d; }})],[rgPA(5,{dmgFor:(P,m,c,d)=>{ const x=dist(m,P); return x>=4?9:x>=2?6:d; }})]);
 const rgPierce=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const lines=DIRS.map(([dx,dy],i)=>{ const ms=[]; let x=P.x+dx,y=P.y+dy; while(inB(x,y)&&!(isObs(x,y)&&!arcPass(P))){ const m=monAt(x,y); if(m&&m.hp>0) ms.push(m); x+=dx;y+=dy; } return {label:['⬆ ขึ้น','➡ ขวา','⬇ ลง','⬅ ซ้าย'][i]+` (${ms.length} ตัว)`,v:i,n:ms.length,ms,dir:[dx,dy]}; }).filter(l=>l.n);
@@ -6519,8 +6525,8 @@ ov('Spirit Arrow|RS',[rgPA(3,rgMkT)],[rgPA(4,{after:async(P,m)=>{ const pos={x:m
 ov('Heartseeker|RS',[rgPA(6,{consume:true,dmgFor:(P,m,c,d)=>m.mark?12:d})],[rgPA(8,{consume:true,dmgFor:(P,m,c,d)=>m.mark?16:d})]);
 ov('Rain of Arrows|RS',[Object.assign({t:'atk',dmg:3,mode:'all',tf:rgFar},rgMkT)],[Object.assign({t:'atk',dmg:5,mode:'all',tf:rgFar},rgMkT)]);
 ov('Tracking|RS',[rgMarkOp(1,'Tracking: ติด Mark ศัตรู 1 ตัว'),{t:'draw',n:1}],[rgMarkOp(2,'Tracking+: ติด Mark ศัตรูสูงสุด 2 ตัว'),{t:'draw',n:1}]);
-ov('Spike Snare|RS',[rgSnareOp(1,2,{dmg:5})],[rgSnareOp(1,3,{dmg:7,mark:1})]);
-ov('Net Snare|RS',[rgSnareOp(1,2,{net:1,mark:1})],[rgSnareOp(1,3,{net:1,mark:1,stun:1})]);
+ov('Spike Snare|RS',[rgSnareOp(1,2,{dmg:6})],[rgSnareOp(1,3,{dmg:10})]);
+ov('Net Snare|RS',[rgSnareOp(1,2,{net:1,mark:1}),{t:'draw',n:1}],[rgSnareOp(1,3,{net:1,mark:1,stun:1})]);
 const rgLure=FAC((n,r)=>({t:'fn',f:async P=>{ for(let i=0;i<n;i++){ const pool=rgLive().filter(m=>dist(m,P)<=r&&!(P._lure&&P._lure.has(m.uid))); if(!pool.length) break;
     const m=await ask(P,{kind:'mon',prompt:`Lure Whistle${n>1?'+':''}: หันหลังศัตรูให้คุณ + ติด Mark${n>1?` (${i+1}/${n})`:''}`,options:pool,purpose:'rgMark',cancel:i>0?'ไม่เลือก':undefined}); if(!m) break; (P._lure=P._lure||new Set()).add(m.uid);
     m.face=rgDirAway(m,P); log(`📯 ${m.name} หันหลังให้ ${P.name}`,'sys'); await rgMark(P,m); } P._lure=null; },ev:P=>rgLive().some(m=>dist(m,P)<=r)?3+(P.hand.some(h=>h.key!=='EXH'&&/Weak Point/.test(DEF[h.key].en||''))?2:0):-1}));
@@ -6528,14 +6534,14 @@ ov('Lure Whistle|RS',[rgLure(1,3)],[rgLure(2,99)]);
 const rgCamo=FAC(k=>({t:'fn',f:async P=>{ const n=Math.min(3,rgFarCnt(P)); if(n) await gainShield(P,n*k); },ev:P=>{ const th=BOT.threat(P); const n=Math.min(3,rgFarCnt(P))*k; return Math.min(n,th)*1.1+Math.max(0,n-th)*0.1; }}));
 ov('Camouflage|RS',[rgCamo(2)],[rgCamo(3)]);
 const rgCalm=FAC((n,m)=>({t:'fn',f:async P=>{ P.calm={n,m}; log(`Calm Breath: การโจมตี [Projectile] ครั้งถัดไป +${m} ดาเมจถ้าเป้าติด Mark; ไม่ติด Mark: ${n?'+'+n+' ดาเมจ และ ':''}ติด Mark เป้าหมาย`,'sys'); },ev:P=>P.hand.some(h=>h.key!=='EXH'&&rgIsProjCard(P,h))?2.5:-1}));
-ov('Calm Breath|RS',[rgCalm(0,2)],[rgCalm(1,3)]);
+ov('Calm Breath|RS',[rgCalm(0,3)],[rgCalm(1,4)]);
 function rgIsProjCard(P,h){ const d=DEF[h.key]; if(!d||d.type!=='attack') return false; const ops=h.up?d.opsU:d.opsN; return ops.some(o=>o.t==='atk'&&isProj(P,o)); }
 const rgNock=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const pool=P.hand.filter(h=>h.key!=='EXH'&&h!==(ctx&&ctx.card)&&rgIsProjCard(P,h)); if(pool.length){ const ch=await ask(P,{kind:'card',prompt:`Nock & Draw: Power Up ${n} ให้การ์ดโจมตี [Projectile] ในมือ`,options:pool,purpose:'power'}); if(ch){ ch.pow=(ch.pow||0)+n; log(`${DEF[ch.key].name} ได้ Power +${n}`,'sys'); } } else log('Nock & Draw: ไม่มีการ์ดโจมตี [Projectile] ในมือ','warn'); },ev:P=>P.hand.some(h=>h.key!=='EXH'&&rgIsProjCard(P,h))?n*1.6:0}));
 ov('Nock & Draw|RS',[rgNock(1),{t:'draw',n:1}],[rgNock(2),{t:'draw',n:1}]);
 ov('Flick Arrow|RS',[rgPA(2,{tf:(P,m)=>!!m.mark}),{t:'move',min:0,n:1}],[rgPA(3,{tf:(P,m)=>!!m.mark}),{t:'move',min:0,n:2}]);
 const rgTrip=n=>({after:async(P,m)=>{ const pos={x:m.x,y:m.y}; await rgPlaceSnare(P,DIRS.map(([dx,dy])=>({x:pos.x+dx,y:pos.y+dy})),{dmg:n},`Tripwire Shot: วางบ่วงดัก (${n}) ข้างเป้าหมาย`); }});
 ov('Tripwire Shot|RS',[rgPA(3,rgTrip(3))],[rgPA(4,rgTrip(5))]);
-ov('Barbed Arrow|RS',[rgPA(3,{poison:(P,c)=>c&&c.curT&&rgFar(P,c.curT)?2:0})],[rgPA(4,{poison:(P,c)=>c&&c.curT&&rgFar(P,c.curT)?4:0})]);
+ov('Barbed Arrow|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>rgFar(P,m)?d+2:d})],[rgPA(4,{dmgFor:(P,m,c,d)=>rgFar(P,m)?d+3:d})]);
 const rgHarr={t:'fn',f:async P=>{ const cs=compsOf(P); if(!cs.length) return; const f=cs.length>1?await ask(P,{kind:'cell',prompt:'Harrier Shot: เลือกคู่หู 1 ตัว ให้ทำงานทันที (เดิน + แอคชัน)',options:cs,purpose:'rgCompPick'}):cs[0]; const ff=f&&cs.find(c=>c.x===f.x&&c.y===f.y); if(ff){ log(`Harrier Shot: ${ff.name} ทำงานทันที`,'sys'); await rgCompActOne(P,ff,false); } },ev:P=>compsOf(P).length?3:0};
 ov('Harrier Shot|RS',[rgPA(3),rgHarr],[rgPA(5),rgHarr]);
 const rgOpen=n=>({after:async(P,m,ctx)=>{ if(m.hp>0){ await rgMark(P,m); m.openB={pid:P.id,n}; log(`Opening Shot: การโจมตีครั้งถัดไปใส่ ${m.name} ในเทิร์นนี้ +${n}`,'sys'); } }});
@@ -6550,13 +6556,13 @@ const rgFinale=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const ss=rgSnaresOf(P); if(!ss.
     const op={isAtk:true,noWeak:1}; const c2=Object.assign({},ctx||{}); for(const s of ss) for(const m of rgLive().filter(m=>dist(m,s)<=1)) await hitMon(P,m,n,op,c2); },
   ev:P=>{ let k=0; for(const s of rgSnaresOf(P)) k+=rgLive().filter(m=>dist(m,s)<=1).length; return k?k*(n+P.str)-rgSnaresOf(P).length*1.5:-3; }}));
 ov("Trapper's Finale|RS",[rgFinale(5)],[rgFinale(8)]);
-ov('Fade Back|RS',[{t:'move',min:0,n:3},rgMarkOp(1,'Fade Back: ติด Mark ศัตรูในระยะ 3',P=>rgLive().filter(m=>dist(m,P)<=3))],[{t:'move',min:0,n:4},rgMarkOp(1,'Fade Back+: ติด Mark ศัตรูในระยะ 4',P=>rgLive().filter(m=>dist(m,P)<=4)),{t:'draw',n:1}]);
-ov('Caltrops|RS',[rgSnareOp(2,2,{dmg:2})],[rgSnareOp(2,3,{dmg:4})]);
-ov('Bear Trap|RS',[rgSnareOp(1,2,{dmg:8,mark:1})],[rgSnareOp(1,3,{dmg:12,mark:1})]);
+ov('Fade Back|RS',[{t:'move',min:0,n:3},{t:'shield',n:3},rgFade(4,3)],[{t:'move',min:0,n:4},{t:'shield',n:4},rgFade(5,4)]);
+ov('Caltrops|RS',[rgSnareOp(2,2,{dmg:3})],[rgSnareOp(2,3,{dmg:5})]);
+ov('Bear Trap|RS',[rgSnareOp(1,2,{dmg:10})],[rgSnareOp(1,3,{dmg:14})]);
 const rgReset=FAC(n=>({t:'fn',f:async P=>{ for(let i=0;i<n;i++){ const ss=rgSnaresOf(P); if(!ss.length) break; const s=await ask(P,{kind:'cell',prompt:`Reset the Trap: เลือกบ่วงที่จะย้าย${n>1?` (${i+1}/${n})`:''}`,options:ss,purpose:'rgSnarePick',forMove:1,cancel:'ไม่ย้าย'}); if(!s) break;
     const opts=rgWithin(P,3).filter(c=>rgEmpty(c.x,c.y)); if(!opts.length) break; const c=await ask(P,{kind:'cell',prompt:'Reset the Trap: เลือกช่องว่างในระยะ 3 ช่อง',options:opts,purpose:'rgMoveTo'}); if(!c) break; s.x=c.x; s.y=c.y; log(`🪢 ย้ายบ่วงไป (${c.x+1},${c.y+1})`,'sys'); } },ev:P=>rgSnaresOf(P).length?1:0}));
 ov('Reset the Trap|RS',[rgReset(1),{t:'draw',n:1}],[rgReset(2),{t:'draw',n:1}]);
-ov('Trapline|RS',[rgSnareOp(3,3,{dmg:4})],[rgSnareOp(3,4,{dmg:6,mark:1})]);
+ov('Trapline|RS',[rgSnareOp(3,3,{dmg:4})],[rgSnareOp(3,4,{dmg:7})]);
 function rgEvAtk(P,op){ try{ const base=val(op.dmg,P,{x:1})||0; let s=0;
   if(op.mode==='all'&&op.tf){ const all=monsters(P); const ok=all.filter(m=>op.tf(P,m)); s-=(all.length-ok.length)*(base+P.str); s+=ok.filter(m=>!m.mark).length*(op.after?1.5:0); return s; }
   const tg=singleTargets(P,op); if(!tg.length) return 0;
@@ -8194,7 +8200,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.92', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.93', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
