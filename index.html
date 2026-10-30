@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.93</title>
+<title>Project Dungeon v1.1.94</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -1009,7 +1009,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.93 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.94 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
@@ -4568,8 +4568,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Quick Shot",
    "cost": 1,
-   "en": "[Projectile] Deal 3 damage. Far: +1 damage.",
-   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย ไกล: ความเสียหาย +1",
+   "en": "[Projectile] Deal 2 damage. Far: +1 damage.",
+   "th": "[โพรเจกไทล์] สร้างความเสียหาย 2 หน่วย ไกล: ความเสียหาย +1",
    "ucost": 1,
    "uen": "[Projectile] Deal 4 damage. Far: +1 damage.",
    "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย ไกล: ความเสียหาย +1",
@@ -6393,7 +6393,10 @@ async function rgTrigger(s,m,extra,keepOverride){ const P=rgOwner(s); if(!P||!m|
     if(s.mark||(P.hero.name==='Rhodan Forgehart'&&P.heroUp)) await rgMark(P,m,'บ่วงดัก'); }
   if(hasItem(P,'Goldbriar Buckler')){ for(const o of rgLive().filter(o=>o!==m&&dist(o,s)<=2&&dist(o,s)>0)){ const dx=s.x-o.x,dy=s.y-o.y; const dir=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; const nx=o.x+dir[0],ny=o.y+dir[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)){ o.x=nx;o.y=ny; log(`Goldbriar Buckler: ดึง ${o.name} เข้าหาบ่วง 1 ช่อง`,'sys'); const s2=rgSnareAt(nx,ny); if(s2&&s2!==s) await rgTrigger(s2,o,0); } } }
   return !!s.net; }
-async function rgSnareStep(m){ if(!m||!m.isMon||!G.snares||!G.snares.length||m.hp<=0) return false; const s=rgSnareAt(m.x,m.y); if(!s) return false; const net=s.net,psh=s.push; await rgTrigger(s,m,0); if(net) log(`🕸 ${m.name} ติดตาข่าย หยุดเดิน`,'mon'); return !!net||!!psh||m.hp<=0; }
+var MON_ACT=null; /* v1.1.94 monster currently taking its turn */
+async function rgSnareStep(m){ if(!m||!m.isMon||!G.snares||!G.snares.length||m.hp<=0) return false; const s=rgSnareAt(m.x,m.y); if(!s) return false; const net=s.net,psh=s.push; await rgTrigger(s,m,0); if(net) log(`🕸 ${m.name} ติดตาข่าย หยุดเดิน`,'mon');
+  /* v1.1.94 USER RULE: an enemy that moves into a Snare during its own turn ends its turn (after the Snare effect) */ const own=MON_ACT===m; if(own&&m.hp>0){ m._snStop=true; log(`🪤 ${m.name} เดินเข้าบ่วงดัก — จบเทิร์นทันที`,'mon'); }
+  return !!net||!!psh||own||m.hp<=0; }
 /* damage-side hooks called from hitMon / hitEst (est=true: pure preview, nothing consumed) */
 function rgBonus(P,m,d,op,ctx,est){ if(!P||P.isMon||!m) return 0; let b=0;
   const atk=!!op.isAtk, proj=atk&&isProj(P,op);
@@ -6438,7 +6441,8 @@ async function rgCompPlace(P,card){ const nm=DEF[card.key].name, s=CSTAT[nm]; co
   (G.comps=G.comps||[]).push(f); log(`${s.ic} ${P.name} วาง ${nm}${card.up?'+':''} (HP ${hp}) ที่ช่อง ${c0.x},${c0.y}`,'sys'); return f; }
 function compDie(f){ f.hp=0; const i=(G.comps||[]).indexOf(f); if(i>=0) G.comps.splice(i,1); const P=G.players.find(p=>p.id===f.pid);
   if(P){ let bi=P.buffs.indexOf(f.card); if(bi<0) bi=P.buffs.findIndex(b=>b.key===f.card.key&&!!b.up===f.up); if(bi>=0){ const c=P.buffs.splice(bi,1)[0]; (P.removed=P.removed||[]).push(c); } }
-  log(`💀 ${f.name} ถูกกำจัด — การ์ด ${f.cname} ถูก Remove`,'bad'); }
+  log(`💀 ${f.name} ถูกกำจัด — การ์ด ${f.cname} ถูก Remove`,'bad');
+  /* v1.1.94 BUGFIX: refresh the buff column now (it only redraws on UI.render, which a monster-phase kill did not trigger) */ try{ if(typeof UI!=='undefined'&&UI.render&&typeof document!=='undefined') UI.render(); }catch(_){} }
 async function compHurt(f,dmg){ if(!f||f.hp<=0) return {hit:false,hp:0}; const d=Math.max(0,dmg|0); f.hp-=d; log(`${f.ic} ${f.name} โดน ${d} ดาเมจ (HP ${Math.max(0,f.hp)}/${f.maxhp})`,'bad'); if(f.hp<=0) compDie(f); return {hit:true,hp:d}; }
 function compMoveCells(f){ const res=[{x:f.x,y:f.y,stay:1,d:0}]; const seen=new Set([key(f.x,f.y)]); let fr=[{x:f.x,y:f.y}];
   for(let s=1;s<=f.mv;s++){ const nf=[]; for(const c of fr) for(const [dx,dy] of DIRS){ const x=c.x+dx,y=c.y+dy,k=key(x,y); if(!inB(x,y)||seen.has(k)) continue;
@@ -6503,7 +6507,7 @@ const rgHM=FAC(sh=>({t:'fn',f:async P=>{ if(rgLive().some(m=>m.mark)){ log(`Hunt
 const rgRS=(d,b)=>({t:'atk',dmg:d,mode:'single',adj:true,dmgFor:(P,m,c,x)=>m.mark?x+b:x,after:async(P,m,ctx)=>{ if(!ctx.wasMarked||ctx._rs) return; ctx._rs=true; if(m.hp>0&&m.mark){ m.mark=0; log(`Retreating Shot: ลบ Mark ของ ${m.name}`,'sys'); } await draw(P,1); }});
 const rgFade=FAC((r,sh)=>({t:'fn',f:async P=>{ const ms=rgLive().filter(m=>m.mark&&dist(m,P)<=r); if(!ms.length) return; const t=await ask(P,{kind:'mon',prompt:`Fade Back: ลบ Mark ศัตรู 1 ตัวในระยะ ${r} เพื่อได้ Shield +${sh} และจั่ว 1 ใบ?`,options:ms,purpose:'rgUnmark',cancel:'ไม่ลบ'}); if(!t) return; t.mark=0; log(`Fade Back: ลบ Mark ของ ${t.name}`,'sys'); await gainShield(P,sh); await draw(P,1); },ev:P=>rgLive().some(m=>m.mark&&dist(m,P)<=r)?sh+1:0}));
 /* ---- cards ---- */
-ov('Quick Shot|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})],[rgPA(4,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})]);
+/* v1.1.94 Thongchai nerf (sheet H2/I2 blue): normal 3 -> 2 */ ov('Quick Shot|RS',[rgPA(2,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})],[rgPA(4,{dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)})]);
 ov("Hunter's Mark|RS",[rgHM(1),{t:'move',min:0,n:1},{t:'shield',n:1}],[rgHM(2),{t:'move',min:1,n:2},{t:'shield',n:2}]);
 const rgDrawIfMk={after:async(P,m,ctx)=>{ if(ctx.wasMarked&&!ctx._bull){ ctx._bull=true; await draw(P,1); log('Bullseye: เป้าหมายติด Mark → จั่ว 1','sys'); } }};
 ov('Bullseye|RS',[rgPA(5,Object.assign({dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)},rgDrawIfMk))],[rgPA(8,Object.assign({dmgFor:(P,m,c,d)=>d+(rgFar(P,m)?1:0)},rgDrawIfMk))]);
@@ -7504,7 +7508,7 @@ function canAtkFrom0(m,c,kind){
   return [];
 }
 async function moveMonAlong(m,path){ if(m.pinned&&path&&path.length){ log(`📌 ${m.name} ถูกตรึง เดินไม่ได้`,'mon'); return 0; } const before=new Set(heroes().filter(h=>dist(h,m)===1).map(h=>h.id)); let s=0; for(const c of path){ faceToward(m,c); m.x=c.x;m.y=c.y; s++; if(await rgSnareStep(m)) break; if(G.water&&G.water.has(key(c.x,c.y))&&!m.undying&&m.hp>0){ const g=Math.min(2,m.maxhp-m.hp); m.hp+=g; log(`🌊 ${m.name} เดินผ่านแอ่งน้ำ ฟื้น ${g} HP`,'mon'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.waterFx) try{ UI.waterFx(c.x,c.y,'+'+g+' HP'); }catch(_){} } } /* v1.1.64 beast water heals enemies 2 per water tile entered */
-  for(const h of heroes()) if(dist(h,m)===1&&!before.has(h.id)) await closeQuarters(h,m); return s; }
+  for(const h of heroes()) if(dist(h,m)===1&&!before.has(h.id)) await closeQuarters(h,m); if(m._snStop&&MON_ACT===m) throw SNSTOP; return s; }
 /* v1.1.12: multi-source BFS — walking distance from every tile to the nearest tile from which monster m can shoot a hero */
 function shooterDistMap(m,kind){ const dm={}; const q=[]; for(const c of allCells(c=>!isObs(c.x,c.y)&&!teamAt(c.x,c.y)&&(!monAt(c.x,c.y)||(c.x===m.x&&c.y===m.y))&&canAtkFrom(m,c,kind).length)){ dm[key(c.x,c.y)]=0; q.push(c); }
   while(q.length){ const c=q.shift(); const d=dm[key(c.x,c.y)]; for(const [dx,dy] of DIRS){ const x=c.x+dx,y=c.y+dy,k=key(x,y); if(!inB(x,y)||isObs(x,y)||teamAt(x,y)||k in dm) continue; dm[k]=d+1; q.push({x,y}); } } return dm; }
@@ -7580,9 +7584,9 @@ async function monAttack(m,target,dmg,kind){
   if(def.poison&&res.hit){ target.poison+=def.poison; log(`☠ ${target.name} ติดพิษ ${def.poison}`,'bad'); }
   if(def.discard&&res.hit&&res.hp>0){ for(let i=0;i<def.discard&&target.hand.length;i++) target.discard.push(target.hand.splice(krnd('mdisc'+target.id,target.hand.length),1)[0]); log(`${target.name} ต้องทิ้งการ์ด ${def.discard} ใบ`,'warn'); }
   /* v1.1.84 OWNER RULE: a Dodged attack (Dodge Token / Phantom; also Duskshade Visor, which already returned hit:false) is NOT a hit -> no push/follow, no on-hit riders */ if(def.push&&res.hit&&kind==='melee'&&target.hp>0){ const dir=[Math.sign(target.x-m.x),Math.sign(target.y-m.y)]; for(let i=0;i<def.push;i++){ const nx=target.x+dir[0],ny=target.y+dir[1]; if(!inB(nx,ny)||isObs(nx,ny)||unitAt(nx,ny)){ await hurtHero(target,def.push-i,{self:true}); break; } target.x=nx;target.y=ny; await landPickup(target); }
-    if(def.follow){ const fx=target.x-dir[0],fy=target.y-dir[1]; if(inB(fx,fy)&&!unitAt(fx,fy)&&!isObs(fx,fy)&&!m.pinned){ faceToward(m,{x:fx,y:fy}); m.x=fx;m.y=fy; await rgSnareStep(m); } } }
-  if(def.nisho){ const back=[-m.face[0],-m.face[1]]; for(let i=0;i<2;i++){ const nx=m.x+back[0],ny=m.y+back[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)&&!m.pinned&&m.hp>0){m.x=nx;m.y=ny; m.face=back.slice(); if(await rgSnareStep(m)) break; /* v1.1.25: walked -> faces its last step */} } }
-  if(def.lunge===1){ const nx=m.x-m.face[0],ny=m.y-m.face[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)&&!m.pinned){ m.face=[-m.face[0],-m.face[1]]; m.x=nx;m.y=ny; await rgSnareStep(m); /* v1.1.25 */ } }
+    if(def.follow){ const fx=target.x-dir[0],fy=target.y-dir[1]; if(inB(fx,fy)&&!unitAt(fx,fy)&&!isObs(fx,fy)&&!m.pinned){ faceToward(m,{x:fx,y:fy}); m.x=fx;m.y=fy; await rgSnareStep(m); if(m._snStop) throw SNSTOP; } } }
+  if(def.nisho){ const back=[-m.face[0],-m.face[1]]; for(let i=0;i<2;i++){ const nx=m.x+back[0],ny=m.y+back[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)&&!m.pinned&&m.hp>0){m.x=nx;m.y=ny; m.face=back.slice(); if(await rgSnareStep(m)) break; /* v1.1.25: walked -> faces its last step */} } if(m._snStop) throw SNSTOP; }
+  if(def.lunge===1){ const nx=m.x-m.face[0],ny=m.y-m.face[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)&&!m.pinned){ m.face=[-m.face[0],-m.face[1]]; m.x=nx;m.y=ny; await rgSnareStep(m); if(m._snStop) throw SNSTOP; /* v1.1.25 */ } }
 }
 async function hurtHero(P,dmg,o={}){
   if(P.hp<=0||G.over) return {hit:false,hp:0};
@@ -7617,9 +7621,11 @@ function healOthers(m,n,all){ const hurt=allMons().filter(o=>o!==m&&o.hp>0&&o.hp
   const tg=all?hurt:[hurt.sort((a,b)=>(b.maxhp-b.hp)-(a.maxhp-a.hp))[0]];
   for(const o of tg){ const g=Math.min(n,o.maxhp-o.hp); o.hp+=g; log(`💚 ${m.name} ฮีล ${o.name} +${g}`,'mon'); if(!SIM.on&&typeof UI!=='undefined'&&UI.floatAt) try{UI.floatAt(o,'+'+g,'heal');}catch(_){} }
   return tg.length; }
+const SNSTOP={snareStop:1}; /* v1.1.94 */
+async function monTurnS(m){ const pv=MON_ACT; MON_ACT=m; m._snStop=false; try{ await monTurn0(m); }catch(e){ if(e!==SNSTOP) throw e; } finally{ MON_ACT=pv; m._snStop=false; } }
 async function monTurn(m){
-  if(m.undying){ if(G.over) return; m.hp=1; try{ await monTurn0(m); } finally{ if(m.undying&&!G.over) await undyingDie(m); else if(m.undying) m.hp=0; } return; } /* v1.1.64 bone: last action, then death */
-  return monTurn0(m); }
+  if(m.undying){ if(G.over) return; m.hp=1; try{ await monTurnS(m); } finally{ if(m.undying&&!G.over) await undyingDie(m); else if(m.undying) m.hp=0; } return; } /* v1.1.64 bone: last action, then death */
+  return monTurnS(m); }
 async function monTurn0(m){
   const def=m.def; if(m.hp<=0||G.over) return;
   if(m.stun){ m.stun=0; log(`💫 ${m.name} ข้ามเทิร์น (สตัน)`,'mon'); return; }
@@ -8200,7 +8206,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.93', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.94', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -8991,7 +8997,7 @@ KW.push({id:'Coin',en:'Coins?',th:'เหรียญ',def:"ได้ 2 Coins �
 /* v1.1.91 Ranger keywords */
 KW.push({id:'Companion',en:'Companions?',th:'คู่หู',def:'การ์ด Buff ที่วางตัวคู่หูบนช่องว่างติดตัวคุณ (คุณเลือกช่อง; ไม่มีช่องว่าง = เล่นไม่ได้); มีได้หลายตัว; มี HP (เหยี่ยว 4/6, นกฮูก 4/6, หมาป่า 10/14, หมี 14/18); ศัตรูมองเป็นสมาชิกทีมฮีโร่และโจมตีได้; ขวางศัตรู ฮีโร่เดินผ่านได้แต่หยุดทับไม่ได้; ไม่รับโล่/ฮีล; ตาย = การ์ด Buff ถูก Remove; จบห้องออกจากกระดาน; จบเทิร์นคุณ: เดินตามค่า Move (นก = บิน) แล้วทำแอคชัน',enDef:'Buff that places a figure on an empty space adjacent to you (your choice; no empty space = can\'t play). Any number allowed. Has HP (Hawk 4/6, Owl 4/6, Wolf 10/14, Bear 14/18). Enemies treat it as a hero-team member and can attack it; it blocks enemies, heroes pass through but can\'t stop on it; no Shields/healing; killed = its Buff card is Removed; leaves at room end. End of your turn: moves up to its Move (birds fly), then acts',rb:true},
  {id:'Mark',en:'Mark(?:ed|s)?',th:'ติด Mark',def:'ศัตรูที่ติด Mark รับความเสียหาย +1 ทุกครั้งที่โดนฮีโร่ตี (การโจมตี, บ่วงดัก, คู่หู); ติดได้ 1 อันต่อศัตรู; หายเมื่อตาย หรือจบห้อง',enDef:'A Marked enemy takes +1 damage from every hero hit (attacks, Snares, Companions). Max 1 per enemy; gone on death or at room end.',rb:true},
- {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; วางได้สูงสุด 3 อันต่อฮีโร่',enDef:'Placed on an empty space in range; triggers when an enemy enters it (walk or push/pull), then is removed. Heroes never trigger it; not an Attack. Max 3 per hero.',rb:true},
+ {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ศัตรูที่เดินเข้าบ่วงในเทิร์นของมันจะจบเทิร์นทันที (หยุดเดินและไม่ทำอะไรต่อ) หลังผลของบ่วง; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; วางได้สูงสุด 3 อันต่อฮีโร่',enDef:'Placed on an empty space in range; triggers when an enemy enters it (walk or push/pull), then is removed. An enemy that moves into a Snare on its own turn ends its turn immediately (stops moving, takes no further action) after the Snare effect. Heroes never trigger it; not an Attack. Max 3 per hero.',rb:true},
  {id:'Far',en:'Far',th:'ไกล(?=:)',def:'เป้าหมายอยู่ห่างจากคุณ 2 ช่องขึ้นไป',enDef:'The target is 2+ spaces away from you.',rb:true}); kwBuildRe();
 const TOK_KW={mana:'Mana',shield:'Shield',str:'Strength',pow:'Power Up',dodge:'Dodge',mtok:'Move Token',ptok:'Projectile Token',poison:'Poison',stun:'Stun',shardstack:'Shard',coinstack:'Coin'};
 const TOK_USE={mana:'วิธีใช้: ตอนเล่นการ์ด เลือก +/− ตัวเลขที่พิมพ์บนการ์ด (การ์ดปกติ: ครั้งเดียว ใช้ 2 Mana · การ์ด [Magic]: 1 Mana/จุด ใช้ได้หลาย Mana)',shield:'ทำงานอัตโนมัติเมื่อโดนดาเมจ',str:'ทำงานอัตโนมัติกับการ์ด Attack',pow:'จะใส่ให้การ์ด Attack ใบถัดไปที่เลือกอัตโนมัติ',dodge:'ใช้อัตโนมัติเมื่อโดนโจมตีครั้งถัดไป',mtok:'วิธีใช้: กดเดิน — ระบบใช้ Move Token ก่อน Shard',ptok:'ใช้กับการโจมตีครั้งถัดไป (ระบบถามเมื่อเล่นการ์ด Attack)',poison:'สถานะ — ลดลงเองทุกจบเทิร์น',stun:'สถานะ — ข้ามเทิร์นถัดไป',shardstack:'วิธีใช้: กดปุ่มเดิน (2 Shard/ช่อง)',coinstack:'วิธีใช้: ใช้ในร้านค้าช่วง Rest Phase'};
@@ -11259,7 +11265,7 @@ if(!HEADLESS){
     for(const s of S){ const el=document.querySelector(`#cells .cell[data-k="${key(s.x,s.y)}"]`); if(!el) continue; el.classList.add('rgsnare'); el.querySelectorAll('.rgsn').forEach(e=>e.remove());
       const o=heroes().find(h=>h.id===s.pid)||G.players.find(h=>h.id===s.pid); const nm=o?o.name:'';
       el.insertAdjacentHTML('beforeend',`<span class="rgsn">🪢${ownerN>1?`<b>${esc(ini(nm))}</b>`:''}</span>`);
-      el.title=`🪢 บ่วงดัก (Snare) ของ ${nm}\nศัตรูที่เข้าช่องนี้: ดาเมจ ${s.dmg||0}${s.poison?' ☠'+s.poison:''}${s.stun?' 💫Stun':''}${s.mark?' 🎯Mark':''}${s.net?' หยุดเดิน (Net)':''} แล้วบ่วงหายไป`; }
+      el.title=`🪢 บ่วงดัก (Snare) ของ ${nm}\nศัตรูที่เข้าช่องนี้: ดาเมจ ${s.dmg||0}${s.poison?' ☠'+s.poison:''}${s.stun?' 💫Stun':''}${s.mark?' 🎯Mark':''}${s.push?' ผลัก '+s.push:''}${s.net?' หยุดเดิน (Net)':''} แล้วบ่วงหายไป\nถ้าเดินเข้ามาในเทิร์นของมัน: จบเทิร์นทันที / Enemy moving in on its turn ends its turn`; }
     for(const m of allMons()){ const el=document.querySelector(`#toks .tok.mon[data-k="${key(m.x,m.y)}"]`); if(!el) continue;
       el.querySelectorAll('.rgmk,.rgpin').forEach(e=>e.remove()); el.classList.toggle('rgmarked',!!m.mark);
       if(m.mark) el.insertAdjacentHTML('beforeend','<div class="rgmk" title="🎯 Mark: โดนดาเมจ +1 จากการโจมตี/บ่วง/คู่หู">🎯</div>');
