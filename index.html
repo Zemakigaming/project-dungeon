@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.94</title>
+<title>Project Dungeon v1.1.95</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -1009,7 +1009,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.94 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.95 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
@@ -4666,11 +4666,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Whip Snare",
    "cost": 1,
-   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it takes 2 damage and is Pushed 2 spaces away from you.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 2 หน่วย และถูกผลักออกห่างจากคุณ 2 ช่อง",
+   "en": "Place a Snare within 2 spaces of you. When it triggers, Push that enemy 2 spaces away from you.",
+   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ เมื่อบ่วงทำงาน ผลักศัตรูตัวนั้นออกห่างจากคุณ 2 ช่อง",
    "ucost": 1,
-   "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it takes 4 damage and is Pushed 3 spaces away from you.",
-   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 4 หน่วย และถูกผลักออกห่างจากคุณ 3 ช่อง",
+   "uen": "Place a Snare within 3 spaces of you. When it triggers, Push that enemy 3 spaces away from you.",
+   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ เมื่อบ่วงทำงาน ผลักศัตรูตัวนั้นออกห่างจากคุณ 3 ช่อง",
    "rar": "Common",
    "type": "trick",
    "cls": "Ranger",
@@ -4776,15 +4776,15 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "elem": ""
   },
   {
-   "name": "Spike Snare",
+   "name": "Sharpened Stakes",
    "cost": 1,
-   "en": "Place a Snare within 2 spaces of you. The first enemy to enter it takes 6 damage.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 6 หน่วย",
-   "ucost": 1,
-   "uen": "Place a Snare within 3 spaces of you. The first enemy to enter it takes 10 damage.",
-   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 10 หน่วย",
+   "en": "Your Snares deal +1 damage.",
+   "th": "บ่วงดักของคุณสร้างความเสียหาย +1",
+   "ucost": 0,
+   "uen": "Your Snares deal +2 damage.",
+   "uth": "บ่วงดักของคุณสร้างความเสียหาย +2",
    "rar": "Common",
-   "type": "trick",
+   "type": "buff",
    "cls": "Ranger",
    "box": "RS",
    "elem": ""
@@ -4932,11 +4932,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Tripwire Shot",
    "cost": 1,
-   "en": "[Projectile] Deal 3 damage, then place a Snare on an empty space adjacent to the target: the first enemy to enter it takes 3 damage.",
-   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย จากนั้นวางบ่วงดักบนช่องว่างที่ติดกับเป้าหมาย: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 3 หน่วย",
+   "en": "[Projectile] Deal 3 damage, then place a Snare on an empty space adjacent to the target.",
+   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย จากนั้นวางบ่วงดัก 1 อันบนช่องว่างที่ติดกับเป้าหมาย",
    "ucost": 1,
-   "uen": "[Projectile] Deal 4 damage, then place a Snare on an empty space adjacent to the target: the first enemy to enter it takes 5 damage.",
-   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย จากนั้นวางบ่วงดักบนช่องว่างที่ติดกับเป้าหมาย: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 5 หน่วย",
+   "uen": "[Projectile] Deal 4 damage, then place a Snare on an empty space adjacent to the target.",
+   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย จากนั้นวางบ่วงดัก 1 อันบนช่องว่างที่ติดกับเป้าหมาย",
    "rar": "Common",
    "type": "attack",
    "cls": "Ranger",
@@ -5016,11 +5016,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Trapper's Finale",
    "cost": 2,
-   "en": "Remove all your Snares. For each one removed, deal 5 damage to every enemy on or adjacent to its space.",
-   "th": "นำบ่วงดักของคุณออกทั้งหมด ทุกบ่วงที่นำออก สร้างความเสียหาย 5 หน่วยแก่ศัตรูทุกตัวที่อยู่บนหรือติดกับช่องนั้น",
+   "en": "Remove up to 3 of your Snares. Each one removed deals its Snare damage to every enemy on or adjacent to its space.",
+   "th": "นำบ่วงดักของคุณออกสูงสุด 3 อัน แต่ละอันที่นำออกสร้างความเสียหายเท่ากับความเสียหายของบ่วงดัก แก่ศัตรูทุกตัวที่อยู่บนหรือติดกับช่องนั้น",
    "ucost": 2,
-   "uen": "Remove all your Snares. For each one removed, deal 8 damage to every enemy on or adjacent to its space.",
-   "uth": "นำบ่วงดักของคุณออกทั้งหมด ทุกบ่วงที่นำออก สร้างความเสียหาย 8 หน่วยแก่ศัตรูทุกตัวที่อยู่บนหรือติดกับช่องนั้น",
+   "uen": "Remove up to 4 of your Snares. Each one removed deals its Snare damage to every enemy on or adjacent to its space.",
+   "uth": "นำบ่วงดักของคุณออกสูงสุด 4 อัน แต่ละอันที่นำออกสร้างความเสียหายเท่ากับความเสียหายของบ่วงดัก แก่ศัตรูทุกตัวที่อยู่บนหรือติดกับช่องนั้น",
    "rar": "Rare",
    "type": "attack",
    "cls": "Ranger",
@@ -5044,11 +5044,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Caltrops",
    "cost": 1,
-   "en": "Place 2 Snares within 2 spaces of you: the first enemy to enter each takes 3 damage.",
-   "th": "วางบ่วงดัก 2 อันในระยะ 2 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 3 หน่วย",
+   "en": "Place 2 Snares within 1 space of you.",
+   "th": "วางบ่วงดัก 2 อันในระยะ 1 ช่องจากคุณ",
    "ucost": 1,
-   "uen": "Place 2 Snares within 3 spaces of you: the first enemy to enter each takes 5 damage.",
-   "uth": "วางบ่วงดัก 2 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 5 หน่วย",
+   "uen": "Place 2 Snares within 2 spaces of you.",
+   "uth": "วางบ่วงดัก 2 อันในระยะ 2 ช่องจากคุณ",
    "rar": "Common",
    "type": "trick",
    "cls": "Ranger",
@@ -5056,15 +5056,15 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
    "elem": ""
   },
   {
-   "name": "Bear Trap",
-   "cost": 1,
-   "en": "Place a Snare within 2 spaces of you: the first enemy to enter it takes 10 damage.",
-   "th": "วางบ่วงดัก 1 อันในระยะ 2 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 10 หน่วย",
+   "name": "Steel Jaws",
+   "cost": 2,
+   "en": "Your Snares deal +2 damage, and the enemy that triggers one is Marked.",
+   "th": "บ่วงดักของคุณสร้างความเสียหาย +2 และติด Mark ศัตรูที่เดินเข้าบ่วง",
    "ucost": 1,
-   "uen": "Place a Snare within 3 spaces of you: the first enemy to enter it takes 14 damage.",
-   "uth": "วางบ่วงดัก 1 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 14 หน่วย",
+   "uen": "Your Snares deal +3 damage, and the enemy that triggers one is Marked.",
+   "uth": "บ่วงดักของคุณสร้างความเสียหาย +3 และติด Mark ศัตรูที่เดินเข้าบ่วง",
    "rar": "Uncommon",
-   "type": "trick",
+   "type": "buff",
    "cls": "Ranger",
    "box": "RS",
    "elem": ""
@@ -5086,11 +5086,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Trapline",
    "cost": 1,
-   "en": "Place 3 Snares within 3 spaces of you: the first enemy to enter each takes 4 damage. Exhaust.",
-   "th": "วางบ่วงดัก 3 อันในระยะ 3 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 4 หน่วย [Exhaust]",
+   "en": "Place 3 Snares within 2 spaces of you. Exhaust.",
+   "th": "วางบ่วงดัก 3 อันในระยะ 2 ช่องจากคุณ [Exhaust]",
    "ucost": 1,
-   "uen": "Place 3 Snares within 4 spaces of you: the first enemy to enter each takes 7 damage. Exhaust.",
-   "uth": "วางบ่วงดัก 3 อันในระยะ 4 ช่องจากคุณ: ศัตรูตัวแรกที่เดินเข้าแต่ละอันได้รับความเสียหาย 7 หน่วย [Exhaust]",
+   "uen": "Place 3 Snares within 3 spaces of you. Exhaust.",
+   "uth": "วางบ่วงดัก 3 อันในระยะ 3 ช่องจากคุณ [Exhaust]",
    "rar": "Rare",
    "type": "trick",
    "cls": "Ranger",
@@ -5127,12 +5127,12 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Trapmaster",
-   "cost": 0,
-   "en": "Your Snares can be placed up to 2 spaces farther, and you may have up to 5 Snares on the board.",
-   "th": "คุณวางบ่วงดักได้ไกลขึ้นอีก 2 ช่อง และมีบ่วงดักบนกระดานได้สูงสุด 5 อัน",
+   "cost": 1,
+   "en": "Your Snares can be placed up to 2 spaces farther. Once per turn, when one of your Snares triggers, draw 1 card.",
+   "th": "คุณวางบ่วงดักได้ไกลขึ้นอีก 2 ช่อง เทิร์นละครั้ง เมื่อบ่วงดักของคุณทำงาน จั่วการ์ด 1 ใบ",
    "ucost": 0,
-   "uen": "Your Snares can be placed up to 2 spaces farther, and you may have up to 5 Snares on the board.",
-   "uth": "คุณวางบ่วงดักได้ไกลขึ้นอีก 2 ช่อง และมีบ่วงดักบนกระดานได้สูงสุด 5 อัน",
+   "uen": "Your Snares can be placed up to 3 spaces farther. Once per turn, when one of your Snares triggers, draw 1 card.",
+   "uth": "คุณวางบ่วงดักได้ไกลขึ้นอีก 3 ช่อง เทิร์นละครั้ง เมื่อบ่วงดักของคุณทำงาน จั่วการ์ด 1 ใบ",
    "rar": "Uncommon",
    "type": "buff",
    "cls": "Ranger",
@@ -5291,10 +5291,10 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Rhodan Forgehart",
-   "en": "Start of each room: place 1 Snare within 3 spaces of you for free — the first enemy to enter it takes 4 damage. All your Snares deal +1 damage.",
-   "th": "เมื่อเริ่มแต่ละห้อง: วางบ่วงดัก (Snare) 1 อันในระยะ 3 ช่องจากคุณได้ฟรี — ศัตรูตัวแรกที่เดินเข้ามาได้รับความเสียหาย 4 หน่วย และบ่วงดักทุกอันของคุณสร้างความเสียหาย +1",
-   "uen": "Start of each room: place 2 Snares within 3 spaces of you for free (4 damage each). All your Snares deal +2 damage and Mark the enemy that triggers them.",
-   "uth": "เมื่อเริ่มแต่ละห้อง: วางบ่วงดัก 2 อันในระยะ 3 ช่องจากคุณได้ฟรี (อันละ 4 ความเสียหาย) บ่วงดักทุกอันของคุณสร้างความเสียหาย +2 และติด Mark ศัตรูที่เดินเข้าบ่วง",
+   "en": "Start of each room: place 1 Snare within 3 spaces of you for free. All your Snares deal +1 damage.",
+   "th": "เมื่อเริ่มแต่ละห้อง: วางบ่วงดัก (Snare) 1 อันในระยะ 3 ช่องจากคุณได้ฟรี และบ่วงดักทุกอันของคุณสร้างความเสียหาย +1",
+   "uen": "Start of each room: place 2 Snares within 3 spaces of you for free. All your Snares deal +2 damage and Mark the enemy that triggers them.",
+   "uth": "เมื่อเริ่มแต่ละห้อง: วางบ่วงดัก 2 อันในระยะ 3 ช่องจากคุณได้ฟรี บ่วงดักทุกอันของคุณสร้างความเสียหาย +2 และติด Mark ศัตรูที่เดินเข้าบ่วง",
    "hp": 30,
    "cls": "Ranger",
    "box": "Ranger/Sharpshooter Box"
@@ -5939,8 +5939,8 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   },
   {
    "name": "Bluesteel Cuirass",
-   "en": "Once per turn, when you Move away from an adjacent enemy, place a Snare on the space you left: the first enemy to enter it takes 3 damage.",
-   "th": "เทิร์นละครั้ง เมื่อคุณเคลื่อนที่ออกจากศัตรูที่อยู่ติดกัน ให้วางบ่วงดักบนช่องที่คุณเพิ่งออกมา: ศัตรูตัวแรกที่เดินเข้าได้รับความเสียหาย 3 หน่วย",
+   "en": "Once per turn, when you Move away from an adjacent enemy, place a Snare on the space you left.",
+   "th": "เทิร์นละครั้ง เมื่อคุณเคลื่อนที่ออกจากศัตรูที่อยู่ติดกัน ให้วางบ่วงดักบนช่องที่คุณเพิ่งออกมา",
    "cls": "Ranger"
   },
   {
@@ -6359,15 +6359,15 @@ ov('Overstride',[{t:'searchPlay',n:1}],[{t:'searchPlay'},fnOp(async P=>{ ensureD
 /* ===================== v1.1.88 RANGER CLASS (sheet 'Project Dungeon - Ranger Class Ideas', FINAL 2026-10-29) =====================
    Mark (m.mark): +1 dmg per hit from any hero (Attack hits, Snare and Companion damage), max 1 per enemy, gone at 0 HP / death / room end.
    Far = target 2+ spaces away (Manhattan). Snare (G.snares): placed on an empty space within printed range, triggers when an enemy enters it
-   (walk or push/pull), then removed; heroes never trigger it; not an Attack (only Mark +1 and Perfect Kill). Max 3 per hero (Trapmaster: 5, range +2).
+   (walk or push/pull), then removed; heroes never trigger it; not an Attack (only Mark +1 and Perfect Kill). v1.1.95: unlimited per hero; every Snare deals RG_SNARE_BASE (4) + Sharpened Stakes / Steel Jaws / Rhodan bonuses (Trapmaster: range +2/+3, draw 1 once per turn on trigger).
    Companion: v1.1.92 figures on the board (see CSTAT block). */
 const RG_COMP=new Set(['Hawk Companion','Wolf Companion','Owl Companion','Bear Companion']);
 const rgFar=(P,m)=>dist(m,P)>=2;
 const rgLive=()=>allMons().filter(m=>m.hp>0&&!m.undying);
 const rgOwner=s=>G.players.find(p=>p.id===s.pid);
 const rgSnaresOf=P=>(G.snares||[]).filter(s=>s.pid===P.id);
-const rgCap=P=>buffLv(P,'Trapmaster')?5:3;
-const rgRng=(P,r)=>r+(buffLv(P,'Trapmaster')?2:0);
+const RG_SNARE_BASE=4; /* v1.1.95 USER RULE: every Snare deals 4 base damage, no cap on Snares */
+const rgRng=(P,r)=>r+bv(P,'Trapmaster',2,3);
 const rgSnareAt=(x,y)=>(G.snares||[]).find(s=>s.x===x&&s.y===y);
 const rgEmpty=(x,y)=>inB(x,y)&&!isObs(x,y)&&!unitAt(x,y)&&!(G.water&&G.water.has(key(x,y)))&&!(G.traps&&G.traps.has(key(x,y)))&&!G.treasures.some(t=>t.x===x&&t.y===y)&&!rgSnareAt(x,y);
 const rgBotLike=P=>!!(P.bot||((HEADLESS||SIM.on)&&!globalThis.__askHook));
@@ -6375,14 +6375,16 @@ async function rgMark(P,m,why){ if(!m||m.hp<=0||m.undying||m.mark) return false;
   const hi=bv(P,"Hunter's Instinct",2,3); if(hi) await gainShield(P,hi); return true; }
 async function rgPickMark(P,pool,n,prompt,mandatory){ let k=0; for(let i=0;i<n;i++){ const opts=pool().filter(m=>m.hp>0&&!m.undying&&!m.mark); if(!opts.length) break;
     const ch=await ask(P,{kind:'mon',prompt:`${prompt}${n>1?` (${i+1}/${n})`:''}`,options:opts,purpose:'rgMark',cancel:(i>0||!mandatory)?'ไม่เลือก':undefined}); if(!ch) break; if(await rgMark(P,ch)) k++; } return k; }
-async function rgPlaceSnare(P,cells,spec,prompt){ if(rgSnaresOf(P).length>=rgCap(P)){ log(`🪢 ${P.name}: วางบ่วงเพิ่มไม่ได้ (สูงสุด ${rgCap(P)} อัน)`,'warn'); return null; }
+async function rgPlaceSnare(P,cells,spec,prompt){
   const opts=cells.filter(c=>rgEmpty(c.x,c.y)); if(!opts.length){ log('🪢 ไม่มีช่องว่างให้วางบ่วง','warn'); return null; }
-  const ch=await ask(P,{kind:'cell',prompt:prompt||`เลือกช่องวางบ่วงดัก (${spec.dmg||0} ดาเมจ)`,options:opts,purpose:'rgSnare',spec}); if(!ch) return null;
-  const s=Object.assign({x:ch.x,y:ch.y,pid:P.id,dmg:0},spec); (G.snares=G.snares||[]).push(s); log(`🪢 ${P.name} วางบ่วงดักที่ (${ch.x+1},${ch.y+1})`,'sys'); return s; }
+  const ch=await ask(P,{kind:'cell',prompt:prompt||`เลือกช่องวางบ่วงดัก (${rgSnareDmg(P,spec)} ดาเมจ)`,options:opts,purpose:'rgSnare',spec}); if(!ch) return null;
+  const s=Object.assign({x:ch.x,y:ch.y,pid:P.id},spec); (G.snares=G.snares||[]).push(s); log(`🪢 ${P.name} วางบ่วงดักที่ (${ch.x+1},${ch.y+1})`,'sys'); return s; }
 const rgWithin=(c0,r)=>allCells(c=>dist(c,c0)<=r&&dist(c,c0)>0);
-async function rgSnares(P,n,r,spec){ for(let i=0;i<n;i++){ const s=await rgPlaceSnare(P,rgWithin(P,rgRng(P,r)),spec,`วางบ่วงดัก ${n>1?`${i+1}/${n} `:''}ในระยะ ${rgRng(P,r)} ช่อง${spec.dmg?` (${spec.dmg} ดาเมจ)`:''}`); if(!s) break; } }
-const rgSnareOp=FAC((n,r,spec)=>({t:'fn',f:async P=>rgSnares(P,n,r,spec),ev:P=>{ const room=rgCap(P)-rgSnaresOf(P).length; if(room<=0||!rgLive().length) return -2; return Math.min(n,room)*((spec.dmg||0)*0.7+(spec.mark?1.5:0)+(spec.poison||0)*0.8+(spec.net?2:0)+(spec.stun?3:0)+0.5); }}));
-function rgSnareDmg(P,s){ let d=s.dmg||0; if(P&&P.hero.name==='Rhodan Forgehart') d+=P.heroUp?2:1; return d; }
+async function rgSnares(P,n,r,spec){ for(let i=0;i<n;i++){ const s=await rgPlaceSnare(P,rgWithin(P,rgRng(P,r)),spec,`วางบ่วงดัก ${n>1?`${i+1}/${n} `:''}ในระยะ ${rgRng(P,r)} ช่อง (${rgSnareDmg(P,spec)} ดาเมจ)`); if(!s) break; } }
+const rgSnareOp=FAC((n,r,spec)=>({t:'fn',f:async P=>rgSnares(P,n,r,spec),ev:P=>{ if(!rgLive().length) return -2; return n*(rgSnareDmg(P,spec)*0.7+(spec.mark?1.5:0)+(spec.poison||0)*0.8+(spec.net?2:0)+(spec.stun?3:0)+0.5); }}));
+function rgSnareDmg(P,s){ let d=RG_SNARE_BASE; if(P){ if(P.hero.name==='Rhodan Forgehart') d+=P.heroUp?2:1; d+=bv(P,'Sharpened Stakes',1,2)+bv(P,'Steel Jaws',2,3); } return d; }
+/* v1.1.95 Trapmaster: once per turn (hero turn or the monster phase) draw 1 when one of your Snares triggers */
+const rgTurnTok=()=>`${G.room}:${G.round}:${MON_ACT?'mon':'h'+G.turnIdx}`;
 async function rgTrigger(s,m,extra,keepOverride){ const P=rgOwner(s); if(!P||!m||m.hp<=0) return;
   const i=G.snares.indexOf(s); let keep=false;
   if(!keepOverride&&hasItem(P,'Thornvine Buckler')&&(G.thornRoom||{})[P.id]!==G.room&&!s.kept){ (G.thornRoom=G.thornRoom||{})[P.id]=G.room; s.kept=true; keep=true; log('🌿 Thornvine Buckler: บ่วงอันแรกของห้องยังอยู่ ทำงานได้อีก 1 ครั้ง','sys'); }
@@ -6390,7 +6392,8 @@ async function rgTrigger(s,m,extra,keepOverride){ const P=rgOwner(s); if(!P||!m|
   log(`🪢 บ่วงดักของ ${P.name} ทำงานใส่ ${m.name}`,'hit'); if(!HEADLESS&&typeof UI!=='undefined'&&UI.floatAt) try{ UI.floatAt(m,'🪢','bump'); }catch(_){}
   const d=rgSnareDmg(P,s)+(extra||0); if(d>0) await hitMon(P,m,d,{markOk:1,noWeak:1,snare:1},{});
   if(m.hp>0&&!m.undying){ if(s.poison){ m.poison+=s.poison; log(`☠ ${m.name} ติดพิษ ${s.poison}`,'sys'); } if(s.push){ await pushUnit(P,m,rgDirAway(m,P),s.push); } if(s.stun){ m.stun=1; log(`💫 ${m.name} ติดสตัน (Net Snare+)`,'sys'); }
-    if(s.mark||(P.hero.name==='Rhodan Forgehart'&&P.heroUp)) await rgMark(P,m,'บ่วงดัก'); }
+    if(s.mark||bv(P,'Steel Jaws',1,1)||(P.hero.name==='Rhodan Forgehart'&&P.heroUp)) await rgMark(P,m,'บ่วงดัก'); }
+  if(buffLv(P,'Trapmaster')&&P.hp>0){ const tk=rgTurnTok(); if(P.tmTok!==tk){ P.tmTok=tk; log(`Trapmaster: ${P.name} จั่วการ์ด 1 ใบ`,'sys'); await draw(P,1); } }
   if(hasItem(P,'Goldbriar Buckler')){ for(const o of rgLive().filter(o=>o!==m&&dist(o,s)<=2&&dist(o,s)>0)){ const dx=s.x-o.x,dy=s.y-o.y; const dir=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; const nx=o.x+dir[0],ny=o.y+dir[1]; if(inB(nx,ny)&&!isObs(nx,ny)&&!unitAt(nx,ny)){ o.x=nx;o.y=ny; log(`Goldbriar Buckler: ดึง ${o.name} เข้าหาบ่วง 1 ช่อง`,'sys'); const s2=rgSnareAt(nx,ny); if(s2&&s2!==s) await rgTrigger(s2,o,0); } } }
   return !!s.net; }
 var MON_ACT=null; /* v1.1.94 monster currently taking its turn */
@@ -6470,12 +6473,12 @@ async function compTakeMonHit(m,f,dmg,def){ await compHurt(f,dmg); if(f.hp<=0) r
   if(def&&def.push&&f.hp>0){ const dx=f.x-m.x,dy=f.y-m.y; const dir=Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx),0]:[0,Math.sign(dy)]; for(let i=0;i<(+def.push||1);i++){ const nx=f.x+dir[0],ny=f.y+dir[1]; if(!inB(nx,ny)||isObs(nx,ny)||unitAt(nx,ny)) break; f.x=nx; f.y=ny; } } }
 async function rgStartTurn(P){ P.pinN=0; P.pinSet=new Set(); P.apexHit=false; P.frostUsed=false; P.blueUsed=false; P.calm=null;
   if(P.roomTurn===1){
-    if(P.hero.name==='Rhodan Forgehart'){ const n=P.heroUp?2:1; for(let i=0;i<n;i++) if(!await rgPlaceSnare(P,rgWithin(P,3),{dmg:4,free:1},`Rhodan: วางบ่วงดักฟรี ${n>1?`${i+1}/${n} `:''}ในระยะ 3 ช่อง (4 ดาเมจ +${P.heroUp?2:1})`)) break; }
+    if(P.hero.name==='Rhodan Forgehart'){ const n=P.heroUp?2:1; for(let i=0;i<n;i++) if(!await rgPlaceSnare(P,rgWithin(P,3),{free:1},`Rhodan: วางบ่วงดักฟรี ${n>1?`${i+1}/${n} `:''}ในระยะ 3 ช่อง (${rgSnareDmg(P,{})} ดาเมจ)`)) break; }
     if(hasItem(P,'Gloomspike Lance')){ const pool=rgLive().filter(m=>!m.mark); if(pool.length){ const far=pool.reduce((a,b)=>dist(b,P)>dist(a,P)?b:a); await rgMark(P,far,'Gloomspike Lance'); } } }
   if(buffLv(P,'Apex Predator')) await rgPickMark(P,rgLive,1,'Apex Predator: ติด Mark ศัตรู 1 ตัว',true); }
 async function rgEndTurn(P){ await rgCompAct(P); P.calm=null; for(const m of allMons()) if(m.openB&&m.openB.pid===P.id) delete m.openB; }
 async function rgBlue(P,ox,oy,adjBefore){ if(!hasItem(P,'Bluesteel Cuirass')||P.blueUsed||!adjBefore.size) return; const left=allMons().filter(m=>adjBefore.has(m.uid)&&m.hp>0&&dist(m,P)>1); if(!left.length) return;
-  if(!rgEmpty(ox,oy)||rgSnaresOf(P).length>=rgCap(P)) return; P.blueUsed=true; G.snares.push({x:ox,y:oy,pid:P.id,dmg:3}); log(`Bluesteel Cuirass: วางบ่วงดัก (3) ที่ช่องเดิม`,'sys'); }
+  if(!rgEmpty(ox,oy)) return; P.blueUsed=true; G.snares.push({x:ox,y:oy,pid:P.id}); log(`Bluesteel Cuirass: วางบ่วงดัก (${rgSnareDmg(P,{})}) ที่ช่องเดิม`,'sys'); }
 const rgDirAway=(m,P)=>{ const dx=m.x-P.x,dy=m.y-P.y; return Math.abs(dx)>=Math.abs(dy)?[Math.sign(dx)||1,0]:[0,Math.sign(dy)]; };
 /* bot choices for every rg* prompt (bots and headless sims) */
 function rgBotChoose(P,req){ const o=req.options; if(!o||!o.length) return null; const ms=rgLive();
@@ -6517,7 +6520,7 @@ const rgPinMk={after:async(P,m)=>{ if(m.hp>0&&DIRS.some(([dx,dy])=>!inB(m.x+dx,m
 ov('Pinning Shot|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>rgPdNear(m)?d+2:d})],[rgPA(5,{dmgFor:(P,m,c,d)=>rgPdNear(m)?d+3:d})]);
 const rgMkT={after:async(P,m)=>{ if(m.hp>0) await rgMark(P,m); }};
 ov('Retreating Shot|RS',[rgRS(4,3),{t:'move',min:0,n:2}],[rgRS(6,4),{t:'move',min:0,n:3}]);
-ov('Whip Snare|RS',[rgSnareOp(1,2,{dmg:2,push:2})],[rgSnareOp(1,3,{dmg:4,push:3})]);
+ov('Whip Snare|RS',[rgSnareOp(1,2,{push:2})],[rgSnareOp(1,3,{push:3})]);
 const rgLong=(a,b,c)=>(P,m)=>{ const d=dist(m,P); return d>=4?c:d>=2?b:a; };
 ov('Long Shot|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>{ const x=dist(m,P); return x>=4?6:x>=2?4:d; }})],[rgPA(5,{dmgFor:(P,m,c,d)=>{ const x=dist(m,P); return x>=4?9:x>=2?6:d; }})]);
 const rgPierce=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const lines=DIRS.map(([dx,dy],i)=>{ const ms=[]; let x=P.x+dx,y=P.y+dy; while(inB(x,y)&&!(isObs(x,y)&&!arcPass(P))){ const m=monAt(x,y); if(m&&m.hp>0) ms.push(m); x+=dx;y+=dy; } return {label:['⬆ ขึ้น','➡ ขวา','⬇ ลง','⬅ ซ้าย'][i]+` (${ms.length} ตัว)`,v:i,n:ms.length,ms,dir:[dx,dy]}; }).filter(l=>l.n);
@@ -6529,7 +6532,6 @@ ov('Spirit Arrow|RS',[rgPA(3,rgMkT)],[rgPA(4,{after:async(P,m)=>{ const pos={x:m
 ov('Heartseeker|RS',[rgPA(6,{consume:true,dmgFor:(P,m,c,d)=>m.mark?12:d})],[rgPA(8,{consume:true,dmgFor:(P,m,c,d)=>m.mark?16:d})]);
 ov('Rain of Arrows|RS',[Object.assign({t:'atk',dmg:3,mode:'all',tf:rgFar},rgMkT)],[Object.assign({t:'atk',dmg:5,mode:'all',tf:rgFar},rgMkT)]);
 ov('Tracking|RS',[rgMarkOp(1,'Tracking: ติด Mark ศัตรู 1 ตัว'),{t:'draw',n:1}],[rgMarkOp(2,'Tracking+: ติด Mark ศัตรูสูงสุด 2 ตัว'),{t:'draw',n:1}]);
-ov('Spike Snare|RS',[rgSnareOp(1,2,{dmg:6})],[rgSnareOp(1,3,{dmg:10})]);
 ov('Net Snare|RS',[rgSnareOp(1,2,{net:1,mark:1}),{t:'draw',n:1}],[rgSnareOp(1,3,{net:1,mark:1,stun:1})]);
 const rgLure=FAC((n,r)=>({t:'fn',f:async P=>{ for(let i=0;i<n;i++){ const pool=rgLive().filter(m=>dist(m,P)<=r&&!(P._lure&&P._lure.has(m.uid))); if(!pool.length) break;
     const m=await ask(P,{kind:'mon',prompt:`Lure Whistle${n>1?'+':''}: หันหลังศัตรูให้คุณ + ติด Mark${n>1?` (${i+1}/${n})`:''}`,options:pool,purpose:'rgMark',cancel:i>0?'ไม่เลือก':undefined}); if(!m) break; (P._lure=P._lure||new Set()).add(m.uid);
@@ -6543,8 +6545,8 @@ function rgIsProjCard(P,h){ const d=DEF[h.key]; if(!d||d.type!=='attack') return
 const rgNock=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const pool=P.hand.filter(h=>h.key!=='EXH'&&h!==(ctx&&ctx.card)&&rgIsProjCard(P,h)); if(pool.length){ const ch=await ask(P,{kind:'card',prompt:`Nock & Draw: Power Up ${n} ให้การ์ดโจมตี [Projectile] ในมือ`,options:pool,purpose:'power'}); if(ch){ ch.pow=(ch.pow||0)+n; log(`${DEF[ch.key].name} ได้ Power +${n}`,'sys'); } } else log('Nock & Draw: ไม่มีการ์ดโจมตี [Projectile] ในมือ','warn'); },ev:P=>P.hand.some(h=>h.key!=='EXH'&&rgIsProjCard(P,h))?n*1.6:0}));
 ov('Nock & Draw|RS',[rgNock(1),{t:'draw',n:1}],[rgNock(2),{t:'draw',n:1}]);
 ov('Flick Arrow|RS',[rgPA(2,{tf:(P,m)=>!!m.mark}),{t:'move',min:0,n:1}],[rgPA(3,{tf:(P,m)=>!!m.mark}),{t:'move',min:0,n:2}]);
-const rgTrip=n=>({after:async(P,m)=>{ const pos={x:m.x,y:m.y}; await rgPlaceSnare(P,DIRS.map(([dx,dy])=>({x:pos.x+dx,y:pos.y+dy})),{dmg:n},`Tripwire Shot: วางบ่วงดัก (${n}) ข้างเป้าหมาย`); }});
-ov('Tripwire Shot|RS',[rgPA(3,rgTrip(3))],[rgPA(4,rgTrip(5))]);
+const rgTrip=()=>({after:async(P,m)=>{ const pos={x:m.x,y:m.y}; await rgPlaceSnare(P,DIRS.map(([dx,dy])=>({x:pos.x+dx,y:pos.y+dy})),{},`Tripwire Shot: วางบ่วงดัก (${rgSnareDmg(P,{})}) ข้างเป้าหมาย`); }});
+ov('Tripwire Shot|RS',[rgPA(3,rgTrip())],[rgPA(4,rgTrip())]);
 ov('Barbed Arrow|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>rgFar(P,m)?d+2:d})],[rgPA(4,{dmgFor:(P,m,c,d)=>rgFar(P,m)?d+3:d})]);
 const rgHarr={t:'fn',f:async P=>{ const cs=compsOf(P); if(!cs.length) return; const f=cs.length>1?await ask(P,{kind:'cell',prompt:'Harrier Shot: เลือกคู่หู 1 ตัว ให้ทำงานทันที (เดิน + แอคชัน)',options:cs,purpose:'rgCompPick'}):cs[0]; const ff=f&&cs.find(c=>c.x===f.x&&c.y===f.y); if(ff){ log(`Harrier Shot: ${ff.name} ทำงานทันที`,'sys'); await rgCompActOne(P,ff,false); } },ev:P=>compsOf(P).length?3:0};
 ov('Harrier Shot|RS',[rgPA(3),rgHarr],[rgPA(5),rgHarr]);
@@ -6556,17 +6558,20 @@ const rgSpring=FAC(n=>({t:'fn',f:async P=>{ const ss=rgSnaresOf(P).filter(s=>rgL
   ev:P=>{ const ss=rgSnaresOf(P).filter(s=>rgLive().some(m=>dist(m,s)<=1)); return ss.length?Math.max(...ss.map(s=>rgSnareDmg(P,s)))+n+1:-2; }}));
 ov('Spring the Trap|RS',[rgSpring(2)],[rgSpring(4)]);
 ov("Hunter's Harvest|RS",[rgPA(P=>5+Math.min(6,2*rgLive().filter(m=>m.mark).length))],[rgPA(P=>7+Math.min(9,3*rgLive().filter(m=>m.mark).length))]);
-const rgFinale=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const ss=rgSnaresOf(P); if(!ss.length){ log("Trapper's Finale: ไม่มีบ่วงดัก",'warn'); return; } G.snares=G.snares.filter(s=>s.pid!==P.id); log(`💥 Trapper's Finale: นำบ่วงออก ${ss.length} อัน`,'hit');
-    const op={isAtk:true,noWeak:1}; const c2=Object.assign({},ctx||{}); for(const s of ss) for(const m of rgLive().filter(m=>dist(m,s)<=1)) await hitMon(P,m,n,op,c2); },
-  ev:P=>{ let k=0; for(const s of rgSnaresOf(P)) k+=rgLive().filter(m=>dist(m,s)<=1).length; return k?k*(n+P.str)-rgSnaresOf(P).length*1.5:-3; }}));
-ov("Trapper's Finale|RS",[rgFinale(5)],[rgFinale(8)]);
+const rgFinScore=s=>rgLive().filter(m=>dist(m,s)<=1).length;
+const rgFinale=FAC(n=>({t:'fn',f:async(P,ctx)=>{ let ss=rgSnaresOf(P); if(!ss.length){ log("Trapper's Finale: ไม่มีบ่วงดัก",'warn'); return; }
+    let pick=[]; if(ss.length<=n||rgBotLike(P)) pick=ss.slice().sort((x,y)=>rgFinScore(y)-rgFinScore(x)).slice(0,n);
+    else for(let i=0;i<n;i++){ const opts=rgSnaresOf(P).filter(s=>!pick.includes(s)); if(!opts.length) break; const c=await ask(P,{kind:'cell',prompt:`Trapper's Finale: เลือกบ่วงที่จะนำออก (${i+1}/${n})`,options:opts,purpose:'rgSnarePick',cancel:i>0?'พอแล้ว':undefined}); const s=c&&opts.find(o=>o.x===c.x&&o.y===c.y); if(!s) break; pick.push(s); }
+    pick=pick.filter(s=>rgFinScore(s)>0||ss.length<=n||!rgBotLike(P)); if(!pick.length) return; G.snares=G.snares.filter(s=>!pick.includes(s)); log(`💥 Trapper's Finale: นำบ่วงออก ${pick.length} อัน`,'hit');
+    const op={markOk:1,noWeak:1,snare:1}; for(const s of pick){ const d=rgSnareDmg(P,s); for(const m of rgLive().filter(m=>dist(m,s)<=1)) await hitMon(P,m,d,op,{}); } },
+  ev:P=>{ const sc=rgSnaresOf(P).map(rgFinScore).sort((x,y)=>y-x).slice(0,n); const k=sc.reduce((a,b)=>a+b,0); return k?k*rgSnareDmg(P,{})-sc.filter(x=>x>0).length*2:-3; }}));
+ov("Trapper's Finale|RS",[rgFinale(3)],[rgFinale(4)]);
 ov('Fade Back|RS',[{t:'move',min:0,n:3},{t:'shield',n:3},rgFade(4,3)],[{t:'move',min:0,n:4},{t:'shield',n:4},rgFade(5,4)]);
-ov('Caltrops|RS',[rgSnareOp(2,2,{dmg:3})],[rgSnareOp(2,3,{dmg:5})]);
-ov('Bear Trap|RS',[rgSnareOp(1,2,{dmg:10})],[rgSnareOp(1,3,{dmg:14})]);
+ov('Caltrops|RS',[rgSnareOp(2,1,{})],[rgSnareOp(2,2,{})]);
 const rgReset=FAC(n=>({t:'fn',f:async P=>{ for(let i=0;i<n;i++){ const ss=rgSnaresOf(P); if(!ss.length) break; const s=await ask(P,{kind:'cell',prompt:`Reset the Trap: เลือกบ่วงที่จะย้าย${n>1?` (${i+1}/${n})`:''}`,options:ss,purpose:'rgSnarePick',forMove:1,cancel:'ไม่ย้าย'}); if(!s) break;
     const opts=rgWithin(P,3).filter(c=>rgEmpty(c.x,c.y)); if(!opts.length) break; const c=await ask(P,{kind:'cell',prompt:'Reset the Trap: เลือกช่องว่างในระยะ 3 ช่อง',options:opts,purpose:'rgMoveTo'}); if(!c) break; s.x=c.x; s.y=c.y; log(`🪢 ย้ายบ่วงไป (${c.x+1},${c.y+1})`,'sys'); } },ev:P=>rgSnaresOf(P).length?1:0}));
 ov('Reset the Trap|RS',[rgReset(1),{t:'draw',n:1}],[rgReset(2),{t:'draw',n:1}]);
-ov('Trapline|RS',[rgSnareOp(3,3,{dmg:4})],[rgSnareOp(3,4,{dmg:7})]);
+ov('Trapline|RS',[rgSnareOp(3,2,{})],[rgSnareOp(3,3,{})]);
 function rgEvAtk(P,op){ try{ const base=val(op.dmg,P,{x:1})||0; let s=0;
   if(op.mode==='all'&&op.tf){ const all=monsters(P); const ok=all.filter(m=>op.tf(P,m)); s-=(all.length-ok.length)*(base+P.str); s+=ok.filter(m=>!m.mark).length*(op.after?1.5:0); return s; }
   const tg=singleTargets(P,op); if(!tg.length) return 0;
@@ -6574,7 +6579,7 @@ function rgEvAtk(P,op){ try{ const base=val(op.dmg,P,{x:1})||0; let s=0;
   if(tg.some(m=>m.mark)) s+=1; if(op.after) s+=1.5; return s; }catch(e){ return 0; } }
 
 /* ---------- build card definitions ---------- */
-const BUFFS = new Set(["Hunter's Instinct",'Skyward Arc','Hawk Companion','Wolf Companion','Gather the Arrows','Owl Companion','Trapmaster','Bear Companion','Apex Predator','Shifting Defence','Iron Sparks','On the Point','Vigilance','Quick Arm','Always Prepared','Unarmor','Demon Form','Know the Weak','Sadism','Best Defence','Feel the Pain',
+const BUFFS = new Set(["Hunter's Instinct",'Skyward Arc','Hawk Companion','Wolf Companion','Gather the Arrows','Owl Companion','Trapmaster','Sharpened Stakes','Steel Jaws','Bear Companion','Apex Predator','Shifting Defence','Iron Sparks','On the Point','Vigilance','Quick Arm','Always Prepared','Unarmor','Demon Form','Know the Weak','Sadism','Best Defence','Feel the Pain',
  'Eagle','Maniac','Phantom','Precision','Ready','Save Play','Snipe','Teasing','Test Your Luck','Poison Armor','Toxic Amplify','Venom Requiem','Ballistics','Resonance','Toxic Catalyst','Momentum','Overflow',
  'Mana Flow','Foresight','Mana Refund','Mana Shield','Ghost Walk','Arcane Prosperity','Mana Reserve','Iron Wall','Blazing Power','Voltaic Style','Swift Motion','Hazardous Ground','Stability','Wind Amplifier','Granite Body','Just One More','Adaptive Fight','Close Quarters','Alchemy','Hand Drain','Mana Cycle']);
 const NOT_IMPL = []; const PARTIAL = [];
@@ -6640,7 +6645,7 @@ const emptyAdj=P=>DIRS.filter(([dx,dy])=>inB(P.x+dx,P.y+dy)&&!isObs(P.x+dx,P.y+d
 const MARKET_ITEMS=new Set(['Ruby Sigil']);
 const hasItem=(P,n)=>P.items.includes(n)&&(G.phase!=='rest'||MARKET_ITEMS.has(n));
 const buffLv=(P,n)=>{let l=0;for(const c of P.buffs) if(DEF[c.key].name===n) l=Math.max(l,c.up?2:1);return l;};
-const BV_NUMS={"Shifting Defence": [5, 8], "Quick Arm": [1, 2], "Arcane Prosperity": [1, 2], "Eagle": [1, 2], "Toxic Amplify": [3, 4], "Blazing Power": [2, 3], "Precision": [2, 3], "Snipe": [1, 2], "Teasing": [1, 2], "Maniac": [1, 2], "On the Point": [8, 6], "Toxic Catalyst": [1, 2], "Wind Amplifier": [3, 5], "Swift Motion": [1, 1], "Voltaic Style": [2, 3], "Unarmor": [2, 1], "Poison Armor": [4, 6], "Hazardous Ground": [4, 7], "Demon Form": [2, 2], "Ready": [1, 2], "Mana Flow": [1, 2], "Foresight": [1, 2], "Granite Body": [2, 6], "Always Prepared": [1, 3], "Mana Reserve": [2, 2], "Stability": [1, 2], "Save Play": [1, 2], "Overflow": [1, 2]}; /* generated by gen_bv.py: printed buff numbers read through bv() */
+const BV_NUMS={"Trapmaster": [2, 3], "Sharpened Stakes": [1, 2], "Steel Jaws": [2, 3], "Shifting Defence": [5, 8], "Quick Arm": [1, 2], "Arcane Prosperity": [1, 2], "Eagle": [1, 2], "Toxic Amplify": [3, 4], "Blazing Power": [2, 3], "Precision": [2, 3], "Snipe": [1, 2], "Teasing": [1, 2], "Maniac": [1, 2], "On the Point": [8, 6], "Toxic Catalyst": [1, 2], "Wind Amplifier": [3, 5], "Swift Motion": [1, 1], "Voltaic Style": [2, 3], "Unarmor": [2, 1], "Poison Armor": [4, 6], "Hazardous Ground": [4, 7], "Demon Form": [2, 2], "Ready": [1, 2], "Mana Flow": [1, 2], "Foresight": [1, 2], "Granite Body": [2, 6], "Always Prepared": [1, 3], "Mana Reserve": [2, 2], "Stability": [1, 2], "Save Play": [1, 2], "Overflow": [1, 2]}; /* generated by gen_bv.py: printed buff numbers read through bv() */
 /* v1.1.29: Mana can't be used on Buff cards (t9u) — buff numbers are always the printed values (BV_NUMS is no longer read by the engine; gen_bv.py still regenerates it) */
 /* v1.1.44 USER RULE: duplicate Buff cards STACK — every copy in play adds its own value (normal copy = a, upgraded copy = b).
    Exceptions (not summed, see DUNGEON_KNOWLEDGE.md 'buff stacking'): thresholds / activation costs / conditions, and activated abilities. */
@@ -8206,7 +8211,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.94', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.95', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -8997,7 +9002,7 @@ KW.push({id:'Coin',en:'Coins?',th:'เหรียญ',def:"ได้ 2 Coins �
 /* v1.1.91 Ranger keywords */
 KW.push({id:'Companion',en:'Companions?',th:'คู่หู',def:'การ์ด Buff ที่วางตัวคู่หูบนช่องว่างติดตัวคุณ (คุณเลือกช่อง; ไม่มีช่องว่าง = เล่นไม่ได้); มีได้หลายตัว; มี HP (เหยี่ยว 4/6, นกฮูก 4/6, หมาป่า 10/14, หมี 14/18); ศัตรูมองเป็นสมาชิกทีมฮีโร่และโจมตีได้; ขวางศัตรู ฮีโร่เดินผ่านได้แต่หยุดทับไม่ได้; ไม่รับโล่/ฮีล; ตาย = การ์ด Buff ถูก Remove; จบห้องออกจากกระดาน; จบเทิร์นคุณ: เดินตามค่า Move (นก = บิน) แล้วทำแอคชัน',enDef:'Buff that places a figure on an empty space adjacent to you (your choice; no empty space = can\'t play). Any number allowed. Has HP (Hawk 4/6, Owl 4/6, Wolf 10/14, Bear 14/18). Enemies treat it as a hero-team member and can attack it; it blocks enemies, heroes pass through but can\'t stop on it; no Shields/healing; killed = its Buff card is Removed; leaves at room end. End of your turn: moves up to its Move (birds fly), then acts',rb:true},
  {id:'Mark',en:'Mark(?:ed|s)?',th:'ติด Mark',def:'ศัตรูที่ติด Mark รับความเสียหาย +1 ทุกครั้งที่โดนฮีโร่ตี (การโจมตี, บ่วงดัก, คู่หู); ติดได้ 1 อันต่อศัตรู; หายเมื่อตาย หรือจบห้อง',enDef:'A Marked enemy takes +1 damage from every hero hit (attacks, Snares, Companions). Max 1 per enemy; gone on death or at room end.',rb:true},
- {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ศัตรูที่เดินเข้าบ่วงในเทิร์นของมันจะจบเทิร์นทันที (หยุดเดินและไม่ทำอะไรต่อ) หลังผลของบ่วง; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; วางได้สูงสุด 3 อันต่อฮีโร่',enDef:'Placed on an empty space in range; triggers when an enemy enters it (walk or push/pull), then is removed. An enemy that moves into a Snare on its own turn ends its turn immediately (stops moving, takes no further action) after the Snare effect. Heroes never trigger it; not an Attack. Max 3 per hero.',rb:true},
+ {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ศัตรูที่เดินเข้าบ่วงในเทิร์นของมันจะจบเทิร์นทันที (หยุดเดินและไม่ทำอะไรต่อ) หลังผลของบ่วง; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; บ่วงทุกอันสร้างความเสียหาย 4 หน่วย (การ์ด Buff และ Rhodan เพิ่มได้); วางได้ไม่จำกัดจำนวน',enDef:'Placed on an empty space in range; triggers when an enemy enters it (walk or push/pull), then is removed. An enemy that moves into a Snare on its own turn ends its turn immediately (stops moving, takes no further action) after the Snare effect. Heroes never trigger it; not an Attack. Every Snare deals 4 damage (Buff cards and Rhodan add to it). No limit on how many you can have.',rb:true},
  {id:'Far',en:'Far',th:'ไกล(?=:)',def:'เป้าหมายอยู่ห่างจากคุณ 2 ช่องขึ้นไป',enDef:'The target is 2+ spaces away from you.',rb:true}); kwBuildRe();
 const TOK_KW={mana:'Mana',shield:'Shield',str:'Strength',pow:'Power Up',dodge:'Dodge',mtok:'Move Token',ptok:'Projectile Token',poison:'Poison',stun:'Stun',shardstack:'Shard',coinstack:'Coin'};
 const TOK_USE={mana:'วิธีใช้: ตอนเล่นการ์ด เลือก +/− ตัวเลขที่พิมพ์บนการ์ด (การ์ดปกติ: ครั้งเดียว ใช้ 2 Mana · การ์ด [Magic]: 1 Mana/จุด ใช้ได้หลาย Mana)',shield:'ทำงานอัตโนมัติเมื่อโดนดาเมจ',str:'ทำงานอัตโนมัติกับการ์ด Attack',pow:'จะใส่ให้การ์ด Attack ใบถัดไปที่เลือกอัตโนมัติ',dodge:'ใช้อัตโนมัติเมื่อโดนโจมตีครั้งถัดไป',mtok:'วิธีใช้: กดเดิน — ระบบใช้ Move Token ก่อน Shard',ptok:'ใช้กับการโจมตีครั้งถัดไป (ระบบถามเมื่อเล่นการ์ด Attack)',poison:'สถานะ — ลดลงเองทุกจบเทิร์น',stun:'สถานะ — ข้ามเทิร์นถัดไป',shardstack:'วิธีใช้: กดปุ่มเดิน (2 Shard/ช่อง)',coinstack:'วิธีใช้: ใช้ในร้านค้าช่วง Rest Phase'};
@@ -11265,7 +11270,7 @@ if(!HEADLESS){
     for(const s of S){ const el=document.querySelector(`#cells .cell[data-k="${key(s.x,s.y)}"]`); if(!el) continue; el.classList.add('rgsnare'); el.querySelectorAll('.rgsn').forEach(e=>e.remove());
       const o=heroes().find(h=>h.id===s.pid)||G.players.find(h=>h.id===s.pid); const nm=o?o.name:'';
       el.insertAdjacentHTML('beforeend',`<span class="rgsn">🪢${ownerN>1?`<b>${esc(ini(nm))}</b>`:''}</span>`);
-      el.title=`🪢 บ่วงดัก (Snare) ของ ${nm}\nศัตรูที่เข้าช่องนี้: ดาเมจ ${s.dmg||0}${s.poison?' ☠'+s.poison:''}${s.stun?' 💫Stun':''}${s.mark?' 🎯Mark':''}${s.push?' ผลัก '+s.push:''}${s.net?' หยุดเดิน (Net)':''} แล้วบ่วงหายไป\nถ้าเดินเข้ามาในเทิร์นของมัน: จบเทิร์นทันที / Enemy moving in on its turn ends its turn`; }
+      el.title=`🪢 บ่วงดัก (Snare) ของ ${nm}\nศัตรูที่เข้าช่องนี้: ดาเมจ ${typeof rgSnareDmg==='function'?rgSnareDmg(G.players.find(p=>p.id===s.pid),s):4}${s.poison?' ☠'+s.poison:''}${s.stun?' 💫Stun':''}${s.mark?' 🎯Mark':''}${s.push?' ผลัก '+s.push:''}${s.net?' หยุดเดิน (Net)':''} แล้วบ่วงหายไป\nถ้าเดินเข้ามาในเทิร์นของมัน: จบเทิร์นทันที / Enemy moving in on its turn ends its turn`; }
     for(const m of allMons()){ const el=document.querySelector(`#toks .tok.mon[data-k="${key(m.x,m.y)}"]`); if(!el) continue;
       el.querySelectorAll('.rgmk,.rgpin').forEach(e=>e.remove()); el.classList.toggle('rgmarked',!!m.mark);
       if(m.mark) el.insertAdjacentHTML('beforeend','<div class="rgmk" title="🎯 Mark: โดนดาเมจ +1 จากการโจมตี/บ่วง/คู่หู">🎯</div>');
