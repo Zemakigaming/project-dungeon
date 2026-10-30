@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Project Dungeon v1.1.95</title>
+<title>Project Dungeon v1.1.96</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600&family=Sarabun:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#141820;--pan:#1f2531;--pan2:#283040;--ink:#e8ecf3;--mut:#9aa6b8;--gold:#f3c45b;--atk:#e0564f;--trk:#4fa3e0;--buf:#9b6be0;--exh:#666}
@@ -1009,7 +1009,7 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
 #prompt .xOk{font:600 17px Kanit,sans-serif;padding:10px;border-radius:12px;border:1px solid #6fd38a;background:linear-gradient(#2f6b3c,#1a3d22);color:#eaffef;cursor:pointer}
 </style></head><body>
 <div id="setup">
- <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.95 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
+ <div class="top"><img id="logo" alt=""><div><h1 style="margin:0">Project Dungeon <small style="font-size:14px;color:var(--mut)">v1.1.96 — Digital Prototype</small></h1><div style="color:var(--mut)">ดันเจี้ยนครอว์เลอร์ Deck-building 10 ห้อง · ปราบห้องบอสเพื่อชนะ · ศิลป์จาก Synchro Horizon</div></div><span style="flex:1"></span><button id="btnRules2">📖 กติกา / วิธีเล่น</button></div>
  <div class="opts1">
   <div class="sBg"><div class="mmFog f1"></div><div class="mmFog f2"></div><div class="sEmbers"></div><div class="sVig"></div></div>
   <div class="sMain">
@@ -4582,11 +4582,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Hunter's Mark",
    "cost": 1,
-   "en": "If no enemy is Marked, Mark 1 enemy anywhere; otherwise gain 1 extra Shield. Move 1. Gain 1 Shield.",
-   "th": "ถ้ายังไม่มีศัตรูตัวใดติด Mark ให้ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ ไม่เช่นนั้นได้รับโล่เพิ่ม 1 โล่ เคลื่อนที่ 1 ช่อง ได้รับ 1 โล่",
+   "en": "Choose one: Mark 1 enemy anywhere, or gain 1 extra Shield. Move 1. Gain 1 Shield.",
+   "th": "เลือก 1 อย่าง: ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ หรือได้รับโล่เพิ่ม 1 โล่ เคลื่อนที่ 1 ช่อง ได้รับ 1 โล่",
    "ucost": 1,
-   "uen": "If no enemy is Marked, Mark 1 enemy anywhere; otherwise gain 2 extra Shields. Move 1-2. Gain 2 Shields.",
-   "uth": "ถ้ายังไม่มีศัตรูตัวใดติด Mark ให้ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ ไม่เช่นนั้นได้รับโล่เพิ่ม 2 โล่ เคลื่อนที่ 1–2 ช่อง ได้รับ 2 โล่",
+   "uen": "Choose one: Mark 1 enemy anywhere, or gain 2 extra Shields. Move 1-2. Gain 2 Shields.",
+   "uth": "เลือก 1 อย่าง: ติด Mark ศัตรู 1 ตัวที่ตำแหน่งใดก็ได้ หรือได้รับโล่เพิ่ม 2 โล่ เคลื่อนที่ 1–2 ช่อง ได้รับ 2 โล่",
    "rar": "Starter",
    "type": "trick",
    "cls": "All",
@@ -4932,11 +4932,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Tripwire Shot",
    "cost": 1,
-   "en": "[Projectile] Deal 3 damage, then place a Snare on an empty space adjacent to the target.",
-   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย จากนั้นวางบ่วงดัก 1 อันบนช่องว่างที่ติดกับเป้าหมาย",
+   "en": "[Projectile] Deal 3 damage, then place a Snare on an empty space adjacent to the target (or on its space if it was defeated).",
+   "th": "[โพรเจกไทล์] สร้างความเสียหาย 3 หน่วย จากนั้นวางบ่วงดัก 1 อันบนช่องว่างที่ติดกับเป้าหมาย (หรือบนช่องของมันถ้ามันถูกกำจัด)",
    "ucost": 1,
-   "uen": "[Projectile] Deal 4 damage, then place a Snare on an empty space adjacent to the target.",
-   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย จากนั้นวางบ่วงดัก 1 อันบนช่องว่างที่ติดกับเป้าหมาย",
+   "uen": "[Projectile] Deal 4 damage, then place a Snare on an empty space adjacent to the target (or on its space if it was defeated).",
+   "uth": "[โพรเจกไทล์] สร้างความเสียหาย 4 หน่วย จากนั้นวางบ่วงดัก 1 อันบนช่องว่างที่ติดกับเป้าหมาย (หรือบนช่องของมันถ้ามันถูกกำจัด)",
    "rar": "Common",
    "type": "attack",
    "cls": "Ranger",
@@ -6370,16 +6370,18 @@ const RG_SNARE_BASE=4; /* v1.1.95 USER RULE: every Snare deals 4 base damage, no
 const rgRng=(P,r)=>r+bv(P,'Trapmaster',2,3);
 const rgSnareAt=(x,y)=>(G.snares||[]).find(s=>s.x===x&&s.y===y);
 const rgEmpty=(x,y)=>inB(x,y)&&!isObs(x,y)&&!unitAt(x,y)&&!(G.water&&G.water.has(key(x,y)))&&!(G.traps&&G.traps.has(key(x,y)))&&!G.treasures.some(t=>t.x===x&&t.y===y)&&!rgSnareAt(x,y);
+/* v1.1.96 USER RULE: a hero may place a Snare on its own space (heroes never trigger Snares) */
+const rgEmptyP=(P,x,y)=>{ const u=unitAt(x,y); if(u&&u!==P) return false; return inB(x,y)&&!isObs(x,y)&&!(G.water&&G.water.has(key(x,y)))&&!(G.traps&&G.traps.has(key(x,y)))&&!rgSnareAt(x,y); }; /* v1.1.96 USER RULE: Snares may share a space with a floor pickup */
 const rgBotLike=P=>!!(P.bot||((HEADLESS||SIM.on)&&!globalThis.__askHook));
 async function rgMark(P,m,why){ if(!m||m.hp<=0||m.undying||m.mark) return false; m.mark=P.id+1; log(`🎯 ${P.name} ติด Mark ให้ ${m.name}${why?' ('+why+')':''}`,'sys');
   const hi=bv(P,"Hunter's Instinct",2,3); if(hi) await gainShield(P,hi); return true; }
 async function rgPickMark(P,pool,n,prompt,mandatory){ let k=0; for(let i=0;i<n;i++){ const opts=pool().filter(m=>m.hp>0&&!m.undying&&!m.mark); if(!opts.length) break;
     const ch=await ask(P,{kind:'mon',prompt:`${prompt}${n>1?` (${i+1}/${n})`:''}`,options:opts,purpose:'rgMark',cancel:(i>0||!mandatory)?'ไม่เลือก':undefined}); if(!ch) break; if(await rgMark(P,ch)) k++; } return k; }
 async function rgPlaceSnare(P,cells,spec,prompt){
-  const opts=cells.filter(c=>rgEmpty(c.x,c.y)); if(!opts.length){ log('🪢 ไม่มีช่องว่างให้วางบ่วง','warn'); return null; }
+  const opts=cells.filter(c=>rgEmptyP(P,c.x,c.y)); if(!opts.length){ log('🪢 ไม่มีช่องว่างให้วางบ่วง','warn'); return null; }
   const ch=await ask(P,{kind:'cell',prompt:prompt||`เลือกช่องวางบ่วงดัก (${rgSnareDmg(P,spec)} ดาเมจ)`,options:opts,purpose:'rgSnare',spec}); if(!ch) return null;
   const s=Object.assign({x:ch.x,y:ch.y,pid:P.id},spec); (G.snares=G.snares||[]).push(s); log(`🪢 ${P.name} วางบ่วงดักที่ (${ch.x+1},${ch.y+1})`,'sys'); return s; }
-const rgWithin=(c0,r)=>allCells(c=>dist(c,c0)<=r&&dist(c,c0)>0);
+const rgWithin=(c0,r)=>allCells(c=>dist(c,c0)<=r); /* v1.1.96: own space included */
 async function rgSnares(P,n,r,spec){ for(let i=0;i<n;i++){ const s=await rgPlaceSnare(P,rgWithin(P,rgRng(P,r)),spec,`วางบ่วงดัก ${n>1?`${i+1}/${n} `:''}ในระยะ ${rgRng(P,r)} ช่อง (${rgSnareDmg(P,spec)} ดาเมจ)`); if(!s) break; } }
 const rgSnareOp=FAC((n,r,spec)=>({t:'fn',f:async P=>rgSnares(P,n,r,spec),ev:P=>{ if(!rgLive().length) return -2; return n*(rgSnareDmg(P,spec)*0.7+(spec.mark?1.5:0)+(spec.poison||0)*0.8+(spec.net?2:0)+(spec.stun?3:0)+0.5); }}));
 function rgSnareDmg(P,s){ let d=RG_SNARE_BASE; if(P){ if(P.hero.name==='Rhodan Forgehart') d+=P.heroUp?2:1; d+=bv(P,'Sharpened Stakes',1,2)+bv(P,'Steel Jaws',2,3); } return d; }
@@ -6506,7 +6508,11 @@ const rgFarCnt=P=>rgLive().filter(m=>rgFar(P,m)).length;
 const rgPA=(dmg,x)=>Object.assign({t:'atk',dmg,mode:'single',proj:true},x||{});
 /* v1.1.93 pkg D helpers */
 const rgPdNear=m=>DIRS.some(([dx,dy])=>!inB(m.x+dx,m.y+dy)||isObs(m.x+dx,m.y+dy));
-const rgHM=FAC(sh=>({t:'fn',f:async P=>{ if(rgLive().some(m=>m.mark)){ log(`Hunter's Mark: มีศัตรูติด Mark อยู่แล้ว → ได้ Shield เพิ่ม ${sh}`,'sys'); await gainShield(P,sh); } else await rgPickMark(P,rgLive,1,"Hunter's Mark: ติด Mark ศัตรู 1 ตัว (ที่ใดก็ได้)",true); },ev:P=>rgLive().some(m=>m.mark)?sh*0.8:rgEvMark(1)(P)}));
+/* v1.1.96 USER RULE: Hunter's Mark — player always chooses: Mark 1 enemy anywhere OR gain the extra Shield (regardless of existing Marks) */
+const rgHM=FAC(sh=>({t:'fn',f:async P=>{ const un=rgLive().filter(m=>!m.mark&&!m.undying); let v;
+  if(rgBotLike(P)) v=(un.length&&!rgLive().some(m=>m.mark))?'mark':'sh';
+  else { const opts=[]; if(un.length) opts.push({label:'ติด Mark ศัตรู 1 ตัว (ที่ใดก็ได้) / Mark 1 enemy',v:'mark'}); opts.push({label:`ได้รับโล่เพิ่ม ${sh} / Gain ${sh} extra Shield`,v:'sh'}); const ch=await ask(P,{kind:'opt',forcePrompt:true,prompt:"Hunter's Mark: เลือก 1 อย่าง",options:opts,purpose:'rgHM'}); v=ch?ch.v:'sh'; }
+  if(v==='mark'&&un.length) await rgPickMark(P,rgLive,1,"Hunter's Mark: ติด Mark ศัตรู 1 ตัว (ที่ใดก็ได้)",true); else { log(`Hunter's Mark: ได้ Shield เพิ่ม ${sh}`,'sys'); await gainShield(P,sh); } },ev:P=>(rgLive().some(m=>!m.mark)&&!rgLive().some(m=>m.mark))?rgEvMark(1)(P):sh*0.8}));
 const rgRS=(d,b)=>({t:'atk',dmg:d,mode:'single',adj:true,dmgFor:(P,m,c,x)=>m.mark?x+b:x,after:async(P,m,ctx)=>{ if(!ctx.wasMarked||ctx._rs) return; ctx._rs=true; if(m.hp>0&&m.mark){ m.mark=0; log(`Retreating Shot: ลบ Mark ของ ${m.name}`,'sys'); } await draw(P,1); }});
 const rgFade=FAC((r,sh)=>({t:'fn',f:async P=>{ const ms=rgLive().filter(m=>m.mark&&dist(m,P)<=r); if(!ms.length) return; const t=await ask(P,{kind:'mon',prompt:`Fade Back: ลบ Mark ศัตรู 1 ตัวในระยะ ${r} เพื่อได้ Shield +${sh} และจั่ว 1 ใบ?`,options:ms,purpose:'rgUnmark',cancel:'ไม่ลบ'}); if(!t) return; t.mark=0; log(`Fade Back: ลบ Mark ของ ${t.name}`,'sys'); await gainShield(P,sh); await draw(P,1); },ev:P=>rgLive().some(m=>m.mark&&dist(m,P)<=r)?sh+1:0}));
 /* ---- cards ---- */
@@ -6545,7 +6551,8 @@ function rgIsProjCard(P,h){ const d=DEF[h.key]; if(!d||d.type!=='attack') return
 const rgNock=FAC(n=>({t:'fn',f:async(P,ctx)=>{ const pool=P.hand.filter(h=>h.key!=='EXH'&&h!==(ctx&&ctx.card)&&rgIsProjCard(P,h)); if(pool.length){ const ch=await ask(P,{kind:'card',prompt:`Nock & Draw: Power Up ${n} ให้การ์ดโจมตี [Projectile] ในมือ`,options:pool,purpose:'power'}); if(ch){ ch.pow=(ch.pow||0)+n; log(`${DEF[ch.key].name} ได้ Power +${n}`,'sys'); } } else log('Nock & Draw: ไม่มีการ์ดโจมตี [Projectile] ในมือ','warn'); },ev:P=>P.hand.some(h=>h.key!=='EXH'&&rgIsProjCard(P,h))?n*1.6:0}));
 ov('Nock & Draw|RS',[rgNock(1),{t:'draw',n:1}],[rgNock(2),{t:'draw',n:1}]);
 ov('Flick Arrow|RS',[rgPA(2,{tf:(P,m)=>!!m.mark}),{t:'move',min:0,n:1}],[rgPA(3,{tf:(P,m)=>!!m.mark}),{t:'move',min:0,n:2}]);
-const rgTrip=()=>({after:async(P,m)=>{ const pos={x:m.x,y:m.y}; await rgPlaceSnare(P,DIRS.map(([dx,dy])=>({x:pos.x+dx,y:pos.y+dy})),{},`Tripwire Shot: วางบ่วงดัก (${rgSnareDmg(P,{})}) ข้างเป้าหมาย`); }});
+/* v1.1.96 USER RULE: if the shot kills the target, the Snare may also go on the space where it died */
+const rgTrip=()=>({after:async(P,m)=>{ const pos={x:m.x,y:m.y}; await rgPlaceSnare(P,DIRS.map(([dx,dy])=>({x:pos.x+dx,y:pos.y+dy})).concat(m.hp<=0?[{x:pos.x,y:pos.y}]:[]),{},`Tripwire Shot: วางบ่วงดัก (${rgSnareDmg(P,{})}) ข้างเป้าหมาย`); }});
 ov('Tripwire Shot|RS',[rgPA(3,rgTrip())],[rgPA(4,rgTrip())]);
 ov('Barbed Arrow|RS',[rgPA(3,{dmgFor:(P,m,c,d)=>rgFar(P,m)?d+2:d})],[rgPA(4,{dmgFor:(P,m,c,d)=>rgFar(P,m)?d+3:d})]);
 const rgHarr={t:'fn',f:async P=>{ const cs=compsOf(P); if(!cs.length) return; const f=cs.length>1?await ask(P,{kind:'cell',prompt:'Harrier Shot: เลือกคู่หู 1 ตัว ให้ทำงานทันที (เดิน + แอคชัน)',options:cs,purpose:'rgCompPick'}):cs[0]; const ff=f&&cs.find(c=>c.x===f.x&&c.y===f.y); if(ff){ log(`Harrier Shot: ${ff.name} ทำงานทันที`,'sys'); await rgCompActOne(P,ff,false); } },ev:P=>compsOf(P).length?3:0};
@@ -6569,7 +6576,7 @@ ov("Trapper's Finale|RS",[rgFinale(3)],[rgFinale(4)]);
 ov('Fade Back|RS',[{t:'move',min:0,n:3},{t:'shield',n:3},rgFade(4,3)],[{t:'move',min:0,n:4},{t:'shield',n:4},rgFade(5,4)]);
 ov('Caltrops|RS',[rgSnareOp(2,1,{})],[rgSnareOp(2,2,{})]);
 const rgReset=FAC(n=>({t:'fn',f:async P=>{ for(let i=0;i<n;i++){ const ss=rgSnaresOf(P); if(!ss.length) break; const s=await ask(P,{kind:'cell',prompt:`Reset the Trap: เลือกบ่วงที่จะย้าย${n>1?` (${i+1}/${n})`:''}`,options:ss,purpose:'rgSnarePick',forMove:1,cancel:'ไม่ย้าย'}); if(!s) break;
-    const opts=rgWithin(P,3).filter(c=>rgEmpty(c.x,c.y)); if(!opts.length) break; const c=await ask(P,{kind:'cell',prompt:'Reset the Trap: เลือกช่องว่างในระยะ 3 ช่อง',options:opts,purpose:'rgMoveTo'}); if(!c) break; s.x=c.x; s.y=c.y; log(`🪢 ย้ายบ่วงไป (${c.x+1},${c.y+1})`,'sys'); } },ev:P=>rgSnaresOf(P).length?1:0}));
+    const opts=rgWithin(P,3).filter(c=>rgEmptyP(P,c.x,c.y)); if(!opts.length) break; const c=await ask(P,{kind:'cell',prompt:'Reset the Trap: เลือกช่องว่างในระยะ 3 ช่อง',options:opts,purpose:'rgMoveTo'}); if(!c) break; s.x=c.x; s.y=c.y; log(`🪢 ย้ายบ่วงไป (${c.x+1},${c.y+1})`,'sys'); } },ev:P=>rgSnaresOf(P).length?1:0}));
 ov('Reset the Trap|RS',[rgReset(1),{t:'draw',n:1}],[rgReset(2),{t:'draw',n:1}]);
 ov('Trapline|RS',[rgSnareOp(3,2,{})],[rgSnareOp(3,3,{})]);
 function rgEvAtk(P,op){ try{ const base=val(op.dmg,P,{x:1})||0; let s=0;
@@ -8211,7 +8218,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.95', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.96', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
@@ -9002,7 +9009,7 @@ KW.push({id:'Coin',en:'Coins?',th:'เหรียญ',def:"ได้ 2 Coins �
 /* v1.1.91 Ranger keywords */
 KW.push({id:'Companion',en:'Companions?',th:'คู่หู',def:'การ์ด Buff ที่วางตัวคู่หูบนช่องว่างติดตัวคุณ (คุณเลือกช่อง; ไม่มีช่องว่าง = เล่นไม่ได้); มีได้หลายตัว; มี HP (เหยี่ยว 4/6, นกฮูก 4/6, หมาป่า 10/14, หมี 14/18); ศัตรูมองเป็นสมาชิกทีมฮีโร่และโจมตีได้; ขวางศัตรู ฮีโร่เดินผ่านได้แต่หยุดทับไม่ได้; ไม่รับโล่/ฮีล; ตาย = การ์ด Buff ถูก Remove; จบห้องออกจากกระดาน; จบเทิร์นคุณ: เดินตามค่า Move (นก = บิน) แล้วทำแอคชัน',enDef:'Buff that places a figure on an empty space adjacent to you (your choice; no empty space = can\'t play). Any number allowed. Has HP (Hawk 4/6, Owl 4/6, Wolf 10/14, Bear 14/18). Enemies treat it as a hero-team member and can attack it; it blocks enemies, heroes pass through but can\'t stop on it; no Shields/healing; killed = its Buff card is Removed; leaves at room end. End of your turn: moves up to its Move (birds fly), then acts',rb:true},
  {id:'Mark',en:'Mark(?:ed|s)?',th:'ติด Mark',def:'ศัตรูที่ติด Mark รับความเสียหาย +1 ทุกครั้งที่โดนฮีโร่ตี (การโจมตี, บ่วงดัก, คู่หู); ติดได้ 1 อันต่อศัตรู; หายเมื่อตาย หรือจบห้อง',enDef:'A Marked enemy takes +1 damage from every hero hit (attacks, Snares, Companions). Max 1 per enemy; gone on death or at room end.',rb:true},
- {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ศัตรูที่เดินเข้าบ่วงในเทิร์นของมันจะจบเทิร์นทันที (หยุดเดินและไม่ทำอะไรต่อ) หลังผลของบ่วง; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; บ่วงทุกอันสร้างความเสียหาย 4 หน่วย (การ์ด Buff และ Rhodan เพิ่มได้); วางได้ไม่จำกัดจำนวน',enDef:'Placed on an empty space in range; triggers when an enemy enters it (walk or push/pull), then is removed. An enemy that moves into a Snare on its own turn ends its turn immediately (stops moving, takes no further action) after the Snare effect. Heroes never trigger it; not an Attack. Every Snare deals 4 damage (Buff cards and Rhodan add to it). No limit on how many you can have.',rb:true},
+ {id:'Snare',en:'Snares?',th:'บ่วงดัก',def:'วางบนช่องว่างในระยะที่ระบุ หรือบนช่องที่ฮีโร่ของคุณยืนอยู่ (ใต้ตัวคุณ) หรือช่องที่มีไอเทมบนพื้นได้ (ไอเทมยังเก็บได้ตามปกติ) ทำงานเมื่อศัตรูเข้ามาในช่อง (เดินหรือโดนผลัก/ดึง) แล้วหายไป; ศัตรูที่เดินเข้าบ่วงในเทิร์นของมันจะจบเทิร์นทันที (หยุดเดินและไม่ทำอะไรต่อ) หลังผลของบ่วง; ฮีโร่ไม่ทำให้บ่วงทำงาน; ไม่นับเป็นการโจมตี; บ่วงทุกอันสร้างความเสียหาย 4 หน่วย (การ์ด Buff และ Rhodan เพิ่มได้); วางได้ไม่จำกัดจำนวน',enDef:'Placed on an empty space in range, or on your own hero\'s space (under you), or on a floor pickup (the pickup can still be collected); triggers when an enemy enters it (walk or push/pull), then is removed. An enemy that moves into a Snare on its own turn ends its turn immediately (stops moving, takes no further action) after the Snare effect. Heroes never trigger it; not an Attack. Every Snare deals 4 damage (Buff cards and Rhodan add to it). No limit on how many you can have.',rb:true},
  {id:'Far',en:'Far',th:'ไกล(?=:)',def:'เป้าหมายอยู่ห่างจากคุณ 2 ช่องขึ้นไป',enDef:'The target is 2+ spaces away from you.',rb:true}); kwBuildRe();
 const TOK_KW={mana:'Mana',shield:'Shield',str:'Strength',pow:'Power Up',dodge:'Dodge',mtok:'Move Token',ptok:'Projectile Token',poison:'Poison',stun:'Stun',shardstack:'Shard',coinstack:'Coin'};
 const TOK_USE={mana:'วิธีใช้: ตอนเล่นการ์ด เลือก +/− ตัวเลขที่พิมพ์บนการ์ด (การ์ดปกติ: ครั้งเดียว ใช้ 2 Mana · การ์ด [Magic]: 1 Mana/จุด ใช้ได้หลาย Mana)',shield:'ทำงานอัตโนมัติเมื่อโดนดาเมจ',str:'ทำงานอัตโนมัติกับการ์ด Attack',pow:'จะใส่ให้การ์ด Attack ใบถัดไปที่เลือกอัตโนมัติ',dodge:'ใช้อัตโนมัติเมื่อโดนโจมตีครั้งถัดไป',mtok:'วิธีใช้: กดเดิน — ระบบใช้ Move Token ก่อน Shard',ptok:'ใช้กับการโจมตีครั้งถัดไป (ระบบถามเมื่อเล่นการ์ด Attack)',poison:'สถานะ — ลดลงเองทุกจบเทิร์น',stun:'สถานะ — ข้ามเทิร์นถัดไป',shardstack:'วิธีใช้: กดปุ่มเดิน (2 Shard/ช่อง)',coinstack:'วิธีใช้: ใช้ในร้านค้าช่วง Rest Phase'};
@@ -11262,6 +11269,7 @@ if(!HEADLESS){
   .cell .rgsn b{position:absolute;right:-.9em;bottom:-.5em;font-size:10px;font-weight:700;background:#1f4a3a;color:#d9ffcc;border:1px solid #9be07a;border-radius:6px;padding:0 3px;line-height:13px;white-space:nowrap}
   .tok .rgmk{position:absolute;left:50%;top:-22px;transform:translateX(-105%);z-index:3;font-size:15px;line-height:18px;padding:0 3px;border-radius:8px;background:linear-gradient(#e0b43a,#8a5a10);border:1px solid #ffe08a;box-shadow:0 2px 4px #000;pointer-events:none}
   .tok .rgpin{position:absolute;left:50%;top:-22px;transform:translateX(5%);z-index:3;font-size:15px;line-height:18px;padding:0 3px;border-radius:8px;background:linear-gradient(#6a8fd0,#2a3f73);border:1px solid #bcd3ff;box-shadow:0 2px 4px #000;pointer-events:none}
+  .tok .rgsnh{position:absolute;right:-2px;bottom:2px;z-index:4;font-size:18px;line-height:18px;padding:0 3px;border-radius:8px;background:#1f4a3a;border:1px solid #9be07a;pointer-events:none}
   .tok.mon.rgmarked img{box-shadow:0 0 0 2px #ffd34a,0 0 10px #ffb400}`;
   document.head.appendChild(st);
   const ini=n=>(n||'').split(' ').map(w=>w[0]).join('').slice(0,2);
@@ -11270,7 +11278,9 @@ if(!HEADLESS){
     for(const s of S){ const el=document.querySelector(`#cells .cell[data-k="${key(s.x,s.y)}"]`); if(!el) continue; el.classList.add('rgsnare'); el.querySelectorAll('.rgsn').forEach(e=>e.remove());
       const o=heroes().find(h=>h.id===s.pid)||G.players.find(h=>h.id===s.pid); const nm=o?o.name:'';
       el.insertAdjacentHTML('beforeend',`<span class="rgsn">🪢${ownerN>1?`<b>${esc(ini(nm))}</b>`:''}</span>`);
-      el.title=`🪢 บ่วงดัก (Snare) ของ ${nm}\nศัตรูที่เข้าช่องนี้: ดาเมจ ${typeof rgSnareDmg==='function'?rgSnareDmg(G.players.find(p=>p.id===s.pid),s):4}${s.poison?' ☠'+s.poison:''}${s.stun?' 💫Stun':''}${s.mark?' 🎯Mark':''}${s.push?' ผลัก '+s.push:''}${s.net?' หยุดเดิน (Net)':''} แล้วบ่วงหายไป\nถ้าเดินเข้ามาในเทิร์นของมัน: จบเทิร์นทันที / Enemy moving in on its turn ends its turn`; }
+      el.title=`🪢 บ่วงดัก (Snare) ของ ${nm}\nศัตรูที่เข้าช่องนี้: ดาเมจ ${typeof rgSnareDmg==='function'?rgSnareDmg(G.players.find(p=>p.id===s.pid),s):4}${s.poison?' ☠'+s.poison:''}${s.stun?' 💫Stun':''}${s.mark?' 🎯Mark':''}${s.push?' ผลัก '+s.push:''}${s.net?' หยุดเดิน (Net)':''} แล้วบ่วงหายไป\nถ้าเดินเข้ามาในเทิร์นของมัน: จบเทิร์นทันที / Enemy moving in on its turn ends its turn\nฮีโร่ไม่โดนบ่วง วางใต้ตัวฮีโร่ของคุณได้ / Heroes are unaffected; can be placed under your own hero`; }
+    /* v1.1.96: Snare under a hero -> 🪢 badge on the hero token (cell icon is hidden by the figure) */
+    document.querySelectorAll('#toks .tok.hero').forEach(el=>{ el.querySelectorAll('.rgsnh').forEach(e=>e.remove()); const k=el.dataset.k; if(S.some(s=>key(s.x,s.y)===k)){ el.insertAdjacentHTML('beforeend','<span class="rgsnh" title="บ่วงดักใต้ฮีโร่ / Snare under hero">🪢</span>'); } });
     for(const m of allMons()){ const el=document.querySelector(`#toks .tok.mon[data-k="${key(m.x,m.y)}"]`); if(!el) continue;
       el.querySelectorAll('.rgmk,.rgpin').forEach(e=>e.remove()); el.classList.toggle('rgmarked',!!m.mark);
       if(m.mark) el.insertAdjacentHTML('beforeend','<div class="rgmk" title="🎯 Mark: โดนดาเมจ +1 จากการโจมตี/บ่วง/คู่หู">🎯</div>');
