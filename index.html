@@ -5142,11 +5142,11 @@ html.pdOv #mainMenu .mmBg,html.pdOv #mainMenu .mmStage{visibility:hidden}
   {
    "name": "Bear Companion",
    "cost": 3,
-   "en": "[Companion] (HP 14 · Move 2) Guard: when an enemy would deal damage to a hero adjacent to the Bear, the Bear takes that damage instead.",
-   "th": "[คู่หู] (HP 14 · เดิน 2) ปกป้อง: เมื่อศัตรูจะสร้างความเสียหายแก่ฮีโร่ที่อยู่ติดกับหมี หมีรับความเสียหายนั้นแทน",
+   "en": "[Companion] (HP 14 · Move 2) Guard: when an enemy would deal damage to a hero adjacent to the Bear, the Bear takes that damage instead. Action: deal 2 damage to 1 enemy adjacent to it, then Push it 1 space.",
+   "th": "[คู่หู] (HP 14 · เดิน 2) ปกป้อง: เมื่อศัตรูจะสร้างความเสียหายแก่ฮีโร่ที่อยู่ติดกับหมี หมีรับความเสียหายนั้นแทน แอคชัน: สร้างความเสียหาย 2 หน่วยแก่ศัตรู 1 ตัวที่อยู่ติดกับหมี แล้วผลักมัน 1 ช่อง",
    "ucost": 3,
-   "uen": "[Companion] (HP 20 · Move 2) Guard: when an enemy would deal damage to a hero adjacent to the Bear, the Bear takes that damage instead, minus 2.",
-   "uth": "[คู่หู] (HP 20 · เดิน 2) ปกป้อง: เมื่อศัตรูจะสร้างความเสียหายแก่ฮีโร่ที่อยู่ติดกับหมี หมีรับความเสียหายนั้นแทน โดยลดลง 2 หน่วย",
+   "uen": "[Companion] (HP 20 · Move 2) Guard: when an enemy would deal damage to a hero adjacent to the Bear, the Bear takes that damage instead, minus 2. Action: deal 3 damage to 1 enemy adjacent to it, then Push it 2 spaces.",
+   "uth": "[คู่หู] (HP 20 · เดิน 2) ปกป้อง: เมื่อศัตรูจะสร้างความเสียหายแก่ฮีโร่ที่อยู่ติดกับหมี หมีรับความเสียหายนั้นแทน โดยลดลง 2 หน่วย แอคชัน: สร้างความเสียหาย 3 หน่วยแก่ศัตรู 1 ตัวที่อยู่ติดกับหมี แล้วผลักมัน 2 ช่อง",
    "rar": "Rare",
    "type": "buff",
    "cls": "Ranger",
@@ -6441,7 +6441,7 @@ function rgBonus(P,m,d,op,ctx,est){ if(!P||P.isMon||!m) return 0; let b=0;
   const atk=!!op.isAtk, proj=atk&&isProj(P,op);
   if(atk&&proj&&m.mark&&P.hero.name==='Juliana Regalia'){ const mx=P.heroUp?2:1; P.pinSet=P.pinSet||new Set(); if((P.pinN||0)<mx&&!P.pinSet.has(m.uid)){ if(P.heroUp) b+=2; if(!est){ P.pinN=(P.pinN||0)+1; P.pinSet.add(m.uid); ctx._pin=m; } } }
   if(d+b>0){
-    if(m.mark&&(atk||op.markOk)) b+=rgMkN(m)+((atk&&hasItem(P,'Violet Trident'))?1:0);
+    if(m.mark&&(atk||op.markOk)){ const mb=rgMkN(m); b+=mb+((atk&&hasItem(P,'Violet Trident'))?1:0); if(!est) log(`🎯 Mark ×${mb}: ${m.name} โดน +${mb} ดาเมจ`,'sys'); }
     /* v1.1.92 crit removed from Ranger: Calm Breath / Apex Predator+ are flat damage now */
     if(atk&&proj&&P.calm){ const cb=m.mark?P.calm.m:P.calm.n; b+=cb; if(!est){ if(!m.mark) ctx._calmMark=m; log(`Calm Breath: +${cb} ดาเมจ${m.mark?' (เป้าติด Mark)':' แล้วติด Mark เป้าหมาย'}`,'sys'); P.calm=null; } }
     if(m.mark&&buffLv(P,'Apex Predator')===2&&!P.apexHit){ b+=2; if(!est){ P.apexHit=true; log('Apex Predator+: +2 ดาเมจ (โดนศัตรูติด Mark ครั้งแรกในเทิร์น)','sys'); } }
@@ -6503,7 +6503,8 @@ async function rgCompActOne(P,f,tick){ if(G.over||!f||f.hp<=0) return; const nm=
   else if(nm==='Wolf Companion'){ const adj=near(1); if(!adj.length) return; const dmg=(up?6:4)+wh; log(`🐺 ${f.name}`,'sys');
     const ts=up?adj:[await ask(P,{kind:'mon',prompt:`Wolf: ${dmg} ดาเมจ (ศัตรูติดหมาป่า)`,options:adj,purpose:'rgHit',dmg})].filter(Boolean);
     for(const t of ts){ faceToward(f,t); await hitMon(P,t,dmg,cop,{}); } } /* v1.1.97 sheet (green): no Push */
-  /* v1.1.97 Bear: no end-of-turn action (Guard is passive, see rgBearGuard) */ }
+  else if(nm==='Bear Companion'){ /* v1.1.99 USER RULE: Bear keeps Guard AND attacks: 2/3 dmg to 1 adjacent enemy, then Push it 1/2 */ const adj=near(1); if(!adj.length) return; const dmg=(up?3:2)+wh, pn=up?2:1; log(`🐻 ${f.name}`,'sys');
+    const t=await ask(P,{kind:'mon',prompt:`Bear${up?'+':''}: ${dmg} ดาเมจ แล้วผลัก ${pn} ช่อง (ศัตรูติดหมี)`,options:adj,purpose:'rgHit',dmg}); if(t){ faceToward(f,t); await hitMon(P,t,dmg,cop,{}); if(t.hp>0) await pushUnit(P,t,away(t),pn); } } }
 /* v1.1.97 Bear Guard: an enemy attack on a hero adjacent to a Bear hits the Bear instead (upgraded: -2) */
 function rgBearGuard(target){ if(!target||target.isComp||target.isMon) return null; return liveComps().find(c=>c.cname==='Bear Companion'&&dist(c,target)===1)||null; }
 async function rgCompAct(P){ for(const f of compsOf(P).slice()){ if(G.over) return; await rgCompActOne(P,f,true); } }
@@ -7503,7 +7504,7 @@ async function doAttack(P,op,ctx){
     if(!m||m.hp<=0) return 0;
     if(isWeak(P,m,op)) ctx.weak=true;
     P.perfectNow=false;
-    const k0=m.killed; let dd=dmg; if(op.dmgFor) dd=op.dmgFor(P,m,ctx,dmg); ctx.wasMarked=!!m.mark; ctx.curT=m; if(op.consume&&m.mark){ rgUnmark1(m); log(`💘 ${m.name}: ใช้ 1 Mark (Heartseeker)`,'sys'); } if(op.after) ctx._openSelf=null; const r=await hitMon(P,m,dd,hop,ctx); if(op.after) await op.after(P,m,ctx,r);
+    const k0=m.killed; let dd=dmg; if(op.dmgFor) dd=op.dmgFor(P,m,ctx,dmg); ctx.wasMarked=!!m.mark; ctx.curT=m; if(op.after) ctx._openSelf=null; const r=await hitMon(P,m,dd,hop,ctx); /* v1.1.99 FIX: consume the Mark AFTER the hit so that Mark's +1 still applies to this hit */ if(op.consume&&ctx.wasMarked&&m.mark){ rgUnmark1(m); log(`💘 ${m.name}: ใช้ 1 Mark (Heartseeker)`,'sys'); } if(op.after) await op.after(P,m,ctx,r);
     if(m.killed&&m.killed!==k0){ ctx.killed=true; /* v1.1.72: defeated by THIS hit (Bone: also while it becomes undying) */ if(P.perfectNow) ctx.perfect=true; if(op.onKill) await op.onKill(P); if(op.spree) ctx.toHand=true; if(op.onPerfect&&P.perfectNow) await op.onPerfect(P); }
     else {
       const dirTo=[Math.sign(m.x-P.x),Math.sign(m.y-P.y)]; if(dirTo[0]&&dirTo[1]) dirTo[1]=0;
@@ -8287,7 +8288,7 @@ function lineClear(a,b){ if(a.x!==b.x&&a.y!==b.y) return false; const dx=Math.si
    stored as a path reference, RNG state (RS.s/RS.n) + UID + CFG settings included. Checkpoint G.ck tells runGame where to resume:
    {at:'rest'} start of a room's Rest/Market · {at:'battle',i,newRound} before hero i's turn (i=players.length → monster phase) ·
    {at:'turn',i} inside hero i's turn waiting for an action (manual save). */
-const SAVE_VER=1, APP_VER='1.1.98', SAVE_KEY='pd_save';
+const SAVE_VER=1, APP_VER='1.1.99', SAVE_KEY='pd_save';
 let _SPATH=null;
 function _staticPaths(){ if(_SPATH) return _SPATH; _SPATH=new Map();
   const roots={D:typeof D!=='undefined'?D:null,DEF:typeof DEF!=='undefined'?DEF:null,MON,DUNGEONS,MARKET,STARTER,CLASSBOX,ITEMS:typeof ITEMS!=='undefined'?ITEMS:null};
